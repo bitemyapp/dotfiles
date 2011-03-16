@@ -18,6 +18,10 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+;; Add color to a shell running in emacs 'M-x shell'
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
 (require 'ido)
 
 (require 'color-theme)
@@ -53,7 +57,6 @@
 
 (iswitchb-mode 1)
 
-
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
 ;;; interfacing with ELPA, the package archive.
@@ -63,7 +66,3 @@
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
-
-;; Add color to a shell running in emacs 'M-x shell'
-(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
