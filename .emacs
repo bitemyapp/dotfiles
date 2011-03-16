@@ -1,3 +1,5 @@
+(if (window-system) (set-frame-size (selected-frame) 160 60))
+
 (setq ring-bell-function 'ignore)
 (toggle-scroll-bar -1)
 (custom-set-variables
