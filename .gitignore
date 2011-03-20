@@ -49,3 +49,9 @@ Dropbox
 .bash_history
 .ido.last
 .xsession*
+.gstreamer-0.10/
+.jhistory
+.zcompdump
+code/
+j701-user/
+src/
