@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/")
+
 (if (window-system) (set-frame-size (selected-frame) 160 60))
 
 (setq ring-bell-function 'ignore)
@@ -66,3 +68,15 @@
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
+
+;;; For programming in J
+(autoload 'j-mode "j-mode.el"  "Major mode for J." t)
+(autoload 'j-shell "j-mode.el" "Run J from emacs." t)
+(setq auto-mode-alist
+      (cons '("\\.ij[rstp]" . j-mode) auto-mode-alist))
+
+; path of jconsole, et al
+(setq j-path "~/bin/j701/bin/")
+
+; if you don't need plotting, etc. 
+(setq j-command "jconsole")
