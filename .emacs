@@ -120,3 +120,12 @@
 (global-auto-complete-mode t)
 ;;(eval-after-load "pymacs"
 ;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
+
+;;; Text files
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist
+	     '("\\.txt$" . markdown-mode))
+(add-hook 'text-mode-hook (lambda ()
+			    (turn-on-auto-fill)
+			    (setq-default line-spacing 5)
+			    (setq indent-tabs-mode nil)))
