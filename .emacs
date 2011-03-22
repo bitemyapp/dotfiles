@@ -35,7 +35,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 109 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 99 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
 
  (require 'tabbar)
  (tabbar-mode)
@@ -80,3 +80,43 @@
 
 ; if you don't need plotting, etc. 
 (setq j-command "jconsole")
+
+; Example from: http://jeremy.zawodny.com/emacs/emacs-4.html
+; (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
+
+; #!@$ing Rakefiles
+(setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
+; And Gemfiles
+(setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
+
+;; Python dev stuff
+(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
+(autoload 'python-mode "python-mode" "Python Mode." t)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(require 'python-mode)
+
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-autoimport t)
+
+(require 'auto-complete)
+(global-auto-complete-mode t)
+;;(eval-after-load "pymacs"
+;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
