@@ -124,7 +124,7 @@
 ;;; Text files
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist
-	     '("\\.txt$" . markdown-mode))
+	     '("\\.md$" . markdown-mode))
 (add-hook 'text-mode-hook (lambda ()
 			    (turn-on-auto-fill)
 			    (setq-default line-spacing 5)
