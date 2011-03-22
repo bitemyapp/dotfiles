@@ -20,6 +20,9 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+(setq tramp-default-method "ssh")
+(transient-mark-mode 1)
+
 ;; Add color to a shell running in emacs 'M-x shell'
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -30,12 +33,14 @@
 (color-theme-initialize)
 (color-theme-midnight)
 
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+;; (custom-set-faces
+;;   ;; custom-set-faces was added by Custom.
+;;   ;; If you edit it by hand, you could mess it up, so be careful.
+;;   ;; Your init file should contain only one such instance.
+;;   ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+
+(set-default-font "Droid Sans Mono 8")
 
  (require 'tabbar)
  (tabbar-mode)
@@ -131,3 +136,13 @@
 			    (setq indent-tabs-mode nil)))
 (require 'redo)       ; enables C-r (redo key)
 (require 'rect-mark)  ; enables nice-looking block visual mode
+
+
+(defun reload-dot-emacs ()
+  "Save the .emacs buffer if needed, then reload .emacs."
+  (interactive)
+  (let ((dot-emacs "~/.emacs"))
+    (and (get-file-buffer dot-emacs)
+         (save-buffer (get-file-buffer dot-emacs)))
+    (load-file dot-emacs))
+  (message "Re-initialized!"))
