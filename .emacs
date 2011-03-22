@@ -129,3 +129,5 @@
 			    (turn-on-auto-fill)
 			    (setq-default line-spacing 5)
 			    (setq indent-tabs-mode nil)))
+(require 'redo)       ; enables C-r (redo key)
+(require 'rect-mark)  ; enables nice-looking block visual mode
