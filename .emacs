@@ -22,6 +22,7 @@
 
 (setq tramp-default-method "ssh")
 (transient-mark-mode 1)
+(setq x-select-enable-clipboard t)
 
 ;; Add color to a shell running in emacs 'M-x shell'
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
@@ -29,31 +30,20 @@
 
 (require 'ido)
 
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-midnight)
-
-;; (custom-set-faces
-;;   ;; custom-set-faces was added by Custom.
-;;   ;; If you edit it by hand, you could mess it up, so be careful.
-;;   ;; Your init file should contain only one such instance.
-;;   ;; If there is more than one, they won't work right.
-;;  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
-
-(set-default-font "Droid Sans Mono 8")
-
- (require 'tabbar)
- (tabbar-mode)
- (setq tabbar-buffer-groups-function
-           (lambda ()
-             (list "All Buffers")))
- (setq tabbar-buffer-list-function
-     	(lambda ()
+(require 'tabbar)
+(if (not tabbar-mode)
+	(tabbar-mode))
+(setq tabbar-buffer-groups-function
+	(lambda ()
+    (list "All Buffers")))
+(setq tabbar-buffer-list-function
+	(lambda ()
      	  (remove-if
      	   (lambda(buffer)
      	     (find (aref (buffer-name buffer) 0) " *"))
      	   (buffer-list))))
 
+    
 (global-set-key (kbd "TAB") 'self-insert-command)
 
 ;; Org-mode settings
@@ -146,3 +136,16 @@
          (save-buffer (get-file-buffer dot-emacs)))
     (load-file dot-emacs))
   (message "Re-initialized!"))
+
+(set-default-font "Droid Sans Mono 8")
+
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-midnight)
+
+;; (custom-set-faces
+;;   ;; custom-set-faces was added by Custom.
+;;   ;; If you edit it by hand, you could mess it up, so be careful.
+;;   ;; Your init file should contain only one such instance.
+;;   ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
