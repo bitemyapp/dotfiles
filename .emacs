@@ -1,6 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
-(if (window-system) (set-frame-size (selected-frame) 160 60))
+(setq x-select-enable-clipboard t)
 
 (setq ring-bell-function 'ignore)
 (toggle-scroll-bar -1)
@@ -18,7 +18,11 @@
 (setq make-backup-files nil) 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
+;; (setq indent-line-function 'insert-tab)
+
+;; aliases because I am l'lazy
+(defalias 'couc 'comment-or-uncomment-region)
+(global-set-key (kbd "C-c c o m") 'couc)
 
 (setq tramp-default-method "ssh")
 (transient-mark-mode 1)
@@ -44,7 +48,7 @@
      	   (buffer-list))))
 
     
-(global-set-key (kbd "TAB") 'self-insert-command)
+;;(global-set-key (kbd "TAB") 'self-insert-command)
 
 ;; Org-mode settings
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -102,6 +106,15 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (require 'python-mode)
+(setq interpreter-mode-alist
+      (cons '("python" . python-mode)
+          interpreter-mode-alist)
+
+      python-mode-hook
+      '(lambda () (progn
+           (set-variable 'py-indent-offset 4)
+           (set-variable 'py-smart-indentation nil)
+           (set-variable 'indent-tabs-mode nil) )))
 
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
@@ -137,11 +150,17 @@
     (load-file dot-emacs))
   (message "Re-initialized!"))
 
-(set-default-font "Droid Sans Mono 8")
+(set-default-font "Terminus 9")
+
+;; deletes selected text
+(delete-selection-mode t)
 
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-midnight)
+
+;; needs to come last because color-theme is a bitch.
+(if (window-system) (set-frame-size (selected-frame) 131 90))
 
 ;; (custom-set-faces
 ;;   ;; custom-set-faces was added by Custom.
