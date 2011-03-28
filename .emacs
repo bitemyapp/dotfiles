@@ -1,4 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 
 (setq ring-bell-function 'ignore)
 (toggle-scroll-bar -1)
@@ -98,8 +99,6 @@
   (package-initialize))
 
 ;; Python dev stuff
-(add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
