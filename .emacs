@@ -1,7 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
-(setq x-select-enable-clipboard t)
-
 (setq ring-bell-function 'ignore)
 (toggle-scroll-bar -1)
 (custom-set-variables
