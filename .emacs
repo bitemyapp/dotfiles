@@ -198,6 +198,8 @@
 (require 'redo)       ; enables C-r (redo key)
 (require 'rect-mark)  ; enables nice-looking block visual mode
 
+;;; Magit
+(require 'magit)
 
 (defun reload-dot-emacs ()
   "Save the .emacs buffer if needed, then reload .emacs."
@@ -239,6 +241,20 @@
 ;; deletes selected text
 (delete-selection-mode t)
 
+;; Thus, ‘M-w’ with no selection copies the current line, ‘C-w’ kills it entirely, 
+;; and ‘C-a M-w C-y’ duplicates it. As the interactive-form property only affects 
+;; the commands’ interactive behavior, they are safe for other functions to call.
+(put 'kill-ring-save 'interactive-form
+     '(interactive
+       (if (use-region-p)
+           (list (region-beginning) (region-end))
+         (list (line-beginning-position) (line-beginning-position 2)))))
+    (put 'kill-region 'interactive-form      
+     '(interactive
+       (if (use-region-p)
+           (list (region-beginning) (region-end))
+         (list (line-beginning-position) (line-beginning-position 2)))))
+
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-midnight)
@@ -252,11 +268,8 @@
  '(default ((t (:inherit nil :stipple nil :background "black" 
                          :foreground "white" :inverse-video nil :box nil 
                          :strike-through nil :overline nil :underline nil 
-                         :slant normal :weight normal :height 90 :width normal 
-                         :foundry "unknown" :family "Terminus")))))
+                         :slant normal :weight normal :height 110 :width normal 
+                         :foundry "unknown" :family "Inconsolata")))))
 
 ;; needs to come last because color-theme is a bitch.
 (if (window-system) (set-frame-size (selected-frame) 131 90))
-
-(require 'server)
-(server-start)
