@@ -1,3 +1,26 @@
+;; Safe load per dotemacs.de
+(defvar safe-load-error-list ""
+        "*List of files that reported errors when loaded via safe-load")
+
+(defun safe-load (file &optional noerror nomessage nosuffix)
+  "Load a file.  If error when loading, report back, wait for
+   a key stroke then continue on"
+  (interactive "f")
+  (condition-case nil (load file noerror nomessage nosuffix) 
+    (error 
+      (progn 
+       (setq safe-load-error-list  (concat safe-load-error-list  " " file))
+       (message "****** [Return to continue] Error loading %s" safe-load-error-list )
+        (sleep-for 1)
+       nil))))
+
+(defun safe-load-check ()
+ "Check for any previous safe-load loading errors.  (safe-load.el)"
+  (interactive)
+  (if (string-equal safe-load-error-list "") () 
+               (message (concat "****** error loading: " safe-load-error-list))))
+;;
+
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 
@@ -15,7 +38,8 @@
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t))
-(tool-bar-mode 0)
+(if window-system
+    (tool-bar-mode 0))
 (setq frame-title-format "%b")
 (setq make-backup-files nil) 
 (setq-default indent-tabs-mode nil)
@@ -184,6 +208,34 @@
     (load-file dot-emacs))
   (message "Re-initialized!"))
 
+;; Reload read-only files in sudo automatically
+;; Uses tramp, don't be stupid and not have tramp loaded.
+(defun th-rename-tramp-buffer ()
+  (when (file-remote-p (buffer-file-name))
+    (rename-buffer
+     (format "%s:%s"
+             (file-remote-p (buffer-file-name) 'method)
+             (buffer-name)))))
+
+(add-hook 'find-file-hook
+          'th-rename-tramp-buffer)
+
+(defadvice find-file (around th-find-file activate)
+  "Open FILENAME using tramp's sudo method if it's read-only."
+  (if (and (not (file-writable-p (ad-get-arg 0)))
+           (y-or-n-p (concat "File "
+                             (ad-get-arg 0)
+                             " is read-only.  Open it as root? ")))
+      (th-find-file-sudo (ad-get-arg 0))
+    ad-do-it))
+
+(defun th-find-file-sudo (file)
+  "Opens FILE with root privileges."
+  (interactive "F")
+  (set-buffer (find-file (concat "/sudo::" file))))
+;; shortcut to reopen in sudo
+(global-set-key (kbd "C-c o s") 'th-find-file-sudo)
+
 (set-default-font "Terminus 9")
 
 ;; deletes selected text
@@ -202,3 +254,5 @@
 ;;   ;; Your init file should contain only one such instance.
 ;;   ;; If there is more than one, they won't work right.
 ;;  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+(require 'server)
+(server-start)

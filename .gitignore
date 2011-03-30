@@ -60,3 +60,5 @@ src/
 .gnupg/
 *.dat
 *auto-save-list/
+.viminfo
+.emacs.d/tramp
