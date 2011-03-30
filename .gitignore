@@ -55,3 +55,8 @@ Dropbox
 code/
 j701-user/
 src/
+.ipython*
+.nvidia-settings-rc
+.gnupg/
+*.dat
+*auto-save-list/

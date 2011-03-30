@@ -101,7 +101,10 @@
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 
-;; Python dev stuff
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Python dev stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
@@ -123,39 +126,40 @@
 (autoload 'pymacs-load "pymacs" nil t)
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
-(defun py-complete ()
-  (interactive)
-  (let ((pymacs-forget-mutability t))
-    (if (and 
-         (and (eolp) (not (bolp)) 
-         (not (char-before-blank))))
-      (insert (pycomplete-pycomplete (py-symbol-near-point) (py-find-global-imports)))
-      (indent-for-tab-command))))
 
-(defun py-find-global-imports ()
-  (save-excursion
-    (let (first-class-or-def imports)
-      (goto-char (point-min))
-      (setq first-class-or-def
-        (re-search-forward "^ *\\(def\\|class\\) " nil t))
-      (goto-char (point-min))
-      (setq imports nil)
-      (while (re-search-forward
-          "\\(import \\|from \\([A-Za-z_][A-Za-z_0-9\\.]*\\) import \\).*"
-          nil t)
-    (setq imports (append imports
-                  (list (buffer-substring
-                     (match-beginning 0) 
-                     (match-end 0))))))  
-      imports)))
+;; (defun py-complete ()
+;;   (interactive)
+;;   (let ((pymacs-forget-mutability t))
+;;     (if (and 
+;;          (and (eolp) (not (bolp)) 
+;;          (not (char-before-blank))))
+;;       (insert (pycomplete-pycomplete (py-symbol-near-point) (py-find-global-imports)))
+;;       (indent-for-tab-command))))
 
-(define-key py-mode-map "\M-\C-i" 'py-complete)
-(define-key py-mode-map "\t" 'py-complete)
+;; (defun py-find-global-imports ()
+;;   (save-excursion
+;;     (let (first-class-or-def imports)
+;;       (goto-char (point-min))
+;;       (setq first-class-or-def
+;;         (re-search-forward "^ *\\(def\\|class\\) " nil t))
+;;       (goto-char (point-min))
+;;       (setq imports nil)
+;;       (while (re-search-forward
+;;           "\\(import \\|from \\([A-Za-z_][A-Za-z_0-9\\.]*\\) import \\).*"
+;;           nil t)
+;;     (setq imports (append imports
+;;                   (list (buffer-substring
+;;                      (match-beginning 0) 
+;;                      (match-end 0))))))  
+;;       imports)))
 
-(provide 'pycomplete)
+;; (define-key py-mode-map "\M-\C-i" 'py-complete)
+;; (define-key py-mode-map "\t" 'py-complete)
 
-;; (require 'auto-complete)
-;; (global-auto-complete-mode t)
+;; (provide 'pycomplete)
+
+(require 'auto-complete)
+(global-auto-complete-mode t)
 
 ;; end python dev
 
