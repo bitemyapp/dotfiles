@@ -62,3 +62,5 @@ src/
 *auto-save-list/
 .viminfo
 .emacs.d/tramp
+.quicksynergy
+.synergy*
