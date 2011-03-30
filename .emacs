@@ -1,6 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 
+; manually sets alt key to meta, I don't want super to be meta.
+(setq x-alt-keysym 'meta)
+
 (setq ring-bell-function 'ignore)
 (toggle-scroll-bar -1)
 (custom-set-variables
@@ -21,7 +24,7 @@
 
 ;; aliases because I am l'lazy
 (defalias 'couc 'comment-or-uncomment-region)
-(global-set-key (kbd "C-c c o m") 'couc)
+(global-set-key (kbd "C-c c m") 'couc)
 
 (setq tramp-default-method "ssh")
 (transient-mark-mode 1)
@@ -120,11 +123,41 @@
 (autoload 'pymacs-load "pymacs" nil t)
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
+(defun py-complete ()
+  (interactive)
+  (let ((pymacs-forget-mutability t))
+    (if (and 
+         (and (eolp) (not (bolp)) 
+         (not (char-before-blank))))
+      (insert (pycomplete-pycomplete (py-symbol-near-point) (py-find-global-imports)))
+      (indent-for-tab-command))))
 
-(require 'auto-complete)
-(global-auto-complete-mode t)
-;;(eval-after-load "pymacs"
-;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
+(defun py-find-global-imports ()
+  (save-excursion
+    (let (first-class-or-def imports)
+      (goto-char (point-min))
+      (setq first-class-or-def
+        (re-search-forward "^ *\\(def\\|class\\) " nil t))
+      (goto-char (point-min))
+      (setq imports nil)
+      (while (re-search-forward
+          "\\(import \\|from \\([A-Za-z_][A-Za-z_0-9\\.]*\\) import \\).*"
+          nil t)
+    (setq imports (append imports
+                  (list (buffer-substring
+                     (match-beginning 0) 
+                     (match-end 0))))))  
+      imports)))
+
+(define-key py-mode-map "\M-\C-i" 'py-complete)
+(define-key py-mode-map "\t" 'py-complete)
+
+(provide 'pycomplete)
+
+;; (require 'auto-complete)
+;; (global-auto-complete-mode t)
+
+;; end python dev
 
 ;;; Text files
 (require 'markdown-mode)
