@@ -1,0 +1,119 @@
+#+TITLE:  Rudel Reference Manual
+#+AUTHOR: Jan Moringen
+#+EMAIL:  scymtym@users.sourceforge.net
+
+* Introduction
+  Rudel is collaborative editing environment for Emacs. Its
+  purpose is to share buffers with other users in order to edit the
+  contents of those buffers collaboratively. Rudel supports
+  multiple backends to enable communication with other collaborative
+  editors using different protocols.
+
+  Since Rudel is not an application, but an extension to Emacs,
+  it is not started and used like most applications (not even Emacs
+  applications like Gnus). Rudel mostly works in the background
+  to change the behavior of the set of Emacs buffers for which it
+  has been activated.
+
+  The user interface consists of a set of key bindings, a menu entry
+  and some visual status indicators, which are added to the text and
+  mode line of buffers for which Rudel has been activated.
+
+  #+BEGIN_CENTER
+  #+CAPTION: Rudel client with Gobby server (and client)
+  [[file:../screenshots/screenshot 1.png]]
+  #+END_CENTER
+* Installation
+** Requirements
+   Rudel is developed and tested only with Emacs and therefore
+   unlikely to run on other Emacs variants like XEmacs.
+
+   To use Rudel, the following software is required:
+
+   + Collection of Emacs Development Environment Tools (CEDET) ::
+       CEDET contains the object system EIEIO,
+       which is used in Rudel's object-oriented
+       implementation. CEDET can be obtained from
+       http://cedet.sourceforge.net/
+
+       *Important*: It is necessary to use at least the 1.0pre6 of
+	 CEDET since it fixes a serious problem in the object
+	 system Eieio.
+   + Emacs Lisp Regression Testing (ERT) (optional) :: ERT is only
+       used for regression tests and therefore an optional
+       dependency. It can be obtained here:
+       http://www.emacswiki.org/emacs/ErtTestLibrary or here:
+       [[git://github.com/ohler/ert.git]]
+   + GnuTLS (optional) :: Encrypted connections to Gobby servers
+       require the <command>gnutls-cli</command> program.
+   + Avahi (optional) :: The Avahi daemon (http://avahi.org) is
+       required for automatic session discovery and advertising.
+
+       A version of GNU Emacs with Zeroconf support (GNU Emacs 23 or
+       above) is required to talk to the Avahi daemon.
+** Download and Installation
+   To install Rudel, download a releases version or the current
+   development version from http://sourceforge.net/projects/rudel/ and
+   place the code in any directory you like.
+
+   Once Eieio (see CEDET in the [[*Requirements]] section above) is
+   installed, add the following to your personal Emacs configuration:
+
+   #+BEGIN_SRC emacs-lisp
+   (load-file "/PATH/TO/RUDEL/rudel-loaddefs.el")
+   #+END_SRC
+
+   This will set Rudel up to be loaded on demand when one of the
+   commands `rudel-join-session', `rudel-host-session' or
+   `global-rudel-minor-mode' is invoked.
+** Compiling
+   In order to achieve better performance, Emacs can byte-compile the
+   Rudel code. This can be done by opening [[./rudel-compile.el]] in Emacs
+   and invoking M-x eval-buffer.
+* Sessions
+  TODO
+** Joining
+   To join a session, use ~C-c c j~ (`rudel-join-session').
+
+   Depending on the installed Rudel backends, system environment and
+   configuration, a number of questions will be asked, followed by an
+   attempt to join session described by your answers.
+
+   A typical example of the questions asked when joining a session may
+   look like this:
+
+   #+CAPTION: Joining a session.
+   #+BEGIN_EXAMPLE
+   Server: localhost &enter;
+   Port (default 6522): &enter;
+   Username: jan &enter;
+   Color: light sky blue &enter;
+   Use Encryption (y or n): n &enter;
+   #+END_EXAMPLE
+
+   *IMPORTANT*: For sessions using the obby backend (like in the
+   example above), the following restriction has to be taken into
+   account:
+   + When the server is Rudel inside an Emacs process:
+     Encryption cannot be used currently in this case. Consequently
+     the answer to the `Use Encryption (y or n):' prompt above has to
+     be `n RET'.
+   + When the server is a Gobby process:
+     Gobby only supports encrypted connections. So the answer has to
+     be `y RET' is this case.
+
+   It is possible to configure frequently used sessions using the
+   customization options `rudel-configured-sessions'. When one or more
+   sessions are configured, `rudel-join-session' will provide choices
+   like "my-configured-session", ... and "ask-protocol". Selecting
+   "ask-protocol" invokes the behavior described above. Selecting one
+   of the configured sessions connects to that session without asking
+   for all the data.
+
+** Hosting
+   To host a session, use ~C-c c h~ (`rudel-join-session').
+
+   Note that the session starts out without any participating users
+   (This is sometimes referred to as being a dedicated server). If
+   you want to participate in the session you host, you have to join
+   it as described above.

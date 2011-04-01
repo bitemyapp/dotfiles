@@ -255,6 +255,8 @@
            (list (region-beginning) (region-end))
          (list (line-beginning-position) (line-beginning-position 2)))))
 
+(load-file "~/.emacs.d/rudel/rudel-loaddefs.el")
+
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-midnight)
@@ -268,8 +270,8 @@
  '(default ((t (:inherit nil :stipple nil :background "black" 
                          :foreground "white" :inverse-video nil :box nil 
                          :strike-through nil :overline nil :underline nil 
-                         :slant normal :weight normal :height 110 :width normal 
+                         :slant normal :weight normal :height 120 :width normal
                          :foundry "unknown" :family "Inconsolata")))))
 
-;; needs to come last because color-theme is a bitch.
+;; needs to come last because color-theme is presumptuous
 (if (window-system) (set-frame-size (selected-frame) 131 90))

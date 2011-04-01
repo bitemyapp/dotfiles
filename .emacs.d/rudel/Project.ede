@@ -1,0 +1,25 @@
+;; Object rudel
+;; EDE project file.
+(ede-proj-project "rudel"
+  :name "rudel"
+  :version "0.3"
+  :file "Project.ede"
+  :targets (list 
+   (ede-proj-target-elisp-autoloads "autoloads"
+    :name "autoloads"
+    :path ""
+    :autoload-file "rudel-loaddefs.el"
+    :autoload-dirs '("." "jupiter" "adopted" "socket" "tls" "xmpp" "telepathy" "obby" "infinote" "wave" "zeroconf")
+    )
+   (ede-proj-target-elisp "compile"
+    :name "rudel"
+    :path ""
+    :source '("rudel.el" "rudel-util.el" "rudel-xml.el" "rudel-mode.el" "rudel-interactive.el" "rudel-overlay.el" "rudel-speedbar.el" "rudel-operators.el" "rudel-operations.el" "rudel-compat.el" "rudel-errors.el" "rudel-state-machine.el" "rudel-backend.el" "rudel-protocol.el" "rudel-session-initiation.el" "rudel-icons.el" "rudel-hooks.el" "rudel-transport.el" "rudel-transport-util.el" "rudel-chat.el" "rudel-display.el" "rudel-color.el")
+    :versionsource '("rudel.el")
+    )
+   )
+  :mailinglist "rudel-devel@lists.sourceforge.net"
+  :web-site-url "http://rudel.sourceforge.net/"
+  :web-site-directory "/scymtym,rudel@web.sourceforge.net:/home/groups/r/ru/rudel/htdocs"
+  :configuration-variables 'nil
+  )

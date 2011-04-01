@@ -1,0 +1,5 @@
+* XMPP protocols
+  http://xmpp.org/protocols/
+* XMPP transport
+  Could use in band byte streams:
+  http://xmpp.org/extensions/xep-0047.html

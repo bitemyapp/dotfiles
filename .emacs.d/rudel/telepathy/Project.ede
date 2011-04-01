@@ -1,0 +1,13 @@
+;; Object telepathy
+;; EDE project file.
+(ede-proj-project "rudel/telepathy"
+  :name "telepathy"
+  :file "Project.ede"
+  :targets (list
+   (ede-proj-target-elisp "telepathy"
+    :name "telepathy"
+    :path ""
+    :source '("rudel-telepathy.el")
+    )
+   )
+  )

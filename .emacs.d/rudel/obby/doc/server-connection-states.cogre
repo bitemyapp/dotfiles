@@ -1,0 +1,43 @@
+;; Object server connection state
+;; EIEIO PERSISTENT OBJECT
+(cogre-base-graph "server connection state"
+  :file "server-connection-states.cogre"
+  :name "server connection state"
+  :elements (list 
+   (cogre-node "new"
+    :position [8 2]
+    )
+   (cogre-node "encryption-negociate"
+    :position [27 2]
+    )
+   (cogre-arrow "Name"
+    :start "new"
+    :end "encryption-negociate"
+    )
+   (cogre-node "pinging"
+    :position [34 10]
+    )
+   (cogre-arrow "Name1"
+    :start "new"
+    :end "pinging"
+    )
+   (cogre-arrow "Name2"
+    :start "encryption-negociate"
+    :end "pinging"
+    )
+   (cogre-node "idle"
+    :position [65 11]
+    )
+   (cogre-node "before-join"
+    :position [58 1]
+    )
+   (cogre-arrow "Name3"
+    :start "encryption-negociate"
+    :end "before-join"
+    )
+   (cogre-arrow "Name4"
+    :start "before-join"
+    :end "idle"
+    )
+   )
+  )

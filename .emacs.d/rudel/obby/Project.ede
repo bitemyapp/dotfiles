@@ -1,0 +1,14 @@
+;; Object rudel/obby
+;; EDE project file.
+(ede-proj-project "rudel/obby"
+  :name "obby"
+  :file "Project.ede"
+  :targets (list 
+   (ede-proj-target-elisp "obby"
+    :name "obby"
+    :path ""
+    :source '("rudel-obby.el" "rudel-obby-util.el" "rudel-obby-client.el" "rudel-obby-server.el" "rudel-obby-errors.el" "rudel-obby-state.el" "rudel-obby-display.el")
+    :aux-packages '("rudel" "jupiter")
+    )
+   )
+  )

@@ -1,0 +1,14 @@
+;; Object rudel/jupiter
+;; EDE project file.
+(ede-proj-project "rudel/jupiter"
+  :name "jupiter"
+  :file "Project.ede"
+  :targets (list 
+   (ede-proj-target-elisp "jupiter"
+    :name "jupiter"
+    :path ""
+    :source '("jupiter.el" "jupiter-operation.el" "jupiter-insert.el" "jupiter-delete.el" "jupiter-compound.el" "jupiter-nop.el")
+    :aux-packages '("rudel")
+    )
+   )
+  )

@@ -1,0 +1,20 @@
+;; Object doc
+;; EDE project file.
+(ede-proj-project "rudel/doc"
+  :name "doc"
+  :file "Project.ede"
+  :targets (list
+   (ede-proj-target-makefile-miscelaneous "card.pdf"
+    :name "card.pdf"
+    :path ""
+    :source '("card.tex")
+    :rules (list
+     (ede-makefile-rule "pdftex"
+      :target "card.pdf"
+      :dependencies "card.tex"
+      :rules '("pdftex -t landscape $<")
+      )
+     )
+    )
+   )
+  )

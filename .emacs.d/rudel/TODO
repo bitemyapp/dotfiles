@@ -1,0 +1,760 @@
+* Future
+** TODO Have a function to terminate the server
+   + Components ::
+   + Type :: task
+   + Priority :: major
+   + Reporter :: Joe
+   + Assigned ::
+** TODO Remember inputs and use as default when prompting again
+   + Components :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: Joe
+   + Assigned ::
+   Remember answers to session information prompts and use them as
+   defaults for later prompts if default values cannot be inferred
+** TODO Transmit text properties
+   + Components :: multiple components affected
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: Jan
+   For use cases such as sharing buffer in comint mode, it would be
+   useful to transmit text properties from the "real" comint buffer to
+   the remote buffer
+** TODO Status icons of users should be clickable	    :branch_activity:
+   + Components :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   The status icon of users should be clickable. For example, when the
+   user is typing, clicking the status icon should move point to the
+   location of the changes.
+** TODO Keep a log of the current session
+   + Components :: multiple components affected
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   The following aspects could be logged:
+   + Joining/leaving session
+   + Changing color
+   + Subscribing/unsubscribing
+** TODO Generic activity indicator in mode line
+   + Components :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   Indicate offscreen events like in ERC's [#,i] indicators
+** TODO Track last modification of chunks
+   + Component :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   This would be useful for
+   + Fading old changes towards transparent
+   + Showing tooltips like
+     #+BEGIN_EXAMPLE
+     Written by Jan Moringen
+     last changed 20 minutes ago
+     #+END_EXAMPLE
+** TODO Peer view indication
+   + Components :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   Somehow communicate to peers at which documents the user is
+   currently looking
+** TODO Set buffer filename
+   + Components ::
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   When subscribing to a document set the buffer filename of the
+   attached buffer
+** TODO Provide additional hooks
+   + Components ::
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   Hooks for
+   + auth failure
+   + username in use
+   + color in use
+   use cases include choosing alternate names or colors automatically
+** TODO Always queue outgoing data
+   + Components :: transport and protocol backends
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   Large amounts of outgoing data freeze emacs (well, there is a
+   progress reporter). Queue this data and using a timer for the
+   sending would solve this problem
+** TODO Add a queue monitor minor mode
+   + Components :: user interface
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   Queuing data before sending it has the disadvantage of allowing the
+   queue to grow arbitrarily large if more outgoing data is generated
+   than the link can handle. Therefore, there should be some
+   indication of the amount of queued data.
+** TODO Investigate use of XEP 0047 for xmpp tunnel
+   + Component :: xmpp transport
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+** NEW Handle messages spanning multiple frames
+   + Component :: beep-transport
+   + Type :: defect
+   + Reporter :: jan
+   + Assigned ::
+** NEW Operation log can grow beyond all bounds (#37)
+   + Component :: obby-general
+   + Type :: defect
+   + Reporter :: jan
+   + Assigned ::
+   When no remote operations are received, the log of local operation
+   is not reset and therefore grows beyond all bounds.
+** NEW Rename document message is not understood (#7)
+   + Component :: obby-client
+   + Type :: defect
+   + Reporter :: jan
+   + Assigned ::
+** NEW Rename document message is not understood (#8)
+   + Component :: obby-backend
+   + Type :: defect
+   + Reporter :: jan
+   + Assigned ::
+** TODO Backend factory hooks
+   + Component :: backend
+   + Type :: improved
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** TODO Display error message property of join errors?
+   + Component :: user-interface
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+** TODO Synchronize object graphs			   :branch_data_sync:
+   + Component :: ?
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   Extend protocols to allow synchronizing graph- (or just tree-) like
+   data structures like XML or Emacs Lisp objects.
+** TODO Histories for read functions
+   + Component :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   Relevant read functions
+   + username
+   + hostname
+   + color(?)
+** TODO Robust mode-line modification
+   + Component :: user-interface
+   + Type :: enhancement
+   + Reporter :: jan
+   + Assigned ::
+   Currently, the mode-line is modified in an ugly way in
+   + [[file:rudel-mode.el::defun rudel-mode-line-publish-state--add-indicator-to-mode-line][rudel-mode-line-publish-state--add-indicator-to-mode-line]]
+   + [[file:rudel-mode.el::defun rudel-mode-line-publish-state--remove-indicator-from-mode-line][rudel-mode-line-publish-state--remove-indicator-from-mode-line]]
+   Presumably, this cannot be fixed before Emacs developers come up
+   with an API for this
+** TODO Make backend capabilities available without loading
+   + Component :: rudel-general
+   + Type :: enhancement
+   + Reporter :: Jan
+   + Assigned ::
+** TODO Notification mechanism
+   + Component :: user-interface
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+** TODO Some kind of server log buffer (#11)
+   + Component :: rudel-general
+   + Type :: enhancement
+   + Reporter :: jan
+   + Assigned ::
+   It would be nice to log server events. This could be done in a
+   separate buffer or using a dedicated mechanism like
+   rudel-notification.
+** TODO Backends should be able to offer additional menu items (#14)
+   + Component :: rudel-general
+   + Type :: enhancement
+   + Reporter :: jan
+   + Assigned ::
+** TODO Obby session can be protected by passwords (#15)
+   + Component :: obby-general
+   + Type :: enhancement
+   + Reporter :: jan
+   + Assigned ::
+** TODO Obby users can protect their accounts with passwords (#16)
+   + Component :: obby-general
+   + Type :: enhancement
+   + Reporter :: jan
+   + Assigned ::
+   The Gobby implementation is in obby/inc/server_buffer.hpp:851
+** TODO Zeroconf session notification (#52)
+   + Component :: zeroconf
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   Watch interesting Zeroconf services and use `rudel-notify` if new
+   services are discovered
+** TODO State machine diagram (#59)
+   + Component :: obby-client
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** TODO State machine diagram (#60)
+   + Component :: obby-backend
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** TODO Developer guide
+   + Component :: documentation
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** TODO Shorten user display strings of they are too long
+   + Component :: user-interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   `rudel-header-subscriptions-minor-mode' displays users in the
+   header line. This string can get too long, displacing some elements
+   from the screen. It has to be shortened then.
+** STARTED Allow users to insert comments		    :branch_comments:
+   + Component :: multiple components affected
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   It should be possible to start a threaded comment discussion at any
+   point of a document. The comments should not be part of the buffer
+   content.
+** STARTED Transmit interactive function calls to peers	   :branch_data:sync:
+   + Component :: rudel-general
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   Transmitting interactive function calls could be really useful to
+   implement things like a shared shell buffer.
+** STARTED Consolidate operations before sending		 :branch_irc:
+   + Components :: protocol backends
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned ::
+   For small successive edits, the overhead is large in most
+   protocols. Bandwidth can be conserved by queuing operations before
+   sending and merging adjacent operations when possible. This would
+   be most important for the IRC backend.
+** STARTED Make document history available			 :branch_irc:
+   + Components :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   We should create a separate buffer and put it into a kind of
+   history browse mode
+
+
+* Milestone rudel-0.5							:0.5:
+
+* Milestone rudel-0.4							:0.4:
+** NEW Terminating sessions does not work (#47)
+   + Component :: rudel-general
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned ::
+   There is a menu entry for terminating sessions which are hosted by
+   Rudel, but it does not do anything.
+** TODO Show cursor positions of other users (#5)
+   + Component :: rudel-user-interface
+   + Type :: enhancement
+   + Reporter :: jan
+   + Assigned ::
+** TODO Integrate existing unit tests			  :branch_unit_tests:
+   + Component :: multiple components affected
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned ::
+** TODO Only read color hue, not complete colors (#53)
+   + Component :: rudel-user-interface
+   + Type :: enhancement
+   + Reporter :: jan
+   + Assigned ::
+   Taking control over saturation and value away from the user makes
+   it impossible to choose unreadable colors.
+** STARTED Use auth-source or secrets.el for passwords
+   + Components ::
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+** STARTED Reference manual (#46)
+   + Component :: documentation
+   + Type :: task
+   + Reporter :: jan
+   + Assigned ::
+   In addition to the [[file:README][README]], a proper reference manual would be
+   nice. At some point, complete info documentation may be
+   desirable. Docbook or org-mode seem to be the best approaches since
+   we get (at least):
+   + Pdf
+   + Info
+   + Html
+** STARTED Allow multiple listeners per server session	  :branch_networking:
+   + Components :: multiple components affected
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned ::
+   For protocol backends that work with multiple transports, it would
+   be convenient to create a single server with multiple transport
+   listeners. For example, This would be useful to create an obby over
+   IRC server with an additional TCP listener as a LAN gateway.
+** STARTED IRC transport backend				 :branch_irc:
+   + Component :: irc backend
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned ::
+** STARTED Typing/activity notification			    :branch_activity:
+   + Components :: user interface
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   + Indicate who is currently editing a document
+   + Idle mechanism for users?
+** STARTED Telepathy transport				   :branch_telepathy:
+   + Component :: telepathy-backend
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** STARTED SubEthaEdit client functionality
+   + Component :: subethaedit-backend
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned :: jan
+** STARTED BEEP transport
+   + Component :: beep-transport
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned :: jan
+
+
+* Milestone rudel-0.3							:0.3:
+** TODO Enable modes by default?
+   + Component :: configuration
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   Modes
+   + global-rudel-header-subscriptions-mode
+   + global-rudel-mode-line-publish-state-mode
+** NEW Publishing read-only buffers leads to problems
+   + Component :: multiple components affected
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** NEW SRecode's field edit mode desyncs buffers
+   + Component :: obby
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** NEW Zeroconf needs some time before it works
+   + Component :: zeroconf
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   When requiring the Zeroconf backend and immediately asking for
+   discovered sessions, none are returned, even if there are
+   some. Retrying later returns these sessions.
+** NEW Fix use of &rest slots in initialize-instance methods
+   + Component :: rudel-general
+   + Type :: defect
+   + Reporter :: jan
+   + Assigned ::
+** NEW Get rid of error calls in the server (#58)
+   + Component :: obby-backend
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned ::
+   It makes no sense to call `error` when something goes wrong in
+   server code that is called from the process filter. Instead, we
+   should try to recover.
+** NEW Global mode line publish state mode does not work for all new buffers (#55)
+   + Component :: rudel-user-interface
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+   `global-mode-line-publish-state-mode` is define using
+   `define-globalized-mode`. This seems to only enabled the associated
+   minor mode for buffers created by `find-file` and after major mode
+   changes. The minor mode is not activated for buffers create by
+   `create-buffer`. Since this is used when subscribing to documents,
+   this is a problem.
+** NEW Handle net6_encryption_info messages (#57)
+   + Component :: obby-backend
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+   + Assigned ::
+** STARTED Support for trees of documents
+   + Component :: rudel-general
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+** STARTED Infinote client functionality
+   + Component :: infinote-backend
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+** DONE Rename rudel-unpublish-buffer -> rudel-unsubscribe
+   + Components ::
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: Joe
+   + Assigned :: Joe
+** DONE Rename rudel-end-session -> rudel-leave-session
+   + Components ::
+   + Type :: task
+   + Priority :: minor
+   + Reporter :: Joe
+   + Assigned :: Joe
+** FIXED TLS transport does not start in stopped state
+   + Component :: tls-transport
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+** DONE Integrate new debugging framework
+   + Component :: multiple components affected
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+** DONE Add XMPP transport backend
+   + Component :: xmpp-backend
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+** FIXED Connection resets are not handled properly with transports
+   + Component :: multiple components
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+   + Resolution :: fixed
+   The current session used to be terminated when the connection
+   dropped. This does not work when using transports.
+** DONE Use transports
+   + Component :: multiple components
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+   All network communication should be done using transport objects
+   instead of sockets
+** DONE Multiple username/password attempts in one login attempt
+   + Component :: rudel-general
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+   + Assigned :: jan
+
+
+* Milestone rudel-0.2					       :0.2:released:
+** DONE Use state pattern (#18)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** FIXED Server buffers go out of sync when multi-byte characters are used (#56)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Terminate connections properly when something goes wrong (#51)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Removing documents does not work (#45)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Search list of offline users when new users log in (#44)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** DONE Reference card (#2)
+   + Component :: documentation
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE ode-line indicator of buffer status (#6)
+   + Component :: rudel-user-interface
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** FIXED Author overlay face may not exist (#54)
+   + Component :: rudel-user-interface
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** DONE Visualization of user status (#9)
+   + Component :: rudel-user-interface
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** FIXED Update overlays when users change colors (#23)
+   + Component :: rudel-user-interface
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Allow to toggle display of author overlays (#33)
+   + Component :: rudel-user-interface
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Update file headers (#50)
+   + Component :: documentation
+   + Resolution :: fixed
+   + Type :: task
+   + Priority :: trivial
+   + Reporter :: jan
+** DONE Proper Zeroconf support (#21)
+   + Component :: zeroconf
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Add discovery component (#22)
+   + Component :: obby-general
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Define initialize-instance with slots or &rest slots? (#49)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+** DONE Use oref to get object names (#24)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Overlays should be removed when a buffer is detached from its document (#39)
+   + Component :: rudel-user-interface
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** FIXED Unsafe use of (call-next-method) (#48)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Handle `net6_login_failed' message (#10)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Add debug hints to macros (#43)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Use state pattern (#17)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Use with-parsed-arguments (#40)
+   + Component :: obby-general
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+
+
+* Milestone rudel-0.1					       :0.1:released:
+** FIXED User names and colors are not checked for conflicts (#12)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Write some html for rudel.sourceforge.net (#27)
+   + Component :: www
+   + Resolution :: fixed
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+** INVALID Repeated publishing leads to multiple document instances (#30)
+   + Component :: obby-backend
+   + Resolution :: invalid
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+** FIXED Document suffixes are not handled properly (#42)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** DONE Fix license texts (#32)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: trivial
+   + Reporter :: jan
+** WONTFIX Overlays break on last character (#29)
+   + Component :: rudel-user-interface
+   + Resolution :: worksforme
+   + Type :: defect
+   + Priority :: minor
+   + Reporter :: jan
+** FIXED Encodings are not handled in obby backend (#1)
+   + Component :: obby-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Major mode changes break subscribed buffers (#19)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Editing in overwrite mode breaks synchronization (#35)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Yanking produces insertion and immediate deletion of the region (#36)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Documents with identical names but distinct suffixes map to same buffer (#41)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Killing a buffer does not detach it from its document (#38)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** INVALID Rudel client crashes Gobby (#25)
+   + Component :: obby-general
+   + Resolution :: invalid
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** DONE Add screenshot of session with Gobby (#20)
+   + Component :: www
+   + Resolution :: fixed
+   + Type :: task
+   + Priority :: trivial
+   + Reporter :: jan
+** DONE Replace 't with t (#34)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Operations of type jupiter-compound cannot be applied to buffers
+   (#31)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+** DONE Do not sync any chunks when buffer is empty (#28)
+   + Component :: obby-backend
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: minor
+   + Reporter :: jan
+** DONE Implement Jupiter algorithm (#13)
+   + Component :: obby-general
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: major
+   + Reporter :: jan
+** DONE Replace email address (#26)
+   + Component :: rudel-general
+   + Resolution :: fixed
+   + Type :: task
+   + Priority :: major
+   + Reporter :: jan
+** FIXED Mark contributions using overlays (#4)
+   + Component :: rudel-user-interface
+   + Resolution :: fixed
+   + Type :: enhancement
+   + Priority :: major
+   + Reporter :: jan
+** FIXED When a user leaves and joins a second user object is created (#3)
+   + Component :: obby-general
+   + Resolution :: fixed
+   + Type :: defect
+   + Priority :: major
+   + Reporter :: jan
+
+Local variables:
+mode: org
+end:

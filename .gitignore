@@ -64,3 +64,11 @@ src/
 .emacs.d/tramp
 .quicksynergy
 .synergy*
+.emacs.d/session*
+.subversion
+.purple
+.remmina
+.vnc
+data
+svnsrc
+ws

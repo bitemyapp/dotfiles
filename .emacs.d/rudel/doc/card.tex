@@ -1,0 +1,348 @@
+%% card.tex --- Reference Card for Rudel 0.3
+%
+% Copyright (c) 1987, 1992 Free Software Foundation, Inc.
+% Copyright (c) 2009, 2010 Jan Moringen
+%
+% Author: Stephen Gildea <gildea@erl.mit.edu> (refcard.tex format)
+%         Dave Gillespie <daveg@synaptics.com> (Calc reference card)
+%         Jan Moringen <scymtym@users.sourceforge.net> (Rudel)
+%
+% This file is part of Rudel.
+%
+% Rudel is free software: you can redistribute it and/or modify it
+% under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% Rudel is distributed in the hope that it will be useful, but
+% WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+% General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with rudel. If not, see <http://www.gnu.org/licenses>.
+
+
+%% Commentary:
+%
+% The format for this file is adapted from the GNU Emacs reference
+% card version 1.9, by Stephen Gildea and the GNU Calc reference card
+% by Dave Gillespie.
+%
+% This file is intended to be processed by plain TeX.
+% Typical command to format: pdftex -t landscape card.tex
+% Typical command to print:  tex card.tex
+%                            dvips -t landscape card.dvi
+
+
+%% Constants
+%
+
+\def\versionnumber{0.3}
+\def\versiondate{May 2010}
+\def\year{2009, 2010}
+
+\def\copyrightnotice{
+\vskip 1ex plus 2 fill\begingroup\small
+\centerline{Copyright \copyright\ \year\ Jan Moringen}
+\centerline{written by Jan Moringen}
+\centerline{for Rudel version \versionnumber\ (\versiondate)}
+
+Permission is granted to make and distribute copies of
+this card provided the copyright notice and this permission notice
+are preserved on all copies.
+
+%For copies of the GNU Emacs Calc manual, write to the Free Software
+%Foundation, Inc., 675 Massachusetts Ave, Cambridge MA 02139.
+
+\endgroup}
+
+
+%% Header
+%
+
+% make \bye not \outer so that the \def\bye in the \else clause below
+% can be scanned without complaint.
+\def\bye{\par\vfill\supereject\end}
+
+\newdimen\intercolumnskip
+\newbox\columna
+\newbox\columnb
+
+\def\scaledmag#1{ scaled \magstep #1}
+
+% This format was designed by Stephen Gildea in October 1986.
+\hsize 3.2in
+\vsize 7.95in
+\hoffset -.75in
+\voffset -.745in
+\font\titlefont=cmbx10 \scaledmag2
+\font\headingfont=cmbx10 \scaledmag1
+\font\subheadingfont=cmbx10 \scaledmag0
+\font\smallfont=cmr6
+\font\smallsy=cmsy6
+\font\eightrm=cmr8
+\font\eightbf=cmbx8
+\font\eightit=cmti8
+\font\eighttt=cmtt8
+\font\eightsy=cmsy8
+\textfont0=\eightrm
+\textfont2=\eightsy
+\font\notefont=cmti7
+\def\rm{\eightrm}
+\def\bf{\eightbf}
+\def\it{\eightit}
+\def\tt{\eighttt}
+\normalbaselineskip=.8\normalbaselineskip
+\normallineskip=.8\normallineskip
+\normallineskiplimit=.8\normallineskiplimit
+\normalbaselines\rm		%make definitions take effect
+
+\let\maxcolumn=c
+\nopagenumbers
+
+\intercolumnskip=.46in
+\def\abc{a}
+\output={%
+  % This next line is useful when designing the layout.
+  %\immediate\write16{Column \folio\abc\space starts with \firstmark}
+  \if \maxcolumn\abc \multicolumnformat \global\def\abc{a}
+  \else\if a\abc
+  \global\setbox\columna\columnbox \global\def\abc{b}
+  %% in case we never use \columnb (two-column mode)
+  \global\setbox\columnb\hbox to -\intercolumnskip{}
+  \else
+  \global\setbox\columnb\columnbox \global\def\abc{c}\fi\fi}
+
+\def\multicolumnformat{\shipout\vbox{\makeheadline
+  \hbox{\box\columna\hskip\intercolumnskip
+  \box\columnb\hskip\intercolumnskip\columnbox}
+  \makefootline}\advancepageno}
+\def\columnbox{\leftline{\pagebody}}
+
+\def\bye{\par\vfill\supereject
+  \if a\abc \else\null\vfill\eject\fi
+  \if a\abc \else\null\vfill\eject\fi
+  \end}
+
+% we won't be using math mode much, so redefine some of the characters
+% we might want to talk about
+\catcode`\^=12
+\catcode`\_=12
+
+\chardef\\=`\\
+\chardef\{=`\{
+\chardef\}=`\}
+
+\parindent 0pt
+\parskip 1ex plus .5ex minus .5ex
+
+\def\small{\smallfont\textfont2=\smallsy\baselineskip=.8\baselineskip}
+
+\outer\def\newcolumn{\vfill\eject}
+
+\outer\def\title#1{{\titlefont\centerline{#1}}\vskip 1ex plus .5ex}
+
+\outer\def\section#1{\par\filbreak
+  \vskip 3ex plus 2ex minus 2ex {\headingfont #1}\mark{#1}%
+  \vskip 2ex plus 1ex minus 1.5ex}
+
+\outer\def\subsection#1{\par\filbreak
+  \vskip 3ex plus 2ex minus 2ex {\subheadingfont #1}\mark{#1}%
+  \vskip 2ex plus 1ex minus 1.5ex}
+
+\newdimen\keyindent
+
+\def\beginindentedkeys{\keyindent=1em}
+\def\endindentedkeys{\keyindent=0em}
+\endindentedkeys
+
+\def\paralign{\vskip\parskip\halign}
+
+\def\<#1>{$\langle${\rm #1}$\rangle$}
+
+\def\kbd#1{{\tt#1}\null} %\null so not an abbrev even if period follows
+
+\def\key#1#2{\leavevmode\hbox to \hsize{\vtop
+  {\hsize=.75\hsize\rightskip=1em
+  \hskip\keyindent\relax#1}\kbd{#2}\hfil}}
+
+% Redefine to make spaces a bit smaller
+\let\wkbd=\kbd
+\def\kbd#1{{\spaceskip=.37em\tt#1}\null}
+
+\def\wkey#1#2{\leavevmode\hbox to \hsize{\vtop
+  {\hsize=.75\hsize\rightskip=1em
+  \hskip\keyindent\relax#1}\wkbd{#2}\hfil}}
+
+\def\prefix{C-c\ c\ }
+\def\,{{\rm ,\hskip.55em}\ignorespaces}
+\def\lesssectionskip{\vskip-1.5ex}
+
+\def\iline#1{\par\line{\hskip1em\relax #1\hfill}\par}
+
+\font\eighti=cmmi8
+\textfont1=\eighti
+
+
+%% Document
+%
+
+\title{Rudel Reference Card}\vskip-1ex
+\centerline{\tt http://rudel.sourceforge.net}\vskip1ex
+\centerline{(for Rudel version \versionnumber\ of \versiondate)}
+
+\section{Key Bindings}
+
+\lesssectionskip
+{\notefont All key bindings are only available when the global Rudel
+minor mode is enabled. See ``Minor Modes'' below.}
+
+\subsection{Hosting and Joining}
+
+\wkey{Join a Rudel session}{\prefix j}
+\wkey{Leave a Rudel session}{\prefix e}
+
+\wkey{Host a Rudel session}{\prefix h}
+
+\subsection{In a Session}
+
+The following commands are available once a Rudel session has been
+joined:
+
+\key{Change color}{\prefix c}
+
+\key{Create and publish document for buffer}{\prefix p}
+\key{Subscribe to a document}{\prefix s}
+
+The following commands are only available if the current buffer has an
+associated document (achieved by publishing or subscribing):
+
+\key{Detach buffer from document (unsubscribe)}{\prefix u}
+
+\section{Minor Modes}
+
+\subsection{Global Rudel Minor Mode}
+
+The global Rudel minor mode global-rudel-minor-mode is responsible for
+installing the Rudel menu and keymap.
+
+\subsection{Participants in Header Line}
+
+The mode ({\tt rudel-header-subscriptions-minor-mode}) shows
+subscribed users in the header line of the buffer.
+
+The associated global mode ({\tt global-rudel-header-subscriptions
+mode}) turns the mode on or off in all suitable buffers.
+
+\subsection{Buffer Status in Mode Line}
+
+The mode ({\tt rudel-mode-line-publish-state-minor-mode}) shows the
+publication state of the buffer in its mode line ({\tt P}: published,
+{\tt -}: not published)
+
+The associated global mode ({\tt
+global-rudel-mode-line-publish-state-mode}) turns the mode on or off
+in all suitable buffers.
+
+\newcolumn
+
+\section{Backends}
+
+\lesssectionskip
+Rudel uses various kinds of backends to provide multiple pluggable
+implementations of functionalities like communication protocols,
+network transport, session initiation and parts of the user interface.
+
+\subsection{Protocol}
+
+{\bf Obby}
+
+This backend implements the obby protocol used by the Gobby
+collaborative editor until (including) version 0.4.9.
+
+{\bf Infinote}
+
+This backend implements the infinote protocol used by the Gobby
+collaborative editor staring with version 0.5.
+
+\subsection{Transport}
+
+{\bf IRC}
+
+This backend transports data using the ERC IRC client.
+
+\subsection{Session Initiation}
+
+{\bf Configured Sessions}
+
+Frequently used sessions can be configured permanently using the {\tt
+rudel-configured-sessions} customization variable. When there are
+configured sessions, connecting to one of these session is offered
+when joining a session using \kbd{\prefix j}.
+
+{\bf Zeroconf}
+
+The Zeroconf backends discovers collaboration sessions which are
+advertised using, well Zeroconf. Currently, it works for Rudel (obby
+backend) and Obby servers (obby and infinote backends). When there are
+Zeroconf-advertised sessions, using \kbd{\prefix j} to join a session
+will list these.
+
+\newcolumn
+
+\section{Examples}
+
+\subsection{Without Zeroconf Discovery}
+
+{\bf Joining a Session with the obby backend}
+
+\kbd{\prefix j}\hfil\break
+{\tt Protocol backend: } obby \kbd{RET}\hfil\break
+{\tt Transport backend: } start-tls \kbd{RET}\hfil\break
+{\tt Server: }{\it SERVER} \kbd{RET}\hfil\break
+{\tt Port (default 6522): } \kbd{RET}\hfil\break
+{\tt Username: }{\it NAME} \kbd{RET}\hfil\break
+{\tt Color: }{\it COLOR} \kbd{RET}\hfil\break
+{\notefont (use bright colors like yellow)}\hfil\break
+{\it When connecting to a Rudel server:}\hfil\break
+-\hskip2ex {\tt Use Encryption (yes or no): }{\it NO} \kbd{RET}\hfil\break
+{\it When connecting to a Gobby server:}\hfil\break
+-\hskip2ex {\tt Use Encryption (yes or no): }{\it YES} \kbd{RET}\hfil\break
+{\tt Global Password: }{\it PASSWORD} \kbd{RET}\hfil\break
+{\it This password controls access to the session; just \kbd{RET} for
+none}\hfil\break
+{\tt User Password: }{\it PASSWORD} \kbd{RET}\hfil\break
+{\it This password prevents name stealing; just \kbd{RET} for
+none}\hfil\break
+
+\subsection{With Zeroconf Discovery}
+
+\kbd{\prefix j}\hfil\break
+{\tt Choose Session: }Zeroconf advertised session {\it
+"NAME"} \kbd{RET}\hfil\break
+{\notefont (Note: by choosing "ask-protocol" here, you can still get the
+above behavior)}\hfil\break
+{\tt Username: }{\it NAME} \kbd{RET}\hfil\break
+{\tt Color: }{\it COLOR} \kbd{RET}\hfil\break
+{\tt Global Password: }{\it PASSWORD} \kbd{RET}\hfil\break
+{\tt User Password: }{\it PASSWORD} \kbd{RET}\hfil
+
+\section{Troubleshooting}
+
+\subsection{Debugging}
+
+A list of available backends can be displayed using \kbd{M-x} {\tt
+rudel-backend-dump}.
+
+Additional debugging functions can be enabled by loading the {\tt
+rudel-debug} library: \kbd{M-x} {\tt load-library} \kbd{RET} {\tt
+rudel-debug} \kbd{RET}.
+
+\copyrightnotice
+
+\bye
+
+% Local variables:
+% mode: plain-TeX; eval: (tex-pdf-mode);
+% End:

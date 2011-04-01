@@ -1,0 +1,13 @@
+;; Object adopted
+;; EDE project file.
+(ede-proj-project "rudel/adopted"
+  :name "adopted"
+  :file "Project.ede"
+  :targets (list
+   (ede-proj-target-elisp "adopted"
+    :name "adopted"
+    :path ""
+    :source '("adopted.el" "adopted-operation.el" "adopted-compound.el" "adopted-delete.el" "adopted-insert.el" "adopted-nop.el" )
+    )
+   )
+  )
