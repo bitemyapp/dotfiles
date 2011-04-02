@@ -149,7 +149,7 @@
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
 (pymacs-load "ropemacs" "rope-")
-(setq ropemacs-enable-autoimport t)
+(setq ropemacs-enable-autoimport 't)
 
 ;; (defun py-complete ()
 ;;   (interactive)
@@ -255,7 +255,6 @@
            (list (region-beginning) (region-end))
          (list (line-beginning-position) (line-beginning-position 2)))))
 
-(load-file "~/.emacs.d/rudel/rudel-loaddefs.el")
 
 (require 'color-theme)
 (color-theme-initialize)
