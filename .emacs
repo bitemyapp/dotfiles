@@ -37,7 +37,8 @@
  '(css-electric-keys nil)
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+ '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 (if window-system
     (tool-bar-mode 0))
 (setq frame-title-format "%b")
@@ -160,6 +161,8 @@
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport 't)
 
+(global-set-key (kbd "C-M-n") 'next-error)
+
 ;; (defun py-complete ()
 ;;   (interactive)
 ;;   (let ((pymacs-forget-mutability t))
@@ -195,6 +198,8 @@
 (global-auto-complete-mode t)
 
 ;; end python dev
+
+(require 'color-grep)
 
 ;;; Text files
 (require 'markdown-mode)
@@ -264,7 +269,32 @@
            (list (region-beginning) (region-end))
          (list (line-beginning-position) (line-beginning-position 2)))))
 
+(defun duplicate-start-of-line-or-region ()
+  (interactive)
+  (if mark-active
+      (duplicate-region)
+    (duplicate-start-of-line)))
 
+(defun duplicate-start-of-line ()
+  (let ((text (buffer-substring (point)
+                                (beginning-of-thing 'line))))
+    (forward-line)
+    (push-mark)
+    (insert text)
+    (open-line 1)))
+
+(defun duplicate-region ()
+  (let* ((end (region-end))
+         (text (buffer-substring (region-beginning)
+                                 end)))
+    (goto-char end)
+    (insert text)
+    (push-mark end)
+    (setq deactivate-mark nil)
+    (exchange-point-and-mark)))
+(global-set-key [(meta shift down)] 'duplicate-start-of-line-or-region)
+
+(require 'pivotal-tracker)
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-midnight)
@@ -275,11 +305,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" 
-                         :foreground "white" :inverse-video nil :box nil 
-                         :strike-through nil :overline nil :underline nil 
-                         :slant normal :weight normal :height 120 :width normal
-                         :foundry "unknown" :family "Inconsolata")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Inconsolata")))))
 
 ;; needs to come last because color-theme is presumptuous
 (if (window-system) (set-frame-size (selected-frame) 131 90))
