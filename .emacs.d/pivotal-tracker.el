@@ -40,7 +40,7 @@
   :group 'pivotal
   :type 'string)
 
-(defconst pivotal-base-url "http://www.pivotaltracker.com/services/v3"
+(defconst pivotal-base-url "https://www.pivotaltracker.com/services/v3"
   "format string to use when creating endpoint urls")
 
 (defconst pivotal-states `("unstarted" "started" "finished" "delivered" "accepted" "rejected")
@@ -74,7 +74,8 @@
 
 (defun pivotal-get-iteration (iteration)
   (let ((query-string (if (= pivotal-current-iteration-number iteration)
-                          "iterations/current"
+                           "iterations/current"
+                           ;"iterations/backlog"
                         (format "iterations/backlog?offset=%s&limit=1" iteration))))
 
     (assert-pivotal-api-token)
