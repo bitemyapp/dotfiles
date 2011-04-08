@@ -98,6 +98,7 @@
        "/sudo:" 
        (concat "Prefix to be used by sudo commands when building tramp path "))
      ;; (defun sudo-file-name (filename) (concat sudo-tramp-prefix filename))
+     ;; Can't be arsed to eliminate the set ' usage.
      (defun sudo-file-name (filename)
        (set 'splitname (split-string filename ":"))
        (if (> (length splitname) 1)
