@@ -46,6 +46,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 ;; (setq indent-line-function 'insert-tab)
+(setq auto-save-default nil)
 
 ;; aliases because I am l'lazy
 (defalias 'couc 'comment-or-uncomment-region)
@@ -77,14 +78,42 @@
 
 ;(add-to-list 'tramp-default-proxies-alist '(".*" "\`root\'" "/ssh:%h:"))
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+(defvar remotetestname "/ssh:dev:/path")
+(defvar localtestname "/etc/resolv.conf")
+(defvar protocol "/sudo:")
+;; (format "/sudo::%s" (expand-file-name buffer-file-name))
+;; (concat testname)
+;; (substring testname 9)
+;; (concat protocol (cdr )
+
+
+;(setq debug-on-error t)
+;(concat "/sudo:" (mapconcat (lambda (e) e) (cdr (split-string localtestname ":")) ":"))
+
+;(length (split-string localtestname ":"))
 
 (eval-after-load "tramp"
   '(progn
      (defvar sudo-tramp-prefix 
        "/sudo:" 
        (concat "Prefix to be used by sudo commands when building tramp path "))
-
-     (defun sudo-file-name (filename) (concat sudo-tramp-prefix filename))
+     ;; (defun sudo-file-name (filename) (concat sudo-tramp-prefix filename))
+     (defun sudo-file-name (filename)
+       (set 'splitname (split-string filename ":"))
+       (if (> (length splitname) 1)
+         (progn (set 'final-split (cdr splitname))
+                (set 'sudo-tramp-prefix "/sudo:")
+                )
+         (progn (set 'final-split splitname)
+                (set 'sudo-tramp-prefix (concat sudo-tramp-prefix "root@localhost:")))
+         )
+       (set 'final-fn (concat sudo-tramp-prefix (mapconcat (lambda (e) e) final-split ":")))
+       (message "splitname is %s" splitname)
+       (message "sudo-tramp-prefix is %s" sudo-tramp-prefix)
+       (message "final-split is %s" final-split)
+       (message "final-fn is %s" final-fn)
+       (message "%s" final-fn)
+       )
 
      (defun sudo-find-file (filename &optional wildcards)
        "Calls find-file with filename with sudo-tramp-prefix prepended"
@@ -103,7 +132,7 @@
            (setq buffer-file-name sudo-name)
            (rename-buffer sudo-name)
            (setq buffer-read-only nil)
-           (message (concat "Set file name to " sudo-name)))))
+           (message (concat "File name set to " sudo-name)))))
 
      ;;(global-set-key (kbd "C-c o") 'sudo-find-file)
      (global-set-key (kbd "C-c o s") 'sudo-reopen-file)))
