@@ -79,3 +79,5 @@ activate
 active
 *.cfg
 env
+.vboxclient*
+examples*
