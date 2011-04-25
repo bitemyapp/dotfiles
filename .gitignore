@@ -29,7 +29,6 @@ Dropbox
 .fontconfig/
 .gconf/
 .gconfd/
-.gitconfig
 .gksu.lock
 .gnome2/
 .gtk-bookmarks
@@ -79,3 +78,10 @@ activate
 active
 *.cfg
 env
+log/
+.test*
+664
+chmod
+.htaccess
+.#test_event*
+*temp*

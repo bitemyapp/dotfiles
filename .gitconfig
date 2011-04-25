@@ -1,0 +1,12 @@
+[user]
+	name = Chris Allen
+	email = cma@bitemyapp.com
+[core]
+	excludesfile = /home/callen/.gitignore
+[diff]  
+    renamelimit = 0
+[color] 
+    diff = auto
+    interactive = auto
+    status = auto
+    branch = auto
