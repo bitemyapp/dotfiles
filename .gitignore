@@ -78,7 +78,6 @@ activate
 active
 *.cfg
 env
-<<<<<<< HEAD
 log/
 .test*
 664
