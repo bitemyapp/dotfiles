@@ -78,6 +78,7 @@ activate
 active
 *.cfg
 env
+<<<<<<< HEAD
 log/
 .test*
 664
@@ -85,3 +86,5 @@ chmod
 .htaccess
 .#test_event*
 *temp*
+.vboxclient*
+examples*
