@@ -211,37 +211,6 @@
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
-;; (defun py-complete ()
-;;   (interactive)
-;;   (let ((pymacs-forget-mutability t))
-;;     (if (and 
-;;          (and (eolp) (not (bolp)) 
-;;          (not (char-before-blank))))
-;;       (insert (pycomplete-pycomplete (py-symbol-near-point) (py-find-global-imports)))
-;;       (indent-for-tab-command))))
-
-;; (defun py-find-global-imports ()
-;;   (save-excursion
-;;     (let (first-class-or-def imports)
-;;       (goto-char (point-min))
-;;       (setq first-class-or-def
-;;         (re-search-forward "^ *\\(def\\|class\\) " nil t))
-;;       (goto-char (point-min))
-;;       (setq imports nil)
-;;       (while (re-search-forward
-;;           "\\(import \\|from \\([A-Za-z_][A-Za-z_0-9\\.]*\\) import \\).*"
-;;           nil t)
-;;     (setq imports (append imports
-;;                   (list (buffer-substring
-;;                      (match-beginning 0) 
-;;                      (match-end 0))))))  
-;;       imports)))
-
-;; (define-key py-mode-map "\M-\C-i" 'py-complete)
-;; (define-key py-mode-map "\t" 'py-complete)
-
-;; (provide 'pycomplete)
-
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
@@ -257,9 +226,8 @@
 			    (turn-on-auto-fill)
 			    (setq-default line-spacing 5)
 			    (setq indent-tabs-mode nil)))
-;(require 'redo)       ; enables C-r (redo key) ; Skipping this in favor of a proper undo-tree
 (require 'undo-tree)
-(global-undo-tree-mode) ; enables undo-tree-mode globally.
+(global-undo-tree-mode)
 
 (require 'rect-mark)  ; enables nice-looking block visual mode
 
@@ -342,6 +310,37 @@
   ; 'pre-command-hook ?
   ; (add-hook 'self-insert-command 'inject_contents)
 )
+ ;; scroll one line at a time (less "jumpy" than defaults)
+    
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
+
+;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+
+;; (require 'yasnippet-bundle) ;; wtf guys
+(defun ipdb ()
+    (interactive)
+    (insert "import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()"))
+
+(global-set-key (kbd "C-c p d b") 'ipdb)
+
+(defun revert-all-buffers ()
+   "Refreshes all open buffers from their respective files"
+   (interactive)
+   (let* ((list (buffer-list))
+          (buffer (car list)))
+     (while buffer
+       (when (buffer-file-name buffer)
+         (set-buffer buffer)
+         (revert-buffer t t t))
+       (setq list (cdr list))
+       (setq buffer (car list))))
+  (message "Refreshing open files"))
+
+(global-set-key (kbd "C-c r e f") 'revert-all-buffers)
 
 (require 'pivotal-tracker)
 (require 'color-theme)
