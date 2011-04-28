@@ -340,7 +340,7 @@
        (setq buffer (car list))))
   (message "Refreshing open files"))
 
-(global-set-key (kbd "C-c r e f") 'revert-all-buffers)
+(global-set-key (kbd "C-c r e v") 'revert-all-buffers)
 
 (require 'pivotal-tracker)
 (require 'color-theme)
