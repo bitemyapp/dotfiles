@@ -295,13 +295,12 @@
   (interactive)
   (setq end (+ start insert_by))
   (insert-file-contents filename nil start end)
-  ;(end-of-line) ; sucks
   (forward-char insert_by)
   (setq start (+ start insert_by))
 )
 
 (defun hacker-type (arg)
-  (interactive (list (read-string "Filename:")))
+  (interactive (list (read-file-name "Filename: ")))
   (setq fake-hacker-type-map (make-sparse-keymap))
   (setq filename arg)
   (setq start 0)
@@ -309,8 +308,6 @@
 
   (define-key fake-hacker-type-map [remap self-insert-command] 'inject_contents)
   (use-local-map fake-hacker-type-map)
-  ; 'pre-command-hook ?
-  ; (add-hook 'self-insert-command 'inject_contents)
 )
 
 
