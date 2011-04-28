@@ -287,11 +287,12 @@
 (global-set-key [(meta shift down)] 'duplicate-start-of-line-or-region)
 
 (defun deactivate-hacker-type ()
+  (interactive)
   (define-key fake-hacker-type-map [remap self-insert-command] nil)
 )
 
 (defun inject_contents (&optional n)
-  ;(interactive)
+  (interactive)
   (setq end (+ start insert_by))
   (insert-file-contents "/home/callen/test.txt" nil start end)
   ;(end-of-line) ; sucks
@@ -307,10 +308,10 @@
   (setq insert_by 3)
 
   (define-key fake-hacker-type-map [remap self-insert-command] 'inject_contents)
+  (use-local-map fake-hacker-type-map)
   ; 'pre-command-hook ?
   ; (add-hook 'self-insert-command 'inject_contents)
 )
-
 
 ;; scroll one line at a time (less "jumpy" than defaults)    
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
