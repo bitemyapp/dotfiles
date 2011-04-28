@@ -52,6 +52,8 @@
 (defalias 'couc 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c c m") 'couc)
 
+(global-set-key (kbd "C-c e r") 'eval-region)
+
 (setq tramp-default-method "ssh")
 (transient-mark-mode 1)
 (setq x-select-enable-clipboard t)
@@ -75,30 +77,14 @@
      	     (find (aref (buffer-name buffer) 0) " *"))
      	   (buffer-list))))
 
-
-;(add-to-list 'tramp-default-proxies-alist '(".*" "\`root\'" "/ssh:%h:"))
+;; Fixed sudo/ssh multi-hop
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
-(defvar remotetestname "/ssh:dev:/path")
-(defvar localtestname "/etc/resolv.conf")
-(defvar protocol "/sudo:")
-;; (format "/sudo::%s" (expand-file-name buffer-file-name))
-;; (concat testname)
-;; (substring testname 9)
-;; (concat protocol (cdr )
-
-
-;(setq debug-on-error t)
-;(concat "/sudo:" (mapconcat (lambda (e) e) (cdr (split-string localtestname ":")) ":"))
-
-;(length (split-string localtestname ":"))
 
 (eval-after-load "tramp"
   '(progn
      (defvar sudo-tramp-prefix 
        "/sudo:" 
        (concat "Prefix to be used by sudo commands when building tramp path "))
-     ;; (defun sudo-file-name (filename) (concat sudo-tramp-prefix filename))
-     ;; Can't be arsed to eliminate the set ' usage.
      (defun sudo-file-name (filename)
        (set 'splitname (split-string filename ":"))
        (if (> (length splitname) 1)
@@ -215,12 +201,12 @@
            (set-variable 'py-smart-indentation nil)
            (set-variable 'indent-tabs-mode nil) )))
 
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(pymacs-load "ropemacs" "rope-")
+;; (autoload 'pymacs-apply "pymacs")
+;; (autoload 'pymacs-call "pymacs")
+;; (autoload 'pymacs-eval "pymacs" nil t)
+;; (autoload 'pymacs-exec "pymacs" nil t)
+;; (autoload 'pymacs-load "pymacs" nil t)
+;; (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport 't)
 
 (global-set-key (kbd "C-M-n") 'next-error)
@@ -271,11 +257,15 @@
 			    (turn-on-auto-fill)
 			    (setq-default line-spacing 5)
 			    (setq indent-tabs-mode nil)))
-(require 'redo)       ; enables C-r (redo key)
+;(require 'redo)       ; enables C-r (redo key) ; Skipping this in favor of a proper undo-tree
+(require 'undo-tree)
+(global-undo-tree-mode) ; enables undo-tree-mode globally.
+
 (require 'rect-mark)  ; enables nice-looking block visual mode
 
 ;;; Magit
 (require 'magit)
+
 
 (defun reload-dot-emacs ()
   "Save the .emacs buffer if needed, then reload .emacs."
@@ -328,20 +318,55 @@
     (exchange-point-and-mark)))
 (global-set-key [(meta shift down)] 'duplicate-start-of-line-or-region)
 
+(defun deactivate-hacker-type ()
+  (define-key fake-hacker-type-map [remap self-insert-command] nil)
+)
+
+(defun inject_contents (&optional n)
+  ;(interactive)
+  (setq end (+ start insert_by))
+  (insert-file-contents "/home/callen/test.txt" nil start end)
+  ;(end-of-line) ; sucks
+  (forward-char insert_by)
+  (setq start (+ start insert_by))
+)
+
+(defun hacker-type ()
+  (interactive)
+  (setq fake-hacker-type-map (make-sparse-keymap))
+
+  (setq start 0)
+  (setq insert_by 3)
+
+  (define-key fake-hacker-type-map [remap self-insert-command] 'inject_contents)
+  ; 'pre-command-hook ?
+  ; (add-hook 'self-insert-command 'inject_contents)
+)
+
 (require 'pivotal-tracker)
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)
 (color-theme-midnight)
-;;(color-theme-sanityinc-solarized-dark)
 
-;; Don't use set-default-font, the mf'er won't work in your clients!
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Inconsolata")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 80 :width normal :foundry "unknown" :family "Inconsolata")))))
 
 ;; needs to come last because color-theme is presumptuous
-(if (window-system) (set-frame-size (selected-frame) 131 90))
+;;(if (window-system) (set-frame-size (selected-frame) 90 37))
+(defun toggle-fullscreen (&optional f)
+  (interactive)
+  (let ((current-value (frame-parameter nil 'fullscreen)))
+    (set-frame-parameter nil 'fullscreen
+                         (if (equal 'fullboth current-value)
+                             (if (boundp 'old-fullscreen) old-fullscreen nil)
+                           (progn (setq old-fullscreen current-value)
+                                  'fullboth)))))
+(global-set-key [f11] 'toggle-fullscreen)
+(add-hook 'after-make-frame-functions 'toggle-fullscreen)
+(run-with-idle-timer 0.1 nil 'toggle-fullscreen)
+
