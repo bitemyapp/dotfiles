@@ -294,16 +294,16 @@
 (defun inject_contents (&optional n)
   (interactive)
   (setq end (+ start insert_by))
-  (insert-file-contents "/home/callen/test.txt" nil start end)
+  (insert-file-contents filename nil start end)
   ;(end-of-line) ; sucks
   (forward-char insert_by)
   (setq start (+ start insert_by))
 )
 
-(defun hacker-type ()
-  (interactive)
+(defun hacker-type (arg)
+  (interactive (list (read-string "Filename:")))
   (setq fake-hacker-type-map (make-sparse-keymap))
-
+  (setq filename arg)
   (setq start 0)
   (setq insert_by 3)
 
@@ -312,6 +312,7 @@
   ; 'pre-command-hook ?
   ; (add-hook 'self-insert-command 'inject_contents)
 )
+
 
 ;; scroll one line at a time (less "jumpy" than defaults)    
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
