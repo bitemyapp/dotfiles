@@ -310,8 +310,9 @@
   ; 'pre-command-hook ?
   ; (add-hook 'self-insert-command 'inject_contents)
 )
- ;; scroll one line at a time (less "jumpy" than defaults)
-    
+
+
+;; scroll one line at a time (less "jumpy" than defaults)    
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
 
 ;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
