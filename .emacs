@@ -343,6 +343,25 @@
 (global-set-key (kbd "C-c r e v") 'revert-all-buffers)
 
 (require 'pivotal-tracker)
+
+;; Haskell stuff
+(load "~/.emacs.d/haskell-mode/haskell-site-file")
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
+
+;; End Haskell stuff
+
+;; Clojure stuff
+
+;; LE SWANK
+(add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
+
+;; End Clojure stuff
+
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)
@@ -353,7 +372,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Inconsolata")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monospace")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;;(if (window-system) (set-frame-size (selected-frame) 90 37))
@@ -368,4 +387,3 @@
 (global-set-key [f11] 'toggle-fullscreen)
 (add-hook 'after-make-frame-functions 'toggle-fullscreen)
 (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
-
