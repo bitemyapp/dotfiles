@@ -153,3 +153,7 @@ starwars.wtf
 .appdata/
 Ubuntu\ One/
 HoN
+.slime*
+*.elc
+.lein/
+.m2
