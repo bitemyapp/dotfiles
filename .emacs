@@ -211,6 +211,9 @@
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
+(setq ipython-command "/usr/local/bin/ipython")
+(require 'ipython)
+
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
