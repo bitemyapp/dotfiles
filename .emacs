@@ -320,6 +320,9 @@
 
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
+;; Google Go
+(require 'go-mode-load)
+
 ;; (require 'yasnippet-bundle) ;; wtf guys
 (defun ipdb ()
     (interactive)
@@ -356,10 +359,10 @@
 ;; End Haskell stuff
 
 ;; Clojure stuff
+(require 'clojure-mode)
 
 ;; LE SWANK
 (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
-
 ;; End Clojure stuff
 
 (require 'color-theme)
@@ -375,7 +378,7 @@
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monospace")))))
 
 ;; needs to come last because color-theme is presumptuous
-;;(if (window-system) (set-frame-size (selected-frame) 90 37))
+(if (window-system) (set-frame-size (selected-frame) 90 37))
 (defun toggle-fullscreen (&optional f)
   (interactive)
   (let ((current-value (frame-parameter nil 'fullscreen)))
@@ -385,5 +388,5 @@
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
 (global-set-key [f11] 'toggle-fullscreen)
-(add-hook 'after-make-frame-functions 'toggle-fullscreen)
-(run-with-idle-timer 0.1 nil 'toggle-fullscreen)
+;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
+;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
