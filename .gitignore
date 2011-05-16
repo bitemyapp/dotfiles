@@ -9,7 +9,6 @@ dist
 downloads
 eggs
 parts
-src/*.egg-info
 lib
 lib64
 .ssh
@@ -53,7 +52,6 @@ Dropbox
 .zcompdump
 code/
 j701-user/
-src/
 .ipython*
 .nvidia-settings-rc
 .gnupg/

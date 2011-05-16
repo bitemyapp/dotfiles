@@ -342,6 +342,15 @@
 
 (global-set-key (kbd "C-c r e v") 'revert-all-buffers)
 
+(defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer 
+          (delq (current-buffer) 
+                (remove-if-not 'buffer-file-name (buffer-list)))))
+
+(global-set-key (kbd "C-c k o b") 'kill-other-buffers)
+
 (require 'pivotal-tracker)
 
 ;; Haskell stuff
@@ -376,14 +385,14 @@
 
 ;; needs to come last because color-theme is presumptuous
 ;;(if (window-system) (set-frame-size (selected-frame) 90 37))
-(defun toggle-fullscreen (&optional f)
-  (interactive)
-  (let ((current-value (frame-parameter nil 'fullscreen)))
-    (set-frame-parameter nil 'fullscreen
-                         (if (equal 'fullboth current-value)
-                             (if (boundp 'old-fullscreen) old-fullscreen nil)
-                           (progn (setq old-fullscreen current-value)
-                                  'fullboth)))))
-(global-set-key [f11] 'toggle-fullscreen)
-(add-hook 'after-make-frame-functions 'toggle-fullscreen)
-(run-with-idle-timer 0.1 nil 'toggle-fullscreen)
+;; (defun toggle-fullscreen (&optional f)
+;;   (interactive)
+;;   (let ((current-value (frame-parameter nil 'fullscreen)))
+;;     (set-frame-parameter nil 'fullscreen
+;;                          (if (equal 'fullboth current-value)
+;;                              (if (boundp 'old-fullscreen) old-fullscreen nil)
+;;                            (progn (setq old-fullscreen current-value)
+;;                                   'fullboth)))))
+;; (global-set-key [f11] 'toggle-fullscreen)
+;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
+;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
