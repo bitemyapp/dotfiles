@@ -211,6 +211,9 @@
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
+(setq ipython-command "/usr/local/bin/ipython")
+(require 'ipython)
+
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
@@ -320,6 +323,9 @@
 
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
+;; Google Go
+(require 'go-mode-load)
+
 ;; (require 'yasnippet-bundle) ;; wtf guys
 (defun ipdb ()
     (interactive)
@@ -365,10 +371,10 @@
 ;; End Haskell stuff
 
 ;; Clojure stuff
+(require 'clojure-mode)
 
 ;; LE SWANK
 (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
-
 ;; End Clojure stuff
 
 (require 'color-theme)

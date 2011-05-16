@@ -155,3 +155,6 @@ HoN
 *.elc
 .lein/
 .m2
+.dmenu_cache
+.ratpoison_history
+.sqlite_history
