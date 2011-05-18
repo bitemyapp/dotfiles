@@ -28,7 +28,6 @@
 (setq x-alt-keysym 'meta)
 
 (setq ring-bell-function 'ignore)
-(toggle-scroll-bar -1)
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -39,8 +38,11 @@
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
-(if window-system
-    (tool-bar-mode 0))
+
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(toggle-scroll-bar -1)
+
 (setq frame-title-format "%b")
 (setq make-backup-files nil) 
 (setq-default indent-tabs-mode nil)
@@ -377,17 +379,26 @@
 (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
 ;; End Clojure stuff
 
+(require 'dired+) ;; Enhance dired
+
+(require 're-builder)
+(setq reb-re-syntax 'string) ; elisp/read regex syntax is...undesirable.
+
+(when (fboundp 'winner-mode)
+      (winner-mode 1))
+
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)
-(color-theme-midnight)
+;(color-theme-midnight)
+(color-theme-vibrant-ink)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monospace")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;;(if (window-system) (set-frame-size (selected-frame) 90 37))
