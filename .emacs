@@ -387,6 +387,11 @@
 (when (fboundp 'winner-mode)
       (winner-mode 1))
 
+
+; finds hashbang notation, if it does it chmod +x's it upon save.
+(add-hook 'after-save-hook
+  'executable-make-buffer-file-executable-if-script-p)
+
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)

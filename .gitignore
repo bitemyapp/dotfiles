@@ -158,3 +158,6 @@ HoN
 .dmenu_cache
 .ratpoison_history
 .sqlite_history
+*.o
+*.hi
+*.errors
