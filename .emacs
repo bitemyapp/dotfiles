@@ -315,6 +315,15 @@
   (use-local-map fake-hacker-type-map)
 )
 
+(defun accum (pattern)
+  (interactive "sPattern: ")
+  (beginning-of-buffer)
+  (let ((matched ""))
+    (while (re-search-forward pattern nil t)
+      (setq matched (concat matched (buffer-substring (match-beginning 1) (match-end 0)) "\n")))
+    (switch-to-buffer "*Dump Matched*")
+    (concat matched)
+    (insert matched)))
 
 ;; scroll one line at a time (less "jumpy" than defaults)    
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
@@ -387,16 +396,18 @@
 (when (fboundp 'winner-mode)
       (winner-mode 1))
 
-
 ; finds hashbang notation, if it does it chmod +x's it upon save.
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
+; change yes or no prompts to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
+
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)
-;(color-theme-midnight)
-(color-theme-vibrant-ink)
+(color-theme-midnight)
+;(color-theme-vibrant-ink)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
