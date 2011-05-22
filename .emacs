@@ -395,18 +395,18 @@
 (require 'color-theme)
 (require 'color-theme-solarized)
 (color-theme-initialize)
-;(color-theme-midnight)
-(color-theme-vibrant-ink)
+(color-theme-midnight)
+;(color-theme-vibrant-ink)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monaco")))))
 
 ;; needs to come last because color-theme is presumptuous
-;;(if (window-system) (set-frame-size (selected-frame) 90 37))
+;; (if (window-system) (set-frame-size (selected-frame) 90 37))
 ;; (defun toggle-fullscreen (&optional f)
 ;;   (interactive)
 ;;   (let ((current-value (frame-parameter nil 'fullscreen)))
@@ -416,5 +416,6 @@
 ;;                            (progn (setq old-fullscreen current-value)
 ;;                                   'fullboth)))))
 ;; (global-set-key [f11] 'toggle-fullscreen)
+(set-frame-parameter nil 'fullscreen 'fullboth)
 ;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
 ;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
