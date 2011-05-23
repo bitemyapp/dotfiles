@@ -56,6 +56,9 @@
 
 (global-set-key (kbd "C-c e r") 'eval-region)
 
+; Alternative to M-x
+(global-set-key (kbd "C-c r") 'execute-extended-command)
+
 (setq tramp-default-method "ssh")
 (transient-mark-mode 1)
 (setq x-select-enable-clipboard t)
