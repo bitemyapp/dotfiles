@@ -57,7 +57,7 @@
 (global-set-key (kbd "C-c e r") 'eval-region)
 
 ; Alternative to M-x
-(global-set-key (kbd "C-c r") 'execute-extended-command)
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 (setq tramp-default-method "ssh")
 (transient-mark-mode 1)
@@ -234,6 +234,7 @@
 			    (turn-on-auto-fill)
 			    (setq-default line-spacing 5)
 			    (setq indent-tabs-mode nil)))
+
 (require 'undo-tree)
 (global-undo-tree-mode)
 
@@ -372,6 +373,13 @@
 (global-set-key (kbd "C-c k o b") 'kill-other-buffers)
 
 (require 'pivotal-tracker)
+
+;; (load "~/mmm-mako.el")
+
+;; (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
+;; (mmm-add-mode-ext-class 'html-mode "\\.mako\\'" 'mako)
+;; (add-to-list 'auto-mode-alist '("\\.mak\\'" . html-mode))
+;; (mmm-add-mode-ext-class 'html-mode "\\.mak\\'" 'mako)
 
 ;; Haskell stuff
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
