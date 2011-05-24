@@ -23,6 +23,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
+(add-to-list 'load-path "~/.emacs.d/mmm-mode")
 
 ; manually sets alt key to meta, I don't want super to be meta.
 (setq x-alt-keysym 'meta)
@@ -374,12 +375,45 @@
 
 (require 'pivotal-tracker)
 
-;; (load "~/mmm-mako.el")
+;; Fancy HTML mode
+(require 'mmm-mode)
+(load "~/.emacs.d/mmm-mako/mmm-mako.el")
+(setq mmm-global-mode t)
+(set-face-background 'mmm-declaration-submode-face nil)
+(set-face-background 'mmm-default-submode-face nil)
+(set-face-background 'mmm-code-submode-face nil)
 
-;; (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
-;; (mmm-add-mode-ext-class 'html-mode "\\.mako\\'" 'mako)
-;; (add-to-list 'auto-mode-alist '("\\.mak\\'" . html-mode))
-;; (mmm-add-mode-ext-class 'html-mode "\\.mak\\'" 'mako)
+;; set up an mmm group for fancy html editing
+(mmm-add-group
+ 'fancy-html
+ '(
+   (html-php-tagged
+    :submode php-mode
+    :face mmm-code-submode-face
+    :front "<[?]php"
+    :back "[?]>")
+   (html-css-attribute
+    :submode css-mode
+    :face mmm-declaration-submode-face
+    :front "styleREMOVEME=\""
+    :back "\"")))
+
+;; What files to invoke the new html-mode for?
+(add-to-list 'auto-mode-alist '("\\.inc\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.php[34]?\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.[sj]?html?\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
+(mmm-add-mode-ext-class 'html-mode "\\.mako\\'" 'mako)
+(add-to-list 'auto-mode-alist '("\\.mak\\'" . html-mode))
+(mmm-add-mode-ext-class 'html-mode "\\.mak\\'" 'mako)
+
+;; What features should be turned on in this html-mode?
+(add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-js))
+(add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil embedded-css))
+(add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil fancy-html))
+
 
 ;; Haskell stuff
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
@@ -388,9 +422,6 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-
-
-;; End Haskell stuff
 
 ;; Clojure stuff
 (require 'clojure-mode)
@@ -428,7 +459,7 @@
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace")))))
 
 ;; needs to come last because color-theme is presumptuous
-;;(if (window-system) (set-frame-size (selected-frame) 90 37))
+;; (if (window-system) (set-frame-size (selected-frame) 90 37))
 ;; (defun toggle-fullscreen (&optional f)
 ;;   (interactive)
 ;;   (let ((current-value (frame-parameter nil 'fullscreen)))
@@ -438,5 +469,6 @@
 ;;                            (progn (setq old-fullscreen current-value)
 ;;                                   'fullboth)))))
 ;; (global-set-key [f11] 'toggle-fullscreen)
+(set-frame-parameter nil 'fullscreen 'fullboth)
 ;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
 ;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
