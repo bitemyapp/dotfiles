@@ -82,7 +82,6 @@ log/
 chmod
 .htaccess
 .#test_event*
-*temp*
 .vboxclient*
 examples*
 .Heroes*
