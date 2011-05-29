@@ -332,6 +332,12 @@
     (concat matched)
     (insert matched)))
 
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
+(setq ack-executable (executable-find "ack-grep"))
+
 ;; scroll one line at a time (less "jumpy" than defaults)    
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
 
