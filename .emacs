@@ -379,7 +379,7 @@
 
 ;; Fancy HTML mode
 (require 'mmm-mode)
-(load "~/.emacs.d/mmm-mako/mmm-mako.el")
+;; (load "~/.emacs.d/mmm-mako/mmm-mako.el")
 (setq mmm-global-mode t)
 (set-face-background 'mmm-declaration-submode-face nil)
 (set-face-background 'mmm-default-submode-face nil)
@@ -407,9 +407,9 @@
 (add-to-list 'auto-mode-alist '("\\.[sj]?html?\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
-(mmm-add-mode-ext-class 'html-mode "\\.mako\\'" 'mako)
+;; (mmm-add-mode-ext-class 'html-mode "\\.mako\\'" 'mako)
 (add-to-list 'auto-mode-alist '("\\.mak\\'" . html-mode))
-(mmm-add-mode-ext-class 'html-mode "\\.mak\\'" 'mako)
+;; (mmm-add-mode-ext-class 'html-mode "\\.mak\\'" 'mako)
 
 ;; What features should be turned on in this html-mode?
 (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-js))
