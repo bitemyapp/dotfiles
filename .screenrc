@@ -10,3 +10,6 @@ acladd root
 
 termcapinfo xterm* ti@:te@
 termcapinfo gnome* ti@:te@
+
+defc1 off
+defutf8 on
