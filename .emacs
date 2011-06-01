@@ -21,7 +21,6 @@
   (interactive)
   (if (string-equal safe-load-error-list "") () 
                (message (concat "****** error loading: " safe-load-error-list))))
-;;
 
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
@@ -42,9 +41,9 @@
  '(inhibit-startup-screen t)
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(toggle-scroll-bar -1)
+(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
+(if (boundp 'menu-bar-mode) (menu-bar-mode 0))
+(if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil) 
@@ -455,16 +454,17 @@
 
 (require 'color-theme)
 (require 'color-theme-solarized)
+
 (color-theme-initialize)
-(color-theme-midnight)
-;(color-theme-vibrant-ink)
+(color-theme-tty-dark)
+
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))
