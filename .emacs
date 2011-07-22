@@ -39,6 +39,7 @@
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always))
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
@@ -355,6 +356,7 @@
     (insert "import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()"))
 
 (global-set-key (kbd "C-c p d b") 'ipdb)
+(global-set-key (kbd "M-g") 'goto-line) ; Impatience.
 
 (defun revert-all-buffers ()
    "Refreshes all open buffers from their respective files"
@@ -464,7 +466,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "Monospace")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))

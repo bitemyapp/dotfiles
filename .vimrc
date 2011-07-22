@@ -1,3 +1,4 @@
+syntax on
 set nocompatible
 set modelines=0
 
