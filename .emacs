@@ -39,6 +39,7 @@
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always))
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
@@ -179,6 +180,11 @@
 ; And Gemfiles
 (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
 
+
+(add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+ 
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
@@ -338,11 +344,11 @@
 (setq ack-executable (executable-find "ack-grep"))
 
 ;; scroll one line at a time (less "jumpy" than defaults)    
-(setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
+;; (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
 
 ;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
@@ -380,6 +386,18 @@
 
 (global-set-key (kbd "C-c k o b") 'kill-other-buffers)
 
+(defun unhtml (start end)
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region start end)
+      (goto-char (point-min))
+      (replace-string "&" "&amp;")
+      (goto-char (point-min))
+      (replace-string "<" "&lt;")
+      (goto-char (point-min))
+      (replace-string ">" "&gt;")
+      )))
 (require 'pivotal-tracker)
 
 ;; Fancy HTML mode
@@ -430,12 +448,26 @@
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
-;; Clojure stuff
-(require 'clojure-mode)
+(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/slime")
+(setq slime-lisp-implementations
+     `((sbcl ("/usr/local/bin/sbcl"))))
+(require 'slime)
+(slime-setup  '(slime-repl))
 
-;; LE SWANK
-(add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
-;; End Clojure stuff
+;; (abcl ("/opt/local/bin/abcl"))
+;; (clisp ("/opt/local/bin/clisp"))
+;; slime-asdf slime-fancy slime-banner
+;; Prevents slime from overriding DEL
+(defun override-slime-repl-bindings-with-paredit ()
+(define-key slime-repl-mode-map
+(read-kbd-macro paredit-backward-delete-key) nil))
+
+;; ;; Clojure stuff
+;; (require 'clojure-mode)
+
+;; ;; LE SWANK
+;; (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
+;; ;; End Clojure stuff
 
 (require 'dired+) ;; Enhance dired
 
@@ -452,19 +484,34 @@
 ; change yes or no prompts to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; W3M
+(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/w3m/")
+(setq browse-url-browser-function 'w3m-browse-url)
+(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+;; optional keyboard short-cut
+(global-set-key "\C-xm" 'browse-url-at-point)
+
+;; Erlang mode
+(setq load-path (cons "~/.emacs.d/erlang" load-path))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/bin" exec-path))
+(require 'erlang-start)
+
 (require 'color-theme)
-(require 'color-theme-solarized)
+;; (require 'color-theme-solarized)
 
 (color-theme-initialize)
-(color-theme-tty-dark)
+;; (color-theme-tty-dark)
+(color-theme-midnight)
 
+(setq tramp-default-method "scpc")
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monaco")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))

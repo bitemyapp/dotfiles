@@ -13,7 +13,7 @@ set visualbell
 set ttyfast
 set backspace=indent,eol,start
 
-let mapleader =","
+let mapleader ="\\"
 
 set ignorecase
 set smartcase
@@ -39,11 +39,15 @@ nnoremap ; :
 au FocusLost * :wa
 " use spaces, not tabs
 set sw=4 sts=4 ts=4 et
-colorscheme evening
+colorscheme vibrantink
 let g:CommandTMaxFiles=20000
 set wildignore+=*.o,*.obj,.git,*.png,*.jpg,*.swp,*.bak,*.pyc,*.class,*.gif
 
-set guifont=terminus
+if has("gui_running")
+    set guioptions=egmrt
+    set guifont=monaco
+endif
+
 
 set noerrorbells         " don't beep
 set nobackup
