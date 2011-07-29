@@ -1,4 +1,5 @@
 syntax on
+set ruler
 set nocompatible
 set modelines=0
 
@@ -14,7 +15,7 @@ set visualbell
 set ttyfast
 set backspace=indent,eol,start
 
-let mapleader =","
+let mapleader ="\\"
 
 set ignorecase
 set smartcase
@@ -40,11 +41,14 @@ nnoremap ; :
 au FocusLost * :wa
 " use spaces, not tabs
 set sw=4 sts=4 ts=4 et
-colorscheme evening
 let g:CommandTMaxFiles=20000
 set wildignore+=*.o,*.obj,.git,*.png,*.jpg,*.swp,*.bak,*.pyc,*.class,*.gif
 
-set guifont=terminus
+if has("gui_running")
+    set guioptions=egmrt
+    set guifont=monaco
+endif
+
 
 set noerrorbells         " don't beep
 set nobackup
@@ -56,3 +60,6 @@ filetype plugin on
 filetype indent on
 
 autocmd filetype python set expandtab
+au FileType py set autoindent
+au FileType py set smartindent
+au FileType py set textwidth=79 " PEP-8 Friendly
