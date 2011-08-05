@@ -499,11 +499,11 @@
 (require 'erlang-start)
 
 (require 'color-theme)
-;; (require 'color-theme-solarized)
+(require 'color-theme-twilight)
 
 (color-theme-initialize)
 ;; (color-theme-tty-dark)
-(color-theme-midnight)
+(color-theme-twilight)
 
 (setq tramp-default-method "scpc")
 
