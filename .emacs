@@ -24,7 +24,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
-(add-to-list 'load-path "~/.emacs.d/mmm-mode")
+;; (add-to-list 'load-path "~/.emacs.d/mmm-mode")
 
 ; manually sets alt key to meta, I don't want super to be meta.
 (setq x-alt-keysym 'meta)
@@ -183,7 +183,7 @@
 
 (add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
 (require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-f") 'ace-jump-mode)
  
 
 ;;; This was installed by package-install.el.
@@ -402,43 +402,45 @@
 (require 'pivotal-tracker)
 
 ;; Fancy HTML mode
-(require 'mmm-mode)
+;; (require 'mmm-mode)
 ;; (load "~/.emacs.d/mmm-mako/mmm-mako.el")
-(setq mmm-global-mode t)
-(set-face-background 'mmm-declaration-submode-face nil)
-(set-face-background 'mmm-default-submode-face nil)
-(set-face-background 'mmm-code-submode-face nil)
+;; (setq mmm-global-mode t)
+;; (set-face-background 'mmm-declaration-submode-face nil)
+;; (set-face-background 'mmm-default-submode-face nil)
+;; (set-face-background 'mmm-code-submode-face nil)
 
 ;; set up an mmm group for fancy html editing
-(mmm-add-group
- 'fancy-html
- '(
-   (html-php-tagged
-    :submode php-mode
-    :face mmm-code-submode-face
-    :front "<[?]php"
-    :back "[?]>")
-   (html-css-attribute
-    :submode css-mode
-    :face mmm-declaration-submode-face
-    :front "styleREMOVEME=\""
-    :back "\"")))
+;; (mmm-add-group
+;;  'fancy-html
+;;  '(
+;;    (html-php-tagged
+;;     :submode php-mode
+;;     :face mmm-code-submode-face
+;;     :front "<[?]php"
+;;     :back "[?]>")
+;;    (html-css-attribute
+;;     :submode css-mode
+;;     :face mmm-declaration-submode-face
+;;     :front "styleREMOVEME=\""
+;;     :back "\"")))
+
+(require 'php-mode)
 
 ;; What files to invoke the new html-mode for?
-(add-to-list 'auto-mode-alist '("\\.inc\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.php[34]?\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.[sj]?html?\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.inc\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.php[34]?\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[sj]?html?\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
 ;; (mmm-add-mode-ext-class 'html-mode "\\.mako\\'" 'mako)
-(add-to-list 'auto-mode-alist '("\\.mak\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mak\\'" . html-mode))
 ;; (mmm-add-mode-ext-class 'html-mode "\\.mak\\'" 'mako)
 
 ;; What features should be turned on in this html-mode?
-(add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-js))
-(add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil embedded-css))
-(add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil fancy-html))
+;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-js))
+;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil embedded-css))
+;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil fancy-html))
 
 
 ;; Haskell stuff
@@ -502,7 +504,6 @@
 (require 'color-theme-twilight)
 
 (color-theme-initialize)
-;; (color-theme-tty-dark)
 (color-theme-twilight)
 
 (setq tramp-default-method "scpc")
@@ -512,7 +513,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "Monospace")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 80 :width normal :foundry "unknown" :family "Inconsolata")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))
@@ -528,3 +529,5 @@
 ;; (set-frame-parameter nil 'fullscreen 'fullboth)
 ;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
 ;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
+
+;; (set-face-attribute 'default nil :height 100)
