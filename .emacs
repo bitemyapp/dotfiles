@@ -424,8 +424,6 @@
 ;;     :front "styleREMOVEME=\""
 ;;     :back "\"")))
 
-(require 'php-mode)
-
 ;; What files to invoke the new html-mode for?
 ;; (add-to-list 'auto-mode-alist '("\\.inc\\'" . html-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . html-mode))
