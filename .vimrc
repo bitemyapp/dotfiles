@@ -1,4 +1,5 @@
 syntax on
+colorscheme vibrantink
 set ruler
 set nocompatible
 set modelines=0
