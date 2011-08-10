@@ -24,17 +24,12 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
-;; (add-to-list 'load-path "~/.emacs.d/mmm-mode")
 
 ; manually sets alt key to meta, I don't want super to be meta.
 (setq x-alt-keysym 'meta)
 
 (setq ring-bell-function 'ignore)
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(css-electric-keys nil)
  '(ido-everywhere t)
  '(ido-mode (quote both) nil (ido))
@@ -50,7 +45,6 @@
 (setq make-backup-files nil) 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-;; (setq indent-line-function 'insert-tab)
 (setq auto-save-default nil)
 
 ;; aliases because I am l'lazy
@@ -129,8 +123,8 @@
            (setq buffer-read-only nil)
            (message (concat "File name set to " sudo-name)))))
 
-     ;;(global-set-key (kbd "C-c o") 'sudo-find-file)
      (global-set-key (kbd "C-c o s") 'sudo-reopen-file)))
+
 ;;(global-set-key (kbd "TAB") 'self-insert-command)
 
 ;; Org-mode settings
@@ -171,9 +165,6 @@
 
 ; if you don't need plotting, etc. 
 (setq j-command "jconsole")
-
-; Example from: http://jeremy.zawodny.com/emacs/emacs-4.html
-; (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
 
 ; #!@$ing Rakefiles
 (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
@@ -264,9 +255,6 @@
 ;; deletes selected text
 (delete-selection-mode t)
 
-;; Thus, ‘M-w’ with no selection copies the current line, ‘C-w’ kills it entirely, 
-;; and ‘C-a M-w C-y’ duplicates it. As the interactive-form property only affects 
-;; the commands’ interactive behavior, they are safe for other functions to call.
 (put 'kill-ring-save 'interactive-form
      '(interactive
        (if (use-region-p)
@@ -343,19 +331,11 @@
 (autoload 'ack-find-file "full-ack" nil t)
 (setq ack-executable (executable-find "ack-grep"))
 
-;; scroll one line at a time (less "jumpy" than defaults)    
-;; (setq mouse-wheel-scroll-amount '(3 ((shift) . 3))) ;; one line at a time
-
-;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-
-;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
 ;; Google Go
 (require 'go-mode-load)
 
-;; (require 'yasnippet-bundle) ;; wtf guys
 (defun ipdb ()
     (interactive)
     (insert "import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()"))
@@ -400,46 +380,6 @@
       (replace-string ">" "&gt;")
       )))
 (require 'pivotal-tracker)
-
-;; Fancy HTML mode
-;; (require 'mmm-mode)
-;; (load "~/.emacs.d/mmm-mako/mmm-mako.el")
-;; (setq mmm-global-mode t)
-;; (set-face-background 'mmm-declaration-submode-face nil)
-;; (set-face-background 'mmm-default-submode-face nil)
-;; (set-face-background 'mmm-code-submode-face nil)
-
-;; set up an mmm group for fancy html editing
-;; (mmm-add-group
-;;  'fancy-html
-;;  '(
-;;    (html-php-tagged
-;;     :submode php-mode
-;;     :face mmm-code-submode-face
-;;     :front "<[?]php"
-;;     :back "[?]>")
-;;    (html-css-attribute
-;;     :submode css-mode
-;;     :face mmm-declaration-submode-face
-;;     :front "styleREMOVEME=\""
-;;     :back "\"")))
-
-;; What files to invoke the new html-mode for?
-;; (add-to-list 'auto-mode-alist '("\\.inc\\'" . html-mode))
-;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . html-mode))
-;; (add-to-list 'auto-mode-alist '("\\.php[34]?\\'" . html-mode))
-;; (add-to-list 'auto-mode-alist '("\\.[sj]?html?\\'" . html-mode))
-;; (add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
-;; (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
-;; (mmm-add-mode-ext-class 'html-mode "\\.mako\\'" 'mako)
-;; (add-to-list 'auto-mode-alist '("\\.mak\\'" . html-mode))
-;; (mmm-add-mode-ext-class 'html-mode "\\.mak\\'" 'mako)
-
-;; What features should be turned on in this html-mode?
-;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-js))
-;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil embedded-css))
-;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil fancy-html))
-
 
 ;; Haskell stuff
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
