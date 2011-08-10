@@ -1,6 +1,5 @@
 (global-set-key (kbd "C-z") nil)
 
-;; Safe load per dotemacs.de
 (defvar safe-load-error-list ""
         "*List of files that reported errors when loaded via safe-load")
 
