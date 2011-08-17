@@ -403,10 +403,10 @@
 (read-kbd-macro paredit-backward-delete-key) nil))
 
 ;; ;; Clojure stuff
-;; (require 'clojure-mode)
+(require 'clojure-mode)
 
 ;; ;; LE SWANK
-;; (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
+(add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
 ;; ;; End Clojure stuff
 
 (require 'dired+) ;; Enhance dired
@@ -450,7 +450,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monaco")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 70 :width normal :foundry "unknown" :family "Inconsolata")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))
