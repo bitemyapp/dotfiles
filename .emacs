@@ -366,6 +366,8 @@
 
 (global-set-key (kbd "C-c k o b") 'kill-other-buffers)
 
+(global-set-key (kbd "C-c cp") 'compile)
+
 (defun unhtml (start end)
   (interactive "r")
   (save-excursion
@@ -402,11 +404,15 @@
 (define-key slime-repl-mode-map
 (read-kbd-macro paredit-backward-delete-key) nil))
 
+(safe-load "~/.emacs.d/package.el")
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;; ;; Clojure stuff
-;; (require 'clojure-mode)
+(safe-load "~/.emacs.d/clojure-mode.el")
+(require 'clojure-mode)
 
 ;; ;; LE SWANK
-;; (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
+(add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
 ;; ;; End Clojure stuff
 
 (require 'dired+) ;; Enhance dired

@@ -1,5 +1,5 @@
 syntax on
-colorscheme vibrantink
+colorscheme slate
 set ruler
 set nocompatible
 set modelines=0

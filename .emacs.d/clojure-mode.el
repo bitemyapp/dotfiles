@@ -5,8 +5,8 @@
 ;; Authors: Jeffrey Chu <jochu0@gmail.com>
 ;;          Lennart Staflin <lenst@lysator.liu.se>
 ;;          Phil Hagelberg <technomancy@gmail.com>
-;; URL: http://www.emacswiki.org/cgi-bin/wiki/ClojureMode
-;; Version: 1.8.1
+;; URL: http://github.com/technomancy/clojure-mode
+;; Version: 1.10.0
 ;; Keywords: languages, lisp
 
 ;; This file is not part of GNU Emacs.
@@ -19,6 +19,8 @@
 ;; Users of older Emacs (pre-22) should get version 1.4:
 ;; http://github.com/technomancy/clojure-mode/tree/1.4
 
+;;; Installation:
+
 ;; Use package.el. You'll need to add Marmalade to your archives:
 
 ;; (require 'package)
@@ -30,6 +32,10 @@
 ;; an older package.el installed from tromey.com, you should upgrade
 ;; in order to support installation from multiple sources.
 
+;; Of course, it's possible to just place it on your load-path and
+;; require it as well if you don't mind missing out on
+;; byte-compilation and autoloads.
+
 ;; Using clojure-mode with paredit is highly recommended. It is also
 ;; available using package.el from the above archive.
 
@@ -39,8 +45,8 @@
 ;;   (defun turn-on-paredit () (paredit-mode 1))
 ;;   (add-hook 'clojure-mode-hook 'turn-on-paredit)
 
-;; See slime-repl (also available from the same package archive) for
-;; better interaction with subprocesses.
+;; See Swank Clojure (http://github.com/technomancy/swank-clojure) for
+;; better interaction with subprocesses via SLIME.
 
 ;;; License:
 
@@ -118,7 +124,6 @@ Clojure to load that file."
     (modify-syntax-entry ?\[ "(]" table)
     (modify-syntax-entry ?\] ")[" table)
     (modify-syntax-entry ?^ "'" table)
-    (modify-syntax-entry ?= "'" table)
     table))
 
 (defvar clojure-mode-abbrev-table nil
@@ -131,9 +136,6 @@ Clojure to load that file."
 This holds a cons cell of the form `(DIRECTORY . FILE)'
 describing the last `clojure-load-file' or `clojure-compile-file' command.")
 
-(defvar clojure-def-regexp "^\\s *(def\\S *\\s +\\(?:\\^\\S +\\s +\\)?\\([^ \n\t]+\\)"
-  "A regular expression to match any top-level definitions.")
-
 (defvar clojure-test-ns-segment-position -1
   "Which segment of the ns is \"test\" inserted in your test name convention.
 
@@ -145,11 +147,11 @@ numbers count from the end:
 
 (defun clojure-mode-version ()
   "Currently package.el doesn't support prerelease version numbers."
-  "1.8.1-SNAPSHOT")
+  "1.10.0")
 
 ;;;###autoload
 (defun clojure-mode ()
-  "Major mode for editing Clojure code - similar to Lisp mode..
+  "Major mode for editing Clojure code - similar to Lisp mode.
 Commands:
 Delete converts tabs to spaces as it moves back.
 Blank lines separate paragraphs.  Semicolons start comments.
@@ -166,7 +168,7 @@ if that value is non-nil."
         major-mode 'clojure-mode
         imenu-create-index-function
         (lambda ()
-          (imenu--generic-function `((nil ,clojure-def-regexp 1))))
+          (imenu--generic-function '((nil clojure-match-next-def 0))))
         local-abbrev-table clojure-mode-abbrev-table
         indent-tabs-mode nil)
   (lisp-mode-variables nil)
@@ -175,12 +177,16 @@ if that value is non-nil."
        "\\(\\(^\\|[^\\\\\n]\\)\\(\\\\\\\\\\)*\\)\\(;+\\|#|\\) *")
   (set (make-local-variable 'lisp-indent-function)
        'clojure-indent-function)
+  (when (< emacs-major-version 24)
+    (set (make-local-variable 'forward-sexp-function)
+         'clojure-forward-sexp))
   (set (make-local-variable 'lisp-doc-string-elt-property)
        'clojure-doc-string-elt)
 
   (clojure-mode-font-lock-setup)
 
   (run-mode-hooks 'clojure-mode-hook)
+  (run-hooks 'prog-mode-hook)
 
   ;; Enable curly braces when paredit is enabled in clojure-mode-hook
   (when (and (featurep 'paredit) paredit-mode (>= paredit-version 21))
@@ -200,6 +206,17 @@ if that value is non-nil."
   (switch-to-lisp t))
 
 
+
+(defun clojure-match-next-def ()
+  "Scans the buffer backwards for the next top-level definition.
+Called by `imenu--generic-function'."
+  (when (re-search-backward "^\\s *(def\\S *[ \n\t]+" nil t)
+    (save-excursion
+      (goto-char (match-end 0))
+      (when (looking-at "#?\\^")
+        (let (forward-sexp-function) ; using the built-in one
+          (forward-sexp)))           ; skip the metadata
+      (re-search-forward "[^ \n\t)]+"))))
 
 (defun clojure-mode-font-lock-setup ()
   "Configures font-lock for editing Clojure code."
@@ -336,7 +353,7 @@ elements of a def* forms."
          "(\\(?:clojure.core/\\)?"
          (regexp-opt
           '("let" "letfn" "do"
-            "cond" "condp"
+            "case" "cond" "condp"
             "for" "loop" "recur"
             "when" "when-not" "when-let" "when-first"
             "if" "if-let" "if-not"
@@ -349,7 +366,7 @@ elements of a def* forms."
             "gen-class" "gen-and-load-class" "gen-and-save-class"
             "handler-case" "handle") t)
          "\\>")
-       .  1)
+       1 font-lock-builtin-face)
       ;; Built-ins
       (,(concat
          "(\\(?:clojure.core/\\)?"
@@ -374,7 +391,7 @@ elements of a def* forms."
         "bit-clear" "bit-flip" "bit-not" "bit-or" "bit-set"
         "bit-shift-left" "bit-shift-right" "bit-test" "bit-xor" "boolean"
         "boolean-array" "booleans" "bound-fn" "bound-fn*" "butlast"
-        "byte" "byte-array" "bytes" "cast" "char"
+        "byte" "byte-array" "bytes" "case" "cast" "char"
         "char-array" "char-escape-string" "char-name-string" "char?" "chars"
         "chunk" "chunk-append" "chunk-buffer" "chunk-cons" "chunk-first"
         "chunk-next" "chunk-rest" "chunked-seq?" "class" "class?"
@@ -457,7 +474,7 @@ elements of a def* forms."
         "with-meta" "with-open" "with-out-str" "with-precision" "xml-seq"
         ) t)
          "\\>")
-       1 font-lock-builtin-face)
+       1 font-lock-variable-name-face)
       ;; (fn name? args ...)
       (,(concat "(\\(?:clojure.core/\\)?\\(fn\\)[ \t]+"
                 ;; Possibly type
@@ -507,7 +524,7 @@ elements of a def* forms."
          "\\>")
        1 font-lock-type-face)
       ;; Constant values (keywords), including as metadata e.g. ^:static
-      ("\\<^?:\\(\\sw\\|#\\)+\\>" 0 font-lock-builtin-face)
+      ("\\<^?:\\(\\sw\\|#\\)+\\>" 0 font-lock-constant-face)
       ;; Meta type annotation #^Type or ^Type
       ("#?^\\sw+" 0 font-lock-type-face)
       ("\\<io\\!\\>" 0 font-lock-warning-face)
@@ -542,6 +559,24 @@ elements of a def* forms."
 (put 'defvar- 'clojure-doc-string-elt 3)
 
 
+
+(defun clojure-forward-sexp (n)
+  "Treat record literals like #user.Foo[1] and #user.Foo{:size 1}
+as a single sexp so that slime will send them properly. Arguably
+this behavior is unintuitive for the user pressing (eg) C-M-f
+himself, but since these are single objects I think it's right."
+  (let ((dir (if (> n 0) 1 -1))
+        (forward-sexp-function nil)) ; force the built-in version
+    (while (not (zerop n))
+      (forward-sexp dir)
+      (when (save-excursion ; move back to see if we're in a record literal
+              (and
+               (condition-case nil
+                   (progn (backward-sexp) 't)
+                 ('scan-error nil))
+               (looking-at "#\\w")))
+        (forward-sexp dir)) ; if so, jump over it
+      (setq n (- n dir)))))
 
 (defun clojure-indent-function (indent-point state)
   "This function is the normal value of the variable `lisp-indent-function'.
@@ -697,8 +732,10 @@ use (put-clojure-indent 'some-symbol 'defun)."
   (fn 'defun)
   (def 'defun)
   (defn 'defun)
+  (bound-fn 'defun)
   (if 1)
   (if-not 1)
+  (case 1)
   (condp 2)
   (when 1)
   (while 1)
@@ -755,7 +792,7 @@ use (put-clojure-indent 'some-symbol 'defun)."
 
 
 
-(defconst *namespace-name-regex*
+(defconst clojure-namespace-name-regex
   (rx line-start
       "("
       (zero-or-one (group (regexp "clojure.core/")))
@@ -771,16 +808,16 @@ use (put-clojure-indent 'some-symbol 'defun)."
                                       (one-or-more (not (any whitespace)))))
                     (one-or-more (any whitespace "\n")))
       ;; why is this here? oh (in-ns 'foo) or (ns+ :user)
-      (zero-or-one (any ":'"))         
+      (zero-or-one (any ":'"))
       (group (one-or-more (not (any "()\"" whitespace))) word-end)))
 
-;; for testing *namespace-name-regex*, you can evaluate this code and make
+;; for testing clojure-namespace-name-regex, you can evaluate this code and make
 ;; sure foo (or whatever the namespace name is) shows up in results. some of
 ;; these currently fail.
-;; (mapcar (lambda (s) (let ((n (string-match *namespace-name-regex* s)))
+;; (mapcar (lambda (s) (let ((n (string-match clojure-namespace-name-regex s)))
 ;;                       (if n (match-string 4 s))))
 ;;         '("(ns foo)"
-;;           "(ns 
+;;           "(ns
 ;; foo)"
 ;;           "(ns foo.baz)"
 ;;           "(ns ^:bar foo)"
@@ -797,17 +834,65 @@ use (put-clojure-indent 'some-symbol 'defun)."
 ;;  foo)"
 ;;     "foo"))
 
-(defun clojure-find-package ()
-  (let ((regexp *namespace-name-regex*))
+
+
+(defun clojure-insert-ns-form ()
+  (interactive)
+  (goto-char (point-min))
+  (let* ((rel (car (last (split-string buffer-file-name "src/\\|test/"))))
+         (relative (car (split-string rel "\\.clj")))
+         (segments (split-string relative "/")))
+    (insert (format "(ns %s)" (mapconcat #'identity segments ".")))))
+
+
+;;; Slime help
+
+(defvar clojure-project-root-file "project.clj")
+
+(defvar clojure-swank-command "lein jack-in %s")
+
+;;;###autoload
+(defun clojure-jack-in ()
+  (interactive)
+  (setq slime-net-coding-system 'utf-8-unix)
+  (lexical-let ((port (- 65535 (mod (caddr (current-time)) 4096)))
+                (dir default-directory))
+    (when (get-buffer "*swank*")
+      (kill-buffer "*swank*"))
+    (let* ((swank-cmd (format clojure-swank-command port))
+           (proc (start-process-shell-command "swank" "*swank*" swank-cmd)))
+      (set-process-filter (get-buffer-process "*swank*")
+                          (lambda (process output)
+                            (with-current-buffer "*swank*"
+                              (insert output))
+                            (when (string-match "proceed to jack in" output)
+                              (with-current-buffer "*swank*"
+                                (kill-region (save-excursion
+                                               (goto-char (point-max))
+                                               (search-backward "slime-load-hook")
+                                               (forward-line)
+                                               (point))
+                                             (point-max)))
+                              (eval-buffer "*swank*")
+                              (slime-connect "localhost" port)
+                              (with-current-buffer (slime-output-buffer t)
+                                (setq default-directory dir))
+                              (set-process-filter process nil))))))
+  (message "Starting swank server..."))
+
+(defun clojure-find-ns ()
+  (let ((regexp clojure-namespace-name-regex))
     (save-excursion
       (when (or (re-search-backward regexp nil t)
                 (re-search-forward regexp nil t))
         (match-string-no-properties 4)))))
 
+(defalias 'clojure-find-package 'clojure-find-ns)
+
 (defun clojure-enable-slime ()
   (slime-mode t)
   (set (make-local-variable 'slime-find-buffer-package-function)
-       'clojure-find-package))
+       'clojure-find-ns))
 
 ;;;###autoload
 (defun clojure-enable-slime-on-existing-buffers ()
@@ -837,7 +922,7 @@ use (put-clojure-indent 'some-symbol 'defun)."
   (interactive)
   (find-file (format "%s/test/%s.clj"
                      (locate-dominating-file buffer-file-name "src/")
-                     (clojure-test-for (clojure-find-package)))))
+                     (clojure-test-for (clojure-find-ns)))))
 
 ;;;###autoload
 (add-hook 'slime-connected-hook 'clojure-enable-slime-on-existing-buffers)
@@ -846,6 +931,7 @@ use (put-clojure-indent 'some-symbol 'defun)."
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
 (add-to-list 'interpreter-mode-alist '("cake" . clojure-mode))
 
 (provide 'clojure-mode)
