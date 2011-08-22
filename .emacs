@@ -446,7 +446,7 @@
 (color-theme-twilight)
 
 (setq tramp-default-method "scpc")
-
+(require 'nyan-mode)
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -470,3 +470,4 @@
 ;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
 
 ;; (set-face-attribute 'default nil :height 100)
+(nyan-mode)
