@@ -241,6 +241,13 @@
 ;;; Magit
 (require 'magit)
 
+(defun asp-mode () (interactive)
+  (multi-mode 1
+              'html-mode
+              '("<%" visual-basic-mode)
+              '("<script" javascript-mode)
+              '("</script" html-mode)
+              '("%>" html-mode)))
 
 (defun reload-dot-emacs ()
   "Save the .emacs buffer if needed, then reload .emacs."
