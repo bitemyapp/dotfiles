@@ -412,8 +412,8 @@
 (read-kbd-macro paredit-backward-delete-key) nil))
 
 (safe-load "~/.emacs.d/package.el")
-(require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (require 'package)
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;; ;; Clojure stuff
 (safe-load "~/.emacs.d/clojure-mode.el")
 (require 'clojure-mode)
@@ -453,10 +453,12 @@
 (load-file "~/.emacs.d/piglatin.el")
 
 (require 'color-theme)
-(require 'color-theme-twilight)
-
 (color-theme-initialize)
-(color-theme-twilight)
+
+;; (require 'color-theme-twilight)
+;; (color-theme-twilight)
+(require 'color-theme-tomorrow)
+(color-theme-tomorrow-night-bright)
 
 (setq tramp-default-method "scpc")
 (require 'nyan-mode)
