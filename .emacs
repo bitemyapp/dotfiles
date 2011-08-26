@@ -35,10 +35,9 @@
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always))
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
-
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 (if (boundp 'menu-bar-mode) (menu-bar-mode 0))
-(if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
+(toggle-scroll-bar -1)
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil) 
@@ -143,16 +142,6 @@
 	      ("<down>"  . ignore             ))))
     (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
 ;;; For programming in J
 (autoload 'j-mode "j-mode.el"  "Major mode for J." t)
 (autoload 'j-shell "j-mode.el" "Run J from emacs." t)
@@ -174,17 +163,6 @@
 (add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-f") 'ace-jump-mode)
- 
-
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Python dev stuff ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -411,9 +389,6 @@
 (define-key slime-repl-mode-map
 (read-kbd-macro paredit-backward-delete-key) nil))
 
-(safe-load "~/.emacs.d/package.el")
-;; (require 'package)
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;; ;; Clojure stuff
 (safe-load "~/.emacs.d/clojure-mode.el")
 (require 'clojure-mode)
@@ -486,3 +461,4 @@
 
 ;; (set-face-attribute 'default nil :height 100)
 (nyan-mode)
+(nyan-start-animation)
