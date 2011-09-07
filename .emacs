@@ -182,13 +182,13 @@
            (set-variable 'py-smart-indentation nil)
            (set-variable 'indent-tabs-mode nil) )))
 
-;; (autoload 'pymacs-apply "pymacs")
-;; (autoload 'pymacs-call "pymacs")
-;; (autoload 'pymacs-eval "pymacs" nil t)
-;; (autoload 'pymacs-exec "pymacs" nil t)
-;; (autoload 'pymacs-load "pymacs" nil t)
-;; (pymacs-load "ropemacs" "rope-")
-;; (setq ropemacs-enable-autoimport 't)
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-autoimport 't)
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
@@ -375,11 +375,11 @@
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
-(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/slime")
-(setq slime-lisp-implementations
-     `((sbcl ("/usr/local/bin/sbcl"))))
-(require 'slime)
-(slime-setup  '(slime-repl))
+;; (add-to-list 'load-path "/opt/local/share/emacs/site-lisp/slime")
+;; (setq slime-lisp-implementations
+;;      `((sbcl ("/usr/local/bin/sbcl"))))
+;; (require 'slime)
+;; (slime-setup  '(slime-repl))
 
 ;; (abcl ("/opt/local/bin/abcl"))
 ;; (clisp ("/opt/local/bin/clisp"))
@@ -460,5 +460,6 @@
 ;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
 
 ;; (set-face-attribute 'default nil :height 100)
+
 (nyan-mode)
 (nyan-start-animation)
