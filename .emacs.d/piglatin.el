@@ -58,6 +58,6 @@
   (setq major-mode 'piglatin-mode)
   (setq mode-name "PigLatin")
   (run-hooks 'piglatin-mode-hook)
-;;  (set (make-local-variable 'indent-line-function) 'piglatin-indent-line)
+  (set (make-local-variable 'indent-line-function) 'piglatin-indent-line)
   )
 (provide 'piglatin-mode)
