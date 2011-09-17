@@ -37,7 +37,7 @@
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 (if (boundp 'menu-bar-mode) (menu-bar-mode 0))
-(toggle-scroll-bar -1)
+(if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil) 
@@ -442,7 +442,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Inconsolata")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monaco")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))
