@@ -3,7 +3,6 @@
 *.exe
 *.dll
 .installed.cfg
-bin
 develop-eggs
 dist
 downloads

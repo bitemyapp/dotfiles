@@ -47,7 +47,7 @@ set wildignore+=*.o,*.obj,.git,*.png,*.jpg,*.swp,*.bak,*.pyc,*.class,*.gif
 
 if has("gui_running")
     set guioptions=egmrt
-    set guifont=monaco
+    set guifont=Inconsolata
 endif
 
 

@@ -7,9 +7,9 @@
   "Load a file.  If error when loading, report back, wait for
    a key stroke then continue on"
   (interactive "f")
-  (condition-case nil (load file noerror nomessage nosuffix) 
-    (error 
-      (progn 
+  (condition-case nil (load file noerror nomessage nosuffix)
+    (error
+      (progn
        (setq safe-load-error-list  (concat safe-load-error-list  " " file))
        (message "****** [Return to continue] Error loading %s" safe-load-error-list )
         (sleep-for 1)
@@ -18,7 +18,7 @@
 (defun safe-load-check ()
  "Check for any previous safe-load loading errors.  (safe-load.el)"
   (interactive)
-  (if (string-equal safe-load-error-list "") () 
+  (if (string-equal safe-load-error-list "") ()
                (message (concat "****** error loading: " safe-load-error-list))))
 
 (add-to-list 'load-path "~/.emacs.d/")
@@ -40,7 +40,7 @@
 (toggle-scroll-bar -1)
 
 (setq frame-title-format "%b")
-(setq make-backup-files nil) 
+(setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq auto-save-default nil)
@@ -53,6 +53,9 @@
 
 ; Alternative to M-x
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
+
+; Artist Mode
+(global-set-key (kbd "C-c c a m") 'artist-mode)
 
 (setq tramp-default-method "ssh")
 (transient-mark-mode 1)
@@ -82,8 +85,8 @@
 
 (eval-after-load "tramp"
   '(progn
-     (defvar sudo-tramp-prefix 
-       "/sudo:" 
+     (defvar sudo-tramp-prefix
+       "/sudo:"
        (concat "Prefix to be used by sudo commands when building tramp path "))
      (defun sudo-file-name (filename)
        (set 'splitname (split-string filename ":"))
@@ -104,18 +107,18 @@
 
      (defun sudo-find-file (filename &optional wildcards)
        "Calls find-file with filename with sudo-tramp-prefix prepended"
-       (interactive "fFind file with sudo ")      
+       (interactive "fFind file with sudo ")
        (let ((sudo-name (sudo-file-name filename)))
-         (apply 'find-file 
+         (apply 'find-file
                 (cons sudo-name (if (boundp 'wildcards) '(wildcards))))))
 
      (defun sudo-reopen-file ()
        "Reopen file as root by prefixing its name with sudo-tramp-prefix and by clearing buffer-read-only"
        (interactive)
-       (let* 
+       (let*
            ((file-name (expand-file-name buffer-file-name))
             (sudo-name (sudo-file-name file-name)))
-         (progn           
+         (progn
            (setq buffer-file-name sudo-name)
            (rename-buffer sudo-name)
            (setq buffer-read-only nil)
@@ -133,7 +136,7 @@
 
 (iswitchb-mode 1)
  (defun iswitchb-local-keys ()
-      (mapc (lambda (K) 
+      (mapc (lambda (K)
 	      (let* ((key (car K)) (fun (cdr K)))
     	        (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
 	    '(("<right>" . iswitchb-next-match)
@@ -151,14 +154,17 @@
 ; path of jconsole, et al
 (setq j-path "~/bin/j701/bin/")
 
-; if you don't need plotting, etc. 
+; if you don't need plotting, etc.
 (setq j-command "jconsole")
 
-; #!@$ing Rakefiles
-(setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
 ; And Gemfiles
 (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
-
+(add-to-list 'auto-mode-alist '("\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.gemspec$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.ru$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 
 (add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
 (require 'ace-jump-mode)
@@ -179,16 +185,16 @@
       python-mode-hook
       '(lambda () (progn
            (set-variable 'py-indent-offset 4)
-           (set-variable 'py-smart-indentation nil)
+           (set-variable 'py-smart-indentation t)
            (set-variable 'indent-tabs-mode nil) )))
 
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-enable-autoimport 't)
+;; (autoload 'pymacs-apply "pymacs")
+;; (autoload 'pymacs-call "pymacs")
+;; (autoload 'pymacs-eval "pymacs" nil t)
+;; (autoload 'pymacs-exec "pymacs" nil t)
+;; (autoload 'pymacs-load "pymacs" nil t)
+;; (pymacs-load "ropemacs" "rope-")
+;; (setq ropemacs-enable-autoimport 't)
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
@@ -244,7 +250,7 @@
        (if (use-region-p)
            (list (region-beginning) (region-end))
          (list (line-beginning-position) (line-beginning-position 2)))))
-    (put 'kill-region 'interactive-form      
+    (put 'kill-region 'interactive-form
      '(interactive
        (if (use-region-p)
            (list (region-beginning) (region-end))
@@ -345,8 +351,8 @@
 (defun kill-other-buffers ()
     "Kill all other buffers."
     (interactive)
-    (mapc 'kill-buffer 
-          (delq (current-buffer) 
+    (mapc 'kill-buffer
+          (delq (current-buffer)
                 (remove-if-not 'buffer-file-name (buffer-list)))))
 
 (global-set-key (kbd "C-c k o b") 'kill-other-buffers)
@@ -425,7 +431,38 @@
 (setq exec-path (cons "/usr/local/lib/bin" exec-path))
 (require 'erlang-start)
 
-(load-file "~/.emacs.d/piglatin.el")
+;; (load-file "~/.emacs.d/piglatin.el")
+;; (add-to-list 'auto-mode-alist '("\\.pig\\'" . sql-mode)) ;; It actually works better than the piglatin mode.
+
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/"))
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/vendor/"))
+;; (require 'eclim)
+;; (setq eclim-auto-save t)
+;; (global-eclim-mode)
+
+(require 'generic-x)
+
+(define-generic-mode 
+       'pig-mode                         ;; name of the mode to create
+       '("--")                           ;; comments start with '!!'
+;;       '("LOAD" "FILTER" 
+;;         "FOREACH" "GENERATE"
+;;         "AND" "OR" "ANY" "ALL"
+;;         "cache" "cat" "cd" "COGROUP"
+;;         "copyFromLocal" "copyToLocal"
+;;         "cross" "define" "stdin" "stdout"
+;;         ")                     ;; some keywords
+       '("LOAD" "FILTER" "FOREACH" "GENERATE" "AND" "OR" "ANY" "ALL" "ARRANGE" "AS" "ASC" "BY" "cache" "cat" "cd\|COGROUP" "copyFromLocal" "copyToLocal" "cp" "cross" "define" "desc" "describe" "diff" "distinct" "du" "dump" "eval" "exec" "explain" "flatten" "generate" "group" "help" "if" "illustrate" "inner" "input" "into" "is" "join" "kill" "limit" "ls" "mkdir" "mv" "not" "null" "or" "order" "outer" "output" "parallel" "pig" "pwd" "quit" "register" "rm" "rmf" "run" "sample" "set" "ship" "size" "split" "stderr" "stdin" "stdout" "store" "stream" "through" "union" "using" "filter" "FLATTEN" "COUNT" "ORDER"
+         "STORE" "INTO" "by" "and" "\$[a-zA-Z]+") ;; keywords
+       '(("=" . 'font-lock-operator)     ;; '=' is an operator
+         (";" . 'font-lock-builtin))     ;; ';' is a built-in 
+       '("\\.pig$")                      ;; files for which to activate this mode 
+        nil                              ;; other functions to call
+       "A mode for pig scripts"            ;; doc string for this mode
+       )
+
+(require 'textmate)
+(textmate-mode)
 
 (require 'color-theme)
 (color-theme-initialize)
@@ -442,7 +479,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Inconsolata")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "Terminus")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))
