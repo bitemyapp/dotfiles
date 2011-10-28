@@ -37,7 +37,7 @@
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 (if (boundp 'menu-bar-mode) (menu-bar-mode 0))
-(toggle-scroll-bar -1)
+(if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil)
