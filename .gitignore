@@ -161,3 +161,6 @@ HoN
 *.errors
 .mission-control/
 .moc/
+dotfiles/
+.xmonad/xmonad-i386-linux
+.compiz*/
