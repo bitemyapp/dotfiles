@@ -1,6 +1,7 @@
 URxvt*foreground: White
 URxvt*background: Black
 URxvt*scrollBar: false
+URxvt*secondaryScroll: true
 ! URxvt*font: xft:terminus:pixelsize=8:antialias=false:hinting=false
 ! URxvt*boldFont: xft:terminus:bold:pixelsize=8:antialias=false:hinting=false
 ! Normal
@@ -18,9 +19,10 @@ URxvt*color1:    #e9897c
 ! URxvt*color2:    #b6e77d
 URxvt*color2:    #4de729
 URxvt*color3:    #ecebbe
-URxvt*color4:    #a9cdeb
+! URxvt*color4:    #a9cdeb
+URxvt*color4:    #1742fd
 URxvt*color5:    #ea96eb
-URxvt*color6:    #c9caec
+URxvt*color6:    #39acd7
 URxvt*color7:    #f2f2f2
 
 ! Light
@@ -40,5 +42,6 @@ URxvt*color11:    #fcfbcc
 ! URxvt*color12:    #b6defb
 URxvt*color12:    #7da1fb
 URxvt*color13:    #fba1fb
-URxvt*color14:    #d7d9fc
+! URxvt*color14:  #d7d9fc
+URxvt*color14:    #66bfe0
 URxvt*color15:    #e2e2e2

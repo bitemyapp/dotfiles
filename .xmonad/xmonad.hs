@@ -19,4 +19,5 @@ newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 main = xmonad $ defaultConfig {
   modMask = mod4Mask
   , keys = newKeys
+  , terminal = "urxvt"
   }
