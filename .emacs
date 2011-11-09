@@ -359,6 +359,8 @@
 
 (global-set-key (kbd "C-c cp") 'compile)
 
+(global-set-key (kbd "C-c c j i") 'clojure-jack-in)
+
 (defun unhtml (start end)
   (interactive "r")
   (save-excursion
