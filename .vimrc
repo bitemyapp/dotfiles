@@ -1,5 +1,6 @@
 syntax on
 colorscheme slate
+set switchbuf=usetab
 set ruler
 set nocompatible
 set modelines=0
