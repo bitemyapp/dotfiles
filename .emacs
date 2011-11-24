@@ -21,7 +21,8 @@
   (if (string-equal safe-load-error-list "") ()
                (message (concat "****** error loading: " safe-load-error-list))))
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/w3m")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 
 ; manually sets alt key to meta, I don't want super to be meta.
@@ -44,6 +45,12 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq auto-save-default nil)
+
+;; Web browsing
+(require 'w3m-load)
+(require 'w3m-util)
+(require 'w3m)
+(setq w3m-use-cookies t)
 
 ;; aliases because I am l'lazy
 (defalias 'couc 'comment-or-uncomment-region)
@@ -159,6 +166,7 @@
 
 ; And Gemfiles
 (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\.gemspec$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\.ru$" . ruby-mode))
@@ -481,7 +489,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 60 :width normal :foundry "unknown" :family "Monospace")))))
 
 ;; needs to come last because color-theme is presumptuous
 ;; (if (window-system) (set-frame-size (selected-frame) 90 37))
