@@ -41,11 +41,9 @@ Dropbox
 .ssh/
 .sudo_as_admin_successful
 .thumbnails/
-.xsession-errors
 .compiz
 .bash_history
 .ido.last
-.xsession*
 .gstreamer-0.10/
 .jhistory
 .zcompdump
