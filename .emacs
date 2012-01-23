@@ -45,6 +45,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq auto-save-default nil)
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 ;; Web browsing
 (require 'w3m-load)
@@ -173,6 +174,8 @@
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
+
+(add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
 
 (add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
 (require 'ace-jump-mode)
@@ -405,6 +408,8 @@
 (define-key slime-repl-mode-map
 (read-kbd-macro paredit-backward-delete-key) nil))
 
+(require 'yaml-mode)
+
 ;; ;; Clojure stuff
 (safe-load "~/.emacs.d/clojure-mode.el")
 (require 'clojure-mode)
@@ -450,29 +455,35 @@
 ;; (setq eclim-auto-save t)
 ;; (global-eclim-mode)
 
-(require 'generic-x)
+;; (require 'generic-x)
 
-(define-generic-mode 
-       'pig-mode                         ;; name of the mode to create
-       '("--")                           ;; comments start with '!!'
-;;       '("LOAD" "FILTER" 
-;;         "FOREACH" "GENERATE"
-;;         "AND" "OR" "ANY" "ALL"
-;;         "cache" "cat" "cd" "COGROUP"
-;;         "copyFromLocal" "copyToLocal"
-;;         "cross" "define" "stdin" "stdout"
-;;         ")                     ;; some keywords
-       '("LOAD" "FILTER" "FOREACH" "GENERATE" "AND" "OR" "ANY" "ALL" "ARRANGE" "AS" "ASC" "BY" "cache" "cat" "cd\|COGROUP" "copyFromLocal" "copyToLocal" "cp" "cross" "define" "desc" "describe" "diff" "distinct" "du" "dump" "eval" "exec" "explain" "flatten" "generate" "group" "help" "if" "illustrate" "inner" "input" "into" "is" "join" "kill" "limit" "ls" "mkdir" "mv" "not" "null" "or" "order" "outer" "output" "parallel" "pig" "pwd" "quit" "register" "rm" "rmf" "run" "sample" "set" "ship" "size" "split" "stderr" "stdin" "stdout" "store" "stream" "through" "union" "using" "filter" "FLATTEN" "COUNT" "ORDER"
-         "STORE" "INTO" "by" "and" "\$[a-zA-Z]+") ;; keywords
-       '(("=" . 'font-lock-operator)     ;; '=' is an operator
-         (";" . 'font-lock-builtin))     ;; ';' is a built-in 
-       '("\\.pig$")                      ;; files for which to activate this mode 
-        nil                              ;; other functions to call
-       "A mode for pig scripts"            ;; doc string for this mode
-       )
+;; (define-generic-mode 
+;;        'pig-mode                         ;; name of the mode to create
+;;        '("--")                           ;; comments start with '!!'
+;; ;;       '("LOAD" "FILTER" 
+;; ;;         "FOREACH" "GENERATE"
+;; ;;         "AND" "OR" "ANY" "ALL"
+;; ;;         "cache" "cat" "cd" "COGROUP"
+;; ;;         "copyFromLocal" "copyToLocal"
+;; ;;         "cross" "define" "stdin" "stdout"
+;; ;;         ")                     ;; some keywords
+;;        '("LOAD" "FILTER" "FOREACH" "GENERATE" "AND" "OR" "ANY" "ALL" "ARRANGE" "AS" "ASC" "BY" "cache" "cat" "cd\|COGROUP" "copyFromLocal" "copyToLocal" "cp" "cross" "define" "desc" "describe" "diff" "distinct" "du" "dump" "eval" "exec" "explain" "flatten" "generate" "group" "help" "if" "illustrate" "inner" "input" "into" "is" "join" "kill" "limit" "ls" "mkdir" "mv" "not" "null" "or" "order" "outer" "output" "parallel" "pig" "pwd" "quit" "register" "rm" "rmf" "run" "sample" "set" "ship" "size" "split" "stderr" "stdin" "stdout" "store" "stream" "through" "union" "using" "filter" "FLATTEN" "COUNT" "ORDER"
+;;          "STORE" "INTO" "by" "and" "\$[a-zA-Z]+") ;; keywords
+;;        '(("=" . 'font-lock-operator)     ;; '=' is an operator
+;;          (";" . 'font-lock-builtin))     ;; ';' is a built-in 
+;;        '("\\.pig$")                      ;; files for which to activate this mode 
+;;         nil                              ;; other functions to call
+;;        "A mode for pig scripts"            ;; doc string for this mode
+;;        )
 
 (require 'textmate)
 (textmate-mode)
+
+(require 'sws-mode)
+(require 'jade-mode)
+(require 'stylus-mode)
+(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 (require 'color-theme)
 (color-theme-initialize)

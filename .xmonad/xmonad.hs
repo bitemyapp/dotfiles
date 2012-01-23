@@ -16,8 +16,15 @@ myKeys x =
              ]
 newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 
+myManageHook = composeAll (
+  [ manageHook gnomeConfig
+  , className =? "Unity-2d-panel" --> doIgnore
+  , className =? "Unity-2d-launcher" --> doFloat
+  ])
+               
 main = xmonad $ defaultConfig {
-  modMask = mod4Mask
+  manageHook = myManageHook
+  , modMask = mod4Mask
   , keys = newKeys
-  , terminal = "konsole"
+  , terminal = "rxvt-unicode"
   }

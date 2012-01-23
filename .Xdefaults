@@ -45,3 +45,7 @@ URxvt*color13:    #fba1fb
 ! URxvt*color14:  #d7d9fc
 URxvt*color14:    #66bfe0
 URxvt*color15:    #e2e2e2
+URxvt*perl-ext-common:  default,matcher
+URxvt*matcher.button:   3
+URxvt*urlLauncher:      google-chrome
+
