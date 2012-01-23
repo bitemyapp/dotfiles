@@ -50,6 +50,11 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# keys
+bindkey ';5D' emacs-backward-word
+bindkey ';5C' emacs-forward-word
+# ^^ my fucking god why isn't this set by default?
+
 # aliases
 alias ls='ls -F --color=auto' 
 alias ll='ls -lh'
