@@ -67,7 +67,7 @@ alias ec='emacsclient -n -a emacs'
 # promptinit
 # prompt adam1
 
-PROMPT="
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}$(box_name)%{$reset_color%} in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%} %(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )$ "
+autoload -U colors && colors
+PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%} %{$fg[red]%}%~ %{$reset_color%}$ "
 
 RPROMPT=$(battery_charge)
