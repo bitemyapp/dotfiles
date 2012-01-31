@@ -24,6 +24,9 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/w3m")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
+(add-to-list 'load-path "~/.emacs.d/scala-mode")
+
+(require 'scala-mode-auto)
 
 ; manually sets alt key to meta, I don't want super to be meta.
 (setq x-alt-keysym 'meta)
