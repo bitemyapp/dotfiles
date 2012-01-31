@@ -8,7 +8,7 @@ output = p.communicate()[0]
 
 # import ipdb; ipdb.set_trace()
 
-charge_threshold = int(math.ceil(float(output[output.index("%") - 3:output.index("%")].strip()) / 10))
+charge_threshold = int(math.ceil(float(output[output.index("%") - 3:output.index("%")].strip(',').strip()) / 10))
 
 # Output
 

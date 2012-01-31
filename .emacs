@@ -228,6 +228,8 @@
 			    (setq-default line-spacing 5)
 			    (setq indent-tabs-mode nil)))
 
+(require 'rst) ;; restructured text
+
 (require 'undo-tree)
 (global-undo-tree-mode)
 
