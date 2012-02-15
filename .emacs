@@ -21,8 +21,12 @@
   (if (string-equal safe-load-error-list "") ()
                (message (concat "****** error loading: " safe-load-error-list))))
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/w3m")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
+(add-to-list 'load-path "~/.emacs.d/scala-mode")
+
+(require 'scala-mode-auto)
 
 ; manually sets alt key to meta, I don't want super to be meta.
 (setq x-alt-keysym 'meta)
@@ -44,6 +48,13 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq auto-save-default nil)
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+
+;; Web browsing
+(require 'w3m-load)
+(require 'w3m-util)
+(require 'w3m)
+(setq w3m-use-cookies t)
 
 ;; aliases because I am l'lazy
 (defalias 'couc 'comment-or-uncomment-region)
@@ -168,6 +179,8 @@
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 
+(add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
+
 (add-to-list 'load-path "which-folder-ace-jump-mode-file-in/")
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-f") 'ace-jump-mode)
@@ -218,6 +231,8 @@
 			    (turn-on-auto-fill)
 			    (setq-default line-spacing 5)
 			    (setq indent-tabs-mode nil)))
+
+(require 'rst) ;; restructured text
 
 (require 'undo-tree)
 (global-undo-tree-mode)
@@ -399,6 +414,8 @@
   (define-key slime-repl-mode-map
     (read-kbd-macro paredit-backward-delete-key) nil))
 
+(require 'yaml-mode)
+
 ;; ;; Clojure stuff
 (safe-load "~/.emacs.d/clojure-mode.el")
 (require 'clojure-mode)
@@ -454,29 +471,34 @@
         (buffer-substring (region-beginning) (region-end))
       (read-string "Google: ")))))
 
-(require 'generic-x)
-
-(define-generic-mode 
-       'pig-mode                         ;; name of the mode to create
-       '("--")                           ;; comments start with '!!'
-;;       '("LOAD" "FILTER" 
-;;         "FOREACH" "GENERATE"
-;;         "AND" "OR" "ANY" "ALL"
-;;         "cache" "cat" "cd" "COGROUP"
-;;         "copyFromLocal" "copyToLocal"
-;;         "cross" "define" "stdin" "stdout"
-;;         ")                     ;; some keywords
-       '("LOAD" "FILTER" "FOREACH" "GENERATE" "AND" "OR" "ANY" "ALL" "ARRANGE" "AS" "ASC" "BY" "cache" "cat" "cd\|COGROUP" "copyFromLocal" "copyToLocal" "cp" "cross" "define" "desc" "describe" "diff" "distinct" "du" "dump" "eval" "exec" "explain" "flatten" "generate" "group" "help" "if" "illustrate" "inner" "input" "into" "is" "join" "kill" "limit" "ls" "mkdir" "mv" "not" "null" "or" "order" "outer" "output" "parallel" "pig" "pwd" "quit" "register" "rm" "rmf" "run" "sample" "set" "ship" "size" "split" "stderr" "stdin" "stdout" "store" "stream" "through" "union" "using" "filter" "FLATTEN" "COUNT" "ORDER"
-         "STORE" "INTO" "by" "and" "\$[a-zA-Z]+") ;; keywords
-       '(("=" . 'font-lock-operator)     ;; '=' is an operator
-         (";" . 'font-lock-builtin))     ;; ';' is a built-in 
-       '("\\.pig$")                      ;; files for which to activate this mode 
-        nil                              ;; other functions to call
-       "A mode for pig scripts"            ;; doc string for this mode
-       )
+;; (define-generic-mode 
+;;        'pig-mode                         ;; name of the mode to create
+;;        '("--")                           ;; comments start with '!!'
+;; ;;       '("LOAD" "FILTER" 
+;; ;;         "FOREACH" "GENERATE"
+;; ;;         "AND" "OR" "ANY" "ALL"
+;; ;;         "cache" "cat" "cd" "COGROUP"
+;; ;;         "copyFromLocal" "copyToLocal"
+;; ;;         "cross" "define" "stdin" "stdout"
+;; ;;         ")                     ;; some keywords
+;;        '("LOAD" "FILTER" "FOREACH" "GENERATE" "AND" "OR" "ANY" "ALL" "ARRANGE" "AS" "ASC" "BY" "cache" "cat" "cd\|COGROUP" "copyFromLocal" "copyToLocal" "cp" "cross" "define" "desc" "describe" "diff" "distinct" "du" "dump" "eval" "exec" "explain" "flatten" "generate" "group" "help" "if" "illustrate" "inner" "input" "into" "is" "join" "kill" "limit" "ls" "mkdir" "mv" "not" "null" "or" "order" "outer" "output" "parallel" "pig" "pwd" "quit" "register" "rm" "rmf" "run" "sample" "set" "ship" "size" "split" "stderr" "stdin" "stdout" "store" "stream" "through" "union" "using" "filter" "FLATTEN" "COUNT" "ORDER"
+;;          "STORE" "INTO" "by" "and" "\$[a-zA-Z]+") ;; keywords
+;;        '(("=" . 'font-lock-operator)     ;; '=' is an operator
+;;          (";" . 'font-lock-builtin))     ;; ';' is a built-in 
+;;        '("\\.pig$")                      ;; files for which to activate this mode 
+;;         nil                              ;; other functions to call
+;;        "A mode for pig scripts"            ;; doc string for this mode
+;;        )
+>>>>>>> 7b8b755c20ce088ddab5569a9b26cce45e978a16
 
 (require 'textmate)
 (textmate-mode)
+
+(require 'sws-mode)
+(require 'jade-mode)
+(require 'stylus-mode)
+(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 (require 'color-theme)
 (color-theme-initialize)
@@ -494,38 +516,6 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monaco")))))
-
-;; needs to come last because color-theme is presumptuous
-;; (if (window-system) (set-frame-size (selected-frame) 90 37))
-;; (defun toggle-fullscreen (&optional f)
-;;   (interactive)
-;;   (let ((current-value (frame-parameter nil 'fullscreen)))
-;;     (set-frame-parameter nil 'fullscreen
-;;                          (if (equal 'fullboth current-value)
-;;                              (if (boundp 'old-fullscreen) old-fullscreen nil)
-;;                            (progn (setq old-fullscreen current-value)
-;;                                   'fullboth)))))
-;; (global-set-key [f11] 'toggle-fullscreen)
-;; (set-frame-parameter nil 'fullscreen 'fullboth)
-;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
-;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
-
-;; (set-face-attribute 'default nil :height 100)
-
-(setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "callen.23dc@gmail.com" nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      smtpmail-local-domain "bitemyapp.com")
-
-(setq gnus-select-method '(nnimap "gmail"
-				  (nnimap-address "imap.gmail.com")
-				  (nnimap-server-port 993)
-				  (nnimap-stream ssl)))
-
-(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
 (nyan-mode)
 (nyan-start-animation)
