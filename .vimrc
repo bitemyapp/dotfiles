@@ -1,67 +1,64 @@
-syntax on
-colorscheme slate
-set switchbuf=usetab
-set ruler
 set nocompatible
-set modelines=0
 
-set encoding=utf-8
-set scrolloff=3
-set autoindent
-set showmode
-set showcmd
-set hidden
-set wildmenu
-set wildmode=list:longest
-set visualbell
-set ttyfast
+" Make backspace behave in a sane manner.
 set backspace=indent,eol,start
-
-let mapleader ="\\"
-
+set tabstop=4
+set autoindent
+set copyindent
+set shiftwidth=4
+set expandtab
+set shiftround
+set showmatch
 set ignorecase
 set smartcase
-set gdefault
 set incsearch
-set showmatch
-set hlsearch
-nnoremap <leader><space> :noh<cr>
 
-set wrap
-set textwidth=79
+set history=1000
+set undolevels=1000
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set visualbell
+set noerrorbells
 
-
-nnoremap j gj
-nnoremap k gk
-
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-
-nnoremap ; :
-
-au FocusLost * :wa
-" use spaces, not tabs
-set sw=4 sts=4 ts=4 et
-let g:CommandTMaxFiles=20000
-set wildignore+=*.o,*.obj,.git,*.png,*.jpg,*.swp,*.bak,*.pyc,*.class,*.gif
-
-if has("gui_running")
-    set guioptions=egmrt
-    set guifont=Inconsolata
-endif
-
-
-set noerrorbells         " don't beep
 set nobackup
 set noswapfile
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-filetype on
-filetype plugin on
-filetype indent on
 
-autocmd filetype python set expandtab
-au FileType py set autoindent
-au FileType py set smartindent
-au FileType py set textwidth=79 " PEP-8 Friendly
+call pathogen#infect()
+" Switch syntax highlighting on
+syntax on
+
+" Enable file type detection and do language-dependent indenting.
+filetype plugin indent on
+
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
+inoremap jj <Esc>
+
+colorscheme badwolf
+if has("gui_running")
+    set guioptions=egmrt
+endif
+
+let g:EasyMotion_leader_key = '<Leader>'
+
+""" FocusMode
+function! ToggleFocusMode()
+  if (&foldcolumn != 12)
+    set laststatus=0
+    set numberwidth=10
+    set foldcolumn=12
+    set noruler
+    hi FoldColumn ctermbg=none
+    hi LineNr ctermfg=0 ctermbg=none
+    hi NonText ctermfg=0
+  else
+    set laststatus=2
+    set numberwidth=4
+    set foldcolumn=0
+    set ruler
+    execute 'colorscheme ' . g:colors_name
+  endif
+endfunc
+nnoremap <F1> :call ToggleFocusMode()<cr>

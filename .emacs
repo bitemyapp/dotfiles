@@ -396,8 +396,8 @@
 ;; slime-asdf slime-fancy slime-banner
 ;; Prevents slime from overriding DEL
 (defun override-slime-repl-bindings-with-paredit ()
-(define-key slime-repl-mode-map
-(read-kbd-macro paredit-backward-delete-key) nil))
+  (define-key slime-repl-mode-map
+    (read-kbd-macro paredit-backward-delete-key) nil))
 
 ;; ;; Clojure stuff
 (safe-load "~/.emacs.d/clojure-mode.el")
@@ -511,6 +511,21 @@
 ;; (run-with-idle-timer 0.1 nil 'toggle-fullscreen)
 
 ;; (set-face-attribute 'default nil :height 100)
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "callen.23dc@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      smtpmail-local-domain "bitemyapp.com")
+
+(setq gnus-select-method '(nnimap "gmail"
+				  (nnimap-address "imap.gmail.com")
+				  (nnimap-server-port 993)
+				  (nnimap-stream ssl)))
+
+(setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
 (nyan-mode)
 (nyan-start-animation)

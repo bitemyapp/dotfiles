@@ -41,6 +41,7 @@
 (define-key eclim-mode-map (kbd "C-c C-e h") 'eclim-java-hierarchy)
 (define-key eclim-mode-map (kbd "C-c C-e z") 'eclim-java-implement)
 (define-key eclim-mode-map (kbd "C-c C-e d") 'eclim-java-doc-comment)
+(define-key eclim-mode-map (kbd "C-c C-e f s") 'eclim-java-format)
 
 (defgroup eclim-java nil
   "Java: editing, browsing, refactoring"
@@ -89,7 +90,7 @@ sources."
     (when (buffer-modified-p) (save-buffer)) ;; auto-save current buffer, prompt on saving others
     (when save-others (save-some-buffers nil (lambda () (string-match "\\.java$" (buffer-file-name)))))))
 
-(defadvice delete-file (around eclim--delete-file (filename) activate)
+(defadvice delete-file (around eclim--delete-file activate)
   "Advice the `delete-file' function to trigger a source update
 in eclim when appropriate."
   (let ((buf (current-buffer))
@@ -109,7 +110,7 @@ in eclim when appropriate."
 declaration has been found. TYPE may be either 'class',
 'interface', 'enum' or nil, meaning 'match all of the above'."
   (save-excursion
-    (if (re-search-backward 
+    (if (re-search-backward
 	 (concat (or type "\\(class\\|interface\\|enum\\)") "\\s-+\\([^<{\s-]+\\)") nil t)
 	(match-string 2)
       "")))
@@ -157,6 +158,11 @@ has been found."
   (interactive)
   (eclim/execute-command "javadoc_comment" "-p" "-f" "-o"))
 
+(defun eclim-java-format ()
+  "Format the source code of the current java source file."
+  (interactive)
+  (eclim/execute-command "java_format" "-p" "-f" ("-b" 0) ("-e" (buffer-size))))
+
 (defun eclim-java-constructor ()
   (interactive)
   (eclim/execute-command "java_constructor" "-p" "-f" "-o"))
@@ -173,7 +179,7 @@ has been found."
   (interactive)
   (let* ((i (eclim--java-identifier-at-point t))
 	 (n (read-string (concat "Rename " (cdr i) " to: ") (cdr i))))
-    (eclim/with-results files ("java_refactor_rename" "-p" "-e" "-f" ("-n" n) 
+    (eclim/with-results files ("java_refactor_rename" "-p" "-e" "-f" ("-n" n)
 			       ("-o" (car i)) ("-l" (length (cdr i))))
 			(when (not (string= "files:" (first files)))
 			  (error (first files)))
@@ -271,22 +277,24 @@ has been found."
   (eclim/with-results hits ("java_search" ("-p" pattern) ("-t" type) ("-x" context) ("-s" scope))
 		      (eclim--find-display-results pattern (eclim--java-split-search-results hits) open-single-file)))
 
-(defun eclim--java-identifier-at-point (&optional full)
+(defun eclim--java-identifier-at-point (&optional full position)
   "Returns a cons cell (BEG . IDENTIFIER) where BEG is the start
-buffer position of the token/identifier at point, and IDENTIFIER
-is the string from BEG to (point). If argument FULL is non-nill,
-IDENTIFIER will contain the whole identifier, not just the
-start."
+buffer byte offset of the token/identifier at point, and
+IDENTIFIER is the string from BEG to (point). If argument FULL is
+non-nill, IDENTIFIER will contain the whole identifier, not just
+the start. If argument POSITION is non-nil, BEG will contain the
+position of the identifier instead of the byte offset (which only
+matters for buffers containing non-ASCII characters)."
   (let ((boundary "\\([<>()\\[\\.\s\t\n!=,;]\\|]\\)"))
     ;; TODO: make this work for dos buffers
     (save-excursion
       (if (and full (re-search-forward boundary nil t))
 	  (backward-char))
       (let ((end (point))
-	    (start (progn 
+	    (start (progn
 		     (if (re-search-backward boundary nil t) (forward-char))
 		     (point))))
-	(cons (eclim--byte-offset)
+	(cons (if position (point) (eclim--byte-offset))
 	      (buffer-substring-no-properties start end))))))
 
 (defun eclim--java-package-components (package)
@@ -299,32 +307,34 @@ start."
     (equal (butlast (eclim--java-package-components wildcard))
 	   (butlast (eclim--java-package-components package)))))
 
+(defun eclim--java-current-package ()
+  "Returns the package for the class in the current buffer."
+  (save-excursion
+    (goto-char 0)
+    (if (re-search-forward "package \\(.*?\\);" (point-max) t)
+        (match-string-no-properties 1))))
+
 (defun eclim--java-ignore-import-p (import)
   "Return true if this IMPORT should be ignored by the import
   functions."
-  (string-match "^java\.lang\.[A-Z][^\.]*$" import))
+  (or (string-match "^java\.lang\.[A-Z][^\.]*$" import)
+      (string-match (concat "^" (eclim--java-current-package) "\.[A-Z][^\.]*$") import)))
 
 (defun eclim--java-sort-imports (imports imports-order)
-  "Sorts a list of imports according to a given sort order, removing duplicates."
-  (flet ((sort-imports (imports-order imports result)
-		       (cond ((null imports) result)
-			     ((null imports-order)
-			      (sort-imports nil nil (append result imports)))
-			     (t
-			      (flet ((matches-prefix (x) (string-startswith-p x (first imports-order))))
-				(sort-imports (rest imports-order)
-					      (remove-if #'matches-prefix imports)
-					      (append result (remove-if-not #'matches-prefix imports)))))))
-	 (remove-duplicates (import result)
-			    (loop for imp = import then (cdr imp)
-				  for f = (first imp)
-				  for n = (second imp)
-				  while imp
-				  when (not (or (eclim--java-wildcard-includes-p f n)
-						(equal f n)))
-				  collect f)))
-    (remove-duplicates
-     (sort-imports imports-order (sort imports #'string-lessp) '()) '())))
+  "Sorts a list of imports according to a given sort order,
+removing duplicates."
+  (let* ((non-ordered (loop for a in imports-order
+			    for r = (cdr imports-order) then (cdr r)
+			    while (string< a (car r))
+			    finally return r))
+	 (sorted (make-hash-table)))
+    (loop for imp in (sort imports #'string<)
+	  for key = (or (find imp non-ordered :test #'string-startswith-p)
+			:default)
+	  do (puthash key (cons imp (gethash key sorted)) sorted))
+    (remove-duplicates (loop for key in (cons :default non-ordered)
+			     append (reverse (gethash key sorted)))
+		       :test #'string=)))
 
 (defun eclim--java-extract-imports ()
   "Extracts (by removing) import statements of a java
@@ -336,13 +346,10 @@ cursor at a suitable point for re-inserting new import statements."
       (unless (save-match-data
 		(string-match "^\s*import\s*static" (match-string 0)))
 	(push (match-string-no-properties 1) imports)
-	(delete-region (line-beginning-position) (line-end-position))))
-    (delete-blank-lines)
+	(delete-region (line-beginning-position) (line-end-position))
+	(delete-blank-lines)))
     (if (null imports)
-	(progn
-	  (end-of-line)
-	  (newline)
-	  (newline)))
+	  (forward-line))
     imports))
 
 (defun eclim--java-organize-imports (imports-order &optional additional-imports unused-imports)
@@ -374,24 +381,6 @@ a java type that can be imported."
 		      (eclim--java-organize-imports (eclim/execute-command "java_import_order" "-p")
 						    (list (eclim--completing-read "Import: " imports)))))
 
-(defun eclim--fix-static-import (import-spec)
-  (let ((imports (cdr (assoc 'imports import-spec)))
-	(type (cdr (assoc 'type import-spec))))
-    (message "Imports %s" imports)
-    (if (not (= 1 (length imports)))
-	import-spec
-      (if (not (stringp type))
-	  import-spec
-	(progn
-	  (message "Type: %s first element of imports: %s" type (elt imports 0))
-	  (if (string-endswith-p (elt imports 0) type)
-	      import-spec
-	    (progn
-	      (message "Appending")
-	      (list
-	       (cons 'imports (vector (concat (elt imports 0) "." type)))
-	       (cons 'type type)))))))))
-
 (defun eclim-java-import-missing ()
   "Checks the current file for missing imports and prompts the
 user if necessary."
@@ -400,14 +389,17 @@ user if necessary."
 		      (loop for unused across
 			    (json-read-from-string
 			     (replace-regexp-in-string "'" "\"" (first (eclim/execute-command "java_import_missing" "-p" "-f"))))
-			    do (let* ((candidates (append (cdr (assoc 'imports (eclim--fix-static-import unused))) nil))
-				      (len (length candidates)))
-				 (if (= len 0) nil
+			    do (let* ((candidates (append (cdr (assoc 'imports unused)) nil))
+				      (type (cdr (assoc 'type unused)))
+				      (import (if (= 1 (length candidates))
+						  (car candidates)
+						(eclim--completing-read (concat "Missing type '" type "'")
+									candidates))))
+				 (when import
 				   (eclim--java-organize-imports imports-order
-								 (if (= len 1) candidates
-								   (list
-								    (eclim--completing-read (concat "Missing type '" (cdr (assoc 'type unused)) "'")
-											    candidates)))))))))
+								 (list (if (string-endswith-p import type)
+									   import
+									 (concat import "." type)))))))))
 
 (defun eclim-java-remove-unused-imports ()
   "Remove usused import from the current java source file."
@@ -422,14 +414,14 @@ implemnt/override, then inserts a skeleton for the chosen
 method."
   (interactive)
   (eclim/with-results response ("java_impl" "-p" "-f" "-o")
-		      (let* ((methods  
+		      (let* ((methods
 			      (remove-if (lambda (element) (string-match "//" element))
 					 (remove-if-not (lambda (element) (string-match "(.*)" element))
 							response)))
 			     (start (point)))
-			(insert 
+			(insert
 			 "@Override\n"
-			 (replace-regexp-in-string " abstract " " " 
+			 (replace-regexp-in-string " abstract " " "
 						   (eclim--completing-read "Signature: " methods)) " {}")
 			(backward-char)
 			(indent-region start (point)))))
@@ -464,7 +456,7 @@ method."
 	      (with-output-to-temp-buffer "*Completions*"
 		(display-completion-list list word)))
 	  ;; Complete
-	  (delete-region beg (point))
+	  (delete-region (1+ beg) (point))
 	  (insert compl)
 	  ;; close completion buffer if there's one
 	  (let ((win (get-buffer-window "*Completions*" 0)))
@@ -475,14 +467,5 @@ method."
   (interactive)
   (when eclim-auto-save (save-buffer))
   (eclim--java-complete-internal (mapcar 'second (eclim/java-complete))))
-
-;; Request an eclipse source update when files are saved
-(defun eclim--after-save-hook ()
-  (when (member major-mode eclim-java-major-modes)
-    (ignore-errors
-      (if eclim-mode (apply 'eclim--call-process "java_src_update" (eclim--expand-args (list "-p" "-f"))))))
-  t)
-
-(add-hook 'after-save-hook 'eclim--after-save-hook)
 
 (provide 'eclim-java)
