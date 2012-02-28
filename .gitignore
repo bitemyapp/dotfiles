@@ -47,7 +47,6 @@ Dropbox
 .gstreamer-0.10/
 .jhistory
 .zcompdump
-code/
 j701-user/
 .ipython*
 .nvidia-settings-rc
@@ -72,7 +71,6 @@ Pictures/
 activate
 active
 *.cfg
-env
 log/
 .test*
 664
@@ -165,3 +163,9 @@ dotfiles/
 bitemyapp/
 .pentadactyl/
 .xsession-errors
+env/
+bin/
+.crawl/
+.dbshell
+.elinks/
+.emacs.d/swank/

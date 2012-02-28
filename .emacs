@@ -41,7 +41,8 @@
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 (if (boundp 'tool-bar-mode) (tool-bar-mode 0))
 (if (boundp 'menu-bar-mode) (menu-bar-mode 0))
-(if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
+;; (if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
+(toggle-scroll-bar -1)
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil)
@@ -68,7 +69,7 @@
 ; Artist Mode
 (global-set-key (kbd "C-c c a m") 'artist-mode)
 
-(setq tramp-default-method "ssh")
+(setq tramp-default-method "scpc")
 (transient-mark-mode 1)
 (setq x-select-enable-clipboard t)
 
@@ -203,12 +204,13 @@
            (set-variable 'py-smart-indentation t)
            (set-variable 'indent-tabs-mode nil) )))
 
-;; (autoload 'pymacs-apply "pymacs")
-;; (autoload 'pymacs-call "pymacs")
-;; (autoload 'pymacs-eval "pymacs" nil t)
-;; (autoload 'pymacs-exec "pymacs" nil t)
-;; (autoload 'pymacs-load "pymacs" nil t)
+;; (require 'pymacs)
 ;; (pymacs-load "ropemacs" "rope-")
+;; ;; (autoload 'pymacs-apply "pymacs")
+;; ;; (autoload 'pymacs-call "pymacs")
+;; ;; (autoload 'pymacs-eval "pymacs" nil t)
+;; ;; (autoload 'pymacs-exec "pymacs" nil t)
+;; ;; (autoload 'pymacs-load "pymacs" nil t)
 ;; (setq ropemacs-enable-autoimport 't)
 
 (global-set-key (kbd "C-M-n") 'next-error)
@@ -405,6 +407,7 @@
 ;;      `((sbcl ("/usr/local/bin/sbcl"))))
 ;; (require 'slime)
 ;; (slime-setup  '(slime-repl))
+;; (setq inferior-lisp-program "clj")
 
 ;; (abcl ("/opt/local/bin/abcl"))
 ;; (clisp ("/opt/local/bin/clisp"))
@@ -461,15 +464,15 @@
 ;; (setq eclim-auto-save t)
 ;; (global-eclim-mode)
 
-(defun prelude-google ()
-  "Googles a query or region if any."
-  (interactive)
-  (browse-url
-   (concat
-    "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
-    (if mark-active
-        (buffer-substring (region-beginning) (region-end))
-      (read-string "Google: ")))))
+;; (defun prelude-google ()
+;;   "Googles a query or region if any."
+;;   (interactive)
+;;   (browse-url
+;;    (concat
+;;     "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
+;;     (if mark-active
+;;         (buffer-substring (region-beginning) (region-end))
+;;       (read-string "Google: ")))))
 
 ;; (define-generic-mode 
 ;;        'pig-mode                         ;; name of the mode to create
@@ -490,8 +493,8 @@
 ;;        "A mode for pig scripts"            ;; doc string for this mode
 ;;        )
 
-(require 'textmate)
-(textmate-mode)
+;; (require 'textmate)
+;; (textmate-mode)
 
 (require 'sws-mode)
 (require 'jade-mode)
@@ -499,22 +502,36 @@
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
+(add-to-list 'load-path
+              "~/.emacs.d/yasnippet")
+(require 'yasnippet)
+(yas/global-mode 1)
+(global-set-key (kbd "C-c e x") 'yas/expand) ; Impatience.
+
 (require 'color-theme)
 (color-theme-initialize)
+(color-theme-midnight)
 
 ;; (require 'color-theme-twilight)
 ;; (color-theme-twilight)
-(require 'color-theme-tomorrow)
-(color-theme-tomorrow-night-bright)
+;; 
+;; (require 'color-theme-tomorrow)
 
-(setq tramp-default-method "scpc")
 (require 'nyan-mode)
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "Monospace")))))
+
+;; (autoload 'paredit-mode "paredit"
+;;   "Minor mode for pseudo-structurally editing Lisp code." t)
+;; (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
+;; (add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
+;; (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
+;; (add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
+;; (add-hook 'clojure-mode-hook           (lambda () (paredit-mode +1)))
 
 (nyan-mode)
 (nyan-start-animation)

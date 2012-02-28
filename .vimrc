@@ -22,7 +22,7 @@ set noerrorbells
 set nobackup
 set noswapfile
 
-call pathogen#infect()
+" call pathogen#infect()
 " Switch syntax highlighting on
 syntax on
 
@@ -36,7 +36,7 @@ noremap <Right> <nop>
 
 inoremap jj <Esc>
 
-colorscheme badwolf
+colorscheme inkpot
 if has("gui_running")
     set guioptions=egmrt
 endif
