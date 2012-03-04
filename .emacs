@@ -25,6 +25,10 @@
 (add-to-list 'load-path "~/.emacs.d/w3m")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
+(add-to-list 'load-path "~/.emacs.d/icicles")
+
+;; (require 'icicles)
+;; (icy-mode 1)
 
 (require 'scala-mode-auto)
 
@@ -34,14 +38,25 @@
 (setq ring-bell-function 'ignore)
 (custom-set-variables
  '(css-electric-keys nil)
- '(ido-everywhere t)
- '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always))
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
-(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
-(if (boundp 'menu-bar-mode) (menu-bar-mode 0))
-(if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
+
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+
+(line-number-mode 1)            ; have line numbers and
+(column-number-mode 1)          ; column numbers in the mode line
+(global-hl-line-mode)           ; highlight current line
+(global-linum-mode 1)           ; add line numbers on the left
+
+(when (string-match "apple-darwin" system-configuration)
+  (setq mac-allow-anti-aliasing t))
+
+(require 'term)
+(define-key term-raw-map  (kbd "C-'") 'term-line-mode)
+(define-key term-mode-map (kbd "C-'") 'term-char-mode)
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil)
@@ -51,10 +66,10 @@
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 ;; Web browsing
-(require 'w3m-load)
-(require 'w3m-util)
-(require 'w3m)
-(setq w3m-use-cookies t)
+;; (require 'w3m-load)
+;; (require 'w3m-util)
+;; (require 'w3m)
+;; (setq w3m-use-cookies t)
 
 ;; aliases because I am l'lazy
 (defalias 'couc 'comment-or-uncomment-region)
@@ -77,6 +92,14 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (require 'ido)
+(ido-everywhere t)
+(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
+(setq ido-enable-flex-matching t)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-show-dot-for-dired t)
+; (ido-mode (quote both) nil (ido))
+
+(require 'dired-x)
 
 (require 'tabbar)
 (if (not tabbar-mode)
@@ -455,21 +478,23 @@
 ;; (load-file "~/.emacs.d/piglatin.el")
 ;; (add-to-list 'auto-mode-alist '("\\.pig\\'" . sql-mode)) ;; It actually works better than the piglatin mode.
 
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/"))
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/vendor/"))
-;; (require 'eclim)
-;; (setq eclim-auto-save t)
-;; (global-eclim-mode)
+(custom-set-variables
+ '(eclim-eclipse-dirs '("~/eclipse")))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/vendor/"))
+(require 'eclim)
+(setq eclim-auto-save t)
+(global-eclim-mode)
 
-(defun prelude-google ()
-  "Googles a query or region if any."
-  (interactive)
-  (browse-url
-   (concat
-    "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
-    (if mark-active
-        (buffer-substring (region-beginning) (region-end))
-      (read-string "Google: ")))))
+;; (defun prelude-google ()
+;;   "Googles a query or region if any."
+;;   (interactive)
+;;   (browse-url
+;;    (concat
+;;     "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
+;;     (if mark-active
+;;         (buffer-substring (region-beginning) (region-end))
+;;       (read-string "Google: ")))))
 
 ;; (define-generic-mode 
 ;;        'pig-mode                         ;; name of the mode to create
@@ -489,7 +514,6 @@
 ;;         nil                              ;; other functions to call
 ;;        "A mode for pig scripts"            ;; doc string for this mode
 ;;        )
->>>>>>> 7b8b755c20ce088ddab5569a9b26cce45e978a16
 
 (require 'textmate)
 (textmate-mode)
