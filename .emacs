@@ -514,6 +514,7 @@
 ;;         nil                              ;; other functions to call
 ;;        "A mode for pig scripts"            ;; doc string for this mode
 ;;        )
+(require 'rainbow-mode)
 
 (require 'textmate)
 (textmate-mode)
