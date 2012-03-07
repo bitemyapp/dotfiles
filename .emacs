@@ -288,6 +288,8 @@
               '("</script" html-mode)
               '("%>" html-mode)))
 
+(require 'coffee-mode)
+
 (defun reload-dot-emacs ()
   "Save the .emacs buffer if needed, then reload .emacs."
   (interactive)

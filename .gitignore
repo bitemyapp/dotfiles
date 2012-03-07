@@ -195,3 +195,5 @@ bin/lein
 .Trash/
 .pentadactyl/
 .rvmrc
+.mplayer/
+.serverauth*
