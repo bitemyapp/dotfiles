@@ -193,3 +193,5 @@ Eclipse/
 bin/eclipse
 bin/lein
 .Trash/
+.pentadactyl/
+.rvmrc

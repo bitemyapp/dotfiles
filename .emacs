@@ -42,17 +42,31 @@
  '(org-support-shift-select (quote always))
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
 
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(menu-bar-mode -1)
+(if (boundp 'tool-bar-mode)
+    (tool-bar-mode -1))
 
-(line-number-mode 1)            ; have line numbers and
-(column-number-mode 1)          ; column numbers in the mode line
-(global-hl-line-mode)           ; highlight current line
-(global-linum-mode 1)           ; add line numbers on the left
+(if (boundp 'tool-bar-mode)
+    (scroll-bar-mode -1))
 
-(when (string-match "apple-darwin" system-configuration)
-  (setq mac-allow-anti-aliasing t))
+(if (boundp 'tool-bar-mode)
+    (menu-bar-mode -1))
+
+; line and column numbers in mode-line
+(if (boundp 'line-number-mode)
+    (line-number-mode 1))
+(if (boundp 'column-number-mode)
+    (column-number-mode 1))
+
+; highlight current line
+(if (boundp 'global-hl-line-mode)
+    (global-hl-line-mode))
+
+; add line numbers on the left
+(if (boundp 'global-linum-mode)
+    (global-linum-mode 1))
+
+;; (when (string-match "apple-darwin" system-configuration)
+;;   (setq mac-allow-anti-aliasing t))
 
 (require 'term)
 (define-key term-raw-map  (kbd "C-'") 'term-line-mode)
@@ -475,26 +489,13 @@
 (setq exec-path (cons "/usr/local/lib/bin" exec-path))
 (require 'erlang-start)
 
-;; (load-file "~/.emacs.d/piglatin.el")
-;; (add-to-list 'auto-mode-alist '("\\.pig\\'" . sql-mode)) ;; It actually works better than the piglatin mode.
-
-(custom-set-variables
- '(eclim-eclipse-dirs '("~/eclipse")))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/vendor/"))
-(require 'eclim)
-(setq eclim-auto-save t)
-(global-eclim-mode)
-
-;; (defun prelude-google ()
-;;   "Googles a query or region if any."
-;;   (interactive)
-;;   (browse-url
-;;    (concat
-;;     "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
-;;     (if mark-active
-;;         (buffer-substring (region-beginning) (region-end))
-;;       (read-string "Google: ")))))
+;; (custom-set-variables
+;;  '(eclim-eclipse-dirs '("~/eclipse")))
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/"))
+;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/vendor/"))
+;; (require 'eclim)
+;; (setq eclim-auto-save t)
+;; (global-eclim-mode)
 
 ;; (define-generic-mode 
 ;;        'pig-mode                         ;; name of the mode to create
@@ -534,7 +535,9 @@
 (color-theme-tomorrow-night-bright)
 
 (setq tramp-default-method "scpc")
+
 (require 'nyan-mode)
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
