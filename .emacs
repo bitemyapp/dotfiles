@@ -278,6 +278,7 @@
 
 ;;; Magit
 (require 'magit)
+(global-set-key (kbd "C-c m g") 'magit-status)
 
 (defun asp-mode () (interactive)
   (multi-mode 1
