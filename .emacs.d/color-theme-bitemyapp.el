@@ -12,7 +12,7 @@
      (mode-line ((t (:foreground "#eeeeec" :background "#555753"))))
      (region ((t (:background "#0d4519"))))
      (font-lock-builtin-face ((t (:foreground "#cf7372"))))
-     (font-lock-comment-face ((t (:foreground "#669a18"))))
+     (font-lock-comment-face ((t (:foreground "#559f25"))))
      (font-lock-function-name-face ((t (:foreground "#2cf68e"))))
      (font-lock-keyword-face ((t (:foreground "#6c95d5"))))
      (font-lock-string-face ((t (:foreground "#eca655"))))
