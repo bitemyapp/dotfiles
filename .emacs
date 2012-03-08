@@ -531,12 +531,8 @@
 
 (require 'color-theme)
 (color-theme-initialize)
-
-;; (require 'color-theme-twilight)
-;; (color-theme-twilight)
-;; (require 'color-theme-tomorrow)
-;; (color-theme-tomorrow-night-bright)
-(require 'color-theme-tango-2)
+(require 'color-theme-bitemyapp)
+(color-theme-bitemyapp)
 
 (setq tramp-default-method "scpc")
 
