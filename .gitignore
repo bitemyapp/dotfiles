@@ -198,3 +198,4 @@ bin/lein
 .mplayer/
 .serverauth*
 .virtualenvs/
+.emacs.d/semanticdb/
