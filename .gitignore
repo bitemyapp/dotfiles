@@ -197,3 +197,4 @@ bin/lein
 .rvmrc
 .mplayer/
 .serverauth*
+.virtualenvs/

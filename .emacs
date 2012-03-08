@@ -58,12 +58,12 @@
     (column-number-mode 1))
 
 ; highlight current line
-(if (boundp 'global-hl-line-mode)
-    (global-hl-line-mode))
+;; (if (boundp 'global-hl-line-mode)
+;;     (global-hl-line-mode))
 
 ; add line numbers on the left
-(if (boundp 'global-linum-mode)
-    (global-linum-mode 1))
+;; (if (boundp 'global-linum-mode)
+;;     (global-linum-mode 1))
 
 ;; (when (string-match "apple-darwin" system-configuration)
 ;;   (setq mac-allow-anti-aliasing t))
@@ -534,8 +534,9 @@
 
 ;; (require 'color-theme-twilight)
 ;; (color-theme-twilight)
-(require 'color-theme-tomorrow)
-(color-theme-tomorrow-night-bright)
+;; (require 'color-theme-tomorrow)
+;; (color-theme-tomorrow-night-bright)
+(require 'color-theme-tango-2)
 
 (setq tramp-default-method "scpc")
 
