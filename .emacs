@@ -128,6 +128,9 @@
      	     (find (aref (buffer-name buffer) 0) " *"))
      	   (buffer-list))))
 
+(global-set-key (kbd "s-{") 'tabbar-backward)
+(global-set-key (kbd "s-}") 'tabbar-forward)
+
 ;; Fixed sudo/ssh multi-hop
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
