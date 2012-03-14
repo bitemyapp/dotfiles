@@ -201,3 +201,5 @@ bin/lein
 .emacs.d/semanticdb/
 .emacs.d/url/
 iMacros/
+.elinks/
+.mutt/
