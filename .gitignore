@@ -199,3 +199,5 @@ bin/lein
 .serverauth*
 .virtualenvs/
 .emacs.d/semanticdb/
+.emacs.d/url/
+iMacros/
