@@ -13,5 +13,7 @@ scrib(){ sed -n ' s,http://html.scribd.com,\ &,g; s,http://html[1-9].scribdasset
 
 scrib_(){ scrib \ |while read a;do feh $a ; done; }
 
-export PATH=/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:$PATH
+export BYOBU_PREFIX=`brew --prefix`
+
+export PATH=/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

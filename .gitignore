@@ -203,3 +203,4 @@ bin/lein
 iMacros/
 .elinks/
 .mutt/
+.byobu/
