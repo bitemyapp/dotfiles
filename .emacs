@@ -22,9 +22,12 @@
                (message (concat "****** error loading: " safe-load-error-list))))
 
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/w3m")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
+(add-to-list 'load-path "~/.emacs.d/icicles")
+
+;; (require 'icicles)
+;; (icy-mode 1)
 
 (require 'scala-mode-auto)
 
@@ -34,15 +37,29 @@
 (setq ring-bell-function 'ignore)
 (custom-set-variables
  '(css-electric-keys nil)
- '(ido-everywhere t)
- '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always))
  '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
-(if (boundp 'tool-bar-mode) (tool-bar-mode 0))
-(if (boundp 'menu-bar-mode) (menu-bar-mode 0))
-;; (if (boundp 'toggle-scroll-bar) (toggle-scroll-bar -1))
-(toggle-scroll-bar -1)
+
+(if (boundp 'tool-bar-mode)
+    (tool-bar-mode -1))
+
+(if (boundp 'tool-bar-mode)
+    (scroll-bar-mode -1))
+
+(if (boundp 'tool-bar-mode)
+    (menu-bar-mode -1))
+
+; line and column numbers in mode-line
+(if (boundp 'line-number-mode)
+    (line-number-mode 1))
+(if (boundp 'column-number-mode)
+    (column-number-mode 1))
+
+(require 'term)
+(define-key term-raw-map  (kbd "C-'") 'term-line-mode)
+(define-key term-mode-map (kbd "C-'") 'term-char-mode)
+
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil)
@@ -50,12 +67,6 @@
 (setq-default tab-width 4)
 (setq auto-save-default nil)
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-
-;; Web browsing
-(require 'w3m-load)
-(require 'w3m-util)
-(require 'w3m)
-(setq w3m-use-cookies t)
 
 ;; aliases because I am l'lazy
 (defalias 'couc 'comment-or-uncomment-region)
@@ -78,6 +89,13 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (require 'ido)
+(ido-everywhere t)
+(setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
+(setq ido-enable-flex-matching t)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-show-dot-for-dired t)
+
+(require 'dired-x)
 
 (require 'tabbar)
 (if (not tabbar-mode)
@@ -91,6 +109,9 @@
      	   (lambda(buffer)
      	     (find (aref (buffer-name buffer) 0) " *"))
      	   (buffer-list))))
+
+(global-set-key (kbd "s-{") 'tabbar-backward)
+(global-set-key (kbd "s-}") 'tabbar-forward)
 
 ;; Fixed sudo/ssh multi-hop
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
@@ -138,8 +159,6 @@
 
      (global-set-key (kbd "C-c o s") 'sudo-reopen-file)))
 
-;;(global-set-key (kbd "TAB") 'self-insert-command)
-
 ;; Org-mode settings
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)
@@ -157,26 +176,14 @@
 	      ("<down>"  . ignore             ))))
     (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
 
-;;; For programming in J
-(autoload 'j-mode "j-mode.el"  "Major mode for J." t)
-(autoload 'j-shell "j-mode.el" "Run J from emacs." t)
-(setq auto-mode-alist
-      (cons '("\\.ij[rstp]" . j-mode) auto-mode-alist))
-
-; path of jconsole, et al
-(setq j-path "~/bin/j701/bin/")
-
-; if you don't need plotting, etc.
-(setq j-command "jconsole")
-
 (require 'ruby-mode)
-; And Gemfiles
+
 (setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
 (add-to-list 'auto-mode-alist '("\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\.gemspec$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\.ru$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 
@@ -225,7 +232,6 @@
 
 (require 'color-grep)
 
-;;; Text files
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist
 	     '("\\.md$" . markdown-mode))
@@ -234,23 +240,18 @@
 			    (setq-default line-spacing 5)
 			    (setq indent-tabs-mode nil)))
 
-(require 'rst) ;; restructured text
+(require 'rst)
 
 (require 'undo-tree)
 (global-undo-tree-mode)
 
-(require 'rect-mark)  ; enables nice-looking block visual mode
+(require 'rect-mark)
 
 ;;; Magit
 (require 'magit)
+(global-set-key (kbd "C-c m g") 'magit-status)
 
-(defun asp-mode () (interactive)
-  (multi-mode 1
-              'html-mode
-              '("<%" visual-basic-mode)
-              '("<script" javascript-mode)
-              '("</script" html-mode)
-              '("%>" html-mode)))
+(require 'coffee-mode)
 
 (defun reload-dot-emacs ()
   "Save the .emacs buffer if needed, then reload .emacs."
@@ -260,6 +261,7 @@
          (save-buffer (get-file-buffer dot-emacs)))
     (load-file dot-emacs))
   (message "Re-initialized!"))
+
 
 ;; deletes selected text
 (delete-selection-mode t)
@@ -298,7 +300,8 @@
     (push-mark end)
     (setq deactivate-mark nil)
     (exchange-point-and-mark)))
-(global-set-key [(meta shift down)] 'duplicate-start-of-line-or-region)
+
+(global-set-key (kbd "C-c <down>") 'duplicate-start-of-line-or-region)
 
 (defun deactivate-hacker-type ()
   (interactive)
@@ -334,15 +337,9 @@
     (concat matched)
     (insert matched)))
 
-(autoload 'ack-same "full-ack" nil t)
-(autoload 'ack "full-ack" nil t)
-(autoload 'ack-find-same-file "full-ack" nil t)
-(autoload 'ack-find-file "full-ack" nil t)
-(setq ack-executable (executable-find "ack-grep"))
+;; keyboard scroll one line at a time
+(setq scroll-step 1)
 
-(setq scroll-step 1) ;; keyboard scroll one line at a time
-
-;; Google Go
 (require 'go-mode-load)
 
 (defun ipdb ()
@@ -376,7 +373,7 @@
 
 (global-set-key (kbd "C-c k o b") 'kill-other-buffers)
 
-(global-set-key (kbd "C-c cp") 'compile)
+(global-set-key (kbd "C-c c p") 'compile)
 
 (global-set-key (kbd "C-c c j i") 'clojure-jack-in)
 
@@ -392,40 +389,17 @@
       (goto-char (point-min))
       (replace-string ">" "&gt;")
       )))
-(require 'pivotal-tracker)
 
-;; Haskell stuff
-(load "~/.emacs.d/haskell-mode/haskell-site-file")
-
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-
-;; (add-to-list 'load-path "/opt/local/share/emacs/site-lisp/slime")
-;; (setq slime-lisp-implementations
-;;      `((sbcl ("/usr/local/bin/sbcl"))))
-;; (require 'slime)
-;; (slime-setup  '(slime-repl))
-;; (setq inferior-lisp-program "clj")
-
-;; (abcl ("/opt/local/bin/abcl"))
-;; (clisp ("/opt/local/bin/clisp"))
-;; slime-asdf slime-fancy slime-banner
-;; Prevents slime from overriding DEL
 (defun override-slime-repl-bindings-with-paredit ()
   (define-key slime-repl-mode-map
     (read-kbd-macro paredit-backward-delete-key) nil))
 
 (require 'yaml-mode)
 
-;; ;; Clojure stuff
 (safe-load "~/.emacs.d/clojure-mode.el")
 (require 'clojure-mode)
 
-;; ;; LE SWANK
 (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
-;; ;; End Clojure stuff
 
 (require 'dired+) ;; Enhance dired
 
@@ -442,56 +416,13 @@
 ; change yes or no prompts to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; W3M
-(add-to-list 'load-path "/opt/local/share/emacs/site-lisp/w3m/")
-(setq browse-url-browser-function 'w3m-browse-url)
-(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-;; optional keyboard short-cut
-(global-set-key "\C-xm" 'browse-url-at-point)
-
 ;; Erlang mode
 (setq load-path (cons "~/.emacs.d/erlang" load-path))
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (setq exec-path (cons "/usr/local/lib/bin" exec-path))
 (require 'erlang-start)
 
-;; (load-file "~/.emacs.d/piglatin.el")
-;; (add-to-list 'auto-mode-alist '("\\.pig\\'" . sql-mode)) ;; It actually works better than the piglatin mode.
-
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/"))
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-eclim/vendor/"))
-;; (require 'eclim)
-;; (setq eclim-auto-save t)
-;; (global-eclim-mode)
-
-;; (defun prelude-google ()
-;;   "Googles a query or region if any."
-;;   (interactive)
-;;   (browse-url
-;;    (concat
-;;     "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
-;;     (if mark-active
-;;         (buffer-substring (region-beginning) (region-end))
-;;       (read-string "Google: ")))))
-
-;; (define-generic-mode 
-;;        'pig-mode                         ;; name of the mode to create
-;;        '("--")                           ;; comments start with '!!'
-;; ;;       '("LOAD" "FILTER" 
-;; ;;         "FOREACH" "GENERATE"
-;; ;;         "AND" "OR" "ANY" "ALL"
-;; ;;         "cache" "cat" "cd" "COGROUP"
-;; ;;         "copyFromLocal" "copyToLocal"
-;; ;;         "cross" "define" "stdin" "stdout"
-;; ;;         ")                     ;; some keywords
-;;        '("LOAD" "FILTER" "FOREACH" "GENERATE" "AND" "OR" "ANY" "ALL" "ARRANGE" "AS" "ASC" "BY" "cache" "cat" "cd\|COGROUP" "copyFromLocal" "copyToLocal" "cp" "cross" "define" "desc" "describe" "diff" "distinct" "du" "dump" "eval" "exec" "explain" "flatten" "generate" "group" "help" "if" "illustrate" "inner" "input" "into" "is" "join" "kill" "limit" "ls" "mkdir" "mv" "not" "null" "or" "order" "outer" "output" "parallel" "pig" "pwd" "quit" "register" "rm" "rmf" "run" "sample" "set" "ship" "size" "split" "stderr" "stdin" "stdout" "store" "stream" "through" "union" "using" "filter" "FLATTEN" "COUNT" "ORDER"
-;;          "STORE" "INTO" "by" "and" "\$[a-zA-Z]+") ;; keywords
-;;        '(("=" . 'font-lock-operator)     ;; '=' is an operator
-;;          (";" . 'font-lock-builtin))     ;; ';' is a built-in 
-;;        '("\\.pig$")                      ;; files for which to activate this mode 
-;;         nil                              ;; other functions to call
-;;        "A mode for pig scripts"            ;; doc string for this mode
-;;        )
+(require 'rainbow-mode)
 
 ;; (require 'textmate)
 ;; (textmate-mode)
@@ -504,34 +435,37 @@
 
 (add-to-list 'load-path
               "~/.emacs.d/yasnippet")
+
 (require 'yasnippet)
 (yas/global-mode 1)
 (global-set-key (kbd "C-c e x") 'yas/expand) ; Impatience.
 
+(require 'restclient)
+
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-midnight)
+(require 'color-theme-bitemyapp)
+(color-theme-bitemyapp)
 
-;; (require 'color-theme-twilight)
-;; (color-theme-twilight)
-;; 
-;; (require 'color-theme-tomorrow)
+(setq tramp-default-method "scpc")
+
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                  (js-mode "<script>" "</script>")
+                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(multi-web-global-mode 1)
 
 (require 'nyan-mode)
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "Monospace")))))
-
-;; (autoload 'paredit-mode "paredit"
-;;   "Minor mode for pseudo-structurally editing Lisp code." t)
-;; (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
-;; (add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
-;; (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
-;; (add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
-;; (add-hook 'clojure-mode-hook           (lambda () (paredit-mode +1)))
 
 (nyan-mode)
 (nyan-start-animation)

@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # coding=UTF-8
 
-import math, subprocess
+import math, subprocess, sys
 
-p = subprocess.Popen(["acpi",], stdout=subprocess.PIPE)
+if sys.version.find("Apple") != 0:
+    p = subprocess.Popen(["ioreg", "-rc", "AppleSmartBattery"], stdout=subprocess.PIPE)
+else:
+    p = subprocess.Popen(["acpi",], stdout=subprocess.PIPE)
+
 output = p.communicate()[0]
 
 # import ipdb; ipdb.set_trace()
