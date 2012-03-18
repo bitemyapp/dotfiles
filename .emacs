@@ -92,7 +92,6 @@
 (ido-everywhere t)
 (setq ido-save-directory-list-file "~/.emacs.d/.ido.last")
 (setq ido-enable-flex-matching t)
-(setq ido-use-filename-at-point 'guess)
 (setq ido-show-dot-for-dired t)
 
 (require 'dired-x)
@@ -446,8 +445,6 @@
 (color-theme-initialize)
 (require 'color-theme-bitemyapp)
 (color-theme-bitemyapp)
-
-(setq tramp-default-method "scpc")
 
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)

@@ -211,3 +211,17 @@ iMacros/
 .elinks/
 .mutt/
 .byobu/
+emu/
+.java.policy
+.java_history
+.jline-clojure.main.history
+.kde/
+.regetronhist
+.scummvm/
+.scummvmrc
+.surf/
+.thunderbird/
+.w3m/
+.wesnoth1.8/
+.dgen/
+code/
