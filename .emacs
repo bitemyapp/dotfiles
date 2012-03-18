@@ -24,14 +24,10 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
-(add-to-list 'load-path "~/.emacs.d/icicles")
-
-;; (require 'icicles)
-;; (icy-mode 1)
 
 (require 'scala-mode-auto)
 
-; manually sets alt key to meta, I don't want super to be meta.
+; manually sets alt key to meta
 (setq x-alt-keysym 'meta)
 
 (setq ring-bell-function 'ignore)
