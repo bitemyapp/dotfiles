@@ -2,5 +2,5 @@
 
 xrandr --output LVDS1 --mode 1440x900
 
-# xrandr --output HDMI1 --mode 1920x1080
-# xrandr --output HDMI1 --right-of LVDS1
+xrandr --output HDMI1 --mode 1920x1080
+xrandr --output HDMI1 --right-of LVDS1

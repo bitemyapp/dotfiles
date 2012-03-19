@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Config.Gnome
 import XMonad.Actions.CycleWS
+import XMonad.Layout.NoBorders
 import qualified Data.Map as M
 
 myKeys x =
@@ -20,6 +21,7 @@ myManageHook = composeAll (
 
 main = xmonad gnomeConfig {
          manageHook = myManageHook
+       , layoutHook = smartBorders $ layoutHook defaultConfig
        , modMask = mod4Mask
        , keys = newKeys
        , terminal = "gnome-terminal"
