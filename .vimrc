@@ -36,7 +36,7 @@ noremap <Right> <nop>
 
 inoremap jj <Esc>
 
-colorscheme inkpot
+colorscheme slate
 if has("gui_running")
     set guioptions=egmrt
 endif
