@@ -2,5 +2,16 @@
 
 xrandr --output LVDS1 --mode 1440x900
 
-xrandr --output HDMI1 --mode 1920x1080
-xrandr --output HDMI1 --right-of LVDS1
+if ["$1" -eq "hdmi" ]; then
+    xrandr --output HDMI1 --mode 1920x1080
+    xrandr --output HDMI1 --right-of LVDS1
+else
+    echo "hdmi not specified, not setting HDMI1"
+fi
+
+if ["$1" -eq "vga" ]; then
+    xrandr --output VGA1 --mode 1024x768
+    xrandr --output VGA1 --right-of LVDS1
+else
+    echo "vga not specified, not setting HDMI1"
+fi
