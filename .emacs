@@ -24,8 +24,17 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
+(add-to-list 'load-path "~/.emacs.d/haskell-mode")
 
 (require 'scala-mode-auto)
+
+(load "~/.emacs.d/haskell-mode/haskell-mode.el")
+(require 'haskell-mode)
+(setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ; manually sets alt key to meta
 (setq x-alt-keysym 'meta)
@@ -336,6 +345,12 @@
     (switch-to-buffer "*Dump Matched*")
     (concat matched)
     (insert matched)))
+
+(defun delete-line-numbers ()
+  (interactive)
+  (replace-regexp "^[0-9]* *" "")
+)
+(global-set-key (kbd "C-c d l n") 'delete-line-numbers)
 
 ;; keyboard scroll one line at a time
 (setq scroll-step 1)
