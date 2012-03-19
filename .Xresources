@@ -1,0 +1,6 @@
+XTerm*background: black
+XTerm*foreground: white
+XTerm*scrollBar: false
+XTerm*scrollKey: true
+XTerm*saveLines: 1000
+XTerm*multiClickTime: 250
