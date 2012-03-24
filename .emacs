@@ -448,12 +448,12 @@
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
-(add-to-list 'load-path
-              "~/.emacs.d/yasnippet")
+;; (add-to-list 'load-path
+;;               "~/.emacs.d/yasnippet")
 
-(require 'yasnippet)
-(yas/global-mode 1)
-(global-set-key (kbd "C-c e x") 'yas/expand) ; Impatience.
+;; (require 'yasnippet)
+;; (yas/global-mode 1)
+;; (global-set-key (kbd "C-c e x") 'yas/expand) ; Impatience.
 
 (require 'restclient)
 
