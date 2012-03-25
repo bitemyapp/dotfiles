@@ -232,4 +232,4 @@ code/
 .xchat2/
 .xmonad/xmonad-x86_64-linux
 .rediscli_history
-
+.bundler/

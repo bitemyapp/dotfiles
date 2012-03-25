@@ -70,6 +70,7 @@
 (define-key term-raw-map  (kbd "C-'") 'term-line-mode)
 (define-key term-mode-map (kbd "C-'") 'term-char-mode)
 
+(global-set-key (kbd "C-c d e f") 'describe-face)
 
 (setq frame-title-format "%b")
 (setq make-backup-files nil)
