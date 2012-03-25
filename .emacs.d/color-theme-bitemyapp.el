@@ -1,3 +1,9 @@
+;;; color-theme-bitemyapp.el --- a tasteful color theme designed for the colorblind
+;; Copyright 2012 Christopher Allen
+;; Author: Christopher Allen
+;; URL: http://github.com/bitemyapp/dotfiles
+;; Version: 1.0
+;; Package-Requires: ((color-theme))
 ; -*- mode: emacs-lisp; mode: rainbow;-*-
 
 (defun color-theme-bitemyapp ()
@@ -27,3 +33,5 @@
      )))
 
 (provide 'color-theme-bitemyapp)
+
+;;; color-theme-bitemyapp.el ends here
