@@ -109,16 +109,16 @@
 
 (require 'tabbar)
 (if (not tabbar-mode)
-	(tabbar-mode))
+    (tabbar-mode))
 (setq tabbar-buffer-groups-function
-	(lambda ()
+    (lambda ()
     (list "All Buffers")))
 (setq tabbar-buffer-list-function
-	(lambda ()
-     	  (remove-if
-     	   (lambda(buffer)
-     	     (find (aref (buffer-name buffer) 0) " *"))
-     	   (buffer-list))))
+    (lambda ()
+          (remove-if
+           (lambda(buffer)
+             (find (aref (buffer-name buffer) 0) " *"))
+           (buffer-list))))
 
 (global-set-key (kbd "s-{") 'tabbar-backward)
 (global-set-key (kbd "s-}") 'tabbar-forward)
@@ -178,12 +178,12 @@
 (iswitchb-mode 1)
  (defun iswitchb-local-keys ()
       (mapc (lambda (K)
-	      (let* ((key (car K)) (fun (cdr K)))
-    	        (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
-	    '(("<right>" . iswitchb-next-match)
-	      ("<left>"  . iswitchb-prev-match)
-	      ("<up>"    . ignore             )
-	      ("<down>"  . ignore             ))))
+          (let* ((key (car K)) (fun (cdr K)))
+                (define-key iswitchb-mode-map (edmacro-parse-keys key) fun)))
+        '(("<right>" . iswitchb-next-match)
+          ("<left>"  . iswitchb-prev-match)
+          ("<up>"    . ignore             )
+          ("<down>"  . ignore             ))))
     (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
 
 (require 'ruby-mode)
@@ -238,17 +238,33 @@
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+     ; Make sure it's not a remote buffer or flymake would not work
+     (when (not (subsetp (list (current-buffer)) (tramp-list-remote-buffers)))
+      (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-inplace))
+             (local-file (file-relative-name
+                          temp-file
+                          (file-name-directory buffer-file-name))))
+        (list "pyflakes" (list local-file)))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init)))
+(safe-load "~/.emacs.d/flymake-cursor.el")
+(global-set-key (kbd "C-c m k") 'flymake-mode)
+
+;; (add-to-list 'auto-mode-alist '("\.py$" . flymake-mode))
 ;; end python dev
 
 (require 'color-grep)
 
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist
-	     '("\\.md$" . markdown-mode))
+         '("\\.md$" . markdown-mode))
 (add-hook 'text-mode-hook (lambda ()
-			    (turn-on-auto-fill)
-			    (setq-default line-spacing 5)
-			    (setq indent-tabs-mode nil)))
+                (turn-on-auto-fill)
+                (setq-default line-spacing 5)
+                (setq indent-tabs-mode nil)))
 
 (require 'rst)
 
