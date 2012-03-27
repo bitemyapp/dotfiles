@@ -1,21 +1,40 @@
-;;; Interface between Emacs Lisp and Python - Lisp part.    -*- emacs-lisp -*-
-;;; Copyright © 2001, 2002, 2003 Progiciels Bourbeau-Pinard inc.
-;;; François Pinard <pinard@iro.umontreal.ca>, 2001.
+;;; pymacs.el --- Interface between Emacs Lisp and Python
 
-;;; This program is free software; you can redistribute it and/or modify
-;;; it under the terms of the GNU General Public License as published by
-;;; the Free Software Foundation; either version 2, or (at your option)
-;;; any later version.
-;;;
-;;; This program is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;; GNU General Public License for more details.
-;;;
-;;; You should have received a copy of the GNU General Public License
-;;; along with this program; if not, write to the Free Software Foundation,
-;;; Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  */
+;; Copyright © 2001, 2002, 2003, 2012 Progiciels Bourbeau-Pinard inc.
 
+;; Author: François Pinard <pinard@iro.umontreal.ca>
+;; Maintainer: François Pinard <pinard@iro.umontreal.ca>
+;; Created: 2001
+;; Version: 0.24-beta2
+;; Keywords: Python interface protocol
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 2, or (at your option)
+;; any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program; if not, write to the Free Software Foundation,
+;; Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  */
+
+;;; Commentary:
+
+;; Pymacs is a powerful tool which, once started from Emacs, allows
+;; both-way communication between Emacs Lisp and Python.  Pymacs aims
+;; Python as an extension language for Emacs rather than the other way
+;; around.  Visit http://pymacs.progiciels-bpi.ca to read its manual,
+;; which also contains installation instructions.
+
+;;; Code:
+
+;; The code is organized into pages, grouping declarations by topic.
+;; Such pages are introduced by a form feed and a topic description.
+
 ;;; Portability stunts.
 
 (defvar pymacs-use-hash-tables
@@ -73,6 +92,9 @@
 
 ;;; Published variables and functions.
 
+(defvar pymacs-python-command "python"
+  "Shell command used to start Python interpreter.")
+
 (defvar pymacs-load-path nil
   "List of additional directories to search for Python modules.
 The directories listed will be searched first, in the order given.")
@@ -116,6 +138,7 @@ Possible values are nil, t or ask.")
   "If zombies should trigger hard errors, whenever they get called.
 If `nil', calling a zombie will merely produce a diagnostic message.")
 
+;;;###autoload
 (defun pymacs-load (module &optional prefix noerror)
   "Import the Python module named MODULE into Emacs.
 Each function in the Python module is made available as an Emacs function.
@@ -137,6 +160,7 @@ If NOERROR is not nil, do not raise error when the module is not found."
           (noerror (message "Pymacs loading %s...failed" module) nil)
           (t (pymacs-report-error "Pymacs loading %s...failed" module)))))
 
+;;;###autoload
 (defun pymacs-eval (text)
   "Compile TEXT as a Python expression, and return its value."
   (interactive "sPython expression? ")
@@ -145,6 +169,7 @@ If NOERROR is not nil, do not raise error when the module is not found."
       (message "%S" value))
     value))
 
+;;;###autoload
 (defun pymacs-exec (text)
   "Compile and execute TEXT as a sequence of Python statements.
 This functionality is experimental, and does not appear to be useful."
@@ -154,6 +179,7 @@ This functionality is experimental, and does not appear to be useful."
       (message "%S" value))
     value))
 
+;;;###autoload
 (defun pymacs-call (function &rest arguments)
   "Return the result of calling a Python function FUNCTION over ARGUMENTS.
 FUNCTION is a string denoting the Python function, ARGUMENTS are separate
@@ -162,6 +188,7 @@ to Python equivalents, other structures are converted into Lisp handles."
   (pymacs-serve-until-reply
    "eval" `(pymacs-print-for-apply ',function ',arguments)))
 
+;;;###autoload
 (defun pymacs-apply (function arguments)
   "Return the result of calling a Python function FUNCTION over ARGUMENTS.
 FUNCTION is a string denoting the Python function, ARGUMENTS is a list of
@@ -543,10 +570,10 @@ The timer is used only if `post-gc-hook' is not available.")
                (apply 'start-process "pymacs" buffer
                       (let ((python (getenv "PYMACS_PYTHON")))
                         (if (or (null python) (equal python ""))
-                            "python"
+                            pymacs-python-command
                           python))
                       "-c" (concat "import sys;"
-                                   " from Pymacs.pymacs import main;"
+                                   " from Pymacs import main;"
                                    " main(*sys.argv[1:])")
                       (append
                        (and (>= emacs-major-version 24) '("-f"))
@@ -573,7 +600,7 @@ The timer is used only if `post-gc-hook' is not available.")
           (if (and (pymacs-proper-list-p reply)
                    (= (length reply) 2)
                    (eq (car reply) 'version))
-              (unless (string-equal (cadr reply) "0.23")
+              (unless (string-equal (cadr reply) "0.24-beta2")
                 (pymacs-report-error
                  "Pymacs Lisp version is 0.24-beta2, Python is %s"
                  (cadr reply)))
@@ -626,7 +653,7 @@ Killing the Pymacs helper might create zombie objects.  Kill? "))
   (unless (and pymacs-transit-buffer
                (buffer-name pymacs-transit-buffer)
                (get-buffer-process pymacs-transit-buffer))
-    (when pymacs-weak-hash 
+    (when pymacs-weak-hash
       (unless (or (eq pymacs-auto-restart t)
                   (and (eq pymacs-auto-restart 'ask)
                        (yes-or-no-p "The Pymacs helper died.  Restart it? ")))
@@ -755,3 +782,4 @@ Killing the Pymacs helper might create zombie objects.  Kill? "))
         ((consp expression) (not (cdr (last expression))))))
 
 (provide 'pymacs)
+;;; pymacs.el ends here

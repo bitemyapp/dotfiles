@@ -221,14 +221,14 @@
            (set-variable 'py-smart-indentation t)
            (set-variable 'indent-tabs-mode nil) )))
 
-;; (require 'pymacs)
-;; (pymacs-load "ropemacs" "rope-")
-;; ;; (autoload 'pymacs-apply "pymacs")
-;; ;; (autoload 'pymacs-call "pymacs")
-;; ;; (autoload 'pymacs-eval "pymacs" nil t)
-;; ;; (autoload 'pymacs-exec "pymacs" nil t)
-;; ;; (autoload 'pymacs-load "pymacs" nil t)
-;; (setq ropemacs-enable-autoimport 't)
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(setq ropemacs-enable-autoimport 't)
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
