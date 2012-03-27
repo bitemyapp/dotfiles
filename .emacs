@@ -253,7 +253,7 @@
 (safe-load "~/.emacs.d/flymake-cursor.el")
 (global-set-key (kbd "C-c m k") 'flymake-mode)
 
-;; (add-to-list 'auto-mode-alist '("\.py$" . flymake-mode))
+(require 'virtualenv)
 ;; end python dev
 
 (require 'color-grep)

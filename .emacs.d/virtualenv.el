@@ -31,7 +31,7 @@
 ;; is a complete re-write with a GPLv3 license consistent with
 ;; GNU Emacs and python-mode.el.
 
-;; There are two ways to use virtualenv.
+;; There are two ways to use virtualenv. 
 
 ;; 1) The quickest way to get started is to simply type:
 ;;      M-x virtualenv-workon
@@ -51,9 +51,9 @@
 ;;      print sys.path
 
 ;; 2) The recommended way to use virtualenv minor mode is to use a
-;; .dir-locals.el file in the root of your project directory, however that
-;; requires Emacs 23.1 or higher. There are two buffer-local variables that you
-;; can set for virtualenv as shown in this example:
+;; .dir-locals.el file in the root of your project directory. There
+;; are two buffer-local variables that you can set for virtualenv as
+;; shown in this example:
 
 ;; in file /path/to/project/.dir-locals.el:
 ;; ((nil . ((virtualenv-workon . "tg2.1")
@@ -201,12 +201,12 @@ the virtual environment or if not a string then query the user."
 	     (if (not (string= result ""))
 		 result
 	       default))))))
-
+    
     (let* ((buffer (get-buffer "*Python*"))
 	   (kill (or (when buffer
 		       (yes-or-no-p
 			"Python process already running. Kill? ")))))
-
+      
       (if (or (not buffer) kill)
 	  (progn
 	    (when buffer
@@ -240,7 +240,7 @@ the virtual environment or if not a string then query the user."
 
 ;; This provides support for both python-mode.el and python.el by
 ;; adding defadvice to py-shell and python-shell.
-(dolist (list '((py-shell . "python-mode")
+(dolist (list '((py-shell . "python-mode") 
 		(python-shell . "python")))
   (let* ((func (car list))
 	 (file (cdr list))
@@ -257,14 +257,14 @@ the virtual environment or if not a string then query the user."
 	   (progn
 	     (when (stringp virtualenv-default-directory)
 	       (cd virtualenv-default-directory))
-	     (let* ((activate (expand-file-name
+	     (let* ((activate (expand-file-name 
 			       "activate"
 			       (concat virtualenv-root "/" workon "/bin")))
-		    (process-environment
+		    (process-environment 
 		     (when (file-exists-p activate)
-		       (split-string
+		       (split-string 
 			(shell-command-to-string
-			 (format "source %s; (cd %s && env)"
+			 (format "source %s; (cd %s && env)" 
 				 activate default-directory))
 			"\n")))
 		    (exec-path (split-string (getenv "PATH") ":")))
@@ -322,17 +322,9 @@ and `file-local-variables-alist', without applying them."
 
 (defalias 'hack-dir-local-variables 'virtualenv-hack-dir-local-variables)
 
-(defvar virtualenv-dir-local-not-supported
-  (cond ((featurep 'xemacs)
-         "XEmacs is not officially supported.")
-        ((not (and (>= emacs-major-version 23)
-                   (>= emacs-minor-version 1)))
-         "Emacs 23.1 is required for .dir-locals.el support.")))
-
 (eval-after-load "dired"
   '(progn
-     (unless virtualenv-dir-local-not-supported
-       (add-hook 'dired-mode-hook 'hack-local-variables))
+     (add-hook 'dired-mode-hook 'hack-local-variables)
      (add-hook 'dired-mode-hook 'virtualenv-minor-mode-on t)))
 
 (provide 'virtualenv)
