@@ -3,7 +3,7 @@ Config { font = "-Misc-Fixed-Normal-R-Normal--13-120-75-75-C-70-ISO8859-1"
        , fgColor = "grey"
        , position = Top
        , commands = [ Run Cpu ["-t", "<total>", "-L","5","-H","40","--normal","green","--high","red"] 10
-                    , Run BatteryP ["C23A", "C23B"] ["-t", "<left>"] 50
+                    , Run Battery ["-t", "<left>"] 50
                     , Run Memory ["-t", "<usedratio>%"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
@@ -11,4 +11,5 @@ Config { font = "-Misc-Fixed-Normal-R-Normal--13-120-75-75-C-70-ISO8859-1"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "%StdinReader% }{ BAT: %battery% | CPU: %cpu% | MEM: %memory% | DATE: %date%"
+       , lowerOnStart = False
        }
