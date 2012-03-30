@@ -30,7 +30,7 @@ main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/callen/.xmobarrc"
     xmonad $ gnomeConfig {
          manageHook = myManageHook
-       , layoutHook = smartBorders $ layoutHook defaultConfig
+       , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
        , logHook = dynamicLogWithPP xmobarPP
                    { ppOutput = hPutStrLn xmproc
                    , ppTitle = xmobarColor "green" "" . shorten 50
