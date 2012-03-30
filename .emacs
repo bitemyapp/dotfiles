@@ -491,6 +491,22 @@
 (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
 (multi-web-global-mode 1)
 
+(require 'generic-x)
+(define-generic-mode
+  'lout-mode
+  '("!!") ; comments
+  '("Heading" "NumberedList" "SysInclude"
+    "LeftDisplay" "Graph" "Data" "End"
+    "ListItem" "EndList" "QuotedDisplay"
+    "PP" "Display" "Text" "Document"
+    "Begin" "InitialSpace" "InitialFont")
+  '(("@" . 'font-lock-operator)
+    ("{" . 'font-lock-operator)
+    ("}" . 'font-lock-operator))
+  '("\\.lout$")
+  nil
+  "A mode for the lout typesetting system"
+  )
 (require 'nyan-mode)
 
 (custom-set-faces

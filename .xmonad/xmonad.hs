@@ -3,6 +3,11 @@ import XMonad.Config.Gnome
 import XMonad.Actions.CycleWS
 import XMonad.Layout.NoBorders
 import qualified Data.Map as M
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import System.IO
 
 myKeys x =
              [ ((modMask x,               xK_Right), nextWS)
@@ -17,11 +22,19 @@ myManageHook = composeAll (
     [ manageHook gnomeConfig
     , className =? "Unity-2d-panel" --> doIgnore
     , className =? "Unity-2d-launcher" --> doFloat
+    , className =? "Gimp"      --> doFloat
+    , className =? "Vncviewer" --> doFloat
     ])
 
-main = xmonad gnomeConfig {
+main = do
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/callen/.xmobarrc"
+    xmonad $ gnomeConfig {
          manageHook = myManageHook
        , layoutHook = smartBorders $ layoutHook defaultConfig
+       , logHook = dynamicLogWithPP xmobarPP
+                   { ppOutput = hPutStrLn xmproc
+                   , ppTitle = xmobarColor "green" "" . shorten 50
+                   }
        , modMask = mod4Mask
        , keys = newKeys
        , terminal = "gnome-terminal"
