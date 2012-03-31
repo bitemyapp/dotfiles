@@ -1,4 +1,0 @@
-#!/bin/bash
-
-mongod run --config /usr/local/Cellar/mongodb/2.0.2-x86_64/mongod.conf 2>&1 >> ~/.mongo_log &
-echo "MongoDB started against config /usr/local/Cellar/mongodb/2.0.2-x86_64/mongod.conf"
