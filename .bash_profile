@@ -15,5 +15,9 @@ scrib_(){ scrib \ |while read a;do feh $a ; done; }
 
 export BYOBU_PREFIX=`brew --prefix`
 
+function replace() {
+    find . -type f | xargs sed -i "s/$1/$2/g"
+}
+
 export PATH=/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
