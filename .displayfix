@@ -1,7 +1,7 @@
 #!/bin/bash
 
 xrandr --output LVDS1 --mode 1440x900
-xrandr --output $1 --mode 1920x1080
+xrandr --output $1 --auto --right-of LVDS1
 
 # if ["$1" = "hdmi" ]; then
 #     xrandr --output HDMI1 --mode 1920x1080

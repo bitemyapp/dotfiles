@@ -422,6 +422,15 @@
       (replace-string ">" "&gt;")
       )))
 
+(defun my-fixup-whitespace ()
+  (interactive "*")
+  (if (or (eolp)
+          (save-excursion
+            (beginning-of-line)
+            (looking-at "^\\s *$")))
+      (delete-blank-lines)
+      (fixup-whitespace)))
+
 (defun override-slime-repl-bindings-with-paredit ()
   (define-key slime-repl-mode-map
     (read-kbd-macro paredit-backward-delete-key) nil))
