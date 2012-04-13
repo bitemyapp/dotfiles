@@ -3,6 +3,8 @@
 	email = cma@bitemyapp.com
 [core]
 	excludesfile = /home/callen/.gitignore
+	autocrlf = input
+	safecrlf = true
 [diff]  
     renamelimit = 0
 [color] 
@@ -10,3 +12,11 @@
     interactive = auto
     status = auto
     branch = auto
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
