@@ -231,3 +231,7 @@ code/
 .xmonad/xmonad-x86_64-linux
 .rediscli_history
 .bundler/
+.cola
+.rnd
+.gegl-0.0/
+.eclipse/
