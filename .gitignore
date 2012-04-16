@@ -112,7 +112,6 @@ opt/
 .quake*
 .redcar
 .speech*
-.vim
 .warsow*
 .wine*
 .zsnes
@@ -235,3 +234,5 @@ code/
 .rnd
 .gegl-0.0/
 .eclipse/
+.vim-fuf-data/
+
