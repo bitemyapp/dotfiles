@@ -474,6 +474,10 @@
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
+(add-to-list 'load-path "~/.emacs.d/drag-stuff/")
+(require 'drag-stuff)
+(drag-stuff-mode t)
+
 ;; (add-to-list 'load-path
 ;;               "~/.emacs.d/yasnippet")
 
