@@ -235,4 +235,7 @@ code/
 .gegl-0.0/
 .eclipse/
 .vim-fuf-data/
-
+.FBReader/
+.vim/bundle/
+.vim/bundle/*
+.vim/

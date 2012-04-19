@@ -8,10 +8,10 @@
 [diff]  
     renamelimit = 0
 [color] 
-    diff = auto
+	diff = auto
     interactive = auto
-    status = auto
-    branch = auto
+	status = auto
+	branch = auto
 [alias]
     co = checkout
     ci = commit
