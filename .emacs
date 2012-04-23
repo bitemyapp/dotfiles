@@ -25,6 +25,7 @@
 (add-to-list 'load-path "~/.emacs.d/auto-complete-1.2")
 (add-to-list 'load-path "~/.emacs.d/scala-mode")
 (add-to-list 'load-path "~/.emacs.d/haskell-mode")
+(add-to-list 'load-path "~/.emacs.d/nxhtml")
 
 (require 'scala-mode-auto)
 
@@ -492,17 +493,75 @@
 (require 'color-theme-bitemyapp)
 (color-theme-bitemyapp)
 
-(require 'multi-web-mode)
-(setq mweb-default-major-mode 'html-mode)
-(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                  (javascript-mode "<script>" "</script>")
-                  (javascript-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+;; (require 'multi-web-mode)
+;; (setq mweb-default-major-mode 'html-mode)
+;; (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+;;                   (javascript-mode "<script>" "</script>")
+;;                   (javascript-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+;;                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
 
 ;;                  (css-mode "<style>" "</style>")))
 
-(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
-(multi-web-global-mode 1)
+;; (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+;; (multi-web-global-mode 1)
+;; (add-hook 'javascript-mode-hook ;; guessing
+;;     '(lambda ()
+;;        (local-set-key (kbd "TAB") 'tab-to-tab-stop)))
+(setq byte-compile-warnings '(not nresolved
+                                  free-vars
+                                  callargs
+                                  redefine
+                                  obsolete
+                                  noruntime
+                                  cl-functions
+                                  interactive-only
+                                  ))
+;; (load "~/.emacs.d/nxhtml/autostart.el")
+;; I can't believe I have to do this just to keep my emacs from going techni-colour.
+;; (custom-set-faces '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil))))
+;; (custom-set-faces '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) nil))))
+;; (custom-set-faces '(mumamo-background-chunk-submode2 ((((class color) (min-colors 88) (background dark)) nil))))
+;; (custom-set-faces '(mumamo-background-chunk-submode3 ((((class color) (min-colors 88) (background dark)) nil))))
+;; (custom-set-faces '(mumamo-background-chunk-submode4 ((((class color) (min-colors 88) (background dark)) nil))))
+(global-set-key (kbd "C-<tab>") 'tab-to-tab-stop)
+(require 'jinja)
+(fset 'html-mode 'jinja-mode)
+
+;; (add-to-list 'load-path "~/.emacs.d/mmm-mode/")
+;; (require 'mmm-mode)
+;; (setq mmm-global-mode 'maybe)
+
+;; set up an mmm group for fancy html editing
+;; (mmm-add-group
+;;  'fancy-html
+;;  '(
+;;    (html-php-tagged
+;;     :submode php-mode
+;;     :face mmm-code-submode-face
+;;     :front "<[?]php"
+;;     :back "[?]>")
+;;    (html-css-attribute
+;;     :submode css-mode
+;;     :face mmm-declaration-submode-face
+;;     :front "styleREMOVEME=\""
+;;     :back "\"")))
+;;    ;; (html-js
+;;    ;;  :submode javascript-mode
+;;    ;;  :face mmm-declaration-submode-face
+;;    ;;  :front "<script"
+;;    ;;  :back "/script>")))
+;; ;;
+;; ;; What files to invoke the new html-mode for?
+;; (add-to-list 'auto-mode-alist '("\\.inc\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.php[34]?\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[sj]?html?\\'" . html-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
+
+;; What features should be turned on in this html-mode?
+;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil html-js))
+;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil embedded-css))
+;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil fancy-html))
 
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)

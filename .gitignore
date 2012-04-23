@@ -239,3 +239,4 @@ code/
 .vim/bundle/
 .vim/bundle/*
 .vim/
+.stardict/
