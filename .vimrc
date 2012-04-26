@@ -63,11 +63,6 @@ set noswapfile
 " Switch syntax highlighting on
 syntax on
 
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-
 inoremap jj <Esc>
 
 colorscheme slate
