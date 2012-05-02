@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/callen'
-let g:netrw_dirhist_2='/home/callen/bitemyapp'
-let g:netrw_dirhist_3='/home/callen'
-let g:netrw_dirhist_4='/home'
-let g:netrw_dirhist_5='/home/callen/quicklisp'
-let g:netrw_dirhist_6='/home/callen/code/scar'

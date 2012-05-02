@@ -240,3 +240,12 @@ code/
 .vim/bundle/*
 .vim/
 .stardict/
+.anki/
+.bash_it/
+.bash_profile.bak
+.dirs
+.jekyllconfig
+.leksah*
+.wingide4/
+.xsession-errors.old
+
