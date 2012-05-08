@@ -578,6 +578,9 @@
 ;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil embedded-css))
 ;; (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil fancy-html))
 
+(add-to-list 'load-path "~/.emacs.d/rust-mode/")
+(require 'rust-mode)
+
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
 

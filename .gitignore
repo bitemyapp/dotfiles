@@ -248,4 +248,4 @@ code/
 .leksah*
 .wingide4/
 .xsession-errors.old
-
+.vim/bundle/*
