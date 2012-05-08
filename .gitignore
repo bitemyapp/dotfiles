@@ -249,3 +249,5 @@ code/
 .wingide4/
 .xsession-errors.old
 .vim/bundle/*
+dump/
+.xxxterm/
