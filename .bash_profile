@@ -13,7 +13,7 @@ scrib(){ sed -n ' s,http://html.scribd.com,\ &,g; s,http://html[1-9].scribdasset
 
 scrib_(){ scrib \ |while read a;do feh $a ; done; }
 
-export BYOBU_PREFIX=`brew --prefix`
+# export BYOBU_PREFIX=`brew --prefix`
 
 function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"

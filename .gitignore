@@ -252,4 +252,12 @@ code/
 dump/
 .xxxterm/
 .goutputstream*
+News/
+.Rprofile
+.lighttable/
+.mtpaint
+.pyxbld/
+.racket/
+.viminfo*
+.wily*
 
