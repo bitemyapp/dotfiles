@@ -237,14 +237,16 @@
            (set-variable 'py-smart-indentation t)
            (set-variable 'indent-tabs-mode nil) )))
 
-(require 'pymacs)
-(pymacs-load "ropemacs" "rope-")
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(setq ropemacs-enable-autoimport 't)
+(if (not (string= system-type "darwin"))
+    (progn 
+      (require 'pymacs)
+      (pymacs-load "ropemacs" "rope-")
+      (autoload 'pymacs-apply "pymacs")
+      (autoload 'pymacs-call "pymacs")
+      (autoload 'pymacs-eval "pymacs" nil t)
+      (autoload 'pymacs-exec "pymacs" nil t)
+      (autoload 'pymacs-load "pymacs" nil t)
+      (setq ropemacs-enable-autoimport 't)))
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
@@ -597,6 +599,8 @@ If point was already at that position, move point to beginning of line."
 (global-set-key (kbd "C-c m j s") 'javascript-mode)
 (global-set-key (kbd "C-c m c s s") 'css-mode)
 (global-set-key (kbd "C-c m h t m l") 'html-mode)
+
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
 
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
