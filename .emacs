@@ -107,7 +107,7 @@
 ; Artist Mode
 (global-set-key (kbd "C-c c a m") 'artist-mode)
 
-(setq tramp-default-method "scpc")
+;; (setq tramp-default-method "scpc")
 (transient-mark-mode 1)
 (setq x-select-enable-clipboard t)
 
@@ -385,6 +385,19 @@
 )
 (global-set-key (kbd "C-c d l n") 'delete-line-numbers)
 
+(defun smart-beginning-of-line ()
+  "Move point to first non-whitespace character or beginning-of-line.
+
+Move point to the first non-whitespace character on this line.
+If point was already at that position, move point to beginning of line."
+  (interactive) ; Use (interactive "^") in Emacs 23 to make shift-select work
+  (let ((oldpos (point)))
+    (back-to-indentation)
+    (and (= oldpos (point))
+         (beginning-of-line))))
+
+(global-set-key [home] 'smart-beginning-of-line)
+
 ;; keyboard scroll one line at a time
 (setq scroll-step 1)
 
@@ -580,6 +593,10 @@
 
 (add-to-list 'load-path "~/.emacs.d/rust-mode/")
 (require 'rust-mode)
+
+(global-set-key (kbd "C-c m j s") 'javascript-mode)
+(global-set-key (kbd "C-c m c s s") 'css-mode)
+(global-set-key (kbd "C-c m h t m l") 'html-mode)
 
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)

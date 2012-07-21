@@ -251,5 +251,13 @@ code/
 .vim/bundle/*
 dump/
 .xxxterm/
+.goutputstream*
 News/
+.Rprofile
+.lighttable/
+.mtpaint
+.pyxbld/
+.racket/
+.viminfo*
+.wily*
 
