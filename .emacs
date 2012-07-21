@@ -600,7 +600,9 @@ If point was already at that position, move point to beginning of line."
 (global-set-key (kbd "C-c m c s s") 'css-mode)
 (global-set-key (kbd "C-c m h t m l") 'html-mode)
 
+(add-to-list 'load-path "~/.emacs.d/slime/")
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
+(require 'slime)
 
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
