@@ -46,6 +46,9 @@
   (scion-flycheck-on-save 1))
 (add-hook 'haskell-mode-hook 'my-haskell-hook)
 
+;; DCPU-16
+(require 'dcpu16-mode)
+
 ;; Use ido-mode completion (matches anywhere, not just beginning)
 ;;
 ;; WARNING: This causes some versions of Emacs to fail so badly
@@ -603,6 +606,7 @@ If point was already at that position, move point to beginning of line."
 (add-to-list 'load-path "~/.emacs.d/slime/")
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
 (require 'slime)
+(global-set-key (kbd "C-c <tab>") 'slime-complete-symbol)
 
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
