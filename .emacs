@@ -67,8 +67,7 @@
  '(css-electric-keys nil)
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always))
- '(pivotal-api-token "8ce844bfbc3de5022ac77fba060f3cd2"))
+ '(org-support-shift-select (quote always)))
 
 (if (boundp 'tool-bar-mode)
     (tool-bar-mode -1))
