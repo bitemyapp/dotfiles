@@ -1,3 +1,8 @@
+for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+	[ -r "$file" ] && source "$file"
+done
+unset file
+
 export PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
 
 alias ls='ls -G'
