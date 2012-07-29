@@ -94,3 +94,9 @@ if has("autocmd")
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
+
+if has("gui_running")
+    set guioptions=egmrt
+endif
+
+colorscheme molokai
