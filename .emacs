@@ -604,6 +604,7 @@ If point was already at that position, move point to beginning of line."
 
 (add-to-list 'load-path "~/.emacs.d/slime/")
 (setq inferior-lisp-program "/usr/local/bin/sbcl")
+;; (setq inferior-lisp-program "/usr/local/bin/mit-scheme")
 (require 'slime)
 (global-set-key (kbd "C-c <tab>") 'slime-complete-symbol)
 
