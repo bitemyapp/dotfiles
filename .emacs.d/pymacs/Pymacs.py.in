@@ -219,11 +219,14 @@ class Protocol:
                 except ProtocolError as exception:
                     sys.exit("Protocol error: %s\n" % exception)
                 except:
-                    import io, traceback
-                    buffer = io.StringIO()
-                    traceback.print_exc(file=buffer)
+                    import traceback
                     action = 'raise'
-                    value = buffer.getvalue()
+                    if lisp.debug_on_error.value() is None:
+                        value = traceback.format_exception_only(sys.exc_type,
+                            sys.exc_value)
+                        value = ''.join(value).rstrip()
+                    else:
+                        value = traceback.format_exc()
                 if not done:
                     fragments = []
                     print_lisp(value, fragments.append, True)
@@ -260,7 +263,7 @@ class Protocol:
                         value = None
                         try:
                             run.inhibit_quit = False
-                            exec text
+                            exec(text)
                         finally:
                             run.inhibit_quit = True
                     elif action == 'return':
@@ -286,11 +289,14 @@ class Protocol:
                 except ProtocolError, exception:
                     sys.exit("Protocol error: %s\n" % exception)
                 except:
-                    import StringIO, traceback
-                    buffer = StringIO.StringIO()
-                    traceback.print_exc(file=buffer)
+                    import traceback
                     action = 'raise'
-                    value = buffer.getvalue()
+                    if lisp.debug_on_error.value() is None:
+                        value = traceback.format_exception_only(sys.exc_type,
+                            sys.exc_value)
+                        value = ''.join(value).rstrip()
+                    else:
+                        value = traceback.format_exc()
                 if not done:
                     fragments = []
                     print_lisp(value, fragments.append, True)
@@ -445,8 +451,8 @@ def pymacs_load_helper(file_without_extension, prefix):
     return [lisp.quote, module]
 
 def doc_string(function):
-    if hasattr(function, '__doc__'):
-        return function.__doc__
+    import inspect
+    return inspect.getdoc(function)
 
 ## Garbage collection matters.
 
@@ -471,13 +477,13 @@ def allocate_python(value):
         python.append(value)
     return index
 
-def free_python(*indices):
+def free_python(indices):
     # Return many handles to the pool.
     for index in indices:
         python[index] = None
         freed_list.append(index)
 
-def zombie_python(*indices):
+def zombie_python(indices):
     # Ensure that some handles are _not_ in the pool.
     for index in indices:
         while index >= len(python):

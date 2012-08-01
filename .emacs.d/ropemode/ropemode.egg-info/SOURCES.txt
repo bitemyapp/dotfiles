@@ -1,4 +1,3 @@
-setup.cfg
 setup.py
 ropemode/__init__.py
 ropemode/decorators.py

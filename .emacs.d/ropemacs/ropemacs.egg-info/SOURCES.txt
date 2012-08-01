@@ -3,10 +3,6 @@ COPYING
 MANIFEST.in
 README.txt
 setup.py
-docs/done.txt
-docs/pymacs_signalrecursion.patch
-docs/ropemacs.txt
-docs/todo.txt
 ropemacs/__init__.py
 ropemacs.egg-info/PKG-INFO
 ropemacs.egg-info/SOURCES.txt
