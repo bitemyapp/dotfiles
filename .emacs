@@ -268,6 +268,8 @@
 
 (require 'auto-complete)
 (global-auto-complete-mode t)
+(require 'auto-complete-config)
+(ac-config-default)
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
@@ -475,16 +477,10 @@ If point was already at that position, move point to beginning of line."
       (delete-blank-lines)
       (fixup-whitespace)))
 
-(defun override-slime-repl-bindings-with-paredit ()
-  (define-key slime-repl-mode-map
-    (read-kbd-macro paredit-backward-delete-key) nil))
-
 (require 'yaml-mode)
 
 (safe-load "~/.emacs.d/clojure-mode.el")
 (require 'clojure-mode)
-
-(add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
 
 (require 'dired+) ;; Enhance dired
 
@@ -622,9 +618,20 @@ If point was already at that position, move point to beginning of line."
 ;; ** MAGIC **
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
+(add-hook 'lisp-mode-hook 'auto-complete-mode)
+;; (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'slime-repl-mode))
+
+;; (add-hook 'slime-repl-mode-hook 'clojure-mode-font-lock-setup)
+
+(defun start-slime ()
+  (interactive)
+  (slime)
+  (slime-mode)
+  (auto-complete-mode))
+
+(global-set-key (kbd "C-c s l") 'start-slime)
 
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
