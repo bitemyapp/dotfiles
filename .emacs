@@ -141,6 +141,19 @@
 (global-set-key (kbd "s-{") 'tabbar-backward)
 (global-set-key (kbd "s-}") 'tabbar-forward)
 
+(defun reset-highlight ()
+  (interactive)
+  (global-hi-lock-mode 0)
+  (global-hi-lock-mode 1))
+
+(defun highlight-this ()
+  (interactive)
+  (reset-highlight)
+  (highlight-regexp (regexp-quote (word-at-point))))
+
+(global-set-key (kbd "C-c r h") 'reset-highlight)
+(global-set-key (kbd "C-c h t") 'highlight-this)
+
 ;; Fixed sudo/ssh multi-hop
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
 
@@ -605,6 +618,13 @@ If point was already at that position, move point to beginning of line."
 ;; (setq inferior-lisp-program "/usr/local/bin/mit-scheme")
 (require 'slime)
 (global-set-key (kbd "C-c <tab>") 'slime-complete-symbol)
+
+;; ** MAGIC **
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
 
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
