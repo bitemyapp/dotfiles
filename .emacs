@@ -636,6 +636,10 @@ If point was already at that position, move point to beginning of line."
 (require 'shime)
 (autoload 'shime "shime" nil t)
 
+(global-set-key (kbd "C-c s h") 'shime)
+(global-set-key (kbd "C-c s f l") 'shime-load-file)
+(global-set-key (kbd "C-c s c b") 'shime-cabal-build)
+
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
 
