@@ -261,3 +261,7 @@ News/
 .viminfo*
 .wily*
 .fonts/
+build/
+*.rdb
+node_modules/
+.calc_history
