@@ -633,6 +633,9 @@ If point was already at that position, move point to beginning of line."
 
 (global-set-key (kbd "C-c s l") 'start-slime)
 
+(require 'shime)
+(autoload 'shime "shime" nil t)
+
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
 
