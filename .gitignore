@@ -265,3 +265,5 @@ build/
 *.rdb
 node_modules/
 .calc_history
+.ivy2/
+.sbt/
