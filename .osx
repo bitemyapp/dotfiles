@@ -1,13 +1,17 @@
+#!/bin/bash
 # ~/.osx — http://mths.be/osx
+
+# Ask for administrator password upfront
+sudo -v
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-scutil --set ComputerName "sorna"
-scutil --set HostName "sorna"
-scutil --set LocalHostName "sorna"
+scutil --set ComputerName "loompa"
+scutil --set HostName "loompa"
+scutil --set LocalHostName "loompa"
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
