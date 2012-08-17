@@ -37,5 +37,5 @@ main = do
                    }
        , modMask = mod4Mask
        , keys = newKeys
-       , terminal = "gnome-terminal"
+       , terminal = "stterm"
        }
