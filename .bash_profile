@@ -10,7 +10,7 @@ alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 export $EDITOR="nano"
-alias gpom='git pull --noedit origin master && git push origin master'
+alias gpom='git pull origin master && git push origin master'
 alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
 alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
