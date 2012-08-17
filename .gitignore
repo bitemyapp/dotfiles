@@ -268,3 +268,6 @@ node_modules/
 .ivy2/
 .sbt/
 .ec2.sh
+.vim/backups/
+.vim/swaps/
+.vim/undo/
