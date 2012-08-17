@@ -267,3 +267,4 @@ node_modules/
 .calc_history
 .ivy2/
 .sbt/
+.ec2.sh
