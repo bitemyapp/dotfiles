@@ -258,6 +258,15 @@
            (set-variable 'py-smart-indentation t)
            (set-variable 'indent-tabs-mode nil) )))
 
+;; .ropeproject/config.py
+;; at the bottom
+;; prefs.add('python_path', '~/path/to/virtualenv/lib/python2.6/site-packages')
+;; or
+;; At the top
+;; VIRTUAL_ENV = "/home/yourname/envs/envname/"
+;; ACTIVATE_FILE = VIRTUAL_ENV + "bin/activate_this.py"
+;; execfile(ACTIVATE_FILE, dict(__file__=ACTIVATE_FILE))
+
 (require 'pymacs)
 (pymacs-load "ropemacs" "rope-")
 (autoload 'pymacs-apply "pymacs")
