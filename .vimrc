@@ -95,7 +95,6 @@ endif
 "" GUI
 set guioptions-=T               " Toggle off toolbar
 set guifont=Mensch\ for\ Powerline:h14
-set transparency=5
 
 colorscheme molokai
 " color vilight
