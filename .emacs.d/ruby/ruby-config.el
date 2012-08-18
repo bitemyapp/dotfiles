@@ -1,0 +1,10 @@
+(require 'ruby-mode)
+
+(setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.gemspec$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.ru$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
