@@ -51,6 +51,9 @@
 (require 'magit)
 (global-set-key (kbd "C-c m g") 'magit-status)
 
+;; Python
+(load-library "python-config.el")
+
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
 
