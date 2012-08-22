@@ -88,6 +88,15 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
 
+" autocmd VimEnter * TbStart
+
+let g:Tb_MoreThanOne=0
+
+let g:Tb_UseSingleClick = 1
+let g:Tb_MapCTabSwitchWindows = 1
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
 if has("gui_running")
     set guioptions=egmrt
 endif
