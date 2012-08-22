@@ -67,7 +67,7 @@ call pathogen#infect()          " load pathogen
 call pathogen#helptags()        " load pathogen helptags
 " let g:loaded_netrwPlugin=1      " disable netrw plugin
 " let g:Powerline_symbols='fancy' " disable netrw plugin
-
+let os = substitute(system('uname'), "\n", "", "")
 function! StripWhitespace()
 	let save_cursor = getpos(".")
 	let old_query = getreg('/')
@@ -94,7 +94,11 @@ endif
 
 "" GUI
 set guioptions-=T               " Toggle off toolbar
-set guifont=Mensch\ for\ Powerline:h14
+if os == "Darwin"
+	set guifont=Monaco:h12
+else
+	set guifont=Monospace:h9
+endif
 
 colorscheme molokai
 " color vilight
