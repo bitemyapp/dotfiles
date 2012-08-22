@@ -50,10 +50,10 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-set undodir=~/.vim/undo
+" Disable backup, swap file
+set nobackup
+set nowritebackup
+set noswapfile
 
 "" Searching
 set hlsearch                    " highlight matches
