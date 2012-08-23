@@ -61,6 +61,7 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
+let mapleader = "\"
 
 "" Plugins
 call pathogen#infect()          " load pathogen
@@ -68,6 +69,7 @@ call pathogen#helptags()        " load pathogen helptags
 " let g:loaded_netrwPlugin=1      " disable netrw plugin
 " let g:Powerline_symbols='fancy' " disable netrw plugin
 let os = substitute(system('uname'), "\n", "", "")
+
 function! StripWhitespace()
 	let save_cursor = getpos(".")
 	let old_query = getreg('/')
@@ -76,6 +78,8 @@ function! StripWhitespace()
 	call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
+
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
@@ -96,6 +100,10 @@ let g:Tb_UseSingleClick = 1
 let g:Tb_MapCTabSwitchWindows = 1
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
+
+map <C-b> :CtrlPBuffer<CR>
 
 if has("gui_running")
     set guioptions=egmrt
