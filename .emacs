@@ -97,8 +97,11 @@
 ;; Color theme
 (require 'color-theme)
 (color-theme-initialize)
-(require 'color-theme-bitemyapp)
-(color-theme-bitemyapp)
+;; (require 'tomorrow-night-theme)
+;; (require 'tomorrow-theme)
+(require 'tomorrow-night-bright-theme)
+;; (require 'color-theme-bitemyapp)
+;; (color-theme-bitemyapp)
 
 (if (string= system-type "darwin")
 (custom-set-faces
