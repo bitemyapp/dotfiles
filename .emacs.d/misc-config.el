@@ -222,6 +222,12 @@ If point was already at that position, move point to beginning of line."
       (delete-blank-lines)
       (fixup-whitespace)))
 
+(defun get-point (symbol &optional arg)
+      "get the point"
+      (funcall symbol arg)
+      (point)
+     )
+
 (require 're-builder)
 (setq reb-re-syntax 'string) ; elisp/read regex syntax is...undesirable.
 

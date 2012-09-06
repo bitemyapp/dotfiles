@@ -35,7 +35,7 @@
 (load-library "erlang-config.el")
 
 ;; Go
-(require 'go-mode-load)
+(load-library "go-config.el")
 
 ;; Haskell
 (load-library "haskell-config.el")

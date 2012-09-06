@@ -513,7 +513,7 @@ Replace the current buffer on success; display errors on failure."
          (save-restriction
            (let (deactivate-mark)
              (widen)
-             (if (= 0 (shell-command-on-region (point-min) (point-max) "gofmt"
+             (if (= 0 (shell-command-on-region (point-min) (point-max) "go fmt"
                                                outbuf nil errbuf))
                  ;; gofmt succeeded: replace the current buffer with outbuf,
                  ;; restore the mark and point, and discard errbuf.
