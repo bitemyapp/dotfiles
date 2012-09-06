@@ -19,6 +19,8 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;; go get -u github.com/nsf/gocode
+;; sudo ln -sf `which gocode` /usr/bin/gocode ;; so emacs can find it.
 
 ;; Ensure that go-autocomplete in your load-path and add to your ~/.emacs 
 ;; following line:
