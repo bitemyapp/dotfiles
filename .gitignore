@@ -271,3 +271,8 @@ node_modules/
 .vim/backups/
 .vim/swaps/
 .vim/undo/
+.conscript/
+elpa
+.jline*
+.nrepl*
+repl*

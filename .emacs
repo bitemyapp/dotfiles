@@ -11,6 +11,13 @@
 ;; auto-complete
 (load-library "ac-config.el")
 
+;; Marmalade
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 ;; Clojure
 (require 'clojure-mode)
 
@@ -45,7 +52,9 @@
 
 ;; Jinja
 (require 'jinja)
-(fset 'html-mode 'jinja-mode)
+;; (fset 'html-mode 'jinja-mode)
+
+(load-library "multi-web-mode-config.el")
 
 ;;; Magit
 (require 'magit)
@@ -78,6 +87,20 @@
 
 ;; Scala
 (require 'scala-mode-auto)
+
+;; ~/.sbt/plugins/build.sbt
+;; resolvers ++= Seq(Resolver.url("sbt-plugin-releases",
+;;                                          new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns))
+
+;; addSbtPlugin("org.ensime" % "ensime-sbt-cmd" % "0.0.10")
+
+(add-to-list 'load-path "~/.emacs.d/scala/ensime/src/main/elisp/")
+(require 'ensime)
+
+;; This step causes the ensime-mode to be started whenever
+;; scala-mode is started for a buffer. You may have to customize this step
+;; if you're not using the standard scala mode.
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; Slime
 (load-library "slime-config.el")

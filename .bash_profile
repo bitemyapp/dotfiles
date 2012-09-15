@@ -30,6 +30,8 @@ function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"
 }
 
-export PATH=/Users/callen/code/valgrind/Inst/bin:~/Library/Haskell/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
+export GOPATH=/usr/local/go
+export PATH=$GOPATH/bin:/Users/callen/code/valgrind/Inst/bin:~/Library/Haskell/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 source /usr/local/bin/virtualenvwrapper.sh
 source ~/.ec2.sh

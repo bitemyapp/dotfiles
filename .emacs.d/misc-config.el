@@ -44,6 +44,19 @@
 (setq auto-save-default nil)
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
+(defun un-indent-by-removing-4-spaces ()
+  "remove 4 spaces from beginning of of line"
+  (interactive)
+  (save-excursion
+    (save-match-data
+      (beginning-of-line)
+      ;; get rid of tabs at beginning of line
+      (when (looking-at "^\\s-+")
+        (untabify (match-beginning 0) (match-end 0)))
+      (when (looking-at "^    ")
+        (replace-match "")))))
+(global-set-key (kbd "<S-tab>") 'un-indent-by-removing-4-spaces)
+
 ;; aliases because I am l'lazy
 (defalias 'couc 'comment-or-uncomment-region)
 (global-set-key (kbd "C-c c m") 'couc)
@@ -100,6 +113,14 @@
          (save-buffer (get-file-buffer dot-emacs)))
     (load-file dot-emacs))
   (message "Re-initialized!"))
+
+(defun nuke-newline ()
+  (interactive)
+  (replace-string " " ""))
+
+(defun nuke-spaces ()
+  (interactive)
+  (replace-string "?\n" ""))
 
 ;; deletes selected text
 (delete-selection-mode t)

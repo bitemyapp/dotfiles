@@ -1,4 +1,4 @@
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+;; (setq inferior-lisp-program "/usr/local/bin/sbcl")
 ;; (setq inferior-lisp-program "/usr/local/bin/mit-scheme")
 (require 'slime)
 (global-set-key (kbd "C-c <tab>") 'slime-complete-symbol)
