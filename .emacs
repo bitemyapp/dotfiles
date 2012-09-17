@@ -34,6 +34,10 @@
 (require 'drag-stuff)
 (drag-stuff-mode t)
 
+;; Edit server
+(require 'edit-server)
+(edit-server-start)
+
 ;; Enhance dired
 (require 'dired+)
 (require 'dired-x)
@@ -59,6 +63,9 @@
 ;;; Magit
 (require 'magit)
 (global-set-key (kbd "C-c m g") 'magit-status)
+
+;; Markdown
+(load-library "markdown-config.el")
 
 ;; Python
 (load-library "python-config.el")

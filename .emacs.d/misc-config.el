@@ -219,7 +219,7 @@ If point was already at that position, move point to beginning of line."
 
 (global-set-key (kbd "C-c c p") 'compile)
 
-(global-set-key (kbd "C-c c j i") 'clojure-jack-in)
+(global-set-key (kbd "C-c n j i") 'nrepl-jack-in)
 
 (defun unhtml (start end)
   (interactive "r")
@@ -262,10 +262,19 @@ If point was already at that position, move point to beginning of line."
 ; change yes or no prompts to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; (setq tramp-default-method "scpc")
-;; (transient-mark-mode 1)
-;; (setq x-select-enable-clipboard t)
+;; Edit Server shortcut
+(global-set-key (kbd "C-c d o n e") 'edit-server-done)
 
-;; (require 'term)
-;; (define-key term-raw-map  (kbd "C-'") 'term-line-mode)
-;; (define-key term-mode-map (kbd "C-'") 'term-char-mode)
+;; (require 'generic-x)
+
+;;   '("account" "user"     "password")                     ;; some keywords
+
+;; (define-generic-mode 
+;;   'remarkup-mode                         ;; name of the mode to create
+;;   '("~~")                           ;; comments start with '!!'
+;;   '(("=" . 'font-lock-operator)     ;; '=' is an operator
+;;     (";" . 'font-lock-builtin))     ;; ';' is a a built-in 
+;;   '("\\.rm$")                      ;; files for which to activate this mode 
+;;    nil                              ;; other functions to call
+;;   "A mode for remarkup"            ;; doc string for this mode
+;; )
