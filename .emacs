@@ -101,8 +101,8 @@
 
 ;; addSbtPlugin("org.ensime" % "ensime-sbt-cmd" % "0.0.10")
 
-(add-to-list 'load-path "~/.emacs.d/scala/ensime/src/main/elisp/")
-(require 'ensime)
+;; (add-to-list 'load-path "~/.emacs.d/scala/ensime/src/main/elisp/")
+;; (require 'ensime)
 
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
