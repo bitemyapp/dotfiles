@@ -3,7 +3,11 @@ for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
 done
 unset file
 
-export PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
+# Cyan: \[$(tput bold)\]\[$(tput setaf 6)\]
+# reset \[\e[0m\]
+# \e[1;32m\]
+# \[$(tput setaf 1)\]
+export PS1='\[$(tput bold)\]\[$(tput setaf 6)\]☁ \e[1;32m\]\[[\[$(tput setaf 1)\]\u@\[$(tput setaf 4)\]\h\e[1;32m\] \W]\$\[\e[0m\] '
 
 alias ls='ls -G'
 alias grep='grep --colour=auto'
