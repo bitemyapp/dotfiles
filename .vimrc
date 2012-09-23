@@ -55,17 +55,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-"" Searching
-set hlsearch                    " highlight matches
-set incsearch                   " incremental searching
-set ignorecase                  " searches are case insensitive...
-set smartcase                   " ... unless they contain at least one capital letter
-
-"" Plugins
-call pathogen#infect()          " load pathogen
-call pathogen#helptags()        " load pathogen helptags
-" let g:loaded_netrwPlugin=1      " disable netrw plugin
-" let g:Powerline_symbols='fancy' " disable netrw plugin
 let os = substitute(system('uname'), "\n", "", "")
 
 function! StripWhitespace()
@@ -81,8 +70,6 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
-nnoremap ,f :Ack<space>
-
 if has("autocmd")
 	" Enable file type detection
 	filetype on
@@ -90,18 +77,7 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
 
-" autocmd VimEnter * TbStart
-
-let g:Tb_MoreThanOne=0
-
-let g:Tb_UseSingleClick = 1
-let g:Tb_MapCTabSwitchWindows = 1
-
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
-
-map <C-b> :CtrlPBuffer<CR>
 
 if has("gui_running")
     set guioptions=egmrt
@@ -116,4 +92,4 @@ else
 endif
 
 colorscheme molokai
-" color vilight
+
