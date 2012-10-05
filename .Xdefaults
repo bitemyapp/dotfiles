@@ -49,3 +49,5 @@ URxvt*perl-ext-common:  default,matcher
 URxvt*matcher.button:   3
 URxvt*urlLauncher:      google-chrome
 
+XTerm*foreground: white
+XTerm*background: black

@@ -95,6 +95,9 @@
 ;; Scala
 (require 'scala-mode-auto)
 
+;; Scala
+(load-library "ensime-config.el")
+
 ;; ~/.sbt/plugins/build.sbt
 ;; resolvers ++= Seq(Resolver.url("sbt-plugin-releases",
 ;;                                          new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns))
@@ -113,7 +116,8 @@
 (load-library "slime-config.el")
 
 ;; Tabbar
-(load-library "tabbar-config.el")
+(if (display-graphic-p)
+    (load-library "tabbar-config.el"))
 
 ;; Vala
 (load-library "vala-config.el")
@@ -122,16 +126,17 @@
 (load-library "yaml-config.el")
 
 ;; Nyan-mode
-(require 'nyan-mode)
+(if (display-graphic-p)
+    (require 'nyan-mode))
 
 ;; Color theme
 (require 'color-theme)
 (color-theme-initialize)
 ;; (require 'tomorrow-night-theme)
 ;; (require 'tomorrow-theme)
-(require 'tomorrow-night-bright-theme)
-;; (require 'color-theme-bitemyapp)
-;; (color-theme-bitemyapp)
+;; (require 'tomorrow-night-bright-theme)
+(require 'color-theme-bitemyapp)
+(color-theme-bitemyapp)
 
 (if (string= system-type "darwin")
 (custom-set-faces
@@ -147,5 +152,7 @@
   ;; If there is more than one, they won't work right.
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "Monospace"))))))
 
-(nyan-mode)
-(nyan-start-animation)
+(if (display-graphic-p)
+    (progn 
+      (nyan-mode)
+      (nyan-start-animation)))

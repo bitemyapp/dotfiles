@@ -37,7 +37,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
+# eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -56,10 +56,18 @@ bindkey ';5C' emacs-forward-word
 # ^^ my fucking god why isn't this set by default?
 
 # aliases
-alias ls='ls -F --color=auto' 
+alias ls='ls -F -G'
 alias ll='ls -lh'
 alias grep='grep --color=auto' 
 alias ec='emacsclient -n -a emacs'
+alias mg='mg -n'
+alias gpom='git pull origin master && git push origin master'
+alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
+alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
+alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
+alias pte='gpom && gpte && fab push_experimental_scar'
+alias pts='gpom && gpts && fab push_staging_scar'
+alias ptp='gpom && gptp && fab push_prod_scar'
 
 # Set up the prompt
 
@@ -70,5 +78,4 @@ alias ec='emacsclient -n -a emacs'
 autoload -U colors && colors
 PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m?!%{$reset_color%} %{$fg[red]%}%~ %{$reset_color%}$ "
 
-RPROMPT=$(battery_charge)
 

@@ -4,3 +4,5 @@ XTerm*scrollBar: false
 XTerm*scrollKey: true
 XTerm*saveLines: 1000
 XTerm*multiClickTime: 250
+UXTerm*foreground: white 
+UXTerm*background: black

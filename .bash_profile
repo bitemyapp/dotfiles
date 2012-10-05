@@ -7,7 +7,8 @@ unset file
 # reset \[\e[0m\]
 # \e[1;32m\]
 # \[$(tput setaf 1)\]
-export PS1='\[$(tput bold)\]\[$(tput setaf 6)\]\[[\[$(tput setaf 4)\]\u@\[$(tput setaf 4)\]\h \W\[$(tput setaf 6)\]]\[$(tput setaf 2)\]\$\[\e[0m\] '
+# export PS1='\[$(tput setaf 4)\]\[[\[$(tput setaf 5)\]\u@\[$(tput setaf 5)\]\h \W\[$(tput setaf 4)\]]\[$(tput setaf 1)\]\$\[\e[0m\] '
+export PS1='\[\u@\h \W\]\$ '
 
 alias ls='ls -G'
 alias grep='grep --colour=auto'
@@ -18,6 +19,9 @@ alias gpom='git pull origin master && git push origin master'
 alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
 alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
+alias pte='gpom && gpte && fab push_experimental_scar'
+alias pts='gpom && gpts && fab push_staging_scar'
+
 alias qke='emacs -q -nw'
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
@@ -34,8 +38,8 @@ function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"
 }
 
-export GOPATH=/usr/local/go
-export PATH=$GOPATH/bin:/Users/callen/code/valgrind/Inst/bin:~/Library/Haskell/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/go/bin:/Users/callen/code/valgrind/Inst/bin:~/Library/Haskell/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 source /usr/local/bin/virtualenvwrapper.sh
 source ~/.ec2.sh
+export LANG=en_US.UTF-8

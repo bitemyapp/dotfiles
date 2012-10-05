@@ -20,14 +20,16 @@
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always)))
 
-(if (boundp 'tool-bar-mode)
-    (tool-bar-mode -1))
+(if (display-graphic-p)
+    (progn
+      (if (boundp 'tool-bar-mode)
+	  (tool-bar-mode -1))
 
-(if (boundp 'tool-bar-mode)
-    (scroll-bar-mode -1))
+      (if (boundp 'tool-bar-mode)
+	  (scroll-bar-mode -1))
 
-(if (boundp 'tool-bar-mode)
-    (menu-bar-mode -1))
+      (if (boundp 'tool-bar-mode)
+	  (menu-bar-mode -1))))
 
 ;; Line and column numbers in mode-line
 (if (boundp 'line-number-mode)

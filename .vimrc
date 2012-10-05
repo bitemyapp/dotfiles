@@ -70,6 +70,8 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
+noremap <leader>b :CtrlPBuffer<CR>
+
 if has("autocmd")
 	" Enable file type detection
 	filetype on
