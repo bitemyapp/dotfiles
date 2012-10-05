@@ -276,3 +276,10 @@ elpa
 .jline*
 .nrepl*
 repl*
+.ido.last~
+.freemind/
+.node-gyp/
+.terminfo/
+.zsh_history
+.Xmodmap
+.go.history
