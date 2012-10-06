@@ -55,10 +55,10 @@
 (load-library "jade-config.el")
 
 ;; Jinja
-(require 'jinja)
+;; (require 'jinja)
 ;; (fset 'html-mode 'jinja-mode)
 
-(load-library "multi-web-mode-config.el")
+;; (load-library "multi-web-mode-config.el")
 
 ;;; Magit
 (require 'magit)
