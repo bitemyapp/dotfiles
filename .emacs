@@ -119,6 +119,9 @@
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
 
+;; Web-mode
+(load-library "web-mode-config.el")
+
 ;; Vala
 (load-library "vala-config.el")
 
