@@ -12,11 +12,11 @@
 (load-library "ac-config.el")
 
 ;; Marmalade
-(require 'package)
-(add-to-list 'package-archives
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-(package-initialize)
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;     '("marmalade" .
+;;       "http://marmalade-repo.org/packages/"))
+;; (package-initialize)
 
 ;; Clojure
 (require 'clojure-mode)
@@ -52,7 +52,7 @@
 (load-library "haskell-config.el")
 
 ;; Jade
-(load-library "jade-config.el")
+;; (load-library "jade-config.el")
 
 ;; Jinja
 ;; (require 'jinja)
@@ -93,10 +93,10 @@
 (require 'rust-mode)
 
 ;; Scala
-(require 'scala-mode-auto)
+;; (require 'scala-mode-auto)
 
 ;; Scala
-(load-library "ensime-config.el")
+;; (load-library "ensime-config.el")
 
 ;; ~/.sbt/plugins/build.sbt
 ;; resolvers ++= Seq(Resolver.url("sbt-plugin-releases",
@@ -110,7 +110,7 @@
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode is started for a buffer. You may have to customize this step
 ;; if you're not using the standard scala mode.
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; Slime
 (load-library "slime-config.el")
@@ -129,8 +129,8 @@
 (load-library "yaml-config.el")
 
 ;; Nyan-mode
-(if (display-graphic-p)
-    (require 'nyan-mode))
+;; (if (display-graphic-p)
+;;     (require 'nyan-mode))
 
 ;; Color theme
 (require 'color-theme)
@@ -148,7 +148,7 @@
 (custom-set-faces
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "Monospace"))))))
 
-(if (display-graphic-p)
-    (progn 
-      (nyan-mode)
-      (nyan-start-animation)))
+;; (if (display-graphic-p)
+;;     (progn
+;;       (nyan-mode)
+;;       (nyan-start-animation)))

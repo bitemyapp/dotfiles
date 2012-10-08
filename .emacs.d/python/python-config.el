@@ -21,14 +21,14 @@
 ;; ACTIVATE_FILE = VIRTUAL_ENV + "bin/activate_this.py"
 ;; execfile(ACTIVATE_FILE, dict(__file__=ACTIVATE_FILE))
 
-;; (require 'pymacs)
-;; (pymacs-load "ropemacs" "rope-")
-;; (autoload 'pymacs-apply "pymacs")
-;; (autoload 'pymacs-call "pymacs")
-;; (autoload 'pymacs-eval "pymacs" nil t)
-;; (autoload 'pymacs-exec "pymacs" nil t)
-;; (autoload 'pymacs-load "pymacs" nil t)
-;; (setq ropemacs-enable-autoimport 't)
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(setq ropemacs-enable-autoimport 't)
 
 (global-set-key (kbd "C-M-n") 'next-error)
 

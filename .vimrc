@@ -15,10 +15,6 @@ set encoding=utf-8 nobomb
 set expandtab
 set tabstop=4
 
-" Show “invisible” characters
-" set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-" set list
-
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
@@ -57,13 +53,6 @@ set noswapfile
 
 let os = substitute(system('uname'), "\n", "", "")
 
-function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
-endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 
 nnoremap <silent> <C-l> :nohl<CR><C-l>
@@ -79,14 +68,13 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 endif
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
 
 if has("gui_running")
     set guioptions=egmrt
+    set guioptions-=T
 endif
 
-"" GUI
-set guioptions-=T               " Toggle off toolbar
 if os == "Darwin"
 	set guifont=SourceCodePro:h12
 else
