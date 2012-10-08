@@ -45,7 +45,7 @@ set showcmd
 set scrolloff=3
 
 "" Searching
-set hlsearch                    " highlight matches
+" set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
@@ -88,7 +88,7 @@ endif
 "" GUI
 set guioptions-=T               " Toggle off toolbar
 if os == "Darwin"
-	set guifont=Monaco:h12
+	set guifont=SourceCodePro:h12
 else
 	set guifont=Monospace:h9
 endif

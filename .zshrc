@@ -78,4 +78,8 @@ alias ptp='gpom && gptp && fab push_prod_scar'
 autoload -U colors && colors
 PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m?!%{$reset_color%} %{$fg[red]%}%~ %{$reset_color%}$ "
 
-
+# Initialization for FDK command line tools.Mon Oct  8 10:18:27 2012
+FDK_EXE="/Users/callen/bin/FDK/Tools/osx"
+PATH=${PATH}:"/Users/callen/bin/FDK/Tools/osx"
+export PATH
+export FDK_EXE

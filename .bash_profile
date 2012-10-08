@@ -37,9 +37,13 @@ scrib_(){ scrib \ |while read a;do feh $a ; done; }
 function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"
 }
-
-export PATH=/usr/local/go/bin:/Users/callen/code/valgrind/Inst/bin:~/Library/Haskell/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
+=/usr/local/go/bin:/Users/callen/code/valgrind/Inst/bin:~/Library/Haskell/bin:/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:~/bin:/usr/local/sbin:$PATH
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 source /usr/local/bin/virtualenvwrapper.sh
 source ~/.ec2.sh
 export LANG=en_US.UTF-8
+# Initialization for FDK command line tools.Mon Oct  8 10:18:27 2012
+FDK_EXE="/Users/callen/bin/FDK/Tools/osx"
+PATH=${PATH}:"/Users/callen/bin/FDK/Tools/osx"
+export PATH
+export FDK_EXE
