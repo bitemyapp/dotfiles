@@ -283,3 +283,5 @@ repl*
 .zsh_history
 .Xmodmap
 .go.history
+.psql_history
+
