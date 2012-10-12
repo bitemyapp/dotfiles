@@ -284,4 +284,5 @@ repl*
 .Xmodmap
 .go.history
 .psql_history
+.face
 
