@@ -1,5 +1,7 @@
 import XMonad
 import XMonad.Config.Gnome
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 import XMonad.Actions.CycleWS
 import XMonad.Layout.NoBorders
 import qualified Data.Map as M
@@ -15,6 +17,7 @@ myKeys x =
              , ((modMask x .|. shiftMask, xK_Right), shiftToNext)
              , ((modMask x .|. shiftMask, xK_Left),  shiftToPrev)
              , ((modMask x,               xK_t),     toggleWS)
+             , ((modMask x,               xK_s),     shellPrompt defaultXPConfig)
              ]
 newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 
@@ -37,5 +40,6 @@ main = do
                    }
        , modMask = mod4Mask
        , keys = newKeys
-       , terminal = "stterm"
+       -- , terminal = "stterm"
+       , terminal = "gnome-terminal"
        }
