@@ -245,7 +245,7 @@ code/
 .bash_profile.bak
 .dirs
 .jekyllconfig
-.leksah*
+.leksah
 .wingide4/
 .xsession-errors.old
 .vim/bundle/*
@@ -286,3 +286,5 @@ repl*
 .psql_history
 .arcrc
 .vimperator/
+.face
+history
