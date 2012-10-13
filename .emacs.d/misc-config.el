@@ -267,6 +267,10 @@ If point was already at that position, move point to beginning of line."
 ;; Edit Server shortcut
 (global-set-key (kbd "C-c d o n e") 'edit-server-done)
 
+;; code blocks highlight natively
+(setq org-src-fontify-natively t)
+(setq org-support-shift-select t)
+
 ;; (require 'generic-x)
 
 ;;   '("account" "user"     "password")                     ;; some keywords

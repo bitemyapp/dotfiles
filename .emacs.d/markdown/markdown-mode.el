@@ -642,7 +642,7 @@ This will not take effect until Emacs is restarted."
   (list
    '(markdown-match-comments 0 markdown-comment-face t t)
    (cons markdown-regex-code '(2 markdown-inline-code-face))
-   ;;(cons markdown-regex-pre 'markdown-pre-face)
+   (cons markdown-regex-pre 'markdown-pre-face)
    (cons markdown-regex-blockquote 'markdown-blockquote-face)
    (cons markdown-regex-header-1-setext 'markdown-header-face-1)
    (cons markdown-regex-header-2-setext 'markdown-header-face-2)
