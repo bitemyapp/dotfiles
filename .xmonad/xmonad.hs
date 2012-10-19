@@ -10,6 +10,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
+import XMonad.Util.SpawnOnce
+import XMonad.Layout.Named
 
 myKeys x =
              [ ((modMask x,               xK_Right), nextWS)
@@ -27,7 +29,14 @@ myManageHook = composeAll (
     , className =? "Unity-2d-launcher" --> doFloat
     , className =? "Gimp"      --> doFloat
     , className =? "Vncviewer" --> doFloat
+    , manageDocks
     ])
+
+myStartupHook = do
+       spawnOnce "volti"
+       spawnOnce "nm-applet"
+       spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent false --height 24"
+
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/callen/.xmobarrc"
@@ -38,8 +47,8 @@ main = do
                    { ppOutput = hPutStrLn xmproc
                    , ppTitle = xmobarColor "green" "" . shorten 50
                    }
+       , startupHook = myStartupHook
        , modMask = mod4Mask
        , keys = newKeys
-       -- , terminal = "stterm"
        , terminal = "gnome-terminal"
        }
