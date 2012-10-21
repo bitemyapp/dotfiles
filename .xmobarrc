@@ -1,9 +1,9 @@
 Config { font = "-Misc-Fixed-Normal-R-Normal--13-120-75-75-C-70-ISO8859-1"
        , bgColor = "#222222"
        , fgColor = "grey"
-       , position = Top
-       , commands = [ Run Cpu ["-t", "<total>", "-L","5","-H","40","--normal","green","--high","red"] 10
-                    , Run Battery ["-t", "<left>"] 50
+       , position = TopW L 50
+       , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 10
+                    , Run Battery ["-t", "<acstatus><watts> (<left>%)"] 50
                     , Run Memory ["-t", "<usedratio>%"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
