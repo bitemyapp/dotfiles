@@ -254,6 +254,10 @@ If point was already at that position, move point to beginning of line."
 (require 're-builder)
 (setq reb-re-syntax 'string) ; elisp/read regex syntax is...undesirable.
 
+(require 'refheap) ; for pasting to refheap
+(global-set-key (kbd "C-c r p b") 'refheap-paste-buffer)
+(global-set-key (kbd "C-c r p r") 'refheap-paste-region)
+
 (when (fboundp 'winner-mode)
       (winner-mode 1))
 
