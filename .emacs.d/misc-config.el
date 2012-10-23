@@ -251,6 +251,15 @@ If point was already at that position, move point to beginning of line."
       (point)
      )
 
+(add-hook 'find-file-hook 'find-file-check-line-endings)
+(defun dos-file-endings-p ()
+  (string-match "dos" (symbol-name buffer-file-coding-system)))
+
+(defun find-file-check-line-endings ()
+  (when (dos-file-endings-p)
+    (set-buffer-file-coding-system 'undecided-unix)
+    (set-buffer-modified-p nil)))
+
 (require 're-builder)
 (setq reb-re-syntax 'string) ; elisp/read regex syntax is...undesirable.
 
