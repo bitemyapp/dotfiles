@@ -1,0 +1,71 @@
+¾¾.monospace {
+  font: 11px/1.3 Monaco !important;
+  }
+
+/* slightly larger indentation of source code */
+.outline-disclosure ol {
+  -webkit-padding-start: 18px !important;
+  }
+
+/* margin underneath styles panel heading */
+.pane.expanded:nth-child(2) > .title {
+  margin: 0 0 5px;
+  }
+
+/* lighter and less cramped seperators in styles panel */
+.styles-sidebar-separator {
+  background: -webkit-linear-gradient(#fff, #eee) !important;
+  border-top: 1px solid #e9e9e9 !important;
+  border-bottom: 1px solid #ccc !important;
+  padding: 3px 5px !important;
+  margin: 5px 0;
+  }
+  /* the element from which is inherited */
+  .styles-sidebar-separator .node-link {
+    text-decoration: none !important;
+    }
+
+/* no more border between selectors */
+.styles-section:not(.first-styles-section) {
+  border-top: 0 !important;
+  margin: 0 0 5px;
+  }
+
+/* reference links to stylesheets */
+.styles-section .header .subtitle a {
+  color: #00e !important;
+  text-decoration: none;
+  }
+  .styles-section .header .subtitle a:hover {
+    text-decoration: underline;
+    }
+
+/* slightly larger indentation for properties */
+.styles-section .properties {
+  padding-left: 20px !important;
+  }
+  /* put checkboxes on the left of properties */
+  .styles-section .properties .enabled-button {
+    position: absolute !important;
+    left: 7px;
+    margin: 2px 0 0 0 !important;
+    }
+
+/* indent the closing curly brace */
+.styles-section > div:last-of-type {
+  margin: 0 0 0 30px;
+  }
+.styles-section:hover .properties .enabled-button {
+    visibility: visible !important;
+}
+
+.styles-section .properties li.disabled .enabled-button {
+    visibility: visible !important;
+}
+
+.styles-section .properties .enabled-button {
+    margin: 0 4px 0 0 !important;
+    display: block !important;
+    float: left !important;
+    visibility: hidden !important;
+}
