@@ -84,9 +84,11 @@
   '(("^[ \t]*--.*" . font-lock-comment-face)
     ("^ *\\([^ \t:]+\\):" (1 font-lock-keyword-face))
     ("^\\(Library\\)[ \t]*\\({\\|$\\)" (1 font-lock-keyword-face))
-    ("^\\(Executable\\)[ \t]+\\([^\n \t]*\\)"
+    ("^\\(Executable\\|Test-Suite\\|Benchmark\\)[ \t]+\\([^\n \t]*\\)"
      (1 font-lock-keyword-face) (2 font-lock-function-name-face))
     ("^\\(Flag\\)[ \t]+\\([^\n \t]*\\)"
+     (1 font-lock-keyword-face) (2 font-lock-constant-face))
+    ("^\\(Source-Repository\\)[ \t]+\\(head\\|this\\)"
      (1 font-lock-keyword-face) (2 font-lock-constant-face))
     ("^ *\\(if\\)[ \t]+.*\\({\\|$\\)" (1 font-lock-keyword-face))
     ("^ *\\(}[ \t]*\\)?\\(else\\)[ \t]*\\({\\|$\\)"
@@ -98,32 +100,7 @@
 ;; (defsubst* inferior-haskell-string-prefix-p (str1 str2)
 ;;   "Return non-nil if STR1 is a prefix of STR2"
 ;;   (eq t (compare-strings str2 nil (length str1) str1 nil nil)))
-
-(defun haskell-cabal-find-file ()
-  "Return a buffer visiting the cabal file of the current directory, or nil."
-  (catch 'found
-    ;; ;; First look for it in haskell-cabal-buffers.
-    ;; (dolist (buf haskell-cabal-buffers)
-    ;;   (if (inferior-haskell-string-prefix-p
-    ;;        (with-current-buffer buf default-directory) default-directory)
-    ;;       (throw 'found buf)))
-    ;; Then look up the directory hierarchy.
-    (let ((user (nth 2 (file-attributes default-directory)))
-          ;; Abbreviate, so as to stop when we cross ~/.
-          (root (abbreviate-file-name default-directory))
-          files)
-      (while (and root (equal user (nth 2 (file-attributes root))))
-        (if (setq files (directory-files root 'full "\\.cabal\\'"))
-            ;; Avoid the .cabal directory.
-            (dolist (file files (throw 'found nil))
-              (unless (file-directory-p file)
-                (throw 'found (find-file-noselect file))))
-          (if (equal root
-                     (setq root (file-name-directory
-                                 (directory-file-name root))))
-              (setq root nil))))
-      nil)))
-
+4
 (autoload 'derived-mode-p "derived")	; Emacs 21
 
 (defun haskell-cabal-buffers-clean (&optional buffer)
@@ -176,6 +153,74 @@
               (setq start (1+ (match-beginning 0)))
               (setq val (replace-match "" t t val))))
           val)))))
+
+;;;###autoload
+(defun haskell-cabal-get-dir ()
+  "Get the Cabal dir for a new project. Various ways of figuring this out,
+   and indeed just prompting the user. Do them all."
+  (let* ((file (haskell-cabal-find-file))
+         (dir (when file (file-name-directory file))))
+    (read-from-minibuffer
+     (format "Cabal dir%s: " (if file (format " (%s)" (file-relative-name file)) ""))
+     (or dir default-directory))))
+
+(defun haskell-cabal-compute-checksum (cabal-dir) 
+  "Computes a checksum of the .cabal configuration files."
+  (let* ((cabal-file-paths (directory-files cabal-dir t "\\.cabal$"))
+         (get-file-contents (lambda (path)
+                              (with-temp-buffer (insert-file-contents path)
+                                                (buffer-string))))
+         (cabal-file-contents (map 'list get-file-contents cabal-file-paths))
+         (cabal-config (reduce 'concat cabal-file-contents)))
+    (md5 cabal-config)))
+
+(defun haskell-cabal-find-file ()
+  "Return a buffer visiting the cabal file of the current directory, or nil."
+  (catch 'found
+    (let ((user (nth 2 (file-attributes default-directory)))
+          ;; Abbreviate, so as to stop when we cross ~/.
+          (root (abbreviate-file-name default-directory))
+          files)
+      (while (and root (equal user (nth 2 (file-attributes root))))
+        (if (setq files (directory-files root 'full "\\.cabal\\'"))
+            ;; Avoid the .cabal directory.
+            (dolist (file files (throw 'found nil))
+              (unless (file-directory-p file)
+                (throw 'found file)))
+          (if (equal root
+                     (setq root (file-name-directory
+                                 (directory-file-name root))))
+              (setq root nil))))
+      nil)))
+
+(defun haskell-cabal-find-dir ()
+  "Use the .cabal file-finding function to find the Cabal dir."
+  (let ((file (haskell-cabal-find-file)))
+    (when file
+      (file-name-directory file))))
+
+(defvar haskell-cabal-commands
+  '("install"
+    "update"
+    "list"
+    "info"
+    "upgrade"
+    "fetch"
+    "unpack"
+    "check"
+    "sdist"
+    "upload"
+    "report"
+    "init"
+    "configure"
+    "build"
+    "copy"
+    "haddock"
+    "clean"
+    "hscolour"
+    "register"
+    "test"
+    "help"))
 
 (provide 'haskell-cabal)
 

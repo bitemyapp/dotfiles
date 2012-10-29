@@ -85,6 +85,10 @@ The command can include arguments."
   "\t-- Defined in \\(.+\\)$"
   "Regular expression for matching module names in :info.")
 
+(defvar inferior-haskell-multiline-prompt-re
+  "^\\*?[[:upper:]][\\._[:alnum:]]*\\(?: \\*?[[:upper:]][\\._[:alnum:]]*\\)*| "
+  "Regular expression for matching multiline prompt (the one inside :{ ... :} blocks).")
+
 (defconst inferior-haskell-error-regexp-alist
   ;; The format of error messages used by Hugs.
   `(("^ERROR \"\\(.+?\\)\"\\(:\\| line \\)\\([0-9]+\\) - " 1 3)
@@ -128,8 +132,10 @@ This will either look for a Cabal file or a \"module\" statement in the file."
   "Major mode for interacting with an inferior Haskell process."
   (set (make-local-variable 'comint-prompt-regexp)
        ;; Whay the backslash in [\\._[:alnum:]]?
-       "^\\*?[[:upper:]][\\._[:alnum:]]*\\(?: \\*?[[:upper:]][\\._[:alnum:]]*\\)*> ")
+       "^\\*?[[:upper:]][\\._[:alnum:]]*\\(?: \\*?[[:upper:]][\\._[:alnum:]]*\\)*> \\|^> $")
   (set (make-local-variable 'comint-input-autoexpand) nil)
+  (add-hook 'comint-preoutput-filter-functions
+            'inferior-haskell-send-decl-post-filter)
   (add-hook 'comint-output-filter-functions 'inferior-haskell-spot-prompt nil t)
 
   ;; Setup directory tracking.
@@ -222,6 +228,21 @@ setting up the inferior-haskell buffer."
   :type 'boolean
   :group 'haskell)
 
+(defvar inferior-haskell-send-decl-post-filter-on nil)
+(make-variable-buffer-local 'inferior-haskell-send-decl-post-filter-on)
+
+(defun inferior-haskell-send-decl-post-filter (string)
+  (when (and inferior-haskell-send-decl-post-filter-on
+             #1=(string-match inferior-haskell-multiline-prompt-re string))
+    ;; deleting sequence of `%s|' multiline promts
+    (while #1#
+      (setq string (substring string (match-end 0))))    
+    ;; deleting regular prompts
+    (setq string (replace-regexp-in-string comint-prompt-regexp "" string)
+          ;; turning off this post-filter
+          inferior-haskell-send-decl-post-filter-on nil))  
+  string)
+
 (defvar inferior-haskell-seen-prompt nil)
 (make-variable-buffer-local 'inferior-haskell-seen-prompt)
 
@@ -262,7 +283,11 @@ The process PROC should be associated to a comint buffer."
 
 (defun inferior-haskell-find-project-root (buf)
   (with-current-buffer buf
-    (let ((cabal (inferior-haskell-cabal-of-buf buf)))
+    (let* (
+           (cabal-file (inferior-haskell-cabal-of-buf buf))
+           (cabal (when cabal-file
+                    (find-file-noselect cabal-file)))
+           )
       (or (when cabal
             (with-current-buffer cabal
               (let ((hsd (haskell-cabal-get-setting "hs-source-dirs")))
@@ -282,7 +307,7 @@ The process PROC should be associated to a comint buffer."
             (goto-char (point-min))
             (let ((case-fold-search nil))
               (when (re-search-forward
-                     "^module[ \t]+\\([^- \t\n]+\\.[^- \t\n]+\\)[ \t]+" nil t)
+                     "^module[ \t]+\\(\\(?:\\sw\\|[.]\\)+\\)" nil t)
                 (let* ((dir default-directory)
                        (module (match-string 1))
                        (pos 0))
@@ -397,6 +422,86 @@ If prefix arg \\[universal-argument] is given, just reload the previous file."
   (interactive)
   (inferior-haskell-load-file 'reload))
 
+(defun inferior-haskell-wrap-decl (code)
+  "Wrap declaration code into :{ ... :}."
+  (setq code (concat code "\n"))
+  (concat ":{\n"
+          (if (string-match (concat "^\\s-*"
+                                    haskell-ds-start-keywords-re)
+                            code)
+              ;; non-fun-decl
+              code
+            ;; fun-decl, wrapping into let { .. (; ..)* }
+            (concat "let {\n"
+                    (mapconcat
+                     ;; adding 2 whitespaces to each line
+                     (lambda (decl)
+                       (mapconcat (lambda (s)
+                                    (concat "  " s))
+                                  (split-string decl "\n")
+                                  "\n"))
+                     ;; splitting function case-decls
+                     (let (decls)
+                       (while (string-match "^\\(\\w+\\).*\n*\\(?:\\s-+.*\n+\\)*" code)
+                         (push (match-string 0 code) decls)
+                         (setq code (substring code (match-end 0))))
+                       (reverse decls))
+                     "\n;\n")
+                    "\n}"))
+          "\n:}\n"))
+
+(defun inferior-haskell-flash-decl (start end &optional timeout)
+  "Temporarily highlight declaration."
+  (let ((overlay (make-overlay start end)))
+    (overlay-put overlay 'face 'secondary-selection)
+    (run-with-timer (or timeout 0.2) nil 'delete-overlay overlay)))
+
+;;;###autoload
+(defun inferior-haskell-send-decl ()
+  "Send current declaration to inferior-haskell process."
+  (interactive)
+  (require 'haskell-decl-scan)
+  (save-excursion
+    (goto-char (1+ (point)))
+    (let* ((proc (inferior-haskell-process))
+           (start (or (haskell-ds-backward-decl) (point-min)))
+           (end (or (haskell-ds-forward-decl) (point-max)))
+           (raw-decl (buffer-substring start end)))
+      ;; enter multiline-prompt-cutting-mode
+      (with-current-buffer (process-buffer proc)
+        (setq inferior-haskell-send-decl-post-filter-on t))
+      ;; flash decl
+      (inferior-haskell-flash-decl start end)
+      ;; send decl
+      (comint-send-string proc (inferior-haskell-wrap-decl raw-decl))
+      ;; send preview
+      (inferior-haskell-send-command
+       proc
+       (let* ((str (remove ?\n raw-decl))
+              (len (min 15 (length str))))
+         (concat "-- evaluating {: "
+                 (substring str 0 len)
+                 (if (= 15 len) ".." "")
+                 " :}"))))))
+
+(defun inferior-haskell-get-result (inf-expr)
+  "Submit the expression `inf-expr' to ghci and read the result."
+  (let ((proc (inferior-haskell-process)))
+    (with-current-buffer (process-buffer proc)
+      (let ((parsing-end                ; Remember previous spot.
+             (marker-position (process-mark proc))))
+        (inferior-haskell-send-command proc inf-expr)
+        ;; Find new point.
+        (inferior-haskell-wait-for-prompt proc)
+        (goto-char (point-max))
+        ;; Back up to the previous end-of-line.
+        (end-of-line 0)
+        ;; Extract the output
+        (buffer-substring-no-properties
+         (save-excursion (goto-char parsing-end)
+                         (line-beginning-position 2))
+         (point))))))
+
 ;;;###autoload
 (defun inferior-haskell-type (expr &optional insert-value)
   "Query the haskell process for the type of the given expression.
@@ -411,44 +516,43 @@ The returned info is cached for reuse by `haskell-doc-mode'."
                         nil nil sym)
            current-prefix-arg)))
   (if (string-match "\\`\\s_+\\'" expr) (setq expr (concat "(" expr ")")))
-  (let* ((proc (inferior-haskell-process))
-         (type
-          (with-current-buffer (process-buffer proc)
-            (let ((parsing-end          ; Remember previous spot.
-                   (marker-position (process-mark proc))))
-              (inferior-haskell-send-command proc (concat ":type " expr))
-              ;; Find new point.
-              (inferior-haskell-wait-for-prompt proc)
-              (goto-char (point-max))
-              ;; Back up to the previous end-of-line.
-              (end-of-line 0)
-              ;; Extract the type output
-              (buffer-substring-no-properties
-               (save-excursion (goto-char parsing-end)
-                               (line-beginning-position 2))
-               (point))))))
-    (if (not (string-match (concat "^\\(" (regexp-quote expr) "[ \t\n]+::[ \t\n]*\\(.\\|\n\\)*\\)")
+  (let ((type (inferior-haskell-get-result (concat ":type " expr))))
+    (if (not (string-match (concat "^\\(" (regexp-quote expr)
+                                   "[ \t\n]+::[ \t\n]*\\(.\\|\n\\)*\\)")
                            type))
         (error "No type info: %s" type)
       (progn
         (setf type (match-string 1 type))
-      ;; Cache for reuse by haskell-doc.
-      (when (and (boundp 'haskell-doc-mode) haskell-doc-mode
-                 (boundp 'haskell-doc-user-defined-ids)
-                 ;; Haskell-doc only works for idents, not arbitrary expr.
-                 (string-match "\\`(?\\(\\s_+\\|\\(\\sw\\|\\s'\\)+\\)?[ \t]*::[ \t]*"
-                               type))
-        (let ((sym (match-string 1 type)))
-          (setq haskell-doc-user-defined-ids
-                (cons (cons sym (substring type (match-end 0)))
-                      (delq (assoc sym haskell-doc-user-defined-ids)
-                            haskell-doc-user-defined-ids)))))
+        ;; Cache for reuse by haskell-doc.
+        (when (and (boundp 'haskell-doc-mode) haskell-doc-mode
+                   (boundp 'haskell-doc-user-defined-ids)
+                   ;; Haskell-doc only works for idents, not arbitrary expr.
+                   (string-match "\\`(?\\(\\s_+\\|\\(\\sw\\|\\s'\\)+\\)?[ \t]*::[ \t]*"
+                                 type))
+          (let ((sym (match-string 1 type)))
+            (setq haskell-doc-user-defined-ids
+                  (cons (cons sym (substring type (match-end 0)))
+                        (delq (assoc sym haskell-doc-user-defined-ids)
+                              haskell-doc-user-defined-ids)))))
 
-      (if (interactive-p) (message "%s" type))
-      (when insert-value
-        (beginning-of-line)
-        (insert type "\n"))
+        (if (interactive-p) (message "%s" type))
+        (when insert-value
+          (beginning-of-line)
+          (insert type "\n"))
         type))))
+
+;;;###autoload
+(defun inferior-haskell-kind (type)
+  "Query the haskell process for the kind of the given expression."
+  (interactive
+   (let ((type (haskell-ident-at-point)))
+     (list (read-string (if (> (length type) 0)
+                            (format "Show kind of (default %s): " type)
+                          "Show kind of: ")
+                        nil nil type))))
+  (let ((result (inferior-haskell-get-result (concat ":kind " type))))
+    (if (interactive-p) (message "%s" result))
+    result))
 
 ;;;###autoload
 (defun inferior-haskell-info (sym)
@@ -459,25 +563,9 @@ The returned info is cached for reuse by `haskell-doc-mode'."
                             (format "Show info of (default %s): " sym)
                           "Show info of: ")
                         nil nil sym))))
-  (let ((proc (inferior-haskell-process)))
-    (with-current-buffer (process-buffer proc)
-      (let ((parsing-end                ; Remember previous spot.
-             (marker-position (process-mark proc))))
-        (inferior-haskell-send-command proc (concat ":info " sym))
-        ;; Find new point.
-        (inferior-haskell-wait-for-prompt proc)
-        (goto-char (point-max))
-        ;; Move to previous end-of-line
-        (end-of-line 0)
-        (let ((result
-               (buffer-substring-no-properties
-                (save-excursion (goto-char parsing-end)
-                                (line-beginning-position 2))
-                (point))))
-          ;; Move back to end of process buffer
-          (goto-char (point-max))
-          (if (interactive-p) (message "%s" result))
-          result)))))
+  (let ((result (inferior-haskell-get-result (concat ":info " sym))))
+    (if (interactive-p) (message "%s" result))
+    result))
 
 ;;;###autoload
 (defun inferior-haskell-find-definition (sym)
@@ -560,7 +648,12 @@ By default this is set to `ghc --print-libdir`/package.conf."
     (unless (string-match inferior-haskell-module-re info)
       (error
        "No documentation information available.  Did you forget to C-c C-l?"))
-    (match-string-no-properties 1 info)))
+    (let ((module-name (match-string-no-properties 1 info)))
+      ;; Handles GHC 7.4.1+ which quotes module names like
+      ;; `System.Random', whereas previous GHC did not quote at all.
+      (if (string= "`" (substring module-name 0 1))
+          (substring module-name 1 (- (length module-name) 1))
+        module-name))))
 
 (defun inferior-haskell-query-ghc-pkg (&rest args)
   "Send ARGS to `haskell-package-manager-name'.
