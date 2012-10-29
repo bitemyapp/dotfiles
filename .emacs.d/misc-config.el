@@ -39,6 +39,8 @@
 
 (global-set-key (kbd "C-c d e f") 'describe-face)
 
+(global-set-key (kbd "C-c f r") 'fill-region)
+
 (setq frame-title-format "%b")
 (setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
