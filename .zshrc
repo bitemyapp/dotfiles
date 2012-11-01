@@ -79,4 +79,4 @@ autoload -U colors && colors
 PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m?!%{$reset_color%} %{$fg[red]%}%~ %{$reset_color%}$ "
 
 PATH=$HOME/Library/Haskell/bin:/usr/local/bin:~/bin/arcanist/bin:${PATH}
-export EDITOR='emacs'
+export $EDITOR="emacs -q -nw"
