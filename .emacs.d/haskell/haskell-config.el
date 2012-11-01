@@ -6,7 +6,7 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 (require 'scion) ;; IDE style autocomplete server
-(setq scion-program "~/.cabal/bin/scion-server")
+(setq scion-program "/Users/callen/Library/Haskell/bin/scion-server")
 (defun my-haskell-hook ()
   ;; Whenever we open a file in Haskell mode, also activate Scion
   (scion-mode 1)
