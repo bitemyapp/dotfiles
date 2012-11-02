@@ -36,7 +36,7 @@ myStartupHook = do
        spawnOnce "volti"
        spawnOnce "nm-applet"
        spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent false --height 24"
-
+       spawnOnce "gnome-settings-daemon"
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/callen/.xmobarrc"
