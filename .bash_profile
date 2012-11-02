@@ -40,10 +40,8 @@ function replace() {
 
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 source /usr/local/bin/virtualenvwrapper.sh
-source ~/.ec2.sh
 export LANG=en_US.UTF-8
 # Initialization for FDK command line tools.Mon Oct  8 10:18:27 2012
 FDK_EXE="/Users/callen/bin/FDK/Tools/osx"
-PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:${PATH}:"/Users/callen/bin/FDK/Tools/osx"
-export PATH
+export PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$HOME/bin:${PATH}:"/Users/callen/bin/FDK/Tools/osx"
 export FDK_EXE
