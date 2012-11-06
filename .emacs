@@ -67,11 +67,18 @@
 ;; Markdown
 (load-library "markdown-config.el")
 
+;; OCaml
+(load-library "ocaml-config.el")
+
 ;; Python
 (load-library "python-config.el")
 
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
+
+;; rainbow-delimiters
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
 
 ;; rect mark
 (require 'rect-mark)
