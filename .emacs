@@ -122,6 +122,12 @@
 ;; Slime
 (load-library "slime-config.el")
 
+;; Stripe buffer mode
+(require 'stripe-buffer)
+(stripe-buffer-mode 1)
+(add-hook 'org-mode-hook 'org-table-stripes-enable)
+(add-hook 'dired-mode-hook 'stripe-listify-buffer)
+
 ;; Tabbar
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))

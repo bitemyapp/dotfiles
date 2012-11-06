@@ -287,3 +287,5 @@ If point was already at that position, move point to beginning of line."
 (setq org-support-shift-select t)
 
 (show-paren-mode 1)
+
+(global-set-key (kbd "C-c g") 'rope-goto-definition)
