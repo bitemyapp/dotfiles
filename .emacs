@@ -67,11 +67,18 @@
 ;; Markdown
 (load-library "markdown-config.el")
 
+;; OCaml
+(load-library "ocaml-config.el")
+
 ;; Python
 (load-library "python-config.el")
 
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
+
+;; rainbow-delimiters
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
 
 ;; rect mark
 (require 'rect-mark)
@@ -114,6 +121,12 @@
 
 ;; Slime
 (load-library "slime-config.el")
+
+;; Stripe buffer mode
+(require 'stripe-buffer)
+(stripe-buffer-mode 1)
+(add-hook 'org-mode-hook 'org-table-stripes-enable)
+(add-hook 'dired-mode-hook 'stripe-listify-buffer)
 
 ;; Tabbar
 (if (display-graphic-p)
