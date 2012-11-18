@@ -8,7 +8,8 @@ unset file
 # \e[1;32m\]
 # \[$(tput setaf 1)\]
 # export PS1='\[$(tput setaf 4)\]\[[\[$(tput setaf 5)\]\u@\[$(tput setaf 5)\]\h \W\[$(tput setaf 4)\]]\[$(tput setaf 1)\]\$\[\e[0m\] '
-export PS1='\[\u@\h \W\]\$ '
+# export PS1='\[\u@\h \W\] \$ '
+export PS1="\w>\[\e[m\] "
 
 alias ls='ls -G'
 alias grep='grep --colour=auto'

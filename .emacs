@@ -67,6 +67,9 @@
 ;; Markdown
 (load-library "markdown-config.el")
 
+;; Mustache
+(require 'mustache-mode)
+
 ;; OCaml
 (load-library "ocaml-config.el")
 
