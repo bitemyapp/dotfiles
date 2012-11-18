@@ -27,14 +27,6 @@ alias qke='emacs -q -nw'
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
 
-scrib(){ sed -n ' s,http://html.scribd.com,\ &,g; s,http://html[1-9].scribdassets.com,\ &,g; s,assets,,; s,pages,images,; s,jsonp,jpg, ; s,html[1-9].scribd.com,html.scribd.com,; s,pageParams.contentUrl = \",,; s,\";,,; s,<img class=\".orig=\",,; s,\"/>,,; /^$/d;
-
-/html.scribd.com.images.*jpg/p; ' \ |sed '/http/!d'; }
-
-scrib_(){ scrib \ |while read a;do feh $a ; done; }
-
-# export BYOBU_PREFIX=`brew --prefix`
-
 function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"
 }
