@@ -26,6 +26,7 @@ alias pts='gpom && gpts && fab push_staging_scar'
 alias qke='emacs -q -nw'
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
+alias love='/Applications/love.app/Contents/MacOS/love'
 
 function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"
