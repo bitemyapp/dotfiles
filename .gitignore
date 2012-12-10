@@ -294,3 +294,9 @@ leksah*
 .julia_history
 .bzr.log
 keys.tgz
+quicklisp/
+stencylworks/
+StencylWorks.prefs
+pgadmin.log
+lib/
+.jrebel/

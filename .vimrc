@@ -12,8 +12,14 @@ set gdefault " Add the g flag to search/replace by default
 set encoding=utf-8 nobomb
 
 " Make tabs four spaces
-set expandtab
-set tabstop=4
+" set tabstop=4
+" set shiftwidth=4
+set softtabstop=4
+" set expandtab
+" set autoindent
+" set smartindent
+" set smarttab
+" set number
 
 " Don’t add empty newlines at the end of files
 set binary

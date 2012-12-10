@@ -136,12 +136,6 @@
 ;; Slime
 (load-library "slime-config.el")
 
-;; Stripe buffer mode
-(require 'stripe-buffer)
-(stripe-buffer-mode 1)
-(add-hook 'org-mode-hook 'org-table-stripes-enable)
-(add-hook 'dired-mode-hook 'stripe-listify-buffer)
-
 ;; Tabbar
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
@@ -165,8 +159,11 @@
 ;; (require 'tomorrow-night-theme)
 ;; (require 'tomorrow-theme)
 ;; (require 'tomorrow-night-bright-theme)
-(require 'color-theme-bitemyapp)
-(color-theme-bitemyapp)
+;; (require 'color-theme-bitemyapp)
+;; (color-theme-bitemyapp)
+;; (require 'color-theme-solarized)
+;; (load-library "color-theme-solarized.el")
+;; (color-theme-solarized-dark)
 
 (if (string= system-type "darwin")
 (custom-set-faces
