@@ -304,3 +304,8 @@ nothing happens."
     (progn  (make-local-variable 'after-save-hook)
         (add-hook 'after-save-hook 'compile-on-save-start nil t))
       (kill-local-variable 'after-save-hook)))
+
+(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+(require 'gimme-cat)
+(global-set-key (kbd "C-c c a t") 'gimme-cat)
+(global-set-key (kbd "C-c k c a t") 'close-gimmecat-buffers)
