@@ -1,21 +1,40 @@
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
-	[ -r "$file" ] && source "$file"
-done
-unset file
+function exitstatus {
 
-# Cyan: \[$(tput bold)\]\[$(tput setaf 6)\]
-# reset \[\e[0m\]
-# \e[1;32m\]
-# \[$(tput setaf 1)\]
-# export PS1='\[$(tput setaf 4)\]\[[\[$(tput setaf 5)\]\u@\[$(tput setaf 5)\]\h \W\[$(tput setaf 4)\]]\[$(tput setaf 1)\]\$\[\e[0m\] '
-# export PS1='\[\u@\h \W\] \$ '
-export PS1="\w>\[\e[m\] "
+    EXITSTATUS="$?"
+    BOLD="\[\033[1m\]"
+    RED="\[\033[0;31m\]"
+    GREEN="\[\e[0;32m\]"
+    BLUE="\[\e[34m\]"
+    OFF="\[\033[m\]"
 
-alias ls='ls -G'
+    HOST="\h"
+    USER="\u"
+    DIR="\w"
+    NEWLINE="\n"
+    DATE="\d"
+    TIME="\t"
+
+    PROMPT="\[\033]0;${USER}@${HOST}: \w\007\n${GREEN}${TIME} ${DATE} [${USER}@${HOST}:[${BLUE}\w${GREEN}]"
+
+    if [ "${EXITSTATUS}" -eq 0 ]
+    then
+        PS1="${PROMPT} [${GREEN}${EXITSTATUS}${GREEN}]${OFF}\n$ "
+    else
+        PS1="${PROMPT} [${BOLD}${EXITSTATUS}${GREEN}]${OFF}\n$ "
+    fi
+
+    PS2="${BOLD}>${OFF} "
+}
+
+PROMPT_COMMAND=exitstatus
+
+export EDITOR="emacs -q -nw"
+
 alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
-export $EDITOR="emacs -q -nw"
+alias qke='emacs -q -nw'
+
 alias gpom='git pull origin master && git push origin master'
 alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
 alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
@@ -23,7 +42,6 @@ alias gptp='git checkout production && git merge master && git push origin produ
 alias pte='gpom && gpte && fab push_experimental_scar'
 alias pts='gpom && gpts && fab push_staging_scar'
 
-alias qke='emacs -q -nw'
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
 alias love='/Applications/love.app/Contents/MacOS/love'
