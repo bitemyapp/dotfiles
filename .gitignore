@@ -300,3 +300,7 @@ StencylWorks.prefs
 pgadmin.log
 lib/
 .jrebel/
+.netrc
+.pgpass
+.recentf
+.heroku/
