@@ -309,3 +309,6 @@ nothing happens."
 (require 'gimme-cat)
 (global-set-key (kbd "C-c c a t") 'gimme-cat)
 (global-set-key (kbd "C-c k c a t") 'close-gimmecat-buffers)
+
+(require 'find-file-in-project)
+(global-set-key (kbd "C-x f") 'find-file-in-project)

@@ -1,35 +1,8 @@
-function exitstatus {
-
-    EXITSTATUS="$?"
-    BOLD="\[\033[1m\]"
-    RED="\[\033[0;31m\]"
-    GREEN="\[\e[0;32m\]"
-    BLUE="\[\e[34m\]"
-    OFF="\[\033[m\]"
-
-    HOST="\h"
-    USER="\u"
-    DIR="\w"
-    NEWLINE="\n"
-    DATE="\d"
-    TIME="\t"
-
-    PROMPT="\[\033]0;${USER}@${HOST}: \w\007\n${GREEN}${TIME} ${DATE} [${USER}@${HOST}:[${BLUE}\w${GREEN}]"
-
-    if [ "${EXITSTATUS}" -eq 0 ]
-    then
-        PS1="${PROMPT} [${GREEN}${EXITSTATUS}${GREEN}]${OFF}\n$ "
-    else
-        PS1="${PROMPT} [${BOLD}${EXITSTATUS}${GREEN}]${OFF}\n$ "
-    fi
-
-    PS2="${BOLD}>${OFF} "
-}
-
-PROMPT_COMMAND=exitstatus
+PS1='[\u@\h \W]\$ '
 
 export EDITOR="emacs -q -nw"
 
+alias ls='ls -G'
 alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
@@ -41,6 +14,7 @@ alias gpts='git checkout staging && git merge master && git push origin staging 
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
 alias pte='gpom && gpte && fab push_experimental_scar'
 alias pts='gpom && gpts && fab push_staging_scar'
+alias ptp='gpom && gptp && fab push_prod_scar'
 
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'

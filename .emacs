@@ -22,15 +22,19 @@
 ;; auto-complete
 (load-library "ac-config.el")
 
-;; Marmalade
-;; (require 'package)
-;; (add-to-list 'package-archives
-;;     '("marmalade" .
-;;       "http://marmalade-repo.org/packages/"))
-;; (package-initialize)
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;; (package-install 'find-file-in-project)
+;; (global-set-key (kbd "C-x f") 'find-file-in-project)
 
 ;; Clojure
-(require 'clojure-mode)
+;; (require 'clojure-mode)
+(add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
+(setq nrepl-popup-stacktraces nil)
 
 ;; coffee-script
 (require 'coffee-mode)
