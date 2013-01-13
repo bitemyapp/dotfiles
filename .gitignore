@@ -304,3 +304,4 @@ lib/
 .pgpass
 .recentf
 .heroku/
+.emacs.d/el-get
