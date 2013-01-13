@@ -1,0 +1,100 @@
+
+
+.. ^- put some space after README.rst
+
+Configuration
+=============
+
+.. el:package:: jedi
+
+.. el:function:: jedi:setup
+.. el:function:: jedi:ac-setup
+.. el:variable:: jedi:complete-on-dot
+.. el:variable:: jedi:server-command
+.. el:variable:: jedi:server-args
+.. el:variable:: jedi:get-in-function-call-timeout
+.. el:variable:: jedi:get-in-function-call-delay
+.. el:variable:: jedi:tooltip-method
+.. el:variable:: jedi:doc-mode
+.. el:variable:: jedi:doc-display-buffer
+
+
+Keybinds
+--------
+
+.. el:variable:: jedi:setup-keys
+.. el:variable:: jedi:key-complete
+.. el:variable:: jedi:key-goto-definition
+.. el:variable:: jedi:key-show-doc
+.. el:variable:: jedi:key-related-names
+
+
+Command
+=======
+
+.. el:function:: jedi:stop-server
+.. el:function:: jedi:start-dedicated-server
+.. el:function:: jedi:complete
+.. el:function:: jedi:get-in-function-call
+.. el:function:: jedi:goto-definition
+.. el:function:: jedi:show-doc
+
+.. el:package:: helm
+.. el:function:: helm-jedi-related-names
+
+.. el:package:: anything
+.. el:function:: anything-jedi-related-names
+
+.. el:package:: jedi
+.. el:function:: jedi:toggle-debug-server
+
+Changelog
+=========
+
+v0.1.2 (WIP)
+------------
+
+- Do not expand common part when completing on inserting dot using
+  :el:symbol:`jedi:dot-complete`.
+- Strip off newlines from candidate summary.  This prevents
+  popup to be disrupted when showing candidates summary
+  containing newlines (e.g., ``json.__all__``).
+
+v0.1.1
+------
+
+- Add experimental "full-name" support [#fullname]_.
+- PR-11_ fixes Makefile for BSD make (thanks, `@goro1080`_!).
+- Fix issue-9_: line number sent to the server was shifted when the cursor
+  is at the beginning of line.
+- Fix issue-10_: get_in_function_call was called in non-python-mode buffer.
+- Fix issue-7_: server process was killed unexpectedly.
+- Add :el:symbol:`jedi:setup-keys`.  You don't need to manually add
+  Jedi commands to :el:symbol:`python-mode-map` now.
+
+.. _@goro1080: https://github.com/goro1080
+
+.. _PR-11: https://github.com/tkf/emacs-jedi/pull/11
+.. _issue-10: https://github.com/tkf/emacs-jedi/issues/10
+.. _issue-9: https://github.com/tkf/emacs-jedi/issues/9
+.. _issue-7: https://github.com/tkf/emacs-jedi/issues/7
+
+.. [#fullname] `jedi:get-full-name-*` functions require developmental
+   version of Jedi_.
+   See also: `Request: Definition.fullname · Issue #61 ·
+   davidhalter/jedi <https://github.com/davidhalter/jedi/issues/61>`_
+
+v0.1
+----
+
+- PR-8_ adds ELDoc like argument highlighting (thanks, `@syohex`_!).
+- PR-2_ adds meta-data in header comment for ELPA (thanks, `@syohex`_!).
+- PR-1_ fixes Makefile for newer pip version (thanks, `@L42y`_!).
+- First version.
+
+.. _PR-8: https://github.com/tkf/emacs-jedi/pull/8
+.. _PR-2: https://github.com/tkf/emacs-jedi/pull/2
+.. _PR-1: https://github.com/tkf/emacs-jedi/pull/1
+
+.. _@syohex: https://github.com/syohex
+.. _@L42y: https://github.com/L42y
