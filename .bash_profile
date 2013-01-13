@@ -9,6 +9,8 @@ alias mg='mg -n'
 alias qke='emacs -q -nw'
 
 alias gpom='git pull origin master && git push origin master'
+alias gphm='git push heroku master'
+alias ph='gpom && gphm'
 alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
 alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'

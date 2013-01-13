@@ -160,6 +160,7 @@
 ;; Color theme
 (require 'color-theme)
 (color-theme-initialize)
+(require 'soothe-theme)
 ;; (require 'tomorrow-night-theme)
 ;; (require 'tomorrow-theme)
 ;; (require 'tomorrow-night-bright-theme)
