@@ -305,3 +305,4 @@ lib/
 .recentf
 .heroku/
 .emacs.d/el-get
+.recently-used

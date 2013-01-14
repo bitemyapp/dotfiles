@@ -1,0 +1,6 @@
+(require 'auto-complete)
+(setq jedi:setup-keys t)
+(require 'jedi)
+(global-auto-complete-mode +1)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
