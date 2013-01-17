@@ -312,3 +312,10 @@ nothing happens."
 
 (require 'find-file-in-project)
 (global-set-key (kbd "C-x f") 'find-file-in-project)
+
+(fset 'css-after
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([19 59 13 right backspace return tab] 0 "%d")) arg)))
+(global-set-key (kbd "C-c C-a") 'css-after)
+(fset 'css-pre
+   [?\C-s ?\{ ?\C-m return tab])
+(global-set-key (kbd "C-c C-b") 'css-pre)

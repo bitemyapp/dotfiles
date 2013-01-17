@@ -126,6 +126,11 @@
 ;; if you're not using the standard scala mode.
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
+;; SCSS
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save nil)
+
 ;; Slime
 (load-library "slime-config.el")
 
