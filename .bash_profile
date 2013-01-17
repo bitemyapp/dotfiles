@@ -8,6 +8,7 @@ alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
 
+alias gpo='git pull origin && git push origin'
 alias gpom='git pull origin master && git push origin master'
 alias gphm='git push heroku master'
 alias ph='gpom && gphm'
@@ -17,8 +18,7 @@ alias gptp='git checkout production && git merge master && git push origin produ
 alias pte='gpom && gpte && fab push_experimental_scar'
 alias pts='gpom && gpts && fab push_staging_scar'
 alias ptp='gpom && gptp && fab push_prod_scar'
-alias gpcbo="git push origin `git branch | grep "*" | cut -d' ' -f2`"
-alias gpo="git pull origin `git branch | grep "*" | cut -d' ' -f2`"
+# git branch --set-upstream new_frontpage origin/new_frontpage
 
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
