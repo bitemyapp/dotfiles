@@ -306,3 +306,7 @@ lib/
 .heroku/
 .emacs.d/el-get
 .recently-used
+.httpie/
+.oh-my-zsh/
+.zsh-update
+.zshrc.pre-oh-my-zsh

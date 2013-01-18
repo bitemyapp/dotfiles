@@ -2,10 +2,6 @@ function parse_git_branch {
         git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
 }
 
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
-}
-
 function proml {
 
   local        BLUE="\[\033[0;34m\]"
@@ -26,7 +22,7 @@ function proml {
 
   local     DEFAULT="\[\033[0m\]"
 
-  PS1="\u:\W$LIGHT_GREEN\$(parse_git_branch)$DEFAULT$(parse_git_dirty)\$ "
+  PS1="\W$LIGHT_GREEN\$(parse_git_branch)$DEFAULT\$ "
 
 }
 

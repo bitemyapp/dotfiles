@@ -1,13 +1,13 @@
 (require 'python)
 
-;; (require 'pymacs)
-;; (pymacs-load "ropemacs" "rope-")
-;; (autoload 'pymacs-apply "pymacs")
-;; (autoload 'pymacs-call "pymacs")
-;; (autoload 'pymacs-eval "pymacs" nil t)
-;; (autoload 'pymacs-exec "pymacs" nil t)
-;; (autoload 'pymacs-load "pymacs" nil t)
-;; (setq ropemacs-enable-autoimport 't)
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(setq ropemacs-enable-autoimport 't)
 
 (global-set-key (kbd "C-M-n") 'next-error)
 
@@ -19,9 +19,9 @@
 
 (global-set-key (kbd "C-c p d b") 'ipdb)
 
-(require 'ctable)
-(require 'deferred)
-(require 'epc)
-(setq jedi:setup-keys t)
-(autoload 'jedi:setup "jedi" nil t)
-(add-hook 'python-mode-hook 'jedi:setup)
+;; (require 'ctable)
+;; (require 'deferred)
+;; (require 'epc)
+;; (setq jedi:setup-keys t)
+;; (autoload 'jedi:setup "jedi" nil t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
