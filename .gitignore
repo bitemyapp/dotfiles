@@ -313,3 +313,4 @@ lib/
 *.txt
 .codeintel/
 .secrets
+.nvm/
