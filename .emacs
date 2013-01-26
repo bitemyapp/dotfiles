@@ -66,6 +66,10 @@
 
 ;; (load-library "multi-web-mode-config.el")
 
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+
 ;;; Magit
 (require 'magit)
 (global-set-key (kbd "C-c m g") 'magit-status)
