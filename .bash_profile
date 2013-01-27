@@ -71,4 +71,4 @@ export JPDA_TRANSPORT=dt_socket
 export JPDA_ADDRESS=9000
 export TOMCAT_HOME=/usr/local/Cellar/tomcat/7.0.32/libexec
 source ~/.secrets
-[[ -s /Users/callen/.nvm/nvm.sh ]] && . /Users/callen/.nvm/nvm.sh # This loads NVM
+[[ -s /Users/callen/.nvm/nvm.sh ]] && . /Users/callen/.nvm/nvm.sh

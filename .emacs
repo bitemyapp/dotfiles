@@ -48,6 +48,9 @@
 (require 'dired+)
 (require 'dired-x)
 
+;; Elixir
+(require 'elixir-mode)
+
 ;; Erlang
 (load-library "erlang-config.el")
 

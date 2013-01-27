@@ -314,3 +314,7 @@ lib/
 .codeintel/
 .secrets
 .nvm/
+.yeoman/
+tmp/
+.Rhistory
+.rstudio*
