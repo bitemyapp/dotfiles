@@ -23,7 +23,7 @@
 ;; (global-set-key (kbd "C-x f") 'find-file-in-project)
 
 ;; Clojure
-;; (require 'clojure-mode)
+(require 'clojure-mode)
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
 (setq nrepl-popup-stacktraces nil)
 
