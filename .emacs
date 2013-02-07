@@ -86,6 +86,9 @@
 ;; OCaml
 (load-library "ocaml-config.el")
 
+;; PHP
+(require 'php-mode)
+
 ;; Python
 (load-library "python-config.el")
 
