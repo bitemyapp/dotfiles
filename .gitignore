@@ -318,3 +318,4 @@ lib/
 tmp/
 .Rhistory
 .rstudio*
+.drip/
