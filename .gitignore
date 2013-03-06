@@ -319,3 +319,7 @@ tmp/
 .Rhistory
 .rstudio*
 .drip/
+.bower/
+.erlang.cookie
+.iclojure*
+Language/
