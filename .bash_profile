@@ -59,24 +59,21 @@ function replace() {
 }
 
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
-source /usr/local/bin/virtualenvwrapper.sh
+
 export LANG=en_US.UTF-8
 # Initialization for FDK command line tools.Mon Oct  8 10:18:27 2012
 FDK_EXE="/Users/callen/bin/FDK/Tools/osx"
+
 PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 export PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$HOME/bin:${PATH}:"/Users/callen/bin/FDK/Tools/osx"
 export PATH=${PATH}:/usr/local/share/npm/bin/
+export PATH=$HOME/bin:${PATH}
 export FDK_EXE
 export TARGET_ENV=local
 export JPDA_TRANSPORT=dt_socket
 export JPDA_ADDRESS=9000
 export TOMCAT_HOME=/usr/local/Cellar/tomcat/7.0.32/libexec
-source ~/.secrets
 
 [[ -s /Users/callen/.nvm/nvm.sh ]] && . /Users/callen/.nvm/nvm.sh
-
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
 
 source ~/.git-flow-completion.bash
