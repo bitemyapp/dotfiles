@@ -32,7 +32,7 @@ proml
 
 export EDITOR="emacs -q -nw"
 
-alias ls='ls -G'
+alias ls='ls -G --color=auto'
 alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
