@@ -71,6 +71,7 @@ export PATH=$HOME/bin:${PATH}
 
 export PATH=${PATH}:$HOME/code/go/bin
 export GOPATH=$HOME/code/gocode
+export PATH=${PATH}:$GOPATH/bin
 
 export FDK_EXE
 export TARGET_ENV=local
