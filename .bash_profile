@@ -68,6 +68,10 @@ PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 export PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$HOME/bin:${PATH}:"/Users/callen/bin/FDK/Tools/osx"
 export PATH=${PATH}:/usr/local/share/npm/bin/
 export PATH=$HOME/bin:${PATH}
+
+export PATH=${PATH}:$HOME/code/go/bin
+export GOPATH=$HOME/code/gocode
+
 export FDK_EXE
 export TARGET_ENV=local
 export JPDA_TRANSPORT=dt_socket

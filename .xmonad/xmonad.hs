@@ -3,7 +3,9 @@ import XMonad.Config.Gnome
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Actions.CycleWS
+import XMonad.Layout.Accordion
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Tabbed
 import qualified Data.Map as M
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -37,6 +39,8 @@ myStartupHook = do
        spawnOnce "nm-applet"
        spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent false --height 24"
        spawnOnce "gnome-settings-daemon"
+
+-- myLayoutHook = noBorders Full ||| noBorders (tabbed shrinkText defaultTheme) ||| Accordion
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/callen/.xmobarrc"

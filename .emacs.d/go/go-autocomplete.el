@@ -4,6 +4,7 @@
 
 ;; Author: Mikhail <tensai@cirno.in> Kuryshev
 ;; Keywords: languages
+;; Package-Requires: ((auto-complete "1.4.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -19,8 +20,6 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; go get -u github.com/nsf/gocode
-;; sudo ln -sf `which gocode` /usr/bin/gocode ;; so emacs can find it.
 
 ;; Ensure that go-autocomplete in your load-path and add to your ~/.emacs 
 ;; following line:
@@ -59,10 +58,10 @@
                                (incf cur (cdr a))))
                            (car a))
                          (mapcar (lambda (string)
-           (let ((score (ac-comphist-score db string prefix)))
-             (incf total score)
-             (cons string score)))
-         collection)))
+				   (let ((score (ac-comphist-score db string prefix)))
+				     (incf total score)
+				     (cons string score)))
+				 collection)))
     (if threshold
         (cons n result)
       result)))
@@ -70,35 +69,35 @@
 (defun ac-go-invoke-autocomplete ()
   (let ((temp-buffer (generate-new-buffer "*gocode*")))
     (prog2
-  (call-process-region (point-min)
-           (point-max)
-           "gocode"
-           nil
-           temp-buffer
-           nil
-           "-f=emacs"
-           "autocomplete"
-           (buffer-file-name)
-           (int-to-string (- (point) 1)))
-  (with-current-buffer temp-buffer (buffer-string))
+	(call-process-region (point-min)
+			     (point-max)
+			     "gocode"
+			     nil
+			     temp-buffer
+			     nil
+			     "-f=emacs"
+			     "autocomplete"
+			     (buffer-file-name)
+			     (int-to-string (- (point) 1)))
+	(with-current-buffer temp-buffer (buffer-string))
       (kill-buffer temp-buffer))))
 
 (defun ac-go-format-autocomplete (buffer-contents)
   (sort
    (split-string buffer-contents "\n")
    '(lambda (a b) (string< (downcase a)
-         (downcase b)))))
+			   (downcase b)))))
 
 (defun ac-go-get-candidates (strings)
   (let ((prop (lambda (entry)
-    (let ((name (nth 0 entry))
-          (summary (nth 1 entry)))
-      (propertize name
-            'summary summary))))
-  (split (lambda (strings)
-     (mapcar (lambda (str)
-         (split-string str ",,"))
-       strings))))
+		(let ((name (nth 0 entry))
+		      (summary (nth 1 entry)))
+		  (propertize name
+			      'summary summary))))
+	(split (lambda (strings)
+		 (mapcar (lambda (str)
+			   (split-string str ",,"))
+			 strings))))
     (mapcar prop (funcall split strings))))
 
 (defun ac-go-candidates ()
@@ -110,8 +109,8 @@
     (requires . 0)))
 
 (add-hook 'go-mode-hook '(lambda()
-         (auto-complete-mode 1)
-         (setq ac-sources '(ac-source-go))))
+			   (auto-complete-mode 1)
+			   (setq ac-sources (append '(ac-source-go) ac-sources))))
 
 (add-to-list 'ac-modes 'go-mode)
 
