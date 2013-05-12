@@ -341,3 +341,5 @@ Language/
 LightTable/
 rethinkdb_data/
 .hosts
+.wireshark/
+
