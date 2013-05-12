@@ -329,3 +329,15 @@ Language/
 .steam/
 .steampath
 .steampid
+.GrooveWalrus/
+.adv/
+.bitcoin/
+.catnip/
+.clojure-control/
+.composer/
+.meteor/
+.meteorite/
+.minecraft/
+LightTable/
+rethinkdb_data/
+.hosts

@@ -1,20 +1,23 @@
-import XMonad
-import XMonad.Config.Gnome
-import XMonad.Prompt
-import XMonad.Prompt.Shell
-import XMonad.Actions.CycleWS
-import XMonad.Layout.Accordion
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Tabbed
 import qualified Data.Map as M
+import System.IO
+import XMonad
+import XMonad.Actions.CycleWS
+import XMonad.Actions.SpawnOn
+import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Accordion
+import XMonad.Layout.Named
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Tabbed
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
-import System.IO
 import XMonad.Util.SpawnOnce
-import XMonad.Layout.Named
+import XMonad.StackSet(greedyView)
 
+  
 myKeys x =
              [ ((modMask x,               xK_Right), nextWS)
              , ((modMask x,               xK_Left),  prevWS)
@@ -39,6 +42,13 @@ myStartupHook = do
        spawnOnce "nm-applet"
        spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent false --height 24"
        spawnOnce "gnome-settings-daemon"
+       spawnOn "1" "chromium-browser"
+       spawnOn "2" "emacs"
+       spawnOn "2" "gmome-terminal"
+       spawnOn "2" "gmome-terminal"
+       spawnOn "3" "gmome-terminal"
+       spawnOn "3" "gmome-terminal"
+       spawnOn "3" "gmome-terminal"
 
 -- myLayoutHook = noBorders Full ||| noBorders (tabbed shrinkText defaultTheme) ||| Accordion
 
@@ -51,7 +61,7 @@ main = do
                    { ppOutput = hPutStrLn xmproc
                    , ppTitle = xmobarColor "green" "" . shorten 50
                    }
-       , startupHook = myStartupHook
+--     , startupHook = myStartupHook
        , modMask = mod4Mask
        , keys = newKeys
        , terminal = "gnome-terminal"

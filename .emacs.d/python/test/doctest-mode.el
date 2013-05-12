@@ -2047,8 +2047,8 @@ treated differently:
   ;; Define the syntax table.
   (set-syntax-table doctest-mode-syntax-table)
   
-  ;; Enable auto-fill mode.
-  (auto-fill-mode 1)
+  ;; Enable auto-fill mode. ;; NO FUCK YOU
+  (auto-fill-mode 0)
   (setq auto-fill-function 'doctest-do-auto-fill)
 
   ;; Enable font-lock mode.

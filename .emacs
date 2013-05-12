@@ -24,7 +24,9 @@
 
 ;; Clojure
 (require 'clojure-mode)
+(require 'nrepl)
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("gantryfile" . clojure-mode))
 (setq nrepl-popup-stacktraces nil)
 
 ;; coffee-script
@@ -150,6 +152,11 @@
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
 
+;; Tern
+;; (autoload 'tern-mode "tern.el" nil t)
+;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+;; (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+
 ;; Web-mode
 (load-library "web-mode-config.el")
 
@@ -167,18 +174,18 @@
 (require 'color-theme)
 (color-theme-initialize)
 ;; (require 'soothe-theme)
-(require 'tomorrow-night-theme)
+;; (require 'tomorrow-night-theme)
 ;; (require 'tomorrow-theme)
 ;; (require 'tomorrow-night-bright-theme)
 ;; (require 'color-theme-bitemyapp)
 ;; (color-theme-bitemyapp)
-;; (require 'color-theme-solarized)
-;; (load-library "color-theme-solarized.el")
-;; (color-theme-solarized-dark)
+(require 'color-theme-solarized)
+(load-library "color-theme-solarized.el")
+(color-theme-solarized 'dark)
 
 (if (string= system-type "darwin")
 (custom-set-faces
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :family "Menlo")))))
 
 (custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "unknown" :family "Monospace"))))))
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace"))))))

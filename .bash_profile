@@ -53,6 +53,8 @@ alias ptp='gpom && gptp && fab push_prod_scar'
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
 alias love='/Applications/love.app/Contents/MacOS/love'
+alias pg='sudo -u postgres psql'
+alias cdb='sudo -u postgres createdb'
 
 function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"
