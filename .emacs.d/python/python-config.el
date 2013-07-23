@@ -1,4 +1,4 @@
-(require 'python)
+(require 'python-mode)
 
 (require 'pymacs)
 (pymacs-load "ropemacs" "rope-")
@@ -19,9 +19,9 @@
 
 (global-set-key (kbd "C-c p d b") 'ipdb)
 
-;; (require 'ctable)
-;; (require 'deferred)
-;; (require 'epc)
-;; (setq jedi:setup-keys t)
-;; (autoload 'jedi:setup "jedi" nil t)
 ;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook 'auto-complete-mode)
+;; (add-hook 'python-mode-hook 'jedi:ac-setup)
+;; (setq jedi:setup-keys t)                      ; optional
+;; (setq jedi:complete-on-dot t)                 ; optional
+;; Bad virtualenv support. Really bad.

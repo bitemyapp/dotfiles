@@ -32,7 +32,6 @@ proml
 
 export EDITOR="emacs -q -nw"
 
-alias ls='ls -G --color=auto'
 alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
@@ -55,6 +54,7 @@ alias redisstop='sudo launchctl stop io.redis.redis-server'
 alias love='/Applications/love.app/Contents/MacOS/love'
 alias pg='sudo -u postgres psql'
 alias cdb='sudo -u postgres createdb'
+alias hgdiff='hg diff | colordiff | less -R'
 
 function replace() {
     find . -type f | xargs sed -i "s/$1/$2/g"
@@ -71,9 +71,12 @@ export PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$HOME/bin:${PATH}:"/Users
 export PATH=${PATH}:/usr/local/share/npm/bin/
 export PATH=$HOME/bin:${PATH}
 
-export PATH=${PATH}:$HOME/code/go/bin
-export GOPATH=$HOME/code/gocode
-export PATH=${PATH}:$GOPATH/bin
+# export PATH=${PATH}:$HOME/code/go/bin
+# export GOPATH=$HOME/code/gocode
+# export PATH=${PATH}:$GOPATH/bin
+export PATH=/usr/local/bin:${PATH}
+# Apparently Carton is a special snowflake
+export PATH="/Users/callen/.carton/bin:$PATH"
 
 export FDK_EXE
 export TARGET_ENV=local
@@ -83,5 +86,4 @@ export TOMCAT_HOME=/usr/local/Cellar/tomcat/7.0.32/libexec
 
 [[ -s /Users/callen/.nvm/nvm.sh ]] && . /Users/callen/.nvm/nvm.sh
 
-source ~/.git-flow-completion.bash
 source `which virtualenvwrapper.sh`

@@ -146,7 +146,7 @@
 (setq scss-compile-at-save nil)
 
 ;; Slime
-(load-library "slime-config.el")
+;; (load-library "slime-config.el")
 
 ;; Tabbar
 (if (display-graphic-p)
@@ -189,3 +189,7 @@
 
 (custom-set-faces
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace"))))))
+
+;; fucking auto-fill
+(defun auto-fill-mode (args)
+  (message "fuck off"))
