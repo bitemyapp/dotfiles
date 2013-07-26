@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="eastwood"
+ZSH_THEME="af-magic"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,4 +45,4 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/local/heroku/bin:/home/callen/bin:/home/callen/Library/Haskell/bin:/home/callen/.cabal/bin:/home/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/home/callen/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/Users/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/:/home/callen/code/go/bin:/home/callen/code/gocode/bin
+export PATH=$PATH:/Users/callen/.carton/bin:/usr/local/bin:/Users/callen/bin:/Users/callen/Library/Haskell/bin:/Users/callen/.cabal/bin:/Users/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/
