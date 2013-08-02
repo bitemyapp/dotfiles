@@ -75,7 +75,7 @@
 (defvar ffip-patterns
   '("*.clj" "*.cljs" "*.html" "*.org" "*.txt" "*.md" "*.el"
     "*.py" "*.rb" "*.js" "*.pl" "*.sh" "*.erl" "*.hs" "*.ml"
-    "*.php" ".c" "*.cxx" "*.cc" "*.h" "*.css")
+    "*.php" ".c" "*.cxx" "*.h" "*.css" ".cc" "*.proto")
   "List of patterns to look for with `find-file-in-project'.")
 
 (defvar ffip-find-options ""
