@@ -342,4 +342,14 @@ LightTable/
 rethinkdb_data/
 .hosts
 .wireshark/
-
+.addressbook
+.activator/
+.aspell*
+.carton/
+.ievms/
+.pinerc
+.pylint*
+.yjp/
+VirtualBox*
+mail/
+.snownews/

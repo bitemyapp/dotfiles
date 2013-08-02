@@ -62,15 +62,20 @@
 
 (require 'cl)
 
-(defvar ffip-project-file ".git"
+;; (defvar ffip-project-file ".git"
+;;   "The file that should be used to define a project root.
+
+;;   May be set using .dir-locals.el. Checks each entry if set to a list.")
+
+(defvar ffip-project-file ".hg"
   "The file that should be used to define a project root.
 
-May be set using .dir-locals.el. Checks each entry if set to a list.")
+  May be set using .dir-locals.el. Checks each entry if set to a list.")
 
 (defvar ffip-patterns
   '("*.clj" "*.cljs" "*.html" "*.org" "*.txt" "*.md" "*.el"
     "*.py" "*.rb" "*.js" "*.pl" "*.sh" "*.erl" "*.hs" "*.ml"
-    "*.php" ".c" "*.cxx" "*.h" "*.css" "*.proto")
+    "*.php" ".c" "*.cxx" "*.h" "*.css" ".cc" "*.proto")
   "List of patterns to look for with `find-file-in-project'.")
 
 (defvar ffip-find-options ""
