@@ -44,5 +44,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+export CLOJURESCRIPT_HOME=~/code/clojurescript
+
 # Customize to your needs...
-export PATH=$PATH:/usr/local/heroku/bin:/home/callen/bin:/home/callen/Library/Haskell/bin:/home/callen/.cabal/bin:/home/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/home/callen/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/Users/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/:/home/callen/code/go/bin:/home/callen/code/gocode/bin
+export PATH=$PATH:/usr/local/heroku/bin:/home/callen/bin:/home/callen/Library/Haskell/bin:/home/callen/.cabal/bin:/home/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/home/callen/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/Users/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/:/home/callen/code/go/bin:/home/callen/code/gocode/bin:$CLOJURESCRIPT_HOME/bin:$CLOJURESCRIPT_HOME/script

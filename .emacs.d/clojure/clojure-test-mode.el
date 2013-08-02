@@ -1,58 +1,44 @@
 ;;; clojure-test-mode.el --- Minor mode for Clojure tests
 
-;; Copyright (C) 2009-2011 Phil Hagelberg
+;; Copyright © 2009-2011 Phil Hagelberg
 
 ;; Author: Phil Hagelberg <technomancy@gmail.com>
 ;; URL: http://emacswiki.org/cgi-bin/wiki/ClojureTestMode
-;; Version: 1.5.6
+;; Version: 2.1.0
 ;; Keywords: languages, lisp, test
-;; Package-Requires: ((slime "20091016") (clojure-mode "1.7"))
+;; Package-Requires: ((clojure-mode "1.7") (nrepl "0.1.7"))
 
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
 
 ;; This file provides support for running Clojure tests (using the
-;; clojure.test framework) via SLIME and seeing feedback in the test
+;; clojure.test framework) via nrepl.el and seeing feedback in the test
 ;; buffer about which tests failed or errored.
-
-;;; Installation:
-
-;; Use package.el. You'll need to add Marmalade to your archives:
-
-;; (require 'package)
-;; (add-to-list 'package-archives
-;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
-
-;; If you use a version of Emacs prior to 24 that doesn't include
-;; package.el, you can get it from http://bit.ly/pkg-el23. If you have
-;; an older package.el installed from tromey.com, you should upgrade
-;; in order to support installation from multiple sources.
-
-;; This library does not currently support clojure.contrib.test-is
-;; from Clojure Contrib's 1.0-compatibility branch. If you need it,
-;; please use version 1.2 of clojure-test-mode:
-
-;; http://github.com/technomancy/clojure-mode/tree/test-1.2
 
 ;;; Usage:
 
-;; Once you have a SLIME session active, you can run the tests in the
+;; Once you have an nrepl session active, you can run the tests in the
 ;; current buffer with C-c C-,. Failing tests and errors will be
 ;; highlighted using overlays. To clear the overlays, use C-c k.
 
-;; You can jump between implementation and test files with C-c t if
-;; your project is laid out in a way that clojure-test-mode
-;; expects. Your project root should have a src/ directory containing
-;; files that correspond to their namespace. It should also have a
-;; test/ directory containing files that correspond to their
-;; namespace, and the test namespaces should mirror the implementation
-;; namespaces with the addition of "test" as the second-to-last
-;; segment of the namespace.
+;; You can jump between implementation and test files with <kbd>C-c C-t</kbd> if
+;; your project is laid out in a way that clojure-test-mode expects. Your
+;; project root should have a `src/` directory containing files that correspond
+;; to their namespace. It should also have a `test/` directory containing files
+;; that correspond to their namespace, and the test namespaces should mirror the
+;; implementation namespaces with the addition of "-test" as the suffix to the
+;; last segment of the namespace.
 
-;; So my.project.frob would be found in src/my/project/frob.clj and
-;; its tests would be in test/my/project/test/frob.clj in the
-;; my.project.test.frob namespace.
+;; So `my.project.frob` would be found in `src/my/project/frob.clj` and its
+;; tests would be in `test/my/project/frob_test.clj` in the
+;; `my.project.frob-test` namespace.
+
+;; This behavior can also be overridden by setting `clojure-test-for-fn` and
+;; `clojure-test-implementation-for-fn` with functions of your choosing.
+;; `clojure-test-for-fn` takes an implementation namespace and returns the full
+;; path of the test file.  `clojure-test-implementation-for-fn` takes a test
+;; namespace and returns the full path for the implementation file.
 
 ;;; History:
 
@@ -101,21 +87,36 @@
 ;; 1.5.6 2011-06-15
 ;;  * Remove heinous clojure.test/report monkeypatch.
 
+;; 1.6.0 2011-11-06
+;;  * Compatibility with Clojure 1.3.
+;;  * Support narrowing.
+;;  * Fix a bug in clojure-test-mode-test-one-in-ns.
+
+;; 2.0.0 2012-12-29
+;;  * Replace slime with nrepl.el
+
 ;;; TODO:
 
 ;; * Prefix arg to jump-to-impl should open in other window
 ;; * Put Testing indicator in modeline while tests are running
-;; * Implement next-problem command
+;; * Integrate with M-x next-error
 ;; * Error messages need line number.
 ;; * Currently show-message needs point to be on the line with the
 ;;   "is" invocation; this could be cleaned up.
 
 ;;; Code:
 
-(require 'clojure-mode)
 (require 'cl)
-(require 'slime)
+(require 'clojure-mode)
 (require 'which-func)
+(require 'nrepl)
+
+(declare-function nrepl-repl-buffer            "nrepl.el")
+(declare-function nrepl-make-response-handler  "nrepl.el")
+(declare-function nrepl-send-string            "nrepl.el")
+(declare-function nrepl-current-ns             "nrepl.el")
+(declare-function nrepl-current-tooling-session "nrepl.el")
+(declare-function nrepl-current-connection-buffer "nrepl.el")
 
 ;; Faces
 
@@ -159,37 +160,63 @@
 
 ;; Support Functions
 
-(defun clojure-test-eval (string &optional handler)
-  (slime-eval-async `(swank:eval-and-grab-output ,string)
-                    (or handler #'identity)))
+(defun clojure-test-nrepl-connected-p ()
+  (nrepl-current-connection-buffer))
 
-(defun clojure-test-eval-sync (string)
-  (slime-eval `(swank:eval-and-grab-output ,string)))
+(defun clojure-test-make-handler (callback)
+  (lexical-let ((buffer (current-buffer))
+                (callback callback))
+    (nrepl-make-response-handler buffer
+                                 (lambda (buffer value)
+                                   (funcall callback buffer value))
+                                 (lambda (buffer value)
+                                   (nrepl-emit-interactive-output value))
+                                 (lambda (buffer err)
+                                   (nrepl-emit-interactive-output err))
+                                 '())))
+
+(defun clojure-test-eval (string &optional handler)
+  (nrepl-send-string string
+                     (clojure-test-make-handler (or handler #'identity))
+                     (or (nrepl-current-ns) "user")
+                     (nrepl-current-tooling-session)))
 
 (defun clojure-test-load-reporting ()
   "Redefine the test-is report function to store results in metadata."
-  (when (eq (compare-strings "clojure" 0 7 (slime-connection-name) 0 7) t)
-    (clojure-test-eval-sync
+  (when (clojure-test-nrepl-connected-p)
+    (nrepl-send-string-sync
      "(ns clojure.test.mode
         (:use [clojure.test :only [file-position *testing-vars* *test-out*
                                    join-fixtures *report-counters* do-report
-                                   test-var *initial-report-counters*]]))
+                                   test-var *initial-report-counters*]]
+              [clojure.pprint :only [pprint]]))
 
+    (def #^{:dynamic true} *clojure-test-mode-out* nil)
+    (def fail-events #{:fail :error})
     (defn report [event]
      (if-let [current-test (last clojure.test/*testing-vars*)]
-             (alter-meta! current-test
-                          assoc :status (conj (:status (meta current-test))
-                                          [(:type event) (:message event)
-                                           (str (:expected event))
-                                           (str (:actual event))
-                                           (if (and (= (:major *clojure-version*) 1)
-                                                    (< (:minor *clojure-version*) 2))
-                                               ((file-position 2) 1)
-                                               (if (= (:type event) :error)
-                                                   ((file-position 3) 1)
-                                                   (:line event)))])))
-     (binding [*test-out* *out*]
-       ((.getRoot #'clojure.test/report) event)))
+        (alter-meta! current-test
+                     assoc :status (conj (:status (meta current-test))
+                                     [(:type event)
+                                      (:message event)
+                                      (when (fail-events (:type event))
+                                        (str (:expected event)))
+                                      (when (fail-events (:type event))
+                                        (str (:actual event)))
+                                      (case (:type event)
+                                        :fail (with-out-str (pprint (:actual event)))
+                                        :error (with-out-str
+                                                (clojure.stacktrace/print-cause-trace
+                                                (:actual event)))
+                                        nil)
+                                      (if (and (= (:major *clojure-version*) 1)
+                                               (< (:minor *clojure-version*) 2))
+                                          ((file-position 2) 1)
+                                          (if (= (:type event) :error)
+                                              ((file-position 3) 1)
+                                              (:line event)))])))
+     (binding [*test-out* (or *clojure-test-mode-out* *out*)]
+       ((.getRawRoot #'clojure.test/report) event)))
 
    (defn clojure-test-mode-test-one-var [test-ns test-name]
      (let [v (ns-resolve test-ns test-name)
@@ -211,14 +238,41 @@
             ;; Otherwise, just test every var in the namespace.
             (clojure-test-mode-test-one-var ns test-name))
           (do-report {:type :end-test-ns, :ns ns-obj}))
-        (do-report (assoc @*report-counters* :type :summary)))) ")))
+        (do-report (assoc @*report-counters* :type :summary))))"
+     (or (nrepl-current-ns) "user")
+     (nrepl-current-tooling-session))))
 
-(defun clojure-test-get-results (result)
-  (clojure-test-eval
-   (concat "(map #(cons (str (:name (meta %)))
+(defun clojure-test-get-results (buffer result)
+  (with-current-buffer buffer
+    (clojure-test-eval
+     (concat "(map #(cons (str (:name (meta %)))
                 (:status (meta %))) (vals (ns-interns '"
-           (slime-current-package) ")))")
-   #'clojure-test-extract-results))
+             (clojure-find-ns) ")))")
+     #'clojure-test-extract-results)))
+
+(defun clojure-test-extract-results (buffer results)
+  (with-current-buffer buffer
+    (let ((result-vars (read results)))
+      (mapc #'clojure-test-extract-result result-vars)
+      (clojure-test-echo-results))))
+
+(defun clojure-test-extract-result (result)
+  "Parse the result from a single test. May contain multiple is blocks."
+  (dolist (is-result (rest result))
+    (unless (member (aref is-result 0) clojure-test-ignore-results)
+      (incf clojure-test-count)
+      (destructuring-bind (event msg expected actual pp-actual line)
+          (coerce is-result 'list)
+        (if (equal :fail event)
+            (progn (incf clojure-test-failure-count)
+                   (clojure-test-highlight-problem
+                    line event (format "Expected %s, got %s" expected actual)
+                    pp-actual))
+          (when (equal :error event)
+            (incf clojure-test-error-count)
+            (clojure-test-highlight-problem
+             line event actual pp-actual))))))
+  (clojure-test-echo-results))
 
 (defun clojure-test-echo-results ()
   (message
@@ -231,81 +285,64 @@
           ((not (= clojure-test-failure-count 0)) 'clojure-test-failure-face)
           (t 'clojure-test-success-face)))))
 
-(defun clojure-test-extract-results (results)
-  (let ((result-vars (read (cadr results))))
-    ;; slime-eval-async hands us a cons with a useless car
-    (mapc #'clojure-test-extract-result result-vars)
-    (slime-repl-emit (concat "\n" (make-string (1- (window-width)) ?=) "\n"))
-    (clojure-test-echo-results)))
-
-(defun clojure-test-extract-result (result)
-  "Parse the result from a single test. May contain multiple is blocks."
-  (dolist (is-result (rest result))
-    (unless (member (aref is-result 0) clojure-test-ignore-results)
-      (incf clojure-test-count)
-      (destructuring-bind (event msg expected actual line) (coerce is-result 'list)
-        (if (equal :fail event)
-            (progn (incf clojure-test-failure-count)
-                   (clojure-test-highlight-problem
-                    line event (format "Expected %s, got %s" expected actual)))
-          (when (equal :error event)
-            (incf clojure-test-error-count)
-            (clojure-test-highlight-problem line event actual)))))))
-
-
-(defun clojure-test-highlight-problem (line event message)
+(defun clojure-test-highlight-problem (line event message pp-actual)
   (save-excursion
-    (goto-line line)
+    (goto-char (point-min))
+    (forward-line (1- line))
     (let ((beg (point)))
       (end-of-line)
       (let ((overlay (make-overlay beg (point))))
         (overlay-put overlay 'face (if (equal event :fail)
                                        'clojure-test-failure-face
                                      'clojure-test-error-face))
-        (overlay-put overlay 'message message)))))
+        (overlay-put overlay 'message message)
+        (overlay-put overlay 'actual pp-actual)))))
 
 ;; Problem navigation
 (defun clojure-test-find-next-problem (here)
   "Go to the next position with an overlay message.
 Retuns the problem overlay if such a position is found, otherwise nil."
   (let ((current-overlays (overlays-at here))
-	(next-overlays (next-overlay-change here)))
+        (next-overlays (next-overlay-change here)))
     (while (and (not (equal next-overlays (point-max)))
-		(or
-		 (not (overlays-at next-overlays))
-		 (equal (overlays-at next-overlays)
-			current-overlays)))
+                (or
+                 (not (overlays-at next-overlays))
+                 (equal (overlays-at next-overlays)
+                        current-overlays)))
       (setq next-overlays (next-overlay-change next-overlays)))
     (if (not (equal next-overlays (point-max)))
-	(overlay-start (car (overlays-at next-overlays))))))
+        (overlay-start (car (overlays-at next-overlays))))))
 
 (defun clojure-test-find-previous-problem (here)
   "Go to the next position with the `clojure-test-problem' text property.
 Retuns the problem overlay if such a position is found, otherwise nil."
   (let ((current-overlays (overlays-at here))
-	(previous-overlays (previous-overlay-change here)))
+        (previous-overlays (previous-overlay-change here)))
     (while (and (not (equal previous-overlays (point-min)))
-		(or
-		 (not (overlays-at previous-overlays))
-		 (equal (overlays-at previous-overlays)
-			current-overlays)))
+                (or
+                 (not (overlays-at previous-overlays))
+                 (equal (overlays-at previous-overlays)
+                        current-overlays)))
       (setq previous-overlays (previous-overlay-change previous-overlays)))
     (if (not (equal previous-overlays (point-min)))
-	(overlay-start (car (overlays-at previous-overlays))))))
+        (overlay-start (car (overlays-at previous-overlays))))))
 
 ;; File navigation
 
 (defun clojure-test-implementation-for (namespace)
+  "Returns the path of the src file for the given test namespace."
   (let* ((namespace (clojure-underscores-for-hyphens namespace))
          (segments (split-string namespace "\\."))
-         (test-position
-          (if (> 0 clojure-test-ns-segment-position)
-              (1- (+ (length segments) clojure-test-ns-segment-position))
-            clojure-test-ns-segment-position))
-         (before (subseq segments 0 test-position))
-         (after (subseq segments (1+ test-position)))
-         (impl-segments (append before after)))
-    (mapconcat 'identity impl-segments "/")))
+         (namespace-end (split-string (car (last segments)) "_"))
+         (namespace-end (mapconcat 'identity (butlast namespace-end 1) "_"))
+         (impl-segments (append (butlast segments 1) (list namespace-end))))
+    (format "%s/src/%s.clj"
+            (locate-dominating-file buffer-file-name "src/")
+            (mapconcat 'identity impl-segments "/"))))
+
+(defvar clojure-test-implementation-for-fn 'clojure-test-implementation-for
+  "Var pointing to the function that will return the full path of the
+Clojure src file for the given test namespace.")
 
 ;; Commands
 
@@ -314,41 +351,37 @@ Retuns the problem overlay if such a position is found, otherwise nil."
   (interactive)
   (save-some-buffers nil (lambda () (equal major-mode 'clojure-mode)))
   (message "Testing...")
-  (clojure-test-clear
-   (lambda (&rest args)
-     ;; clojure-test-eval will wrap in with-out-str
-     (slime-eval-async `(swank:load-file
-                         ,(slime-to-lisp-filename
-                           (expand-file-name (buffer-file-name))))
-                       (lambda (&rest args)
-                         (slime-eval-async '(swank:interactive-eval
-                                             "(binding [clojure.test/report
-                                               clojure.test.mode/report]
-                                                (clojure.test/run-tests))")
-                                           #'clojure-test-get-results))))))
+  (if (not (clojure-in-tests-p))
+      (nrepl-load-file (buffer-file-name)))
+  (save-window-excursion
+    (if (not (clojure-in-tests-p))
+        (clojure-jump-to-test))
+    (clojure-test-clear)
+    (clojure-test-eval (format "(binding [clojure.test/report clojure.test.mode/report]
+                                       (clojure.test/run-tests '%s))"
+                               (clojure-find-ns))
+                       #'clojure-test-get-results)))
 
 (defun clojure-test-run-test ()
   "Run the test at point."
   (interactive)
   (save-some-buffers nil (lambda () (equal major-mode 'clojure-mode)))
-  (clojure-test-clear
-   (lambda (&rest args)
-     (let* ((f (which-function))
-	    (test-name (if (listp f) (first f) f)))
-       (slime-eval-async
-        `(swank:interactive-eval
-          ,(format "(binding [clojure.test/report clojure.test.mode/report]
-                        (load-file \"%s\")
-                        (clojure.test.mode/clojure-test-mode-test-one-in-ns '%s '%s)
-                        (cons (:name (meta (var %s))) (:status (meta (var %s)))))"
-                   (buffer-file-name)
-                   (slime-current-package) test-name
-                   test-name test-name))
-        (lambda (result-str)
-          (let ((result (read result-str)))
-            (if (cdr result)
-		(clojure-test-extract-result result)
-              (message "Not in a test.")))))))))
+  (imenu--make-index-alist)
+  (clojure-test-clear)
+  (let* ((f (which-function))
+         (test-name (if (listp f) (first f) f)))
+    (clojure-test-eval (format "(binding [clojure.test/report clojure.test.mode/report]
+                                  (load-file \"%s\")
+                                  (clojure.test.mode/clojure-test-mode-test-one-in-ns '%s '%s)
+                                  (cons (:name (meta (var %s))) (:status (meta (var %s)))))"
+                               (buffer-file-name) (clojure-find-ns)
+                               test-name test-name test-name)
+                       (lambda (buffer result-str)
+                         (with-current-buffer buffer
+                           (let ((result (read result-str)))
+                             (if (cdr result)
+                                 (clojure-test-extract-result result)
+                               (message "Not in a test."))))))))
 
 (defun clojure-test-show-result ()
   "Show the result of the test under point."
@@ -359,6 +392,74 @@ Retuns the problem overlay if such a position is found, otherwise nil."
         (message (replace-regexp-in-string "%" "%%"
                                            (overlay-get overlay 'message))))))
 
+(defun clojure-test-pprint-result ()
+  "Show the result of the test under point."
+  (interactive)
+  (let ((overlay (find-if (lambda (o) (overlay-get o 'message))
+                          (overlays-at (point)))))
+    (when overlay
+      (with-current-buffer (generate-new-buffer " *test-output*")
+        (buffer-disable-undo)
+        (insert (overlay-get overlay 'actual))
+        (switch-to-buffer-other-window (current-buffer))))))
+
+;;; ediff results
+(defvar clojure-test-ediff-buffers nil)
+
+(defun clojure-test-ediff-cleanup ()
+  "A function for ediff-cleanup-hook, to cleanup the temporary ediff buffers"
+  (mapc (lambda (b) (when (get-buffer b) (kill-buffer b)))
+        clojure-test-ediff-buffers))
+
+(defun clojure-test-ediff-result ()
+  "Show the result of the test under point as an ediff"
+  (interactive)
+  (let ((overlay (find-if (lambda (o) (overlay-get o 'message))
+                          (overlays-at (point)))))
+    (if overlay
+        (let* ((m (overlay-get overlay 'actual)))
+          (let ((tmp-buffer (generate-new-buffer " *clojure-test-mode-tmp*"))
+                (exp-buffer (generate-new-buffer " *expected*"))
+                (act-buffer (generate-new-buffer " *actual*")))
+            (with-current-buffer tmp-buffer
+              (insert m)
+              (clojure-mode)
+              (goto-char (point-min))
+              (forward-char) ; skip a paren
+              (paredit-splice-sexp) ; splice
+              (lexical-let ((p (point))) ; delete "not"
+                (forward-sexp)
+                (delete-region p (point)))
+              (lexical-let ((p (point))) ; splice next sexp
+                (forward-sexp)
+                (backward-sexp)
+                (forward-char)
+                (paredit-splice-sexp))
+              (lexical-let ((p (point))) ; delete operator
+                (forward-sexp)
+                (delete-region p (point)))
+              (lexical-let ((p (point))) ; copy first expr
+                (forward-sexp)
+                (lexical-let ((p2 (point)))
+                  (with-current-buffer exp-buffer
+                    (insert-buffer-substring-as-yank tmp-buffer (+ 1 p) p2))))
+              (lexical-let ((p (point))) ; copy next expr
+                (forward-sexp)
+                (lexical-let ((p2 (point)))
+                  (with-current-buffer act-buffer
+                    (insert-buffer-substring-as-yank tmp-buffer (+ 1 p) p2)))))
+            (kill-buffer tmp-buffer)
+            (setq clojure-test-ediff-buffers
+                  (list (buffer-name exp-buffer) (buffer-name act-buffer)))
+            (ediff-buffers
+             (buffer-name exp-buffer) (buffer-name act-buffer)))))))
+
+(defun clojure-test-load-current-buffer ()
+  (let ((command (format "(clojure.core/load-file \"%s\")\n(in-ns '%s)"
+                         (buffer-file-name)
+                         (clojure-find-ns))))
+    (nrepl-send-string-sync command)))
+
 (defun clojure-test-clear (&optional callback)
   "Remove overlays and clear stored results."
   (interactive)
@@ -366,17 +467,13 @@ Retuns the problem overlay if such a position is found, otherwise nil."
   (setq clojure-test-count 0
         clojure-test-failure-count 0
         clojure-test-error-count 0)
-  (clojure-test-eval
-   "(doseq [t (vals (ns-interns *ns*))]
-      (alter-meta! t assoc :status [])
-      (alter-meta! t assoc :test nil))"
-   callback))
+  (clojure-test-load-current-buffer))
 
 (defun clojure-test-next-problem ()
   "Go to and describe the next test problem in the buffer."
   (interactive)
   (let* ((here (point))
-	 (problem (clojure-test-find-next-problem here)))
+         (problem (clojure-test-find-next-problem here)))
     (if problem
         (goto-char problem)
       (goto-char here)
@@ -386,7 +483,7 @@ Retuns the problem overlay if such a position is found, otherwise nil."
   "Go to and describe the previous compiler problem in the buffer."
   (interactive)
   (let* ((here (point))
-	 (problem (clojure-test-find-previous-problem here)))
+         (problem (clojure-test-find-previous-problem here)))
     (if problem
         (goto-char problem)
       (goto-char here)
@@ -395,19 +492,19 @@ Retuns the problem overlay if such a position is found, otherwise nil."
 (defun clojure-test-jump-to-implementation ()
   "Jump from test file to implementation."
   (interactive)
-  (find-file (format "%s/src/%s.clj"
-                     (locate-dominating-file buffer-file-name "src/")
-                     (clojure-test-implementation-for (clojure-find-package)))))
+  (find-file (funcall clojure-test-implementation-for-fn
+                      (clojure-find-package))))
 
 (defvar clojure-test-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c C-,") 'clojure-test-run-tests)
     (define-key map (kbd "C-c ,")   'clojure-test-run-tests)
     (define-key map (kbd "C-c M-,") 'clojure-test-run-test)
-    (define-key map (kbd "C-c C-'") 'clojure-test-show-result)
+    (define-key map (kbd "C-c C-'") 'clojure-test-ediff-result)
+    (define-key map (kbd "C-c M-'") 'clojure-test-pprint-result)
     (define-key map (kbd "C-c '")   'clojure-test-show-result)
     (define-key map (kbd "C-c k")   'clojure-test-clear)
-    (define-key map (kbd "C-c t")   'clojure-test-jump-to-implementation)
+    (define-key map (kbd "C-c C-t") 'clojure-jump-between-tests-and-code)
     (define-key map (kbd "M-p")     'clojure-test-previous-problem)
     (define-key map (kbd "M-n")     'clojure-test-next-problem)
     map)
@@ -415,23 +512,31 @@ Retuns the problem overlay if such a position is found, otherwise nil."
 
 ;;;###autoload
 (define-minor-mode clojure-test-mode
-  "A minor mode for running Clojure tests."
+  "A minor mode for running Clojure tests.
+
+\\{clojure-test-mode-map}"
   nil " Test" clojure-test-mode-map
-  (when (slime-connected-p)
+  (when (clojure-test-nrepl-connected-p)
     (clojure-test-load-reporting)))
 
-(add-hook 'slime-connected-hook 'clojure-test-load-reporting)
+(add-hook 'nrepl-connected-hook 'clojure-test-load-reporting)
 
 ;;;###autoload
 (progn
   (defun clojure-test-maybe-enable ()
-    "Enable clojure-test-mode if the current buffer contains a namespace 
+    "Enable clojure-test-mode if the current buffer contains a namespace
 with a \"test.\" bit on it."
     (let ((ns (clojure-find-package))) ; defined in clojure-mode.el
-      (when (search "test." ns)
+      (when (and ns (string-match "test\\(\\.\\|$\\)" ns))
         (save-window-excursion
           (clojure-test-mode t)))))
+
   (add-hook 'clojure-mode-hook 'clojure-test-maybe-enable))
 
 (provide 'clojure-test-mode)
+
+;; Local Variables:
+;; byte-compile-warnings: (not cl-functions)
+;; End:
+
 ;;; clojure-test-mode.el ends here

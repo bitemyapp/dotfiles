@@ -97,6 +97,9 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-font-lock-mode 1)
+(auto-fill-mode -1)
+(setq line-move-visual nil)
+(setq org-support-shift-select 'always)
 
 (iswitchb-mode 1)
  (defun iswitchb-local-keys ()

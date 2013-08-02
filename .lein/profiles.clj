@@ -3,6 +3,7 @@
             [lein-catnip "0.5.1"]
             [lein-difftest "1.3.8"]
             [lein-exec "0.3.0"]
+            [lein-grep "0.1.0"]
             [lein-iclojure "1.1"]
             [lein-kibit "0.0.7"]
             [lein-marginalia "0.7.1"]

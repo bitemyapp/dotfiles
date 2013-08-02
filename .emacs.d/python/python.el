@@ -223,7 +223,6 @@
   :version "23.2"
   :link '(emacs-commentary-link "python"))
 
-
 ;;; Bindings
 
 (defvar python-mode-map
@@ -304,7 +303,6 @@
     map)
   "Keymap for `python-mode'.")
 
-
 ;;; Python specialized rx
 
 (eval-when-compile
@@ -357,7 +355,6 @@ This variant of `rx' supports common python named REGEXPS."
             (t
              (rx-to-string (car regexps) t))))))
 
-
 ;;; Font-lock and syntax
 
 (defun python-syntax-context (type &optional syntax-ppss)

@@ -13,15 +13,6 @@
 ;; auto-complete
 (load-library "ac-config.el")
 
-(require 'package)
-(add-to-list 'package-archives
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
-;; (package-install 'find-file-in-project)
-;; (global-set-key (kbd "C-x f") 'find-file-in-project)
-
 ;; Clojure
 (require 'clojure-mode)
 (require 'nrepl)
@@ -90,6 +81,9 @@
 
 ;; PHP
 (require 'php-mode)
+
+;; Protobuf
+(require 'protobuf-mode)
 
 ;; Python
 (load-library "python-config.el")
@@ -176,12 +170,12 @@
 ;; (require 'soothe-theme)
 ;; (require 'tomorrow-night-theme)
 ;; (require 'tomorrow-theme)
-;; (require 'tomorrow-night-bright-theme)
+(require 'tomorrow-night-bright-theme)
 ;; (require 'color-theme-bitemyapp)
 ;; (color-theme-bitemyapp)
-(require 'color-theme-solarized)
-(load-library "color-theme-solarized.el")
-(color-theme-solarized 'dark)
+;; (require 'color-theme-solarized)
+;; (load-library "color-theme-solarized.el")
+;; (color-theme-solarized 'dark)
 
 (if (string= system-type "darwin")
 (custom-set-faces
@@ -189,3 +183,6 @@
 
 (custom-set-faces
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace"))))))
+
+(defun auto-fill-mode ()
+  (message "nope.jpg"))

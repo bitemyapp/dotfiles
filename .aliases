@@ -109,3 +109,6 @@ done
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+alias apple2="/usr/lib/xscreensaver/apple2 -program bash -text -fast"
+alias phosphor="/usr/lib/xscreensaver/phosphor -program bash -scale 2 -delay 500"
