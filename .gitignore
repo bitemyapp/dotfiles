@@ -374,8 +374,9 @@ workspace/
 .Idea*
 idea/
 .repljs*
-.Gopanda2/
+.GoPanda2/
 .netbeans/
 .repljs_history
 Snapshots/
 backup/
+games/
