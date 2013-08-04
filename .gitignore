@@ -380,3 +380,7 @@ idea/
 Snapshots/
 backup/
 games/
+.earthquake/
+.ocamlinit
+.opam/
+.twidgerc
