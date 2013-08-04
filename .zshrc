@@ -38,4 +38,8 @@ alias pg='sudo -u postgres psql'
 alias cdb='sudo -u postgres createdb'
 alias hgdiff='hg diff | colordiff | less -R'
 
+# I am baffled that I even have to do this.
+bindkey ';5D' emacs-backward-word
+bindkey ';5C' emacs-forward-word
+
 export PATH=$PATH:/Users/callen/.carton/bin:/usr/local/bin:/Users/callen/bin:/Users/callen/Library/Haskell/bin:/Users/callen/.cabal/bin:/Users/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/
