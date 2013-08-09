@@ -115,10 +115,10 @@
 (require 'rust-mode)
 
 ;; Scala
-;; (require 'scala-mode-auto)
+(require 'scala-mode-auto)
 
 ;; Scala
-;; (load-library "ensime-config.el")
+(load-library "ensime-config.el")
 
 ;; ~/.sbt/plugins/build.sbt
 ;; resolvers ++= Seq(Resolver.url("sbt-plugin-releases",
