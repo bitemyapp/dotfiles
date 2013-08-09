@@ -37,6 +37,7 @@ alias love='/Applications/love.app/Contents/MacOS/love'
 alias pg='sudo -u postgres psql'
 alias cdb='sudo -u postgres createdb'
 alias hgdiff='hg diff | colordiff | less -R'
+export GIT_EDITOR='emacs'
 
 # I am baffled that I even have to do this.
 bindkey ';5D' emacs-backward-word

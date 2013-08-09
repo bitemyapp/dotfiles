@@ -7,6 +7,30 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
+(require 'package)
+(add-to-list 'package-archives
+       '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar my-packages '(clojure-mode
+                      coffee-mode
+                      drag-stuff
+                      elixir-mix
+                      elixir-mode
+                      flymake-coffee
+                      flymake-elixir
+                      jinja2-mode
+                      mustache-mode
+                      nrepl
+                      sass-mode
+                      scala-mode))
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
 ;; Miscellaneous keyboard and personal preferences
 (load-library "misc-config.el")
 
@@ -15,27 +39,18 @@
 
 ;; Clojure
 (require 'clojure-mode)
-(require 'nrepl)
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("gantryfile" . clojure-mode))
-(setq nrepl-popup-stacktraces nil)
 
-;; coffee-script
+;; CoffeeScript
 (require 'coffee-mode)
 
 ;; color-grep
 (require 'color-grep)
 
-;; DCPU-16
-(require 'dcpu16-mode)
-
 ;; Drag stuff
 (require 'drag-stuff)
 (drag-stuff-mode t)
-
-;; Edit server
-(require 'edit-server)
-(edit-server-start)
 
 ;; Enhance dired
 (require 'dired+)
@@ -53,12 +68,9 @@
 ;; Haskell
 (load-library "haskell-config.el")
 
-;; Jade
-;; (load-library "jade-config.el")
-
 ;; Jinja
-;; (require 'jinja)
-;; (fset 'html-mode 'jinja-mode)
+(require 'jinja)
+(fset 'html-mode 'jinja-mode)
 
 ;; (load-library "multi-web-mode-config.el")
 
@@ -116,23 +128,7 @@
 
 ;; Scala
 (require 'scala-mode-auto)
-
-;; Scala
 (load-library "ensime-config.el")
-
-;; ~/.sbt/plugins/build.sbt
-;; resolvers ++= Seq(Resolver.url("sbt-plugin-releases",
-;;                                          new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns))
-
-;; addSbtPlugin("org.ensime" % "ensime-sbt-cmd" % "0.0.10")
-
-;; (add-to-list 'load-path "~/.emacs.d/scala/ensime/src/main/elisp/")
-;; (require 'ensime)
-
-;; This step causes the ensime-mode to be started whenever
-;; scala-mode is started for a buffer. You may have to customize this step
-;; if you're not using the standard scala mode.
-;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; SCSS
 (autoload 'scss-mode "scss-mode")
@@ -146,11 +142,6 @@
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
 
-;; Tern
-;; (autoload 'tern-mode "tern.el" nil t)
-;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-;; (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-
 ;; Web-mode
 (load-library "web-mode-config.el")
 
@@ -159,10 +150,6 @@
 
 ;; Yaml
 (load-library "yaml-config.el")
-
-;; Nyan-mode
-;; (if (display-graphic-p)
-;;     (require 'nyan-mode))
 
 ;; Color theme
 (require 'color-theme)
