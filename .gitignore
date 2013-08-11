@@ -384,3 +384,9 @@ games/
 .ocamlinit
 .opam/
 .twidgerc
+nrepl-history
+.fltk
+.claws-mail/
+.opera-next/
+.dooble/
+

@@ -67,7 +67,7 @@
 
 ;;   May be set using .dir-locals.el. Checks each entry if set to a list.")
 
-(defvar ffip-project-file ".hg"
+(defvar ffip-project-file ".git"
   "The file that should be used to define a project root.
 
   May be set using .dir-locals.el. Checks each entry if set to a list.")

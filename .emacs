@@ -7,6 +7,20 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
+(setq package-list '(clojure-mode nrepl nrepl-ritz))
+
+(require 'package)
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+(dolist (package package-list)
+  (when (not (package-installed-p package))
+    (package-install package)))
+
 ;; Miscellaneous keyboard and personal preferences
 (load-library "misc-config.el")
 
@@ -14,11 +28,7 @@
 (load-library "ac-config.el")
 
 ;; Clojure
-(require 'clojure-mode)
-(require 'nrepl)
-(add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
-(add-to-list 'auto-mode-alist '("gantryfile" . clojure-mode))
-(setq nrepl-popup-stacktraces nil)
+(load-library "clojure-config.el")
 
 ;; coffee-script
 (require 'coffee-mode)
