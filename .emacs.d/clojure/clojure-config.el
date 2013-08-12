@@ -38,3 +38,10 @@
 (define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
 (define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos)
 
+
+(defun sldb ()
+    (interactive)
+    (insert "(throw (Throwable. \"Call debugger\"))")
+    (nrepl-ritz-break-on-exception "true"))
+
+(global-set-key (kbd "C-c s l d") 'sldb)
