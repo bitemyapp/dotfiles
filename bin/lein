@@ -4,7 +4,7 @@
 # somewhere on your $PATH, like ~/bin. The rest of Leiningen will be
 # installed upon first run into the ~/.lein/self-installs directory.
 
-export LEIN_VERSION="2.2.0"
+export LEIN_VERSION="2.3.0"
 
 case $LEIN_VERSION in
     *SNAPSHOT) SNAPSHOT="YES" ;;
@@ -43,6 +43,26 @@ function add_path {
     export ${path_var}="${!path_var}${delimiter}$(make_native_path "$1")"
     shift
     done
+}
+
+function self_install {
+  if [ -r "$LEIN_JAR" ]; then
+    echo "The self-install jar already exists at $LEIN_JAR."
+    echo "If you wish to re-download, delete it and rerun \"$0 self-install\"."
+    exit 1
+  fi
+  echo "Downloading Leiningen to $LEIN_JAR now..."
+  mkdir -p "$(dirname "$LEIN_JAR")"
+  LEIN_URL="https://leiningen.s3.amazonaws.com/downloads/leiningen-$LEIN_VERSION-standalone.jar"
+  $HTTP_CLIENT "$LEIN_JAR.pending" "$LEIN_URL"
+  if [ $? == 0 ]; then
+      # TODO: checksum
+      mv -f "$LEIN_JAR.pending" "$LEIN_JAR"
+  else
+      rm "$LEIN_JAR.pending" 2> /dev/null
+      download_failed_message "$LEIN_URL"
+      exit 1
+  fi
 }
 
 if [ `id -u` -eq 0 ] && [ "$LEIN_ROOT" = "" ]; then
@@ -152,7 +172,7 @@ else # Not running from a checkout
     BOOTCLASSPATH="-Xbootclasspath/a:$LEIN_JAR"
 
     if [ ! -r "$LEIN_JAR" -a "$1" != "self-install" ]; then
-        "$0" self-install
+        self_install
     fi
 fi
 
@@ -199,7 +219,7 @@ if $cygwin; then
 fi
 
 if $cygterm; then
-  JVM_OPTS="$JVM_OPTS -Djline.terminal=jline.UnixTerminal"
+  LEIN_JVM_OPTS="$LEIN_JVM_OPTS -Djline.terminal=jline.UnixTerminal"
   stty -icanon min 1 -echo > /dev/null 2>&1
 fi
 
@@ -211,23 +231,9 @@ if [ "$1" = "self-install" ]; then
         echo "Running self-install from a checkout is not supported."
         echo "See CONTRIBUTING.md for SNAPSHOT-specific build instructions."
         exit 1
-    elif [ -r "$LEIN_JAR" ]; then
-      echo "The self-install jar already exists at $LEIN_JAR."
-      echo "If you wish to re-download, delete it and rerun \"$0 self-install\"."
-      exit 1
     fi
-    echo "Downloading Leiningen to $LEIN_JAR now..."
-    mkdir -p "$(dirname "$LEIN_JAR")"
-    LEIN_URL="https://leiningen.s3.amazonaws.com/downloads/leiningen-$LEIN_VERSION-standalone.jar"
-    $HTTP_CLIENT "$LEIN_JAR.pending" "$LEIN_URL"
-    if [ $? == 0 ]; then
-        # TODO: checksum
-        mv -f "$LEIN_JAR.pending" "$LEIN_JAR"
-    else
-        rm "$LEIN_JAR.pending" 2> /dev/null
-        download_failed_message "$LEIN_URL"
-        exit 1
-    fi
+    echo "Manual self-install is deprecated; it will run automatically when necessary."
+    self_install
 elif [ "$1" = "upgrade" ]; then
     if [ "$LEIN_DIR" != "" ]; then
         echo "The upgrade task is not meant to be run from a checkout."
@@ -257,11 +263,8 @@ elif [ "$1" = "upgrade" ]; then
                 LEIN_SCRIPT_URL="https://github.com/technomancy/leiningen/raw/$TARGET_VERSION/bin/lein"
                 $HTTP_CLIENT "$TARGET" "$LEIN_SCRIPT_URL"
                 if [ $? == 0 ]; then
-                    mv "$TARGET" "$SCRIPT" \
-                        && chmod +x "$SCRIPT" \
-                        && echo && "$SCRIPT" self-install \
-                        && echo && echo "Now running" `$SCRIPT version`
-                    exit $?
+                    mv "$TARGET" "$SCRIPT" && chmod +x "$SCRIPT"
+                    exec "$SCRIPT" version
                 else
                     download_failed_message "$LEIN_SCRIPT_URL"
                 fi;;
@@ -292,7 +295,7 @@ else
         # Just don't change :target-path in project.clj, mkay?
         TRAMPOLINE_FILE="target/trampolines/$INPUT_CHECKSUM"
     else
-        TRAMPOLINE_FILE="/tmp/lein-trampoline-$$"
+        TRAMPOLINE_FILE="$(mktemp /tmp/lein-trampoline-XXXXXXXXXXXXX)"
         trap "rm -f $TRAMPOLINE_FILE" EXIT
     fi
 
@@ -323,12 +326,18 @@ else
           stty icanon echo > /dev/null 2>&1
         fi
 
+        ## TODO: [ -r "$TRAMPOLINE_FILE" ] may be redundant? A trampoline file
+        ## is always generated these days.
         if [ -r "$TRAMPOLINE_FILE" ] && [ "$LEIN_TRAMPOLINE_WARMUP" = "" ]; then
             TRAMPOLINE="$(cat $TRAMPOLINE_FILE)"
             if [ "$INPUT_CHECKSUM" = "" ]; then
                 rm $TRAMPOLINE_FILE
             fi
-            exec sh -c "exec $TRAMPOLINE"
+            if [ "$TRAMPOLINE" = "" ]; then
+                exit $EXIT_CODE
+            else
+                exec sh -c "exec $TRAMPOLINE"
+            fi
         else
             exit $EXIT_CODE
         fi

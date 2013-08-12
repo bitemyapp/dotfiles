@@ -30,22 +30,15 @@
 ;; Clojure
 (load-library "clojure-config.el")
 
-;; coffee-script
+;; CoffeeScript
 (require 'coffee-mode)
 
 ;; color-grep
 (require 'color-grep)
 
-;; DCPU-16
-(require 'dcpu16-mode)
-
 ;; Drag stuff
 (require 'drag-stuff)
 (drag-stuff-mode t)
-
-;; Edit server
-(require 'edit-server)
-(edit-server-start)
 
 ;; Enhance dired
 (require 'dired+)
@@ -63,12 +56,9 @@
 ;; Haskell
 (load-library "haskell-config.el")
 
-;; Jade
-;; (load-library "jade-config.el")
-
 ;; Jinja
-;; (require 'jinja)
-;; (fset 'html-mode 'jinja-mode)
+(require 'jinja)
+(fset 'html-mode 'jinja-mode)
 
 ;; (load-library "multi-web-mode-config.el")
 
@@ -125,24 +115,8 @@
 (require 'rust-mode)
 
 ;; Scala
-;; (require 'scala-mode-auto)
-
-;; Scala
-;; (load-library "ensime-config.el")
-
-;; ~/.sbt/plugins/build.sbt
-;; resolvers ++= Seq(Resolver.url("sbt-plugin-releases",
-;;                                          new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns))
-
-;; addSbtPlugin("org.ensime" % "ensime-sbt-cmd" % "0.0.10")
-
-;; (add-to-list 'load-path "~/.emacs.d/scala/ensime/src/main/elisp/")
-;; (require 'ensime)
-
-;; This step causes the ensime-mode to be started whenever
-;; scala-mode is started for a buffer. You may have to customize this step
-;; if you're not using the standard scala mode.
-;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(require 'scala-mode-auto)
+(load-library "ensime-config.el")
 
 ;; SCSS
 (autoload 'scss-mode "scss-mode")
@@ -156,11 +130,6 @@
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
 
-;; Tern
-;; (autoload 'tern-mode "tern.el" nil t)
-;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-;; (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-
 ;; Web-mode
 (load-library "web-mode-config.el")
 
@@ -169,10 +138,6 @@
 
 ;; Yaml
 (load-library "yaml-config.el")
-
-;; Nyan-mode
-;; (if (display-graphic-p)
-;;     (require 'nyan-mode))
 
 ;; Color theme
 (require 'color-theme)
