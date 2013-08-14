@@ -28,11 +28,6 @@ alias gpts='git checkout staging && git merge master && git push origin staging 
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
 # git branch --set-upstream new_frontpage origin/new_frontpage
 
-alias redisstart='sudo launchctl start io.redis.redis-server'
-alias redisstop='sudo launchctl stop io.redis.redis-server'
-alias love='/Applications/love.app/Contents/MacOS/love'
-alias pg='sudo -u postgres psql'
-alias cdb='sudo -u postgres createdb'
 alias hgdiff='hg diff | colordiff | less -R'
 export GIT_EDITOR='emacs'
 
