@@ -7,7 +7,11 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(clojure-mode nrepl nrepl-ritz))
+(setq package-list '(clojure-mode
+                     less-css-mode
+                     nrepl
+                     nrepl-ritz
+                     puppet-mode))
 
 (require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -84,6 +88,9 @@
 
 ;; Protobuf
 (require 'protobuf-mode)
+
+;; Puppet
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; Python
 (load-library "python-config.el")
