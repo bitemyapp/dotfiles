@@ -7,7 +7,11 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(clojure-mode nrepl nrepl-ritz))
+(setq package-list '(clojure-mode
+                     less-css-mode
+                     nrepl
+                     nrepl-ritz
+                     puppet-mode))
 
 (require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
@@ -85,6 +89,9 @@
 ;; Protobuf
 (require 'protobuf-mode)
 
+;; Puppet
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+
 ;; Python
 (load-library "python-config.el")
 
@@ -154,7 +161,7 @@
 
 (if (string= system-type "darwin")
 (custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :family "Menlo")))))
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "Menlo")))))
 
 (custom-set-faces
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace"))))))
