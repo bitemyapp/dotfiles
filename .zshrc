@@ -29,7 +29,7 @@ alias gptp='git checkout production && git merge master && git push origin produ
 # git branch --set-upstream new_frontpage origin/new_frontpage
 
 alias hgdiff='hg diff | colordiff | less -R'
-export GIT_EDITOR='emacs'
+export GIT_EDITOR='emacs -nw'
 
 # I am baffled that I even have to do this.
 bindkey ';5D' emacs-backward-word
