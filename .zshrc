@@ -29,10 +29,27 @@ alias gptp='git checkout production && git merge master && git push origin produ
 # git branch --set-upstream new_frontpage origin/new_frontpage
 
 alias hgdiff='hg diff | colordiff | less -R'
-export GIT_EDITOR='emacs -nw'
+export GIT_EDITOR='mg'
 
 # I am baffled that I even have to do this.
 bindkey ';5D' emacs-backward-word
 bindkey ';5C' emacs-forward-word
+
+export MARKPATH=$HOME/.marks
+function jump { 
+    cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
+}
+function mark { 
+    mkdir -p $MARKPATH; ln -s $(pwd) $MARKPATH/$1
+}
+function unmark { 
+    rm -i $MARKPATH/$1 
+}
+# function marks {
+#     ls -l $MARKPATH | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+# }
+function marks {
+        \ls -l $MARKPATH | tail -n +2 | sed 's/  / /g' | cut -d' ' -f9- | awk -F ' -> ' '{printf "%-10s -> %s\n", $1, $2}'
+}
 
 export PATH=$PATH:~/callen/.carton/bin:/usr/local/bin:~/callen/bin:~/callen/Library/Haskell/bin:~/callen/.cabal/bin:~/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/:~/.cabal/bin

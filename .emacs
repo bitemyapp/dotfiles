@@ -8,6 +8,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 (setq package-list '(clojure-mode
+                     clojure-test-mode
                      less-css-mode
                      nrepl
                      nrepl-ritz
