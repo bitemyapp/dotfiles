@@ -1,6 +1,7 @@
 {:user {:plugins [[lein-ritz "0.7.0"]
                   [lein-bikeshed "0.1.3"]
                   [lein-try "0.3.0"]
+                  [lein-exec "0.3.1"]
                   [lein-vanity "0.1.0"]
                   [jonase/eastwood "0.0.2"]
                   [lein-kibit "0.0.8"]
