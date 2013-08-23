@@ -23,6 +23,7 @@
 ;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\.edn$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("gantryfile" . clojure-mode))
 (setq nrepl-popup-stacktraces nil)
 (setq nrepl-popup-stacktraces-in-repl t)
