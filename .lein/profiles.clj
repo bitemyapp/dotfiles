@@ -9,6 +9,7 @@
                   [com.aphyr/prism "0.1.1"]
                   [lein-cloverage "1.0.2"]]
         :datomic {:install-location "~/code/datomic-free-0.8.4138"}
+        :aliases {"eval" ["run" "-m" "clojure.main/main" "-e"]}
         :dependencies [[ritz/ritz-nrepl-middleware "0.7.0"]
                        [com.cemerick/pomegranate "0.2.0"]
                        [com.aphyr/prism "0.1.1"]

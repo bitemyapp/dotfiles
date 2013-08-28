@@ -26,7 +26,12 @@ alias ph='gpom && gphm'
 alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
 alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
+alias act='source `find . -name "activate" | grep "bin/activate"`'
 # git branch --set-upstream new_frontpage origin/new_frontpage
+
+function gh {
+    open "https://github.com/$@"
+}
 
 alias hgdiff='hg diff | colordiff | less -R'
 export GIT_EDITOR='mg'
@@ -53,3 +58,6 @@ function marks {
 }
 
 export PATH=$PATH:~/callen/.carton/bin:/usr/local/bin:~/callen/bin:~/callen/Library/Haskell/bin:~/callen/.cabal/bin:~/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/:~/.cabal/bin
+
+# OPAM configuration
+. /Users/callen/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
