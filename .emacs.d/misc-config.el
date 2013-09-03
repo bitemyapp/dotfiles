@@ -313,8 +313,10 @@ nothing happens."
 (global-set-key (kbd "C-c c a t") 'gimme-cat)
 (global-set-key (kbd "C-c k c a t") 'close-gimmecat-buffers)
 
-(require 'find-file-in-project)
-(global-set-key (kbd "C-x f") 'find-file-in-project)
+;; (require 'find-file-in-project)
+;; (global-set-key (kbd "C-x f") 'find-file-in-project)
+(require 'find-file-in-repository)
+(global-set-key (kbd "C-x f") 'find-file-in-repository)
 
 (fset 'css-after
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([19 59 13 right backspace return tab] 0 "%d")) arg)))
