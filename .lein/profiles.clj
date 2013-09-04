@@ -17,9 +17,7 @@
                        [riddley "0.1.0"]
                        [com.cemerick/pomegranate "0.2.0"]
                        [com.aphyr/prism "0.1.1"]
-                       [jark "0.4.3"]]
-        :injections [(require '[alembic.still :as alembic])
-                     (require '[clojure.tools.namespace.repl :refer [refresh refresh-all]])]}}
+                       [jark "0.4.3"]]}}
 
 ;; Documentation
 
