@@ -12,11 +12,14 @@
         :datomic {:install-location "~/code/datomic-free-0.8.4138"}
         :aliases {"eval" ["run" "-m" "clojure.main/main" "-e"]}
         :dependencies [[ritz/ritz-nrepl-middleware "0.7.0"]
+                       [org.clojure/tools.namespace "0.2.3"]
                        [alembic "0.2.0"]
                        [riddley "0.1.0"]
                        [com.cemerick/pomegranate "0.2.0"]
                        [com.aphyr/prism "0.1.1"]
-                       [jark "0.4.3"]]}}
+                       [jark "0.4.3"]]
+        :injections [(require '[alembic.still :as alembic])
+                     (require '[clojure.tools.namespace.repl :refer [refresh refresh-all]])]}}
 
 ;; Documentation
 
@@ -25,3 +28,5 @@
 
 ;; (require '[alembic.still :as alembic])
 ;; (alembic/distill '[org.clojure/tools.logging "0.2.0"])
+;; or
+;; (alembic/load-project)
