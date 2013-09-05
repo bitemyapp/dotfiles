@@ -324,3 +324,6 @@ nothing happens."
 (fset 'css-pre
    [?\C-s ?\{ ?\C-m return tab])
 (global-set-key (kbd "C-c C-b") 'css-pre)
+
+(require 'multi-term)
+(setq multi-term-program "/bin/zsh")

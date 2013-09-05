@@ -57,7 +57,7 @@ function marks {
         \ls -l $MARKPATH | tail -n +2 | sed 's/  / /g' | cut -d' ' -f9- | awk -F ' -> ' '{printf "%-10s -> %s\n", $1, $2}'
 }
 
-export PATH=$PATH:~/callen/.carton/bin:/usr/local/bin:~/callen/bin:~/callen/Library/Haskell/bin:~/callen/.cabal/bin:~/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/:~/.cabal/bin
+export PATH=/usr/local/bin:~/bin:$PATH:~/callen/.carton/bin:~/Library/Haskell/bin:~/callen/.cabal/bin:~/callen/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/callen/bin/FDK/Tools/osx:/usr/local/share/npm/bin/:~/.cabal/bin
 
 # OPAM configuration
 . /Users/callen/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
