@@ -7,6 +7,7 @@
                   [jonase/eastwood "0.0.2"]
                   [lein-kibit "0.0.8"]
                   [com.aphyr/prism "0.1.1"]
+                  [lein-typed "0.3.0"]
                   [lein-marginalia "0.7.1"]
                   [lein-cloverage "1.0.2"]]
         :datomic {:install-location "~/code/datomic-free-0.8.4138"}
