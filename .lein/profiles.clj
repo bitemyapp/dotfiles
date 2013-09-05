@@ -14,6 +14,7 @@
         :aliases {"eval" ["run" "-m" "clojure.main/main" "-e"]}
         :dependencies [[ritz/ritz-nrepl-middleware "0.7.0"]
                        [org.clojure/tools.namespace "0.2.3"]
+                       [org.clojure/core.typed "0.2.4"]
                        [alembic "0.2.0"]
                        [riddley "0.1.0"]
                        [com.cemerick/pomegranate "0.2.0"]
