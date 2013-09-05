@@ -46,3 +46,15 @@
     (nrepl-ritz-break-on-exception "true"))
 
 (global-set-key (kbd "C-c s l d") 'sldb)
+
+(defun alembic ()
+    (interactive)
+    (insert "(require '[alembic.still :as alembic]) (alembic/load-project)"))
+
+(global-set-key (kbd "C-c c a l") 'alembic)
+
+(defun refresh-nrepl ()
+    (interactive)
+    (insert "(require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh)"))
+
+(global-set-key (kbd "C-c c r f") 'refresh-nrepl)

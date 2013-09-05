@@ -26,7 +26,7 @@
 ;; lein try [clj-time "0.5.1"]
 ;; lein try clj-time
 
-;; (require '[alembic.still :as alembic])
+;; (require '[alembic.still :as alembic]) (alembic/load-project)
 ;; (alembic/distill '[org.clojure/tools.logging "0.2.0"])
 ;; or
 ;; (alembic/load-project)
