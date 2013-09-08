@@ -28,6 +28,10 @@ alias gpts='git checkout staging && git merge master && git push origin staging 
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 # git branch --set-upstream new_frontpage origin/new_frontpage
+# Thanks TimMc :)
+alias learn="java -jar ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar -e '(->> clojure.core quote the-ns ns-publics seq rand-nth val meta ((juxt :name :doc)) (map println) dorun)'"
+alias cljhere="java -jar ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar -e"
+# '(java.util.UUID/randomUUID)'
 
 function gh {
     open "https://github.com/$@"
