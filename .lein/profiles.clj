@@ -17,6 +17,7 @@
                        [org.clojure/core.typed "0.2.4"]
                        [alembic "0.2.0"]
                        [riddley "0.1.0"]
+                       [wally "0.1.1"]
                        [com.cemerick/pomegranate "0.2.0"]
                        [com.aphyr/prism "0.1.1"]
                        [jark "0.4.3"]]}}
