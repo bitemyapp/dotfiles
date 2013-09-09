@@ -9,11 +9,13 @@
                   [com.aphyr/prism "0.1.1"]
                   [lein-typed "0.3.0"]
                   [lein-marginalia "0.7.1"]
+                  [org.timmc/nephila "0.2.0"]
                   [lein-cloverage "1.0.2"]]
         :datomic {:install-location "~/code/datomic-free-0.8.4138"}
         :aliases {"eval" ["run" "-m" "clojure.main/main" "-e"]}
         :dependencies [[ritz/ritz-nrepl-middleware "0.7.0"]
                        [org.clojure/tools.namespace "0.2.3"]
+                       [org.clojure/tools.trace "0.7.6"]
                        [org.clojure/core.typed "0.2.4"]
                        [alembic "0.2.0"]
                        [riddley "0.1.0"]
