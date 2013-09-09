@@ -9,6 +9,7 @@
 
 (setq package-list '(clojure-mode
                      clojure-test-mode
+                     dash-at-point
                      less-css-mode
                      nrepl
                      nrepl-ritz

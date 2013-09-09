@@ -327,3 +327,8 @@ nothing happens."
 
 (require 'multi-term)
 (setq multi-term-program "/bin/zsh")
+
+(require 'dash-at-point)
+(autoload 'dash-at-point "dash-at-point"
+            "Search the word at point with Dash." t nil)
+(global-set-key "\C-cd" 'dash-at-point)

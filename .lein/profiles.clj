@@ -16,6 +16,7 @@
         :dependencies [[ritz/ritz-nrepl-middleware "0.7.0"]
                        [org.clojure/tools.namespace "0.2.3"]
                        [org.clojure/tools.trace "0.7.6"]
+                       [org.clojars.gjahad/debug-repl "0.3.3"]
                        [org.clojure/core.typed "0.2.4"]
                        [alembic "0.2.0"]
                        [riddley "0.1.0"]
