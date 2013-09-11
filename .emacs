@@ -13,6 +13,7 @@
                      less-css-mode
                      nrepl
                      nrepl-ritz
+                     paredit
                      puppet-mode))
 
 (require 'package)

@@ -58,3 +58,6 @@
     (insert "(require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh)"))
 
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
+
+(defun turn-on-paredit () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'turn-on-paredit)
