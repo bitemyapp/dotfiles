@@ -14,13 +14,6 @@
  
 ;; Repl mode hook
 (add-hook 'nrepl-mode-hook 'subword-mode)
- 
-;; Auto completion for NREPL
-;; God no, it's slow.
-;; (require 'ac-nrepl)
-;; (eval-after-load "auto-complete"
-;; '(add-to-list 'ac-modes 'nrepl-mode))
-;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\.edn$" . clojure-mode))
@@ -59,5 +52,10 @@
 
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
 
-(defun turn-on-paredit () (paredit-mode 1))
-(add-hook 'clojure-mode-hook 'turn-on-paredit)
+;; (defun turn-on-paredit () (paredit-mode 1))
+;; (add-hook 'clojure-mode-hook 'turn-on-paredit)
+
+;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'nrepl-mode))
