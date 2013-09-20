@@ -19,7 +19,7 @@
 (add-to-list 'auto-mode-alist '("\.edn$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("gantryfile" . clojure-mode))
 (setq nrepl-popup-stacktraces nil)
-(setq nrepl-popup-stacktraces-in-repl t)
+(setq nrepl-popup-stacktraces-in-repl nil)
 
 (require 'nrepl-ritz) ;; after (require 'nrepl)
 (add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
@@ -31,7 +31,6 @@
 (define-key nrepl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
 (define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
 (define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos)
-
 
 (defun sldb ()
     (interactive)
@@ -46,11 +45,21 @@
 
 (global-set-key (kbd "C-c c a l") 'alembic)
 
-(defun refresh-nrepl ()
+(defun refresh ()
     (interactive)
     (insert "(require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh)"))
 
+(defun pprint ()
+  (interactive)
+  (insert "(require '[clojure.pprint :refer [pprint]])"))
+
+(defun refresh-nrepl ()
+  (interactive)
+  (pprint)
+  (refresh))
+
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
+(global-set-key (kbd "C-c c l p p") 'pprint)
 
 ;; (defun turn-on-paredit () (paredit-mode 1))
 ;; (add-hook 'clojure-mode-hook 'turn-on-paredit)
