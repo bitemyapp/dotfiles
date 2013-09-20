@@ -15,10 +15,11 @@
         :datomic {:install-location "~/code/datomic-free-0.8.4138"}
         :aliases {"eval" ["run" "-m" "clojure.main/main" "-e"]}
         :dependencies [[ritz/ritz-nrepl-middleware "0.7.0"]
-                       [org.clojure/tools.namespace "0.2.3"]
+                       [org.clojure/tools.namespace "0.2.4"]
                        [org.clojure/tools.trace "0.7.6"]
                        [org.clojars.gjahad/debug-repl "0.3.3"]
                        [org.clojure/core.typed "0.2.4"]
+                       [night-vision "0.1.0-SNAPSHOT"]
                        [alembic "0.2.0"]
                        [riddley "0.1.0"]
                        [wally "0.1.1"]
