@@ -58,8 +58,18 @@
   (pprint)
   (refresh))
 
+(defun st-on ()
+  (interactive)
+  (setq nrepl-popup-stacktraces-in-repl t))
+
+(defun st-off ()
+  (interactive)
+  (setq nrepl-popup-stacktraces-in-repl nil))
+
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
 (global-set-key (kbd "C-c c l p p") 'pprint)
+(global-set-key (kbd "C-c c s t o") 'st-on)
+(global-set-key (kbd "C-c c s t f") 'st-off)
 
 ;; (defun turn-on-paredit () (paredit-mode 1))
 ;; (add-hook 'clojure-mode-hook 'turn-on-paredit)
