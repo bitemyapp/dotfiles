@@ -51,7 +51,7 @@
 
 (defun pprint ()
   (interactive)
-  (insert "(require '[clojure.pprint :refer [pprint]])"))
+  (insert "(require '[clojure.pprint :refer [pprint]]) "))
 
 (defun refresh-nrepl ()
   (interactive)
@@ -66,10 +66,25 @@
   (interactive)
   (setq nrepl-popup-stacktraces-in-repl nil))
 
+(defun inject-trace ()
+  (interactive)
+  (insert "(use 'clojure.tools.trace)"))
+
+(defun trace-on ()
+  (interactive)
+  (replace-string "defn" "deftrace") (list nil (region-beginning) (region-end)))
+
+(defun trace-off ()
+  (interactive)
+  (replace-string "deftrace" "defn" (list nil (region-beginning) (region-end))))
+
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
 (global-set-key (kbd "C-c c l p p") 'pprint)
 (global-set-key (kbd "C-c c s t o") 'st-on)
 (global-set-key (kbd "C-c c s t f") 'st-off)
+(global-set-key (kbd "C-c c i t f") 'inject-trace)
+(global-set-key (kbd "C-c c t r o") 'trace-on)
+(global-set-key (kbd "C-c c t r f") 'trace-off)
 
 ;; (defun turn-on-paredit () (paredit-mode 1))
 ;; (add-hook 'clojure-mode-hook 'turn-on-paredit)
