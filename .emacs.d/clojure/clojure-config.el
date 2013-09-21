@@ -47,7 +47,7 @@
 
 (defun refresh ()
     (interactive)
-    (insert "(require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh)"))
+    (insert "(require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh) "))
 
 (defun pprint ()
   (interactive)
@@ -55,8 +55,8 @@
 
 (defun refresh-nrepl ()
   (interactive)
-  (pprint)
-  (refresh))
+  (refresh)
+  (pprint))
 
 (defun st-on ()
   (interactive)
