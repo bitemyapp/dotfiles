@@ -72,11 +72,11 @@
 
 (defun trace-on ()
   (interactive)
-  (replace-string "defn" "deftrace") (list nil (region-beginning) (region-end)))
+  (replace-string "defn" "deftrace" nil (region-beginning) (region-end)))
 
 (defun trace-off ()
   (interactive)
-  (replace-string "deftrace" "defn" (list nil (region-beginning) (region-end))))
+  (replace-string "deftrace" "defn" nil (region-beginning) (region-end)))
 
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
 (global-set-key (kbd "C-c c l p p") 'pprint)
