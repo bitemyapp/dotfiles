@@ -7,12 +7,14 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(clojure-mode
+(setq package-list '(;; ac-nrepl
+                     clojure-mode
                      clojure-test-mode
                      dash-at-point
                      less-css-mode
                      nrepl
                      nrepl-ritz
+                     ;; paredit
                      puppet-mode))
 
 (require 'package)

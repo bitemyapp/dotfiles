@@ -14,19 +14,12 @@
  
 ;; Repl mode hook
 (add-hook 'nrepl-mode-hook 'subword-mode)
- 
-;; Auto completion for NREPL
-;; God no, it's slow.
-;; (require 'ac-nrepl)
-;; (eval-after-load "auto-complete"
-;; '(add-to-list 'ac-modes 'nrepl-mode))
-;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
 
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\.edn$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("gantryfile" . clojure-mode))
 (setq nrepl-popup-stacktraces nil)
-(setq nrepl-popup-stacktraces-in-repl t)
+(setq nrepl-popup-stacktraces-in-repl nil)
 
 (require 'nrepl-ritz) ;; after (require 'nrepl)
 (add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
@@ -38,7 +31,6 @@
 (define-key nrepl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
 (define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
 (define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos)
-
 
 (defun sldb ()
     (interactive)
@@ -53,11 +45,51 @@
 
 (global-set-key (kbd "C-c c a l") 'alembic)
 
-(defun refresh-nrepl ()
+(defun refresh ()
     (interactive)
-    (insert "(require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh)"))
+    (insert "(require '[clojure.tools.namespace.repl :refer [refresh]]) (refresh) "))
+
+(defun pprint ()
+  (interactive)
+  (insert "(require '[clojure.pprint :refer [pprint]]) "))
+
+(defun refresh-nrepl ()
+  (interactive)
+  (refresh)
+  (pprint))
+
+(defun st-on ()
+  (interactive)
+  (setq nrepl-popup-stacktraces-in-repl t))
+
+(defun st-off ()
+  (interactive)
+  (setq nrepl-popup-stacktraces-in-repl nil))
+
+(defun inject-trace ()
+  (interactive)
+  (insert "(use 'clojure.tools.trace)"))
+
+(defun trace-on ()
+  (interactive)
+  (replace-string "defn" "deftrace" nil (region-beginning) (region-end)))
+
+(defun trace-off ()
+  (interactive)
+  (replace-string "deftrace" "defn" nil (region-beginning) (region-end)))
 
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
+(global-set-key (kbd "C-c c l p p") 'pprint)
+(global-set-key (kbd "C-c c s t o") 'st-on)
+(global-set-key (kbd "C-c c s t f") 'st-off)
+(global-set-key (kbd "C-c c i t f") 'inject-trace)
+(global-set-key (kbd "C-c c t r o") 'trace-on)
+(global-set-key (kbd "C-c c t r f") 'trace-off)
 
-(defun turn-on-paredit () (paredit-mode 1))
-(add-hook 'clojure-mode-hook 'turn-on-paredit)
+;; (defun turn-on-paredit () (paredit-mode 1))
+;; (add-hook 'clojure-mode-hook 'turn-on-paredit)
+
+;; (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+;; (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'nrepl-mode))
