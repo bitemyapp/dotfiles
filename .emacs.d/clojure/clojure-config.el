@@ -53,10 +53,15 @@
   (interactive)
   (insert "(require '[clojure.pprint :refer [pprint]]) "))
 
+(defun diff ()
+  (interactive)
+  (insert "(require '[clojure.data :refer [diff]]) "))
+
 (defun refresh-nrepl ()
   (interactive)
   (refresh)
-  (pprint))
+  (pprint)
+  (diff))
 
 (defun st-on ()
   (interactive)
@@ -77,6 +82,9 @@
 (defun trace-off ()
   (interactive)
   (replace-string "deftrace" "defn" nil (region-beginning) (region-end)))
+
+;; (alter-var-root #'*compiler-options* assoc :disable-locals-clearing true)
+;; (require '[alex-and-georges.debug-repl :refer [debug-repl quit-dr]])
 
 (global-set-key (kbd "C-c c r f") 'refresh-nrepl)
 (global-set-key (kbd "C-c c l p p") 'pprint)
