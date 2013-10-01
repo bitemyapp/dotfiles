@@ -8,8 +8,10 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 (setq package-list '(;; ac-nrepl
+                     ;; adoc-mode
                      clojure-mode
                      clojure-test-mode
+                     dash
                      dash-at-point
                      less-css-mode
                      nrepl
@@ -19,7 +21,7 @@
 
 (require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ;; ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
@@ -136,6 +138,10 @@
 
 ;; Slime
 ;; (load-library "slime-config.el")
+
+;; Smartparens
+;; (require 'smartparens-config)
+;; (add-hook 'clojure-mode-hook 'smartparens-mode)
 
 ;; Tabbar
 (if (display-graphic-p)
