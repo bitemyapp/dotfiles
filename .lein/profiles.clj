@@ -1,4 +1,5 @@
 {:user {:plugins [[lein-datomic "0.2.0"]
+                  [lein-ancient "0.4.4"]
                   [lein-ritz "0.7.0"]
                   [lein-bikeshed "0.1.3"]
                   [lein-try "0.3.0"]
