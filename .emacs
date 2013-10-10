@@ -169,6 +169,18 @@
 ;; (load-library "color-theme-solarized.el")
 ;; (color-theme-solarized 'dark)
 
+(setq desktop-load-locked-desktop t)
+(setq desktop-path '("~/.emacs.d/"))
+(setq desktop-dirname "~/.emacs.d/")
+(setq desktop-base-file-name "emacs-desktop")
+(desktop-read desktop-dirname)
+;; (desktop-save-mode 1)
+(defun my-desktop-save ()
+    (interactive)
+    ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
+    (desktop-save desktop-dirname))
+(add-hook 'auto-save-hook 'my-desktop-save)
+
 (if (string= system-type "darwin")
 (custom-set-faces
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :family "Menlo")))))

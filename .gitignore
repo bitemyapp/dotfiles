@@ -392,3 +392,5 @@ nrepl-history
 books
 wifi
 code/
+.emacs.desktop*
+emacs-desktop

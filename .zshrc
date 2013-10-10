@@ -5,6 +5,9 @@ autoload -U colors && colors
 unsetopt correct_all
 unsetopt correct
 
+bindkey '^U' backward-kill-line
+bindkey '^Y' yank
+
 # base -> [%n@%m %~]$
 prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%}]%{%F{reset}%}$ '
 export LSCOLORS=GxFxCxDxBxegedabagaced

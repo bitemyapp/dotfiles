@@ -57,11 +57,16 @@
   (interactive)
   (insert "(require '[clojure.data :refer [diff]]) "))
 
+(defun repl ()
+  (interactive)
+  (insert "(require '[clojure.repl :refer :all])"))
+
 (defun refresh-nrepl ()
   (interactive)
   (refresh)
   (pprint)
-  (diff))
+  (diff)
+  (repl))
 
 (defun st-on ()
   (interactive)
