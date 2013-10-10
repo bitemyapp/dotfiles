@@ -99,6 +99,14 @@
 (global-set-key (kbd "C-c c t r o") 'trace-on)
 (global-set-key (kbd "C-c c t r f") 'trace-off)
 
+(defun local-nrepl ()
+  (interactive)
+  (let ((port (read-from-minibuffer "Port? " nil)))
+    (nrepl "localhost" port)))
+
+(global-set-key (kbd "C-c c l n") 'local-nrepl)
+(global-set-key (kbd "C-c c n q") 'nrepl-quit)
+
 ;; (defun turn-on-paredit () (paredit-mode 1))
 ;; (add-hook 'clojure-mode-hook 'turn-on-paredit)
 
