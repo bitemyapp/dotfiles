@@ -394,3 +394,4 @@ wifi
 code/
 .emacs.desktop*
 emacs-desktop
+.datomic-free/
