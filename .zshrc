@@ -68,4 +68,3 @@ export PATH=/usr/local/bin:~/bin:$PATH:~/callen/.carton/bin:~/Library/Haskell/bi
 
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
