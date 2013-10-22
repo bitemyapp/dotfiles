@@ -13,6 +13,7 @@
                      clojure-test-mode
                      dash
                      dash-at-point
+                     hackernews
                      less-css-mode
                      nrepl
                      nrepl-ritz
