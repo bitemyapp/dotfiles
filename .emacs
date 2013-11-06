@@ -6,16 +6,22 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(clojure-mode
+(setq package-list '(;; ac-nrepl
+                     ;; adoc-mode
+                     clojure-mode
                      clojure-test-mode
+                     dash
+                     dash-at-point
+                     hackernews
                      less-css-mode
                      nrepl
                      nrepl-ritz
+                     ;; paredit
                      puppet-mode))
 
 (require 'package)
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ;; ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
@@ -133,6 +139,10 @@
 ;; Slime
 ;; (load-library "slime-config.el")
 
+;; Smartparens
+;; (require 'smartparens-config)
+;; (add-hook 'clojure-mode-hook 'smartparens-mode)
+
 ;; Tabbar
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
@@ -158,6 +168,18 @@
 ;; (require 'color-theme-solarized)
 ;; (load-library "color-theme-solarized.el")
 ;; (color-theme-solarized 'dark)
+
+(setq desktop-load-locked-desktop t)
+(setq desktop-path '("~/.emacs.d/"))
+(setq desktop-dirname "~/.emacs.d/")
+(setq desktop-base-file-name "emacs-desktop")
+(desktop-read desktop-dirname)
+;; (desktop-save-mode 1)
+(defun my-desktop-save ()
+    (interactive)
+    ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
+    (desktop-save desktop-dirname))
+(add-hook 'auto-save-hook 'my-desktop-save)
 
 (if (string= system-type "darwin")
 (custom-set-faces

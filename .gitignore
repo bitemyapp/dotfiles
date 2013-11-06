@@ -221,7 +221,6 @@ emu/
 .w3m/
 .wesnoth1.8/
 .dgen/
-code/
 .gvba/
 .lostirc/
 .neverball/
@@ -392,3 +391,8 @@ nrepl-history
 .ocp/
 books
 wifi
+code/
+.emacs.desktop*
+emacs-desktop
+.asciinema/
+.datomic-free/
