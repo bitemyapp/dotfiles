@@ -10,8 +10,8 @@
                      ;; adoc-mode
                      clojure-mode
                      clojure-test-mode
-                     dash
-                     dash-at-point
+                     ;; dash
+                     ;; dash-at-point
                      hackernews
                      less-css-mode
                      nrepl

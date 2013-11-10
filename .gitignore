@@ -396,3 +396,4 @@ code/
 emacs-desktop
 .asciinema/
 .datomic-free/
+.Xauthority*
