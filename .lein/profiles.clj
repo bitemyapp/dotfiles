@@ -1,4 +1,5 @@
-{:user {:plugins [[lein-datomic "0.2.0"]
+{:user {:plugins [
+                  [lein-datomic "0.2.0"]
                   [codox "0.6.6"]
                   [lein-ancient "0.4.4"]
                   [lein-ritz "0.7.0"]
@@ -9,11 +10,14 @@
                   [jonase/eastwood "0.0.2"]
                   [lein-kibit "0.0.8"]
                   [com.aphyr/prism "0.1.1"]
+                  [com.jakemccrary/lein-test-refresh "0.1.2"]
                   [quickie "0.2.2"]
                   [lein-typed "0.3.1"]
                   [lein-marginalia "0.7.1"]
                   [org.timmc/nephila "0.2.0"]
-                  [lein-cloverage "1.0.2"]]
+                  [lein-cloverage "1.0.2"]
+                  [com.jakemccrary/lein-test-refresh "0.1.2"]
+                  ]
         :datomic {:install-location "~/code/datomic-free-0.8.4138"}
         :aliases {"eval" ["run" "-m" "clojure.main/main" "-e"]}
         :dependencies [[ritz/ritz-nrepl-middleware "0.7.0"]

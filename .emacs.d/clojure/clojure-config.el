@@ -1,5 +1,6 @@
 (require 'clojure-mode)
 (require 'nrepl)
+(require 'smartparens-config)
  
 ;; Configure nrepl.el
 (setq nrepl-hide-special-buffers t)
@@ -14,6 +15,9 @@
  
 ;; Repl mode hook
 (add-hook 'nrepl-mode-hook 'subword-mode)
+
+;; smartparens mode hook
+(add-hook 'clojure-mode-hook 'smartparens-mode)
 
 (add-to-list 'auto-mode-alist '("\.cljs$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\.edn$" . clojure-mode))

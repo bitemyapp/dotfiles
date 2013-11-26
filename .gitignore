@@ -396,3 +396,6 @@ code/
 emacs-desktop
 .asciinema/
 .datomic-free/
+.dvdcss/
+.lord/
+.watsonrc
