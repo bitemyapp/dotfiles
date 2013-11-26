@@ -1,4 +1,3 @@
-;; Dependencies
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
 
@@ -11,8 +10,8 @@
                      ;; adoc-mode
                      clojure-mode
                      clojure-test-mode
-                     dash
-                     dash-at-point
+                     ;; dash
+                     ;; dash-at-point
                      hackernews
                      less-css-mode
                      nrepl

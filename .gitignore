@@ -399,3 +399,4 @@ emacs-desktop
 .dvdcss/
 .lord/
 .watsonrc
+.Xauthority*
