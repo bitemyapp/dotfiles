@@ -400,3 +400,4 @@ emacs-desktop
 .lord/
 .watsonrc
 .Xauthority*
+.nix-*
