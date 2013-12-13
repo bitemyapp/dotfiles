@@ -21,3 +21,6 @@
 (require 'ghc)
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
+
+(custom-set-variables
+ '(haskell-mode-hook '(turn-on-haskell-indentation)))
