@@ -72,4 +72,4 @@ export PATH=/usr/local/bin:~/bin:$PATH:~/.carton/bin:~/Library/Haskell/bin:~/.ca
 # Virtualenv
 export WORKON_HOME=~/.virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
-source /Users/callen/.nix-profile/etc/profile.d/nix.sh
+# source /Users/callen/.nix-profile/etc/profile.d/nix.sh
