@@ -14,6 +14,7 @@
                      ;; dash-at-point
                      ;; ghc
                      hackernews
+                     haskell-mode
                      less-css-mode
                      nrepl
                      ;; nrepl-ritz
@@ -61,6 +62,9 @@
 
 ;; Erlang
 (load-library "erlang-config.el")
+
+;; Floobits
+(load-library "floobits.el")
 
 ;; Go
 (load-library "go-config.el")
