@@ -14,6 +14,7 @@
                      ;; dash-at-point
                      ;; ghc
                      hackernews
+                     haskell-mode
                      less-css-mode
                      nrepl
                      ;; nrepl-ritz

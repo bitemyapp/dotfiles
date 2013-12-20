@@ -401,3 +401,10 @@ emacs-desktop
 .watsonrc
 .Xauthority*
 .nix-*
+.Kega*
+.floorc
+.install4j
+.project_zomb*
+.snes9x/
+.virtualenv/
+Zomboid/
