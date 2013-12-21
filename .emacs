@@ -64,7 +64,7 @@
 (load-library "erlang-config.el")
 
 ;; Floobits
-(load-library "floobits.el")
+;; (load-library "floobits.el")
 
 ;; Go
 (load-library "go-config.el")
