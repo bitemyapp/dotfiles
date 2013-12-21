@@ -408,3 +408,6 @@ emacs-desktop
 .snes9x/
 .virtualenv/
 Zomboid/
+.clojurepyhist
+.emacs.d/floobits-emacs/
+floobits/
