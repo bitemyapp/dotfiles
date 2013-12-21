@@ -16,7 +16,7 @@
                      hackernews
                      less-css-mode
                      nrepl
-                     nrepl-ritz
+                     ;; nrepl-ritz
                      ;; paredit
                      puppet-mode))
 
