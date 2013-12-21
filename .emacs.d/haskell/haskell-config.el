@@ -11,3 +11,4 @@
 (setq haskell-program-name "ghci")
 (custom-set-variables
  '(haskell-mode-hook '(turn-on-haskell-indentation)))
+(setq inferior-haskell-find-project-root nil)
