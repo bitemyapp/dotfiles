@@ -20,11 +20,11 @@ alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
-alias ls='ls -G'
+# alias ls='ls -G --color=auto'
 
 alias gpo='git pull origin && git push origin'
 alias gpom='git pull origin master && git push origin master'
-alias gphm='git push heroku master'
+alias gpgm='git pull gh master && git push gh master'
 alias ph='gpom && gphm'
 alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
 alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
@@ -68,3 +68,8 @@ export PATH=/usr/local/bin:~/bin:$PATH:~/.carton/bin:~/Library/Haskell/bin:~/.ca
 
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# Virtualenv
+export WORKON_HOME=~/.virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+# source /Users/callen/.nix-profile/etc/profile.d/nix.sh

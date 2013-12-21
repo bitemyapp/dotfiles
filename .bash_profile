@@ -87,3 +87,4 @@ export TOMCAT_HOME=/usr/local/Cellar/tomcat/7.0.32/libexec
 [[ -s /Users/callen/.nvm/nvm.sh ]] && . /Users/callen/.nvm/nvm.sh
 
 source `which virtualenvwrapper.sh`
+source /Users/callen/.nix-profile/etc/profile.d/nix.sh
