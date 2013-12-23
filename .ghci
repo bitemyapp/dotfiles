@@ -14,3 +14,4 @@ let myPrint :: Show a => a -> IO ();
 :seti -XNoMonomorphismRestriction
 :set -interactive-print=myPrint
 -- :set prompt "λ> "
+:set prompt "Prelude> "
