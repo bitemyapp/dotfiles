@@ -411,3 +411,5 @@ Zomboid/
 .clojurepyhist
 .emacs.d/floobits-emacs/
 floobits/
+.nv/
+.muttrc

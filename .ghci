@@ -5,7 +5,9 @@ import qualified Language.Haskell.HsColour.Output as HsColour
 
 let myColourPrefs = HsColour.defaultColourPrefs { HsColour.conid = [HsColour.Foreground HsColour.Yellow, HsColour.Bold], HsColour.conop = [HsColour.Foreground HsColour.Yellow], HsColour.string = [HsColour.Foreground HsColour.Green], HsColour.char = [HsColour.Foreground HsColour.Cyan], HsColour.number = [HsColour.Foreground HsColour.Red, HsColour.Bold], HsColour.layout = [HsColour.Foreground HsColour.White], HsColour.keyglyph = [HsColour.Foreground HsColour.White] }
 
+-- let myPrint :: Show a => a -> IO ();
 -- let myPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False . IPPrint.pshow
+
 :{
 let myPrint :: Show a => a -> IO ();
     myPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False . IPPrint.pshow
@@ -14,3 +16,4 @@ let myPrint :: Show a => a -> IO ();
 :seti -XNoMonomorphismRestriction
 :set -interactive-print=myPrint
 -- :set prompt "λ> "
+:set prompt "Prelude> "

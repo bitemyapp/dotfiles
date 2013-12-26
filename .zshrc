@@ -34,7 +34,6 @@ alias act='source `find . -name "activate" | grep "bin/activate"`'
 # Thanks TimMc :)
 alias learn="java -jar ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar -e '(->> clojure.core quote the-ns ns-publics seq rand-nth val meta ((juxt :name :doc)) (map println) dorun)'"
 alias cljhere="java -jar ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar -e"
-# '(java.util.UUID/randomUUID)'
 
 function gh {
     open "https://github.com/$@"
