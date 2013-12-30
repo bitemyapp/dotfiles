@@ -64,7 +64,7 @@
 (load-library "erlang-config.el")
 
 ;; Floobits
-(load-library "floobits.el")
+;; (load-library "floobits.el")
 
 ;; Go
 (load-library "go-config.el")
@@ -192,7 +192,7 @@
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :family "Menlo")))))
 
 (custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace"))))))
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monospace"))))))
 
 ;; fucking auto-fill
 (defun auto-fill-mode (args)
