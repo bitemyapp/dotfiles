@@ -6,18 +6,12 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(;; ac-nrepl
-                     ;; adoc-mode
+(setq package-list '(cider
                      clojure-mode
                      clojure-test-mode
-                     ;; dash
-                     ;; dash-at-point
-                     ;; ghc
                      hackernews
                      haskell-mode
                      less-css-mode
-                     nrepl
-                     ;; nrepl-ritz
                      ;; paredit
                      puppet-mode))
 

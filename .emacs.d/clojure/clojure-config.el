@@ -1,5 +1,6 @@
 (require 'clojure-mode)
-(require 'nrepl)
+;; (require 'nrepl)
+(require 'cider)
 ;; (require 'smartparens-config)
  
 ;; Configure nrepl.el
