@@ -1,5 +1,6 @@
 (require 'clojure-mode)
-(require 'nrepl)
+;; (require 'nrepl)
+(require 'cider)
 ;; (require 'smartparens-config)
  
 ;; Configure nrepl.el
@@ -25,23 +26,23 @@
 (setq nrepl-popup-stacktraces nil)
 (setq nrepl-popup-stacktraces-in-repl nil)
 
-(require 'nrepl-ritz) ;; after (require 'nrepl)
-(add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
-(defun my-nrepl-mode-setup ()
-  (require 'nrepl-ritz))
+;; (require 'nrepl-ritz) ;; after (require 'nrepl)
+;; (add-hook 'nrepl-interaction-mode-hook 'my-nrepl-mode-setup)
+;; (defun my-nrepl-mode-setup ()
+;;   (require 'nrepl-ritz))
 
 ;; Ritz middleware
-(define-key nrepl-interaction-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
-(define-key nrepl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
-(define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
-(define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos)
+;; (define-key nrepl-interaction-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
+;; (define-key nrepl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
+;; (define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
+;; (define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos)
 
-(defun sldb ()
-    (interactive)
-    (insert "(throw (Throwable. \"Call debugger\"))")
-    (nrepl-ritz-break-on-exception "true"))
+;; (defun sldb ()
+;;     (interactive)
+;;     (insert "(throw (Throwable. \"Call debugger\"))")
+;;     (nrepl-ritz-break-on-exception "true"))
 
-(global-set-key (kbd "C-c s l d") 'sldb)
+;; (global-set-key (kbd "C-c s l d") 'sldb)
 
 (defun alembic ()
     (interactive)

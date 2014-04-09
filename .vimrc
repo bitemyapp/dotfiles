@@ -35,6 +35,4 @@ if has("gui_running")
     set guioptions-=T
 endif
 
-set background=light
-colorscheme vilight
 

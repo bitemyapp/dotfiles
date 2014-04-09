@@ -6,18 +6,12 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(;; ac-nrepl
-                     ;; adoc-mode
+(setq package-list '(cider
                      clojure-mode
                      clojure-test-mode
-                     ;; dash
-                     ;; dash-at-point
-                     ;; ghc
                      hackernews
                      haskell-mode
                      less-css-mode
-                     nrepl
-                     ;; nrepl-ritz
                      ;; paredit
                      puppet-mode))
 
@@ -201,7 +195,7 @@
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :family "Menlo")))))
 
 (custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "unknown" :family "Monospace"))))))
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Monospace"))))))
 
 ;; fucking auto-fill
 (defun auto-fill-mode (args)
