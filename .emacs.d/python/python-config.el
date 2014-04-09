@@ -19,6 +19,12 @@
 
 (global-set-key (kbd "C-c p d b") 'ipdb)
 
+(defun pprint ()
+  (interactive)
+  (insert "import pprint; pp = pprint.PrettyPrinter(indent=4); pp.pprint("))
+
+(global-set-key (kbd "C-c p p r") 'pprint)
+
 ;; (add-hook 'python-mode-hook 'jedi:setup)
 ;; (add-hook 'python-mode-hook 'auto-complete-mode)
 ;; (add-hook 'python-mode-hook 'jedi:ac-setup)

@@ -69,6 +69,15 @@
 ;; Go
 (load-library "go-config.el")
 
+;; God
+(require 'god-mode)
+;; (god-mode)
+;; (global-set-key (kbd "<escape>") 'god-mode)
+
+;; Guru
+;; (require 'guru-mode)
+;; (guru-global-mode +1)
+
 ;; Haskell
 (load-library "haskell-config.el")
 
