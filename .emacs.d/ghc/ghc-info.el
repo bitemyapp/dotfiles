@@ -77,8 +77,7 @@
 
 (defun ghc-show-type ()
   (interactive)
-  (if (not (executable-find ghc-module-command))
-      (message "%s not found" ghc-module-command)
+  (ghc-executable-find ghc-module-command
     (let ((modname (or (ghc-find-module-name) "Main")))
       (ghc-show-type0 modname))))
 
@@ -104,9 +103,12 @@
   (if (= (ghc-type-get-point) (point))
       (ghc-type-set-ix
        (mod (1+ (ghc-type-get-ix)) (length (ghc-type-get-types))))
-    (ghc-type-set-types (ghc-type-obtain-tinfos modname))
-    (ghc-type-set-point (point))
-    (ghc-type-set-ix 0))
+    (let ((types (ghc-type-obtain-tinfos modname)))
+      (if (not (listp types)) ;; main does not exist in Main
+	  (ghc-type-set-types nil)
+	(ghc-type-set-types types)
+	(ghc-type-set-point (point))
+	(ghc-type-set-ix 0))))
   (ghc-type-get-types))
 
 (defun ghc-type-obtain-tinfos (modname)
@@ -117,7 +119,7 @@
     (ghc-read-lisp
      (lambda ()
        (cd cdir)
-       (apply 'call-process ghc-module-command nil t nil
+       (apply 'ghc-call-process ghc-module-command nil t nil
 	      `(,@(ghc-make-ghc-options) "-l" "type" ,file ,modname ,ln ,cn))
        (goto-char (point-min))
        (while (search-forward "[Char]" nil t)
@@ -146,7 +148,8 @@
 (defun ghc-get-pos (buf line col)
   (save-excursion
     (set-buffer buf)
-    (goto-line line)
+    (goto-char (point-min))
+    (forward-line (1- line))
     (forward-char col)
     (point)))
 

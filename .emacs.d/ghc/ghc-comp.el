@@ -30,6 +30,8 @@ unloaded modules are loaded")
 ;; must be sorted
 (defconst ghc-reserved-keyword '("case" "deriving" "do" "else" "if" "in" "let" "module" "of" "then" "where"))
 
+(defconst ghc-extra-keywords '("ByteString"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; Local Variables
@@ -49,7 +51,7 @@ unloaded modules are loaded")
 (defvar ghc-merged-keyword nil) ;; completion for type/func/...
 (defvar ghc-language-extensions nil)
 (defvar ghc-option-flags nil)
-(defvar ghc-pragma-names '("LANGUAGE" "OPTIONS_GHC"))
+(defvar ghc-pragma-names '("LANGUAGE" "OPTIONS_GHC" "INCLUDE" "WARNING" "DEPRECATED" "INLINE" "NOINLINE" "ANN" "LINE" "RULES" "SPECIALIZE" "UNPACK" "SOURCE"))
 
 (defconst ghc-keyword-prefix "ghc-keyword-")
 (defvar ghc-keyword-Prelude nil)
@@ -68,6 +70,7 @@ unloaded modules are loaded")
   (let* ((syms '(ghc-module-names
 		 ghc-language-extensions
 		 ghc-option-flags
+		 ;; hard coded in GHCMod.hs
 		 ghc-keyword-Prelude
 		 ghc-keyword-Control.Applicative
 		 ghc-keyword-Control.Monad
@@ -80,6 +83,7 @@ unloaded modules are loaded")
     (ghc-set syms vals))
   (ghc-add ghc-module-names "qualified")
   (ghc-add ghc-module-names "hiding")
+  ;; hard coded in GHCMod.hs
   (ghc-merge-keywords '("Prelude"
 			"Control.Applicative"
 			"Control.Monad"
@@ -96,25 +100,27 @@ unloaded modules are loaded")
 ;;;
 
 (defun ghc-boot (n)
-  (if (not (executable-find ghc-module-command))
-      (message "%s not found" ghc-module-command)
+  (ghc-executable-find ghc-module-command
     (ghc-read-lisp-list
      (lambda ()
        (message "Initializing...")
-       (call-process ghc-module-command nil t nil "-l" "boot")
+       (ghc-call-process ghc-module-command nil t nil "-l" "boot")
        (message "Initializing...done"))
      n)))
 
 (defun ghc-load-modules (mods)
-  (if (not (executable-find ghc-module-command))
-      (message "%s not found" ghc-module-command)
-    (ghc-read-lisp-list
-     (lambda ()
-       (message "Loading names...")
-       (apply 'call-process ghc-module-command nil '(t nil) nil
-	      `(,@(ghc-make-ghc-options) "-l" "browse" ,@mods))
-       (message "Loading names...done"))
-     (length mods))))
+  (if (null mods)
+      (progn
+	(message "No new modules")
+	nil)
+    (ghc-executable-find ghc-module-command
+      (ghc-read-lisp-list
+       (lambda ()
+	 (message "Loading names...")
+	 (apply 'ghc-call-process ghc-module-command nil '(t nil) nil
+		`(,@(ghc-make-ghc-options) "-l" "browse" ,@mods))
+	 (message "Loading names...done"))
+       (length mods)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -218,7 +224,7 @@ unloaded modules are loaded")
 (defun ghc-completion-start-point ()
   (save-excursion
     (let ((beg (save-excursion (beginning-of-line) (point)))
-	  (regex (if (ghc-module-completion-p) "[ (,`]" "[ (,`.]")))
+	  (regex (if (ghc-module-completion-p) "[ (,`]" "[\[ (,`.]")))
       (if (re-search-backward regex beg t)
 	  (1+ (point))
 	beg))))
@@ -255,7 +261,7 @@ unloaded modules are loaded")
 (defun ghc-merge-keywords (mods)
   (setq ghc-loaded-module (append mods ghc-loaded-module))
   (let* ((modkeys (mapcar 'ghc-module-keyword ghc-loaded-module))
-	 (keywords (cons ghc-reserved-keyword modkeys))
+	 (keywords (cons ghc-extra-keywords (cons ghc-reserved-keyword modkeys)))
 	 (uniq-sorted (sort (ghc-uniq-lol keywords) 'string<)))
     (setq ghc-merged-keyword uniq-sorted)))
 
@@ -271,7 +277,9 @@ unloaded modules are loaded")
 (ghc-defstruct buffer name file)
 
 (defun ghc-buffer-name-file (buf)
-  (ghc-make-buffer (buffer-name buf) (buffer-file-name buf)))
+  (ghc-make-buffer
+   :name (buffer-name buf)
+   :file (buffer-file-name buf)))
 
 (defun ghc-gather-import-modules-all-buffers ()
   (let ((bufs (mapcar 'ghc-buffer-name-file (buffer-list)))
