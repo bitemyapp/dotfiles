@@ -7,8 +7,16 @@
 ;; Created: Dec 27, 2011
 
 (require 'ghc-process)
+<<<<<<< HEAD
 
 ;;; Code:
+=======
+
+;;; Code:
+
+(defvar ghc-ins-mod-rendezvous nil)
+(defvar ghc-ins-mod-results nil)
+>>>>>>> 2a27e85130951c2ba935eb1a1aa2d4b0c671b3b4
 
 (defun ghc-insert-module ()
   (interactive)
@@ -73,7 +81,31 @@
     (forward-line)))
 
 (defun ghc-function-to-modules (fun)
+<<<<<<< HEAD
   (let ((cmd (format "find %s\n" fun)))
     (ghc-sync-process cmd)))
+=======
+  (setq ghc-ins-mod-rendezvous nil)
+  (setq ghc-ins-mod-results nil)
+  (ghc-with-process
+   (lambda () (ghc-ins-mod-send fun))
+   'ghc-ins-mod-callback)
+  (while (null ghc-ins-mod-rendezvous)
+    (sit-for 0.01))
+  ghc-ins-mod-results)
+
+(defun ghc-ins-mod-send (fun)
+  (concat "find " fun "\n"))
+
+(defun ghc-ins-mod-callback ()
+  (let (lines line beg)
+    (while (not (eobp))
+      (setq beg (point))
+      (forward-line)
+      (setq line (buffer-substring-no-properties beg (1- (point))))
+      (setq lines (cons line lines)))
+    (setq ghc-ins-mod-rendezvous t)
+    (setq ghc-ins-mod-results (nreverse (cdr lines))))) ;; removing "OK"
+>>>>>>> 2a27e85130951c2ba935eb1a1aa2d4b0c671b3b4
 
 (provide 'ghc-ins-mod)

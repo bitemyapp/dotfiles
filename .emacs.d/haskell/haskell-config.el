@@ -7,10 +7,11 @@
 (setenv "PATH" (concat (getenv "PATH") ":~/code/ghc-mod/.cabal-sandbox/bin"))
 (setq exec-path (append exec-path '("~/code/ghc-mod/.cabal-sandbox/bin")))
 
-;; (require 'ghc)
-;; (autoload 'ghc-init "ghc" nil t)
-;; (autoload 'ghc-debug "ghc" nil t)
-;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+(require 'ghc)
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;; (require 'flycheck)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (setq haskell-program-name "ghci")
 (custom-set-variables
@@ -98,3 +99,7 @@
 (add-hook 'haskell-mode-hook 'haskell-unicode)
 
 (setq haskell-font-lock-symbols t)
+
+(provide 'haskell-config)
+
+;;; haskell-config.el ends here

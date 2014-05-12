@@ -75,6 +75,9 @@
 ;; Haskell
 (load-library "haskell-config.el")
 
+;; Idris
+(require 'idris-mode)
+
 ;; Jinja
 (require 'jinja)
 (fset 'html-mode 'jinja-mode)

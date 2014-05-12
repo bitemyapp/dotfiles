@@ -63,18 +63,14 @@
 (defun ghc-read-lisp (func)
   (with-temp-buffer
     (funcall func)
-    (ghc-read-lisp-this-buffer)))
-
-;; OK/NG are ignored.
-(defun ghc-read-lisp-this-buffer ()
-  (save-excursion
     (goto-char (point-min))
     (condition-case nil
 	(read (current-buffer))
       (error ()))))
 
-(defun ghc-read-lisp-list-this-buffer (n)
-  (save-excursion
+(defun ghc-read-lisp-list (func n)
+  (with-temp-buffer
+    (funcall func)
     (goto-char (point-min))
     (condition-case nil
 	(let ((m (set-marker (make-marker) 1 (current-buffer)))
@@ -87,6 +83,11 @@
 
 (defun ghc-mapconcat (func list)
   (apply 'append (mapcar func list)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defconst ghc-null 0)
+(defconst ghc-newline 10)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -151,6 +152,7 @@
       (with-current-buffer buf
         (erase-buffer)
         (funcall ins-func)
+        (ghc-replace-character-buffer ghc-null ghc-newline)
         (goto-char (point-min))
         (if (not fontify)
             (turn-off-haskell-font-lock)
@@ -160,15 +162,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun ghc-run-ghc-mod (cmds &optional prog)
-  (let ((target (or prog ghc-module-command)))
-    (ghc-executable-find target
-      (let ((cdir default-directory))
-	(with-temp-buffer
-	  (cd cdir)
-	  (apply 'ghc-call-process target nil t nil
-		 (append (ghc-make-ghc-options) cmds))
-	  (buffer-substring (point-min) (1- (point-max))))))))
+(defun ghc-run-ghc-mod (cmds)
+  (ghc-executable-find ghc-module-command
+    (let ((cdir default-directory))
+      (with-temp-buffer
+	(cd cdir)
+	(apply 'ghc-call-process ghc-module-command nil t nil
+	       (append (ghc-make-ghc-options) cmds))
+	(buffer-substring (point-min) (1- (point-max)))))))
 
 (defmacro ghc-executable-find (cmd &rest body)
   ;; (declare (indent 1))
