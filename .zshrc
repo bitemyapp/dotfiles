@@ -31,9 +31,6 @@ alias gpts='git checkout staging && git merge master && git push origin staging 
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 # git branch --set-upstream new_frontpage origin/new_frontpage
-# Thanks TimMc :)
-alias learn="java -jar ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar -e '(->> clojure.core quote the-ns ns-publics seq rand-nth val meta ((juxt :name :doc)) (map println) dorun)'"
-alias cljhere="java -jar ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar -e"
 
 function gh {
     open "https://github.com/$@"
@@ -63,8 +60,9 @@ function marks {
         \ls -l $MARKPATH | tail -n +2 | sed 's/  / /g' | cut -d' ' -f9- | awk -F ' -> ' '{printf "%-10s -> %s\n", $1, $2}'
 }
 
+export PATH=$HOME/code/ghc/bin:$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin
 
-export PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin:~/.cabal/bin
+export FPATH=$HOME/.zsh_completion:$FPATH
 
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

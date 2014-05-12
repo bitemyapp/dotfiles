@@ -6,10 +6,10 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(cider
-                     clojure-mode
-                     clojure-test-mode
-                     hackernews
+(setq package-list '(;; cider
+                     ;; clojure-mode
+                     ;; clojure-test-mode
+                     ;; hackernews
                      haskell-mode
                      less-css-mode
                      ;; paredit
@@ -35,7 +35,7 @@
 (load-library "ac-config.el")
 
 ;; Clojure
-(load-library "clojure-config.el")
+;; (load-library "clojure-config.el")
 
 ;; CoffeeScript
 (require 'coffee-mode)

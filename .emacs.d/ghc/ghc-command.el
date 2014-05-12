@@ -8,22 +8,39 @@
 
 ;;; Code:
 
-(require 'ghc-flymake)
+(require 'ghc-process)
+(require 'ghc-check)
 
 (defun ghc-insert-template ()
   (interactive)
   (cond
    ((bobp)
     (ghc-insert-module-template))
-   ((ghc-flymake-have-errs-p)
-    (ghc-flymake-insert-from-warning))
+   ((ghc-check-overlay-at (point))
+    (ghc-check-insert-from-warning))
    (t
     (message "Nothing to be done"))))
 
 (defun ghc-insert-module-template ()
-  (let ((mod (file-name-sans-extension (buffer-name))))
-    (aset mod 0 (upcase (aref mod 0)))
+  (let* ((fullname (file-name-sans-extension (buffer-file-name)))
+	 (rootdir (ghc-get-project-root))
+	 (len (length rootdir))
+	 (name (substring fullname (1+ len)))
+	 (file (file-name-sans-extension (buffer-name)))
+	 (case-fold-search nil)
+	 (mod (if (string-match "^[A-Z]" name)
+		  (ghc-replace-character name ?/ ?.)
+		(if (string-match "^[a-z]" file)
+		    "Main"
+		  file))))
+    (while (looking-at "^{-#")
+      (forward-line))
     (insert "module " mod " where\n")))
+
+;; (defun ghc-capitalize (str)
+;;   (let ((ret (copy-sequence str)))
+;;     (aset ret 0 (upcase (aref ret 0)))
+;;     ret))
 
 (defun ghc-sort-lines (beg end)
   (interactive "r")
@@ -36,12 +53,43 @@
 		   (lambda ()
 		     (re-search-forward "^import\\( *qualified\\)? *" nil t)
 		     nil)
-		   'end-of-line)))))
+		   'end-of-line))
+      (ghc-merge-lines))))
+
+(defun ghc-merge-lines ()
+  (let ((case-fold-search nil))
+    (goto-char (point-min))
+    (while (not (eolp))
+      ;; qualified modlues are not merged at this moment.
+      ;; fixme if it is improper.
+      (if (looking-at "^import *\\([A-Z][^ \n]+\\) *(\\(.*\\))$")
+	  (let ((mod (match-string-no-properties 1))
+		(syms (match-string-no-properties 2))
+		(beg (point)))
+	    (forward-line)
+	    (ghc-merge-line beg mod syms))
+	(forward-line)))))
+
+(defun ghc-merge-line (beg mod syms)
+  (let ((regex (concat "^import *" (regexp-quote mod) " *(\\(.*\\))$"))
+	duplicated)
+    (while (looking-at regex)
+      (setq duplicated t)
+      (setq syms (concat syms ", " (match-string-no-properties 1)))
+      (forward-line))
+    (when duplicated
+      (delete-region beg (point))
+      (insert "import " mod " (" syms ")\n"))))
 
 (defun ghc-save-buffer ()
   (interactive)
-  (if (buffer-modified-p)
-      (call-interactively 'save-buffer)
-    (flymake-start-syntax-check)))
+  ;; fixme: better way then saving?
+  (if ghc-check-command ;; hlint
+      (if (buffer-modified-p)
+	  (call-interactively 'save-buffer))
+    (unless buffer-read-only
+      (set-buffer-modified-p t)
+      (call-interactively 'save-buffer)))
+  (ghc-check-syntax))
 
 (provide 'ghc-command)

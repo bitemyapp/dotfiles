@@ -63,14 +63,18 @@
 (defun ghc-read-lisp (func)
   (with-temp-buffer
     (funcall func)
+    (ghc-read-lisp-this-buffer)))
+
+;; OK/NG are ignored.
+(defun ghc-read-lisp-this-buffer ()
+  (save-excursion
     (goto-char (point-min))
     (condition-case nil
 	(read (current-buffer))
       (error ()))))
 
-(defun ghc-read-lisp-list (func n)
-  (with-temp-buffer
-    (funcall func)
+(defun ghc-read-lisp-list-this-buffer (n)
+  (save-excursion
     (goto-char (point-min))
     (condition-case nil
 	(let ((m (set-marker (make-marker) 1 (current-buffer)))
@@ -83,11 +87,6 @@
 
 (defun ghc-mapconcat (func list)
   (apply 'append (mapcar func list)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defconst ghc-null 0)
-(defconst ghc-newline 10)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -147,31 +146,63 @@
 (defconst ghc-error-buffer-name "*GHC Info*")
 
 (defun ghc-display (fontify ins-func)
-  (let ((buf (get-buffer-create ghc-error-buffer-name)))
-    (with-current-buffer buf
-      (erase-buffer)
-      (funcall ins-func)
-      (ghc-replace-character-buffer ghc-null ghc-newline)
-      (goto-char (point-min))
-      (if (not fontify)
-	  (turn-off-haskell-font-lock)
-	(haskell-font-lock-defaults-create)
-	(turn-on-haskell-font-lock)))
-    (display-buffer buf)))
+  (let ((buf ghc-error-buffer-name))
+    (with-output-to-temp-buffer buf
+      (with-current-buffer buf
+        (erase-buffer)
+        (funcall ins-func)
+        (goto-char (point-min))
+        (if (not fontify)
+            (turn-off-haskell-font-lock)
+          (haskell-font-lock-defaults-create)
+          (turn-on-haskell-font-lock)))
+      (display-buffer buf))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun ghc-run-ghc-mod (cmds)
-  (cond
-   ((executable-find ghc-module-command)
-    (let ((cdir default-directory))
-      (with-temp-buffer
-	(cd cdir)
-	(apply 'call-process ghc-module-command nil t nil
-	       (append (ghc-make-ghc-options) cmds))
-	(buffer-substring (point-min) (1- (point-max))))))
-   (t
-    (message "%s not found" ghc-module-command)
-    nil)))
+(defun ghc-run-ghc-mod (cmds &optional prog)
+  (let ((target (or prog ghc-module-command)))
+    (ghc-executable-find target
+      (let ((cdir default-directory))
+	(with-temp-buffer
+	  (cd cdir)
+	  (apply 'ghc-call-process target nil t nil
+		 (append (ghc-make-ghc-options) cmds))
+	  (buffer-substring (point-min) (1- (point-max))))))))
+
+(defmacro ghc-executable-find (cmd &rest body)
+  ;; (declare (indent 1))
+  `(if (not (executable-find ,cmd))
+       (message "\"%s\" not found" ,cmd)
+     ,@body))
+
+(put 'ghc-executable-find 'lisp-indent-function 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defvar ghc-debug nil)
+
+(defvar ghc-debug-buffer "*GHC Debug*")
+
+(defmacro ghc-with-debug-buffer (&rest body)
+  `(with-current-buffer (set-buffer (get-buffer-create ghc-debug-buffer))
+     (goto-char (point-max))
+     ,@body))
+
+(defun ghc-call-process (cmd x y z &rest args)
+  (apply 'call-process cmd x y z args)
+  (when ghc-debug
+    (let ((cbuf (current-buffer)))
+      (ghc-with-debug-buffer
+       (insert (format "%% %s %s\n" cmd (mapconcat 'identity args " ")))
+       (insert-buffer-substring cbuf)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun ghc-enclose (expr)
+  (let ((case-fold-search nil))
+    (if (string-match "^[a-zA-Z0-9_]" expr)
+	expr
+      (concat "(" expr ")"))))
 
 (provide 'ghc-func)
