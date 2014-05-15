@@ -21,8 +21,15 @@ color_patches=no
 # aliases for the same thing, namely "don't colour highlight
 # this, use the default output colour"
 #
-plain=white
+# plain=white
+# newtext=darkgreen
+# oldtext=darkred
+# diffstuff=darkblue
+# cvsstuff=darkwhite
+
+# be more git-like:
+plain=off
 newtext=darkgreen
 oldtext=darkred
-diffstuff=darkblue
+diffstuff=darkcyan
 cvsstuff=darkwhite

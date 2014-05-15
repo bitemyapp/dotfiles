@@ -1,0 +1,63 @@
+#compdef hugs
+
+_hugs ()
+{
+    _arguments \
+        '(-98)+98[Accept only Haskell 98 (default)]' \
+        '(+98)-98[Start in Hugs mode]' \
+        '(-o)+o[Allow overlapping instances]' \
+        '(+o)-o[Disallow overlapping instances (default)]' \
+        '(-O)+O[Allow unsafe overlapping instances]' \
+        '(+O)-O[Disallow unsafe overlapping instances (default)]' \
+        "(-H)+H[Allow ‘here documents’]" \
+        "(+H)-H[Disallow ‘here documents’ (default)]" \
+        '(-l)+l[Treat files as literate scripts]' \
+        '(+l)-l[Do not treat files as literate scripts (default)]' \
+        '(-.)+.[Print dots to show progress]' \
+        '(+.)-.[Do not print dots to show progress (default)]' \
+        '(-q)+q[Print nothing to show progress]' \
+        '(+q)-q[Show progess (default)]' \
+        '(-w)+w[Always show which files are loaded]' \
+        '(+w)-w[Do not show which files are loaded (default)]' \
+        '(-s)+s[Print number of reductions/cells]' \
+        '(+s)-s[Do not print number of reductions/cells (default)]' \
+        '(-t)+t[Print type after each evaluation]' \
+        '(+t)-t[Do not print type after each evaluation (default)]' \
+        '(-T)+T[Apply the Haskell defaulting rules]' \
+        '(+T)-T[Do not apply the Haskell defaulting rules (default)]' \
+        '(-g)+g[Print number of cells recovered after each garbage collection]' \
+        '(+g)-g[Do not print number of cells recovered after each garbage collection]' \
+        '(-Q)+Q[Qualify names when printing]' \
+        '(+Q)-Q[Do not qualify names when printing (default)]' \
+        '(-k)+k[Show kind errors in full]' \
+        '(+k)-k[Do not show kind errors in full (default)]' \
+        '(-u)+u[Use "show" to display results (default)]' \
+        '(+u)-u[Do not use "show" to display results]' \
+        '(-I)+I[Display results of IO programs]' \
+        '(+I)-I[Do not display results of IO programs (default)]' \
+        '-h-[Set heap size (default: 250k)]:size:' \
+        "-p-[Set prompt string (default: '%s> ')]:prompt:" \
+        '-r-[Set repeat last expression string (default: $$)]:repeat:' \
+        '-P-[Set search path for source files]:directory:->hugs_path' \
+        '-S-[Set list of source file suffixes (default: .hs:.lhs)]' \
+        '-E-[Set editor]:editor:' \
+        '-c-[Set constraint cutoff limit (default: 40)]:number:' \
+        '-F-[Set preprocessor filter]:program:' \
+        '-X-[Set option string]:options:' \
+        '*:file:_files -g "*.{lhs,hs}"'
+
+    [[ -n "$state" ]] &&
+    case "$state" in
+        hugs_path) _hugs_path ;;
+    esac
+
+}
+
+_hugs_path ()
+{
+    compset -P '*:'
+    compset -S ':*'
+    _path_files -r': ' -/
+}
+
+_hugs "$@"

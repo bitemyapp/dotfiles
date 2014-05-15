@@ -418,3 +418,10 @@ floobits/
 .pioneer/
 R/
 .pass
+.guard_history
+.gnuplot_history
+.pypirc
+.openvpn-connect.json
+.haste/
+.ihaskell/
+.vagrant.d/
