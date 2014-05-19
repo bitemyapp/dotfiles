@@ -6,22 +6,15 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(setq package-list '(;; cider
-                     ;; clojure-mode
-                     ;; clojure-test-mode
-                     ;; hackernews
-                     haskell-mode
-                     less-css-mode
-                     ;; paredit
-                     puppet-mode))
-
 (require 'package)
-(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                         ;; MELPA proves useless again.
-                         ;; ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+(add-to-list 'package-archives
+             '(;; "marmalade" . "http://marmalade-repo.org/packages/"
+               "MELPA"        . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
+
+(setq package-list '(ghc
+                     haskell-mode))
+
 (when (not package-archive-contents)
   (package-refresh-contents))
 (dolist (package package-list)
@@ -203,3 +196,19 @@
 ;; fucking auto-fill
 (defun auto-fill-mode (args)
   (message "fuck off"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(haskell-process-path-cabal "~/Library/Haskell/bin/cabal")
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :family "Menlo")))))
