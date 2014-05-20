@@ -1,1 +1,0 @@
-/Users/callen/.haskell-vim-now/.vim
