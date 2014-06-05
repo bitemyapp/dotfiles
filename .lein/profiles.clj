@@ -29,6 +29,7 @@
                        [alembic "0.2.0"]
                        [riddley "0.1.0"]
                        [wally "0.1.1"]
+                       [fipp "0.4.2"]
                        [com.cemerick/pomegranate "0.2.0"]
                        [com.aphyr/prism "0.1.1"]]}}
 
@@ -41,3 +42,4 @@
 ;; (alembic/distill '[org.clojure/tools.logging "0.2.0"])
 ;; or
 ;; (alembic/load-project)
+;; (require '[fipp.edn :refer (pprint pretty) :rename {pprint fipp pretty pfipp}])

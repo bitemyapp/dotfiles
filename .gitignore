@@ -425,3 +425,5 @@ R/
 .haste/
 .ihaskell/
 .vagrant.d/
+.codex
+.zpretzo/

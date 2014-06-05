@@ -26,6 +26,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-clojure-static'
+Plugin 'ingydotnet/yaml-vim'
 
 " Themes
 Plugin 'tomasr/molokai'
@@ -39,6 +42,7 @@ filetype plugin indent on    " required
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 set wildignore+=*.hi,*.o,*.dyn*
+set wildignore+=*/dist/*
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -58,6 +62,17 @@ nnoremap <Leader>l :GhcModCheckAndLintAsync<CR>
 
 set noeb vb t_vb=
 au GUIEnter * set vb t_vb=
+set mouse=c
+set nofoldenable
+let g:haskell_conceal = 0
+" Tab specific option
+set tabstop=2                   "A tab is 8 spaces
+set expandtab                   "Always uses spaces instead of tabs
+set softtabstop=2               "Insert 4 spaces when tab is pressed
+set shiftwidth=2                "An indent is 4 spaces
+set smarttab                    "Indent instead of tab at start of line
+set shiftround                  "Round spaces to nearest shiftwidth multiple
+set nojoinspaces                "Don't convert spaces to tabs
 
 set guifont=Monaco:h14
 colorscheme Molokai
