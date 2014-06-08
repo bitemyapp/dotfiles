@@ -1,4 +1,5 @@
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 
-:seti -XNoMonomorphismRestriction
+:set -fno-warn-type-defaults
+:set -XNoMonomorphismRestriction
 :set prompt "λ> "
