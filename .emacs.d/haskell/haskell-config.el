@@ -7,7 +7,7 @@
 
 (require 'ghc)
 (autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+(add-hook 'haskell-mode-hook 'ghc-init)
 
 (require 'hs-lint)
 
