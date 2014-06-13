@@ -1,35 +1,3 @@
-function parse_git_branch {
-        git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
-}
-
-function proml {
-
-  local        BLUE="\[\033[0;34m\]"
-
-  local        LIGHT_BLUE="\[\033[1;34m\]"
-
-  local         RED="\[\033[0;31m\]"
-
-  local   LIGHT_RED="\[\033[1;31m\]"
-
-  local       GREEN="\[\033[0;32m\]"
-
-  local LIGHT_GREEN="\[\033[1;32m\]"
-
-  local       WHITE="\[\033[1;37m\]"
-
-  local  LIGHT_GRAY="\[\033[0;37m\]"
-
-  local     DEFAULT="\[\033[0m\]"
-
-  PS1="\W$LIGHT_GREEN\$(parse_git_branch)$DEFAULT\$ "
-
-}
-
-proml
-
-# PS1='[\u@\h \W]\$ '
-
 export EDITOR="emacs -q -nw"
 
 alias grep='grep --colour=auto'
@@ -56,35 +24,4 @@ alias pg='sudo -u postgres psql'
 alias cdb='sudo -u postgres createdb'
 alias hgdiff='hg diff | colordiff | less -R'
 
-function replace() {
-    find . -type f | xargs sed -i "s/$1/$2/g"
-}
-
-export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
-
 export LANG=en_US.UTF-8
-# Initialization for FDK command line tools.Mon Oct  8 10:18:27 2012
-FDK_EXE="/Users/callen/bin/FDK/Tools/osx"
-
-PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
-export PATH=$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$HOME/bin:${PATH}:"/Users/callen/bin/FDK/Tools/osx"
-export PATH=${PATH}:/usr/local/share/npm/bin/
-export PATH=$HOME/bin:${PATH}
-
-# export PATH=${PATH}:$HOME/code/go/bin
-# export GOPATH=$HOME/code/gocode
-# export PATH=${PATH}:$GOPATH/bin
-export PATH=/usr/local/bin:${PATH}
-# Apparently Carton is a special snowflake
-export PATH="/Users/callen/.carton/bin:$PATH"
-
-export FDK_EXE
-export TARGET_ENV=local
-export JPDA_TRANSPORT=dt_socket
-export JPDA_ADDRESS=9000
-export TOMCAT_HOME=/usr/local/Cellar/tomcat/7.0.32/libexec
-
-[[ -s /Users/callen/.nvm/nvm.sh ]] && . /Users/callen/.nvm/nvm.sh
-
-source `which virtualenvwrapper.sh`
-source /Users/callen/.nix-profile/etc/profile.d/nix.sh
