@@ -429,3 +429,6 @@ R/
 .zpretzo/
 .mongorc.js
 work/
+.zlogin
+.newsbeuter/
+.cmus/

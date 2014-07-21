@@ -38,6 +38,14 @@
 ;; color-grep
 (require 'color-grep)
 
+;; Coq
+(setq coq-prog-name "/usr/bin/coqtop")
+;; (setq coq-prog-args "-emacs-U")
+(add-to-list 'load-path "~/.emacs.d/proofgeneral/coq")
+(setq proof-splash-enable nil)
+(load-library "pg-init.el")
+;; (require 'coq)
+
 ;; Drag stuff
 (require 'drag-stuff)
 (drag-stuff-mode t)

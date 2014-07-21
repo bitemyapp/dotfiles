@@ -1,3 +1,5 @@
+source ~/.profile
+
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 autoload -U colors && colors
@@ -60,7 +62,7 @@ function marks {
         \ls -l $MARKPATH | tail -n +2 | sed 's/  / /g' | cut -d' ' -f9- | awk -F ' -> ' '{printf "%-10s -> %s\n", $1, $2}'
 }
 
-export PATH=$HOME/code/ghc/bin:$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin
+export PATH=/usr/local/bin:$HOME/code/ghc/bin:$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin
 
 export FPATH=$HOME/.zsh_completion:$FPATH
 
@@ -77,3 +79,5 @@ export GHC_DOT_APP="/Applications/ghc-7.8.2.app"
 if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
