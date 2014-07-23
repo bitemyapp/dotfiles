@@ -44,7 +44,6 @@
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/coq")
 (setq proof-splash-enable nil)
 (load-library "pg-init.el")
-;; (require 'coq)
 
 ;; Drag stuff
 (require 'drag-stuff)
