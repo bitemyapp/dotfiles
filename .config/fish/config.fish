@@ -23,12 +23,13 @@ set PATH $PATH /opt/bin
 set PATH $PATH /usr/X11/bin
 set PATH $PATH $HOME/bin
 set PATH $PATH $HOME/.cabal/bin
+set PATH $PATH /Applications/ghc-7.8.2.app/Contents/bin
 
 # fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'
 set __fish_git_prompt_showupstream 'yes'
-set __fish_git_prompt_color_branch pink
+set __fish_git_prompt_color_branch red
 
 # Status Chars
 set __fish_git_prompt_char_dirtystate '⚡ '
