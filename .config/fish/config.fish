@@ -11,7 +11,6 @@ alias gc  "git commit"
 alias gcm "git commit -m"
 alias gd  "git diff"
 alias gco "git checkout"
-alias gh  "git h"
 
 # Load paths
 set PATH $PATH /usr/local/bin
