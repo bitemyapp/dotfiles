@@ -430,3 +430,7 @@ R/
 .mongorc.js
 work/
 .squirrel-sql/
+.zlogin
+.newsbeuter/
+.cmus/
+.olliolli/

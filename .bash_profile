@@ -25,3 +25,5 @@ alias cdb='sudo -u postgres createdb'
 alias hgdiff='hg diff | colordiff | less -R'
 
 export LANG=en_US.UTF-8
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
