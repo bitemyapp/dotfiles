@@ -429,3 +429,4 @@ R/
 .zpretzo/
 .mongorc.js
 work/
+.squirrel-sql/
