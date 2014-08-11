@@ -1,2 +1,2 @@
 xmodmap ~/.Xmodmap
-feh --bg-fill ~/Pictures/wallpaper-678322.jpg
+feh --bg-scale ~/Pictures/wallpaper-2782461.jpg

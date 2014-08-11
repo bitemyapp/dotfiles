@@ -1,4 +1,4 @@
-Config { font = "-Misc-Fixed-Normal-R-Normal--13-120-75-75-C-70-ISO8859-1"
+Config { font = "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
        , bgColor = "#222222"
        , fgColor = "grey"
        , position = TopW L 80
@@ -10,6 +10,6 @@ Config { font = "-Misc-Fixed-Normal-R-Normal--13-120-75-75-C-70-ISO8859-1"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ BAT: %battery% | CPU: %cpu% | MEM: %memory% | DATE: %date%"
+       , template = "%StdinReader% }{ CPU: %cpu% | MEM: %memory% | DATE: %date%"
        , lowerOnStart = False
        }
