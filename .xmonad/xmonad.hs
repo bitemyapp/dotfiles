@@ -18,14 +18,18 @@ import XMonad.Util.SpawnOnce
 import XMonad.StackSet(greedyView)
 
   
-myKeys x =
-             [ ((modMask x,               xK_Right), nextWS)
-             , ((modMask x,               xK_Left),  prevWS)
-             , ((modMask x .|. shiftMask, xK_Right), shiftToNext)
-             , ((modMask x .|. shiftMask, xK_Left),  shiftToPrev)
-             , ((modMask x,               xK_t),     toggleWS)
-             , ((modMask x,               xK_s),     shellPrompt defaultXPConfig)
-             ]
+myKeys x = [ ((modMask x,               xK_Right), nextWS)
+           , ((modMask x,               xK_Left),  prevWS)
+           , ((modMask x .|. shiftMask, xK_Right), shiftToNext)
+           , ((modMask x .|. shiftMask, xK_Left),  shiftToPrev)
+           , ((modMask x,               xK_t),     toggleWS)
+           , ((modMask x,               xK_s),     shellPrompt defaultXPConfig)
+           , ((mod1Mask .|. controlMask, xK_l),     spawn "xtrlock -b")
+           , ((0                , 0x1008ff11),     spawn "amixer -c 1 sset Master 4-")
+           , ((0                , 0x1008ff13),     spawn "amixer -c 1 sset Master 4+")
+           -- , ((0                , 0x1008ff12),     spawn "amixer sset Master toggle")
+           ]
+
 newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 
 myManageHook = composeAll (

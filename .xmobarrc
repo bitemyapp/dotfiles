@@ -3,7 +3,7 @@ Config { font = "-Misc-Fixed-Normal-R-Normal--13-120-75-75-C-70-ISO8859-1"
        , fgColor = "grey"
        , position = TopW L 80
        , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 10
-                    , Run Battery ["-t", "<acstatus><watts> (<left>%)", "--", "-c", "energy_full"] 50
+                    , Run Battery ["-t","Batt: %","-L","25","-H","75","--low","#FF0000","--normal","#F9FF00","--high","#00FF00"] 10
                     , Run Memory ["-t", "<usedratio>%"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
