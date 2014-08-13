@@ -27,6 +27,9 @@ myKeys x = [ ((modMask x,               xK_Right), nextWS)
            , ((mod1Mask .|. controlMask, xK_l),     spawn "xtrlock -b")
            , ((0                , 0x1008ff11),     spawn "amixer -c 1 sset Master 4-")
            , ((0                , 0x1008ff13),     spawn "amixer -c 1 sset Master 4+")
+           , ((0                , 0x1008ff03),     spawn "xbacklight -inc -10%")
+           , ((0                , 0x1008ff02),     spawn "xbacklight -inc +10%")
+
            -- , ((0                , 0x1008ff12),     spawn "amixer sset Master toggle")
            ]
 
