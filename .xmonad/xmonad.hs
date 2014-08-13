@@ -43,9 +43,10 @@ myManageHook = composeAll (
     ])
 
 myStartupHook = do
-       -- spawnOnce "volti"
-       spawnOnce "nm-applet"
-       spawnOnce "stalonetray"
+  spawnOnce "xmodmap ~/.Xmodmap"
+  spawnOnce "feh --bg-scale ~/Pictures/wallpaper-2782461.jpg"
+  spawnOnce "nm-applet"
+  spawnOnce "stalonetray"
 
 -- myLayoutHook = noBorders Full ||| noBorders (tabbed shrinkText defaultTheme) ||| Accordion
 
