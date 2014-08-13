@@ -34,6 +34,7 @@ newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 
 myManageHook = composeAll (
     [ manageHook gnomeConfig
+    , resource  =? "stalonetray" --> doIgnore
     , className =? "Unity-2d-panel" --> doIgnore
     , className =? "Unity-2d-launcher" --> doFloat
     , className =? "Gimp"      --> doFloat
@@ -42,17 +43,9 @@ myManageHook = composeAll (
     ])
 
 myStartupHook = do
-       spawnOnce "volti"
+       -- spawnOnce "volti"
        spawnOnce "nm-applet"
-       spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent false --height 24"
-       spawnOnce "gnome-settings-daemon"
-       spawnOn "1" "chromium-browser"
-       spawnOn "2" "emacs"
-       spawnOn "2" "gmome-terminal"
-       spawnOn "2" "gmome-terminal"
-       spawnOn "3" "gmome-terminal"
-       spawnOn "3" "gmome-terminal"
-       spawnOn "3" "gmome-terminal"
+       spawnOnce "stalonetray"
 
 -- myLayoutHook = noBorders Full ||| noBorders (tabbed shrinkText defaultTheme) ||| Accordion
 
@@ -65,7 +58,7 @@ main = do
                    { ppOutput = hPutStrLn xmproc
                    , ppTitle = xmobarColor "green" "" . shorten 50
                    }
---     , startupHook = myStartupHook
+       , startupHook = myStartupHook
        , modMask = mod4Mask
        , keys = newKeys
        , terminal = "gnome-terminal"
