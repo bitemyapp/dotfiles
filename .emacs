@@ -14,7 +14,8 @@
 
 (package-initialize)
 
-(setq package-list '(ghc
+(setq package-list '(company
+                     ghc
                      haskell-mode))
 
 (when (not package-archive-contents)

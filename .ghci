@@ -2,4 +2,5 @@
 
 :set -fno-warn-type-defaults
 :set -XNoMonomorphismRestriction
-:set prompt "λ> "
+-- :set prompt "λ> "
+:set prompt "Prelude> "
