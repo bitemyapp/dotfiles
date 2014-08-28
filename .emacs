@@ -7,14 +7,14 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 (require 'package)
-;; (add-to-list 'package-archives
-;;              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
 (add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
 
 (package-initialize)
 
-(setq package-list '(ghc
+(setq package-list '(cider
+                     clojure-mode
+                     ghc
                      haskell-mode))
 
 (when (not package-archive-contents)
@@ -30,7 +30,7 @@
 (load-library "ac-config.el")
 
 ;; Clojure
-;; (load-library "clojure-config.el")
+(load-library "clojure-config.el")
 
 ;; CoffeeScript
 (require 'coffee-mode)

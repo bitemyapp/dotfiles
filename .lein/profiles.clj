@@ -16,6 +16,7 @@
                   [lein-marginalia "0.7.1"]
                   [org.timmc/nephila "0.2.0"]
                   [lein-cloverage "1.0.2"]
+                  [cider/cider-nrepl "0.7.0"]
                   [com.jakemccrary/lein-test-refresh "0.1.2"]
                   ]
         :datomic {:install-location "~/code/datomic-free-0.8.4138"}
