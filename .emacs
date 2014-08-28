@@ -14,6 +14,7 @@
 
 (setq package-list '(cider
                      clojure-mode
+                     company
                      ghc
                      haskell-mode))
 
