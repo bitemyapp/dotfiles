@@ -71,9 +71,6 @@ export FPATH=$HOME/.zsh_completion:$FPATH
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-# Virtualenv
-# export WORKON_HOME=~/.virtualenv
-# source /usr/local/bin/virtualenvwrapper.sh
 # source /Users/callen/.nix-profile/etc/profile.d/nix.sh
 # Add GHC 7.8.2 to the PATH, via http://ghcformacosx.github.io/
 
