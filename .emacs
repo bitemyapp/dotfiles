@@ -101,6 +101,9 @@
 ;; Mustache
 (require 'mustache-mode)
 
+;; Nix
+(require 'nix-mode)
+
 ;; OCaml
 (load-library "ocaml-config.el")
 

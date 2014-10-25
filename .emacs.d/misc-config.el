@@ -325,8 +325,8 @@ nothing happens."
    [?\C-s ?\{ ?\C-m return tab])
 (global-set-key (kbd "C-c C-b") 'css-pre)
 
-(require 'multi-term)
-(setq multi-term-program "/bin/zsh")
+;; (require 'multi-term)
+;; (setq multi-term-program "/bin/zsh")
 
 ;; (require 'dash-at-point)
 ;; (autoload 'dash-at-point "dash-at-point"
