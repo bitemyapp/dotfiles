@@ -2,14 +2,14 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
        , bgColor = "#222222"
        , fgColor = "grey"
        , position = TopW L 80
-       , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 10
-                    , Run Battery ["-t","Batt: %","-L","25","-H","75","--low","#FF0000","--normal","#F9FF00","--high","#00FF00"] 10
-                    , Run Memory ["-t", "<usedratio>%"] 10
-                    , Run Date "%a %b %_d %l:%M" "date" 10
+       , commands = [ Run Cpu ["-t", "<total>%", "-L","5","-H","40","--normal","green","--high","red"] 15
+                    , Run BatteryP ["BAT0"] ["-t", "<acstatus> <left>% <timeleft>", "-h", "green", "-n", "yellow", "-l", "red"] 30
+                    , Run Memory ["-t", "<usedratio>%"] 30
+                    , Run Date "%a %b %_d %l:%M" "date" 30
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ CPU: %cpu% | MEM: %memory% | DATE: %date%"
+       , template = "%StdinReader% }{ BAT: %battery% | CPU: %cpu% | MEM: %memory% | DATE: %date%"
        , lowerOnStart = False
        }

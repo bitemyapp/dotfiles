@@ -1,5 +1,3 @@
-source ~/.profile
-
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 autoload -U colors && colors
@@ -80,3 +78,6 @@ if [ -d "$GHC_DOT_APP" ]; then
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH=/Applications/ghc-7.8.3.app/Contents/bin:$PATH
+
+if [ -e /Users/callen/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/callen/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
