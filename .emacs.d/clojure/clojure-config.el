@@ -93,6 +93,9 @@
   (interactive)
   (replace-string "deftrace" "defn" nil (region-beginning) (region-end)))
 
+(defun nrepl-enable-on-existing-clojure-buffers ()
+  (cider-enable-on-existing-clojure-buffers))
+
 ;; (alter-var-root #'*compiler-options* assoc :disable-locals-clearing true)
 ;; (require '[alex-and-georges.debug-repl :refer [debug-repl quit-dr]])
 
