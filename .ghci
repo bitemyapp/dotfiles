@@ -1,6 +1,7 @@
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 
 :set -fno-warn-type-defaults
-:set -XNoMonomorphismRestriction
+:set +c
+-- :seti -XNoMonomorphismRestriction
 -- :set prompt "λ> "
 :set prompt "Prelude> "

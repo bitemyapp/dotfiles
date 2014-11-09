@@ -39,7 +39,7 @@ function gh {
 }
 
 alias hgdiff='hg diff | colordiff | less -R'
-export GIT_EDITOR='mg'
+export GIT_EDITOR='emacs'
 
 # I am baffled that I even have to do this.
 bindkey ';5D' emacs-backward-word

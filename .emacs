@@ -4,8 +4,6 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-(add-to-list 'load-path "~/.emacs.d")
-
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
@@ -23,6 +21,20 @@
 (dolist (package package-list)
   (when (not (package-installed-p package))
     (package-install package)))
+
+(add-to-list 'load-path "~/.emacs.d")
+
+(defun string-starts-with (string prefix)
+  "Returns non-nil if string STRING starts with PREFIX, otherwise nil."
+  (and (>= (length string) (length prefix))
+       (string-equal (substring string 0 (length prefix)) prefix)))
+
+(defadvice display-warning
+    (around no-warn-.emacs.d-in-load-path (type message &rest unused) activate)
+  "Ignore the warning about the `.emacs.d' directory being in `load-path'."
+  (unless (and (eq type 'initialization)
+               (string-starts-with message "Your `load-path' seems to contain\nyour `.emacs.d' directory"))
+    ad-do-it))
 
 ;; Miscellaneous keyboard and personal preferences
 (load-library "misc-config.el")
@@ -201,7 +213,7 @@
 
 (if (string= system-type "darwin")
 (custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :family "Menlo")))))
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :family "Menlo")))))
 
 (custom-set-faces
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 200 :width normal :foundry "unknown" :family "Monospace"))))))

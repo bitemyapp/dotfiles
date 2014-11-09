@@ -13,6 +13,7 @@
 (require 'hs-lint)
 
 (custom-set-variables '(haskell-tags-on-save t))
+(global-set-key (kbd "C-c c c i") 'ghc-check-insert-from-warning)
 
 (require 'company)
 (add-hook 'haskell-mode-hook 'company-mode)
