@@ -189,10 +189,12 @@
 ;; Color theme
 (require 'color-theme)
 (color-theme-initialize)
-;; (require 'soothe-theme)
+
+(color-theme-twilight)
+
 ;; (require 'tomorrow-night-theme)
 ;; (require 'tomorrow-theme)
-(require 'tomorrow-night-bright-theme)
+;; (require 'tomorrow-night-bright-theme)
 ;; (require 'color-theme-bitemyapp)
 ;; (color-theme-bitemyapp)
 ;; (require 'color-theme-solarized)
