@@ -20,7 +20,7 @@ alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
-# alias ls='ls -G --color=auto'
+alias ls='ls --color=auto'
 
 alias gpo='git pull origin && git push origin'
 alias gpom='git pull origin master && git push origin master'
@@ -64,15 +64,18 @@ function marks {
 
 export TERM=xterm-256color
 
-export PATH=~/bin:~/.cabal/bin:/opt/cabal/1.20/bin:/opt/ghc/7.8.3/bin:/opt/happy/1.19.4/bin:/opt/alex/3.1.3/bin:/usr/local/bin:$HOME/code/ghc/bin:$HOME/Library/Haskell/bin:$HOME/.cabal/bin:/usr/local/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin
+export PATH=~/bin:~/.cabal/bin:/opt/cabal/1.20/bin:/opt/ghc/7.8.3/bin:/opt/happy/1.19.4/bin:/opt/alex/3.1.3/bin:/usr/local/bin:$HOME/code/ghc/bin:$HOME/Library/Haskell/bin:$HOME/.cabal/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin
+
+export PATH=~/.screenlayout:$PATH
 
 export FPATH=$HOME/.zsh_completion:$FPATH
 
 # OPAM configuration
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-source ~/.nix-profile/etc/profile.d/nix.sh
-# Add GHC 7.8.2 to the PATH, via http://ghcformacosx.github.io/
+export PRE_NIX_PATH=$PATH
+
+export PATH=/opt/ghc/7.8.3/bin:$PATH
 
 export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
 if [ -d "$GHC_DOT_APP" ]; then
