@@ -189,10 +189,12 @@
 ;; Color theme
 (require 'color-theme)
 (color-theme-initialize)
-;; (require 'soothe-theme)
+
+(color-theme-twilight)
+
 ;; (require 'tomorrow-night-theme)
 ;; (require 'tomorrow-theme)
-(require 'tomorrow-night-bright-theme)
+;; (require 'tomorrow-night-bright-theme)
 ;; (require 'color-theme-bitemyapp)
 ;; (color-theme-bitemyapp)
 ;; (require 'color-theme-solarized)
@@ -216,7 +218,10 @@
  '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :family "Menlo")))))
 
 (custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 200 :width normal :foundry "unknown" :family "Monospace"))))))
+ '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "unknown" :family "Ubuntu Mono"))))))
+
+;; for retina
+;; (custom-set-faces '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 200 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
 
 ;; fucking auto-fill
 (defun auto-fill-mode (args)

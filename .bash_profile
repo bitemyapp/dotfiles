@@ -34,3 +34,4 @@ if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 if [ -e /Users/callen/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/callen/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e /home/callen/.nix-profile/etc/profile.d/nix.sh ]; then . /home/callen/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
