@@ -8,7 +8,8 @@
 (require 'ghc)
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
-;; (add-hook 'haskell-mode-hook 'ghc-init)
+(add-hook 'haskell-mode-hook 'ghc-init)
+
 (defun ghc-jump-to-def (&optional ask)
   (interactive "P")
   (let* ((expr0 (ghc-things-at-point))
@@ -30,19 +31,18 @@
         (goto-line (string-to-number row))
         (beginning-of-line)
         (forward-char (string-to-number col))))))
+
 (defvar ghc-jumpdef-key "\C-c\C-d")
 (define-key haskell-mode-map ghc-jumpdef-key 'ghc-jump-to-def)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
-(require 'hs-lint)
-
 (custom-set-variables '(haskell-tags-on-save t))
-(global-set-key (kbd "C-c c c i") 'ghc-check-insert-from-warning)
+;; (global-set-key (kbd "C-c c c i") 'ghc-check-insert-from-warning)
 
-(require 'company)
-(add-hook 'haskell-mode-hook 'company-mode)
-(add-to-list 'company-backends 'company-ghc)
-(custom-set-variables '(company-ghc-show-info t))
+;; (require 'company)
+;; (add-hook 'haskell-mode-hook 'company-mode)
+;; (add-to-list 'company-backends 'company-ghc)
+;; (custom-set-variables '(company-ghc-show-info t))
 
 (provide 'haskell-config)
 

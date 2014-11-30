@@ -1,3 +1,10 @@
+;; Scrolling behavior
+(setq redisplay-dont-pause t
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+
 ;; Normal config stuff
 (global-set-key (kbd "C-z") nil) ; fuck everything about this.
 
@@ -268,9 +275,9 @@ If point was already at that position, move point to beginning of line."
 (require 're-builder)
 (setq reb-re-syntax 'string) ; elisp/read regex syntax is...undesirable.
 
-(require 'refheap) ; for pasting to refheap
-(global-set-key (kbd "C-c r p b") 'refheap-paste-buffer)
-(global-set-key (kbd "C-c r p r") 'refheap-paste-region)
+;; (require 'refheap) ; for pasting to refheap
+;; (global-set-key (kbd "C-c r p b") 'refheap-paste-buffer)
+;; (global-set-key (kbd "C-c r p r") 'refheap-paste-region)
 
 (when (fboundp 'winner-mode)
       (winner-mode 1))
@@ -309,9 +316,9 @@ nothing happens."
       (kill-local-variable 'after-save-hook)))
 
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
-(require 'gimme-cat)
-(global-set-key (kbd "C-c c a t") 'gimme-cat)
-(global-set-key (kbd "C-c k c a t") 'close-gimmecat-buffers)
+;; (require 'gimme-cat)
+;; (global-set-key (kbd "C-c c a t") 'gimme-cat)
+;; (global-set-key (kbd "C-c k c a t") 'close-gimmecat-buffers)
 
 ;; (require 'find-file-in-project)
 ;; (global-set-key (kbd "C-x f") 'find-file-in-project)
@@ -332,3 +339,63 @@ nothing happens."
 ;; (autoload 'dash-at-point "dash-at-point"
 ;;             "Search the word at point with Dash." t nil)
 ;; (global-set-key "\C-cd" 'dash-at-point)
+
+(setq-default indent-tabs-mode nil)
+
+(defun my/clean-buffer-formatting ()
+  "Indent and clean up the buffer"
+  (interactive)
+  (indent-region (point-min) (point-max))
+  (whitespace-cleanup))
+
+(global-set-key "\C-cn" 'my/clean-buffer-formatting)
+
+(define-minor-mode my/pair-programming-mode
+  "Toggle visualizations for pair programming.
+
+Interactively with no argument, this command toggles the mode.  A
+positive prefix argument enables the mode, any other prefix
+argument disables it.  From Lisp, argument omitted or nil enables
+the mode, `toggle' toggles the state."
+  ;; The initial value.
+  nil
+  ;; The indicator for the mode line.
+  " Pairing"
+  ;; The minor mode bindings.
+  '()
+  :group 'my/pairing
+  (linum-mode (if my/pair-programming-mode 1 -1)))
+
+(define-global-minor-mode my/global-pair-programming-mode
+  my/pair-programming-mode
+  (lambda () (my/pair-programming-mode 1)))
+
+(global-set-key "\C-c\M-p" 'my/global-pair-programming-mode)
+
+;; Sticky Windows
+;; (require 'sticky-windows)
+;; (global-set-key     [(control x) (?0)]        'sticky-window-delete-window)
+;; (global-set-key     [(control x) (?1)]        'sticky-window-delete-other-windows)
+;; (global-set-key     [(control x) (?9)]        'sticky-window-keep-window-visible)
+
+;; Uniquify buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+(defmacro with-system (type &rest body)
+  "Evaluate body if `system-type' equals type."
+  `(when (eq system-type ,type)
+     ,@body))
+
+
+(defun string-starts-with (string prefix)
+  "Returns non-nil if string STRING starts with PREFIX, otherwise nil."
+  (and (>= (length string) (length prefix))
+       (string-equal (substring string 0 (length prefix)) prefix)))
+
+(defadvice display-warning
+    (around no-warn-.emacs.d-in-load-path (type message &rest unused) activate)
+  "Ignore the warning about the `.emacs.d' directory being in `load-path'."
+  (unless (and (eq type 'initialization)
+               (string-starts-with message "Your `load-path' seems to contain\nyour `.emacs.d' directory"))
+    ad-do-it))

@@ -1,55 +1,67 @@
+(defvar *emacs-load-start* (current-time))
+
+(setq dotfiles-dir (file-name-directory
+		    (or load-file-name (buffer-file-name))))
+
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
 
-(let ((default-directory "~/.emacs.d/"))
-  (normal-top-level-add-subdirs-to-load-path))
-
+;; Use package management!
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+
+(setq package-archives
+      (append '(("org"       . "http://orgmode.org/elpa/")
+                ("melpa"     . "http://melpa.milkbox.net/packages/")
+                ("marmalade" . "http://marmalade-repo.org/packages/"))
+              package-archives))
 
 (package-initialize)
 
-(setq package-list '(cider
+(setq package-list '(auto-complete
+                     cider
                      clojure-mode
                      company
+                     csv-mode
+                     erlang-mode
                      ghc
-                     haskell-mode))
+                     haskell-mode
+                     js2-mode
+                     json-mode
+                     markdown-mode+
+                     monokai-theme
+                     nix-mode
+                     php-mode
+                     protobuf-mode
+                     puppet-mode
+                     pymacs
+                     python-mode
+                     rainbow-delimiters
+                     rainbow-mode
+                     scss-mode
+                     tabbar
+                     undo-tree
+                     virtualenv))
 
+;; rm -rf ~/.emacs.d/elpa to reload
 (when (not package-archive-contents)
   (package-refresh-contents))
+
 (dolist (package package-list)
   (when (not (package-installed-p package))
     (package-install package)))
 
-(add-to-list 'load-path "~/.emacs.d")
-
-(defun string-starts-with (string prefix)
-  "Returns non-nil if string STRING starts with PREFIX, otherwise nil."
-  (and (>= (length string) (length prefix))
-       (string-equal (substring string 0 (length prefix)) prefix)))
-
-(defadvice display-warning
-    (around no-warn-.emacs.d-in-load-path (type message &rest unused) activate)
-  "Ignore the warning about the `.emacs.d' directory being in `load-path'."
-  (unless (and (eq type 'initialization)
-               (string-starts-with message "Your `load-path' seems to contain\nyour `.emacs.d' directory"))
-    ad-do-it))
-
-;; Miscellaneous keyboard and personal preferences
+;; General/Misc stuff
+(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/misc/")
 (load-library "misc-config.el")
 
 ;; auto-complete
+(add-to-list 'load-path "~/.emacs.d/auto-complete/")
 (load-library "ac-config.el")
 
 ;; Clojure
+(add-to-list 'load-path "~/.emacs.d/clojure/")
 (load-library "clojure-config.el")
-
-;; CoffeeScript
-(require 'coffee-mode)
-
-;; color-grep
-(require 'color-grep)
 
 ;; Coq
 (setq coq-prog-name "/usr/bin/coqtop")
@@ -58,57 +70,28 @@
 (setq proof-splash-enable nil)
 (load-library "pg-init.el")
 
-;; Drag stuff
-(require 'drag-stuff)
-(drag-stuff-mode t)
-
-;; Enhance dired
-(require 'dired+)
-(require 'dired-x)
-
-;; Elixir
-(require 'elixir-mode)
-
 ;; Erlang
-(load-library "erlang-config.el")
-
-;; Floobits
-;; (load-library "floobits.el")
-
-;; Go
-(load-library "go-config.el")
-
-;; God
-(require 'god-mode)
-;; (god-mode)
-;; (global-set-key (kbd "<escape>") 'god-mode)
-
-;; Guru
-;; (require 'guru-mode)
-;; (guru-global-mode +1)
+(require 'erlang-start)
 
 ;; Haskell
 (load-library "haskell-config.el")
 
-;; Idris
-(require 'idris-mode)
+;; JavaScript
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-mode))
 
-;; Jinja
-(require 'jinja)
-(fset 'html-mode 'jinja-mode)
+;; JSON
+(require 'json-mode)
+(add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
 
-;; (load-library "multi-web-mode-config.el")
-
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
-
-;;; Magit
+;; Magit
 (require 'magit)
 (global-set-key (kbd "C-c m g") 'magit-status)
 
 ;; Markdown
-(load-library "markdown-config.el")
+(require 'markdown-mode+)
+(add-to-list 'auto-mode-alist
+         '("\\.md$" . markdown-mode+))
 
 ;; Mustache
 (require 'mustache-mode)
@@ -117,6 +100,7 @@
 (require 'nix-mode)
 
 ;; OCaml
+(add-to-list 'load-path "~/.emacs.d/ocaml")
 (load-library "ocaml-config.el")
 
 ;; PHP
@@ -126,81 +110,39 @@
 (require 'protobuf-mode)
 
 ;; Puppet
+(require 'puppet-mode)
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; Python
+(add-to-list 'load-path "~/.emacs.d/python")
 (load-library "python-config.el")
-
-;; rainbow-mode for CSS
-(require 'rainbow-mode)
 
 ;; rainbow-delimiters
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode)
 
-;; rect mark
-(require 'rect-mark)
-
-;; Rest client
-(require 'restclient)
-
-;; rst
-(require 'rst)
-
-;; undo tree
-(require 'undo-tree)
-(global-undo-tree-mode)
-
-;; Ruby
-(load-library "ruby-config.el")
-
-;; Rust
-(require 'rust-mode)
-
-;; Scala
-(require 'scala-mode-auto)
-(load-library "ensime-config.el")
+;; rainbow-mode for CSS
+(require 'rainbow-mode)
 
 ;; SCSS
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (setq scss-compile-at-save nil)
 
-;; Slime
-;; (load-library "slime-config.el")
-
-;; Smartparens
-;; (require 'smartparens-config)
-;; (add-hook 'clojure-mode-hook 'smartparens-mode)
+;; Speedbar
+(require 'speedbar)
+(speedbar-add-supported-extension ".hs")
 
 ;; Tabbar
+(add-to-list 'load-path "~/.emacs.d/tabbar")
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
 
-;; Web-mode
-(load-library "web-mode-config.el")
+;; Undo Tree
+(require 'undo-tree)
+(global-undo-tree-mode)
 
-;; Vala
-(load-library "vala-config.el")
-
-;; Yaml
-(load-library "yaml-config.el")
-
-;; Color theme
-(require 'color-theme)
-(color-theme-initialize)
-
-(color-theme-twilight)
-
-;; (require 'tomorrow-night-theme)
-;; (require 'tomorrow-theme)
-;; (require 'tomorrow-night-bright-theme)
-;; (require 'color-theme-bitemyapp)
-;; (color-theme-bitemyapp)
-;; (require 'color-theme-solarized)
-;; (load-library "color-theme-solarized.el")
-;; (color-theme-solarized 'dark)
-
+;; Desktop mode
 (setq desktop-load-locked-desktop t)
 (setq desktop-path '("~/.emacs.d/"))
 (setq desktop-dirname "~/.emacs.d/")
@@ -213,16 +155,18 @@
     (desktop-save desktop-dirname))
 (add-hook 'auto-save-hook 'my-desktop-save)
 
-(if (string= system-type "darwin")
-(custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :family "Menlo")))))
+;; Visuals
+(load-theme 'wombat)
 
-(custom-set-faces
- '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "unknown" :family "Ubuntu Mono"))))))
+(with-system 'darwin
+  (custom-set-faces
+    '(default ((t (:height 160 :family "Menlo"))))))
 
-;; for retina
-;; (custom-set-faces '(default ((t (:background "black" :foreground "white" :inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 200 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+(with-system 'gnu/linux
+  (custom-set-faces
+    '(default ((t (:height 140 :family "Ubuntu Mono"))))))
 
-;; fucking auto-fill
-(defun auto-fill-mode (args)
-  (message "fuck off"))
+(when (> (display-pixel-height) 1080)
+  ;; retina
+  (custom-set-faces 
+    '(default ((t (:height 240 :family "Ubuntu Mono"))))))
