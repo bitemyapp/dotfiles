@@ -22,11 +22,12 @@
                      clojure-mode
                      company
                      csv-mode
-                     erlang-mode
+                     erlang
                      ghc
                      haskell-mode
                      js2-mode
                      json-mode
+                     magit
                      markdown-mode+
                      monokai-theme
                      nix-mode
@@ -66,7 +67,9 @@
 ;; Coq
 (setq coq-prog-name "/usr/bin/coqtop")
 ;; (setq coq-prog-args "-emacs-U")
-(add-to-list 'load-path "~/.emacs.d/proofgeneral/coq")
+(add-to-list 'load-path "~/.emacs.d/proofgeneral/")
+(let ((default-directory "~/.emacs.d/proofgeneral/"))
+  (normal-top-level-add-subdirs-to-load-path))
 (setq proof-splash-enable nil)
 (load-library "pg-init.el")
 
@@ -74,6 +77,7 @@
 (require 'erlang-start)
 
 ;; Haskell
+(add-to-list 'load-path "~/.emacs.d/haskell/")
 (load-library "haskell-config.el")
 
 ;; JavaScript
@@ -168,5 +172,5 @@
 
 (when (> (display-pixel-height) 1080)
   ;; retina
-  (custom-set-faces 
+  (custom-set-faces
     '(default ((t (:height 240 :family "Ubuntu Mono"))))))
