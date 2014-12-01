@@ -28,7 +28,7 @@
                      js2-mode
                      json-mode
                      magit
-                     markdown-mode+
+                     markdown-mode
                      monokai-theme
                      nix-mode
                      php-mode
@@ -93,9 +93,9 @@
 (global-set-key (kbd "C-c m g") 'magit-status)
 
 ;; Markdown
-(require 'markdown-mode+)
+(require 'markdown-mode)
 (add-to-list 'auto-mode-alist
-         '("\\.md$" . markdown-mode+))
+         '("\\.md$" . markdown-mode))
 
 ;; Mustache
 (require 'mustache-mode)

@@ -1,3 +1,0 @@
-jedi>=0.5b4
-epc
-argparse
