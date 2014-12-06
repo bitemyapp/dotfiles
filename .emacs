@@ -164,7 +164,7 @@
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 160 :family "Menlo"))))))
+    '(default ((t (:height 140 :family "Menlo"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
@@ -173,4 +173,4 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 240 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 220 :family "Ubuntu Mono"))))))
