@@ -152,7 +152,6 @@
 (setq desktop-dirname "~/.emacs.d/")
 (setq desktop-base-file-name "emacs-desktop")
 (desktop-read desktop-dirname)
-;; (desktop-save-mode 1)
 (defun my-desktop-save ()
     (interactive)
     ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
@@ -164,7 +163,7 @@
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 160 :family "Menlo"))))))
+    '(default ((t (:height 140 :family "Menlo"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
