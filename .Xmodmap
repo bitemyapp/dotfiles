@@ -4,6 +4,7 @@ clear mod1
 clear mod2
 clear mod3
 clear mod4
+keycode 9 = Escape asciitilde Escape
 keycode 37 = Control_L
 keycode 66 = Control_L
 keycode 133 = Super_L Super_R

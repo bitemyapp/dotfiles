@@ -1,9 +1,9 @@
 ;; Scrolling behavior
-(setq redisplay-dont-pause t
-      scroll-margin 1
-      scroll-step 1
-      scroll-conservatively 10000
-      scroll-preserve-screen-position 1)
+;; (setq redisplay-dont-pause t
+;;       scroll-margin 1
+;;       scroll-step 1
+;;       scroll-conservatively 10000
+;;       scroll-preserve-screen-position 1)
 
 ;; Normal config stuff
 (global-set-key (kbd "C-z") nil) ; fuck everything about this.
@@ -25,6 +25,7 @@
  '(css-electric-keys nil)
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
+ '(shift-select-mode t)
  '(org-support-shift-select (quote always)))
 
 (if (display-graphic-p)

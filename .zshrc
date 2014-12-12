@@ -31,6 +31,7 @@ alias gpts='git checkout staging && git merge master && git push origin staging 
 alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
+alias repl='cabal repl --with-ghc=ghci-ng'
 
 # git branch --set-upstream new_frontpage origin/new_frontpage
 
