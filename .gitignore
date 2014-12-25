@@ -391,7 +391,6 @@ nrepl-history
 .ocp/
 books
 wifi
-code/
 .emacs.desktop*
 emacs-desktop
 .asciinema/
