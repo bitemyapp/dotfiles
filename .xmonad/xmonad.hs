@@ -47,9 +47,11 @@ myManageHook = composeAll (
 
 myStartupHook = do
   spawnOnce "xmodmap ~/.Xmodmap"
+  spawnOnce "stalonetray"
+  spawnOnce "unity-settings-daemon"
   spawnOnce "feh --bg-scale ~/Pictures/wallpaper-2782461.jpg"
   spawnOnce "nm-applet"
-  spawnOnce "stalonetray"
+  spawnOnce "indicator-sound-switcher"
 
 -- myLayoutHook = noBorders Full ||| noBorders (tabbed shrinkText defaultTheme) ||| Accordion
 

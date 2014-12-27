@@ -13,13 +13,15 @@
 (defvar haskell-process-use-ghci nil)
 
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
-(require 'ghc)
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook 'ghc-init)
+;; (require 'ghc)
+;; (autoload 'ghc-init "ghc" nil t)
+;; (autoload 'ghc-debug "ghc" nil t)
+;; (add-hook 'haskell-mode-hook 'ghc-init)
+;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 (defun ghc-jump-to-def (&optional ask)
   (interactive "P")
@@ -45,7 +47,6 @@
 
 (defvar ghc-jumpdef-key "\C-c\C-d")
 (define-key haskell-mode-map ghc-jumpdef-key 'ghc-jump-to-def)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 (custom-set-variables 
  '(haskell-process-type (quote cabal-repl))
@@ -78,9 +79,9 @@
 (setq haskell-process-args-cabal-repl
       '("--ghc-option=-ferror-spans" "--with-ghc=ghci-ng"))
 
-(define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
-(define-key interactive-haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
-(define-key interactive-haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
+(define-key haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
+(define-key haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 (define-key haskell-mode-map (kbd "C-c i") 'hindent/reformat-decl)
 (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)

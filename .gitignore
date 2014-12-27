@@ -437,3 +437,10 @@ work/
 .cask/
 .joe_state
 Work/
+.psql_history-*
+.ssr/
+.work.sh
+Fiddler2/
+*.retry
+nohup.out
+*.ogv

@@ -400,3 +400,5 @@ the mode, `toggle' toggles the state."
   (unless (and (eq type 'initialization)
                (string-starts-with message "Your `load-path' seems to contain\nyour `.emacs.d' directory"))
     ad-do-it))
+
+(require 'graphviz-dot-mode)

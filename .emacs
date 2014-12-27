@@ -10,9 +10,9 @@
 (require 'package)
 
 (setq package-archives
-      (append '(("org"       . "http://orgmode.org/elpa/")
-                ("melpa"     . "http://melpa.milkbox.net/packages/")
-                ("marmalade" . "http://marmalade-repo.org/packages/"))
+      (append '(("org"        . "http://orgmode.org/elpa/")
+                ("melpa"      . "http://melpa.milkbox.net/packages/")
+                ("marmalade"  . "http://marmalade-repo.org/packages/"))
               package-archives))
 
 (package-initialize)
@@ -41,7 +41,8 @@
                      scss-mode
                      tabbar
                      undo-tree
-                     virtualenv))
+                     virtualenv
+                     yaml-mode))
 
 ;; rm -rf ~/.emacs.d/elpa to reload
 (when (not package-archive-contents)
@@ -74,7 +75,7 @@
 (load-library "pg-init.el")
 
 ;; Erlang
-(require 'erlang-start)
+(require 'erlang)
 
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
@@ -146,6 +147,15 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+;; yaml-mode
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+;; yasnippet
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+
 ;; Desktop mode
 (setq desktop-load-locked-desktop t)
 (setq desktop-path '("~/.emacs.d/"))
@@ -172,4 +182,42 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 220 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(haskell-interactive-mode-eval-pretty nil)
+ '(haskell-interactive-mode-include-file-name nil)
+ '(haskell-notify-p t)
+ '(haskell-process-args-ghci (quote nil))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-do-cabal-format-string ":!cd %s && unset GHC_PACKAGE_PATH && %s")
+ '(haskell-process-log t)
+ '(haskell-process-reload-with-fbytecode nil)
+ '(haskell-process-show-debug-tips nil)
+ '(haskell-process-suggest-haskell-docs-imports t)
+ '(haskell-process-suggest-hoogle-imports nil)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
+ '(haskell-process-use-presentation-mode t)
+ '(haskell-stylish-on-save nil)
+ '(haskell-tags-on-save nil)
+ '(hindent-style "chris-done")
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always))
+ '(safe-local-variable-values (quote ((haskell-process-use-ghci . t) (haskell-indent-spaces . 4))))
+ '(shift-select-mode t)
+ '(shm-auto-insert-bangs t)
+ '(shm-auto-insert-skeletons t)
+ '(shm-use-hdevtools t)
+ '(shm-use-presentation-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 120 :family "Ubuntu Mono")))))
