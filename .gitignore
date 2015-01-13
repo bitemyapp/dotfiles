@@ -309,7 +309,6 @@ lib/
 .oh-my-zsh/
 .zsh-update
 .zshrc.pre-oh-my-zsh
-*.txt
 .codeintel/
 .secrets
 .nvm/
