@@ -67,5 +67,5 @@ main = do
        , startupHook = myStartupHook
        , modMask = mod4Mask
        , keys = newKeys
-       , terminal = "gnome-terminal"
+       , terminal = "konsole"
        }
