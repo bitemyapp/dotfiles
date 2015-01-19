@@ -64,6 +64,8 @@
     xlibs.xinput
     xlibs.xmessage
     xlibs.xmodmap
+    texLiveFull
+    gnome3.gnome-screenshot
   ];
 
   nixpkgs.config.chromium = {
@@ -80,8 +82,8 @@
     # printing.enable = true;
 
     locate.enable = true;
-    thinkfan.enable = true;
-    thinkfan.sensor = "/sys/class/hwmon/hwmon1/temp1_input";
+    # thinkfan.enable = true;
+    # thinkfan.sensor = "/sys/class/hwmon/hwmon1/temp1_input";
   };
 
   services.xserver = {  
