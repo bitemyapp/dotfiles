@@ -109,4 +109,5 @@
     bluetooth.enable = true;
   };
 
+  time.timeZone = "America/Chicago";
 }
