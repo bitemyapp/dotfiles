@@ -71,6 +71,7 @@
     silver-searcher
     evince
     pavucontrol
+    coq
   ];
 
   nixpkgs.config.chromium = {
