@@ -66,6 +66,11 @@
     xlibs.xmodmap
     texLiveFull
     gnome3.gnome-screenshot
+    gnumake
+    python27Packages.pygments
+    silver-searcher
+    evince
+    pavucontrol
   ];
 
   nixpkgs.config.chromium = {
