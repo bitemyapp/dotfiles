@@ -10,9 +10,9 @@
 (require 'package)
 
 (setq package-archives
-      (append '(("org"       . "http://orgmode.org/elpa/")
-                ("melpa"     . "http://melpa.milkbox.net/packages/")
-                ("marmalade" . "http://marmalade-repo.org/packages/"))
+      (append '(("org"        . "http://orgmode.org/elpa/")
+                ("melpa"      . "http://melpa.milkbox.net/packages/")
+                ("marmalade"  . "http://marmalade-repo.org/packages/"))
               package-archives))
 
 (package-initialize)
@@ -41,7 +41,8 @@
                      scss-mode
                      tabbar
                      undo-tree
-                     virtualenv))
+                     virtualenv
+                     yaml-mode))
 
 ;; rm -rf ~/.emacs.d/elpa to reload
 (when (not package-archive-contents)
@@ -74,7 +75,7 @@
 (load-library "pg-init.el")
 
 ;; Erlang
-(require 'erlang-start)
+(require 'erlang)
 
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
@@ -87,6 +88,9 @@
 ;; JSON
 (require 'json-mode)
 (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
+
+;; latex
+(add-to-list 'auto-mode-alist '("\\.tex$" . latex-mode))
 
 ;; Magit
 (require 'magit)
@@ -146,6 +150,40 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+;; yaml-mode
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+;; yasnippet
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
+(require 'yasnippet)
+(yas-global-mode 1)
+(define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
+
+(defun yas/goto-end-of-active-field ()
+  (interactive)
+  (let* ((snippet (car (yas--snippets-at-point)))
+        (position (yas--field-end (yas--snippet-active-field snippet))))
+    (if (= (point) position)
+        (move-end-of-line 1)
+      (goto-char position))))
+
+(defun yas/goto-start-of-active-field ()
+  (interactive)
+  (let* ((snippet (car (yas--snippets-at-point)))
+        (position (yas--field-start (yas--snippet-active-field snippet))))
+    (if (= (point) position)
+        (move-beginning-of-line 1)
+      (goto-char position))))
+
+(define-key yas-keymap (kbd "C-e") 'yas/goto-end-of-active-field)
+(define-key yas-keymap (kbd "C-a") 'yas/goto-start-of-active-field)
+(setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
+(setq yas-verbosity 1)
+(setq yas-wrap-around-region t)
+
+
 ;; Desktop mode
 (setq desktop-load-locked-desktop t)
 (setq desktop-path '("~/.emacs.d/"))
@@ -172,4 +210,4 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 220 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))

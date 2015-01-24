@@ -309,7 +309,6 @@ lib/
 .oh-my-zsh/
 .zsh-update
 .zshrc.pre-oh-my-zsh
-*.txt
 .codeintel/
 .secrets
 .nvm/
@@ -437,3 +436,12 @@ work/
 .cask/
 .joe_state
 Work/
+.psql_history-*
+.ssr/
+.work.sh
+Fiddler2/
+*.retry
+nohup.out
+*.ogv
+.compose-cache/
+.nixpkgs/
