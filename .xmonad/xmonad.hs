@@ -49,9 +49,9 @@ myStartupHook = do
   spawnOnce "xmodmap ~/.Xmodmap"
   spawnOnce "stalonetray"
   spawnOnce "unity-settings-daemon"
-  spawnOnce "feh --bg-scale ~/Pictures/wallpaper-2782461.jpg"
   spawnOnce "nm-applet"
-  spawnOnce "indicator-sound-switcher"
+  spawnOnce "pasystray"
+  spawnOnce "fdpowermon"
 
 -- myLayoutHook = noBorders Full ||| noBorders (tabbed shrinkText defaultTheme) ||| Accordion
 
@@ -67,5 +67,5 @@ main = do
        , startupHook = myStartupHook
        , modMask = mod4Mask
        , keys = newKeys
-       , terminal = "konsole"
+       , terminal = "gnome-terminal"
        }
