@@ -66,7 +66,7 @@ function marks {
 
 export TERM=xterm-256color
 
-export PATH=.cabal-sandbox/bin:~/bin:~/.cabal/bin:/opt/cabal/1.20/bin:/opt/ghc/7.8.3/bin:/opt/happy/1.19.4/bin:/opt/alex/3.1.3/bin:/usr/local/bin:$HOME/code/ghc/bin:$HOME/Library/Haskell/bin:$HOME/.cabal/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin
+export PATH=.cabal-sandbox/bin:~/bin:~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.8.4/bin:/opt/happy/1.19.4/bin:/opt/alex/3.1.3/bin:/usr/local/bin:$HOME/code/ghc/bin:$HOME/Library/Haskell/bin:$HOME/.cabal/bin:~/bin:$PATH:$HOME/.carton/bin:~/bin:/Applications/Postgres.app/Contents/MacOS/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin/FDK/Tools/osx:/usr/local/share/npm/bin
 
 export PATH=~/.cask/bin:$PATH
 
@@ -88,5 +88,3 @@ fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=/Applications/ghc-7.8.3.app/Contents/bin:$PATH
-
-source ~/.work.sh

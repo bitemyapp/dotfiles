@@ -446,3 +446,5 @@ nohup.out
 .pgcli.log
 .pgclirc
 .vault*
+.compose-cache/
+.nixpkgs/
