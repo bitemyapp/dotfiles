@@ -81,6 +81,21 @@
 (add-to-list 'load-path "~/.emacs.d/haskell/")
 (load-library "haskell-config.el")
 
+;; highlight-symbol
+(add-to-list 'load-path "~/.emacs.d/idle-highlight/")
+(load-library "idle-highlight.el")
+(require 'idle-highlight-mode)
+(add-hook 'text-mode-hook (lambda () (idle-highlight-mode t)))
+(add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t)))
+(setq idle-highlight-idle-time 0.5)
+
+;; (require 'highlight-symbol)
+;; (global-set-key [(control f3)] 'highlight-symbol-at-point)
+;; (global-set-key [f3] 'highlight-symbol-next)
+;; (global-set-key [(shift f3)] 'highlight-symbol-prev)
+;; (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
+;; (setq highlight-symbol-idle-delay 0.2)
+
 ;; JavaScript
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-mode))
