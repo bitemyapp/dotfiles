@@ -57,6 +57,10 @@
 (add-to-list 'load-path "~/.emacs.d/misc/")
 (load-library "misc-config.el")
 
+;; Agda
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+
 ;; auto-complete
 (add-to-list 'load-path "~/.emacs.d/auto-complete/")
 (load-library "ac-config.el")
