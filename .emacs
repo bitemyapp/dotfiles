@@ -26,6 +26,7 @@
                      erlang
                      ghc
                      haskell-mode
+                     idris-mode
                      js2-mode
                      json-mode
                      magit
@@ -86,6 +87,7 @@
 
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
+(load-library "hindent.el")
 (load-library "haskell-config.el")
 
 ;; highlight-symbol
@@ -257,7 +259,7 @@
  '(haskell-process-use-presentation-mode t)
  '(haskell-stylish-on-save nil)
  '(haskell-tags-on-save nil)
- '(hindent-style "chris-done")
+ '(hindent-style "johan-tibell")
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always))
@@ -266,6 +268,7 @@
  '(shm-auto-insert-skeletons t)
  '(shm-use-hdevtools t)
  '(shm-use-presentation-mode t))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -277,4 +280,5 @@
  '(agda2-highlight-postulate-face ((t (:foreground "cyan"))))
  '(agda2-highlight-primitive-face ((t (:foreground "light gray"))))
  '(agda2-highlight-primitive-type-face ((t (:foreground "light gray"))))
- '(agda2-highlight-record-face ((t (:foreground "cyan")))))
+ '(agda2-highlight-record-face ((t (:foreground "cyan"))))
+ '(idris-semantic-type-face ((t (:foreground "deep sky blue")))))

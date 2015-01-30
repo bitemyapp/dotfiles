@@ -448,3 +448,5 @@ nohup.out
 .vault*
 .compose-cache/
 .nixpkgs/
+.idris/
+
