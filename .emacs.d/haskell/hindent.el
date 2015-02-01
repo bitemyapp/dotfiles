@@ -1,4 +1,4 @@
-;;; hindent.el --- Haskell indenter.
+;;; hindent.el --- Indent haskell code using the "hindent" program
 
 ;; Copyright (c) 2014 Chris Done. All rights reserved.
 
@@ -27,7 +27,8 @@
   "fundamental"
   "The style to use for formatting."
   :group 'haskell
-  :type 'string)
+  :type 'string
+  :safe #'stringp)
 
 ;;;###autoload
 (defun hindent/reformat-decl ()
@@ -43,21 +44,27 @@
         (with-temp-buffer
           (let ((temp (current-buffer)))
             (with-current-buffer original
-              (let ((ret (call-process-region (car start-end)
+              (let ((ret (apply #'call-process-region
+                                (append (list (car start-end)
                                               (cdr start-end)
                                               "hindent"
-                                              nil  ; delete
+                                              nil ; delete
                                               temp ; output
                                               nil
                                               "--style"
-                                              hindent-style)))
+                                              hindent-style)
+                                        (hindent-extra-arguments)))))
                 (cond
                  ((= ret 1)
-                  (error (with-current-buffer temp
+                  (let ((error-string
+			 (with-current-buffer temp
                            (let ((string (progn (goto-char (point-min))
                                                 (buffer-substring (line-beginning-position)
                                                                   (line-end-position)))))
                              string))))
+		    (if (string= error-string "hindent: Parse error: EOF")
+			(message "language pragma")
+		      (error error-string))))
                  ((= ret 0)
                   (let ((new-str (with-current-buffer temp
                                    (buffer-string))))
@@ -77,6 +84,26 @@
                               (delete-trailing-whitespace new-start new-end)))
                           (message "Formatted."))
                       (message "Already formatted.")))))))))))))
+
+(defun hindent-extra-arguments ()
+  "Pass in extra arguments, such as extensions and optionally
+other things later."
+  (if (boundp 'haskell-language-extensions)
+      haskell-language-extensions
+    '()))
+
+(defun hindent-reformat-decl-or-fill (justify)
+  "Re-format current declaration, or fill paragraph.
+
+Fill paragraph if in a comment, otherwise reformat the current
+declaration."
+  (interactive (progn
+                 ;; Copied from `fill-paragraph'
+                 (barf-if-buffer-read-only)
+                 (list (if current-prefix-arg 'full))))
+  (if (hindent-in-comment)
+      (fill-paragraph justify t)
+    (hindent/reformat-decl)))
 
 (defun hindent-decl-points (&optional use-line-comments)
   "Get the start and end position of the current
@@ -151,7 +178,50 @@ expected to work."
          (not (save-excursion (goto-char (line-beginning-position))
                               (looking-at "{-# "))))))
 
+(defun hindent-reformat-region ()
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (if (> (point) (mark))
+	  (exchange-point-and-mark))
+      (while (< (point) (mark))
+	(hindent/reformat-decl)
+	(let ((dpoints (hindent-decl-points)))
+	  (if dpoints ;; if we're in a comment hindent-decl-points returns nil
+	      (goto-char (min (mark) (+ 1 (cdr dpoints))))
+	    (forward-line 1)))
+	;; might be on a blank line (which associates with the previous decl
+	(if (search-forward-regexp "^[\\s-]*[^\\]" (mark) t)
+	    nil
+	  (goto-char (mark)))))))
+
+(defun hindent-reformat-buffer ()
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (mark-whole-buffer)
+      (hindent-reformat-region))))
+
+(defvar hindent-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map [remap indent-region] #'hindent-reformat-region)
+    (define-key map [remap fill-paragraph] #'hindent-reformat-decl-or-fill)
+    map)
+  "Keymap for `hindent-mode'.")
+
+;;;###autoload
+(define-minor-mode hindent-mode
+  "Indent code with the hindent program.
+
+Provide the following keybindings:
+
+\\{hindent-mode-map}"
+  :init-value nil
+  :keymap hindent-mode-map
+  :lighter " HI"
+  :group 'haskell
+  :require 'hindent)
+
 (provide 'hindent)
 
 ;;; hindent.el ends here
-

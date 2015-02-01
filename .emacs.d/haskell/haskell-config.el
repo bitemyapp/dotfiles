@@ -16,6 +16,7 @@
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'hindent-mode)
 
 ;; (require 'ghc)
 ;; (autoload 'ghc-init "ghc" nil t)
@@ -73,11 +74,11 @@
 
 (setq haskell-interactive-mode-eval-mode 'haskell-mode)
 
-(setq haskell-process-path-ghci "ghci-ng")
+(setq haskell-process-path-ghci "ghci")
 (setq haskell-process-args-ghci '("-ferror-spans"))
 
-(setq haskell-process-args-cabal-repl
-      '("--ghc-option=-ferror-spans" "--with-ghc=ghci-ng"))
+;; (setq haskell-process-args-cabal-repl
+;;       '("--ghc-option=-ferror-spans" "--with-ghc=ghci-ng"))
 
 (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
 (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)

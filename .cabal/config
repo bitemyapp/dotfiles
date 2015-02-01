@@ -11,7 +11,7 @@
 -- require-sandbox: False
 -- ignore-sandbox: False
 remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
-remote-repo: stackage:http://www.stackage.org/stackage/78dab1c45f2a43c4fffbaebb5797cf60cb5488b1
+-- remote-repo: stackage:http://www.stackage.org/stackage/78dab1c45f2a43c4fffbaebb5797cf60cb5488b1
 remote-repo-cache: /home/callen/.cabal/packages
 -- local-repo:
 -- logs-dir:
