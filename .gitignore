@@ -445,3 +445,4 @@ nohup.out
 *.ogv
 .compose-cache/
 .nixpkgs/
+.xinputrc
