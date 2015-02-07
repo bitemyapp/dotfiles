@@ -443,6 +443,10 @@ Fiddler2/
 *.retry
 nohup.out
 *.ogv
+.pgcli.log
+.pgclirc
+.vault*
 .compose-cache/
 .nixpkgs/
 .xinputrc
+.idris/

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: enum
+# key: en
+# --
+\begin{enumerate}
+  \item $1
+\end{enumerate}
