@@ -225,7 +225,7 @@
 (add-hook 'auto-save-hook 'my-desktop-save)
 
 ;; Visuals
-(load-theme 'dark-krystal)
+(load-theme 'waher)
 
 (with-system 'darwin
   (custom-set-faces
