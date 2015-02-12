@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: index
+# key: idx
+# --
+\index{$0}

@@ -448,5 +448,7 @@ nohup.out
 .vault*
 .compose-cache/
 .nixpkgs/
+.xinputrc
 .idris/
-
+Screenshots/
+gPodder/

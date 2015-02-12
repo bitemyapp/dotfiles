@@ -42,6 +42,7 @@
                      rainbow-mode
                      scss-mode
                      tabbar
+                     twittering-mode
                      undo-tree
                      virtualenv
                      warm-night-theme
@@ -207,6 +208,9 @@
 (setq yas-verbosity 1)
 (setq yas-wrap-around-region t)
 
+;; default browser
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
 
 ;; Desktop mode
 (setq desktop-load-locked-desktop t)
