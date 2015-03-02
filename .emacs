@@ -226,7 +226,8 @@
 
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
-(require 'cyberpunk-theme)
+;; (require 'cyberpunk-theme)
+(load-theme 'monokai t)
 
 (with-system 'darwin
   (custom-set-faces
