@@ -225,7 +225,8 @@
 (add-hook 'auto-save-hook 'my-desktop-save)
 
 ;; Visuals
-(load-theme 'waher t)
+(add-to-list 'load-path "~/.emacs.d/color-themes")
+(require 'cyberpunk-theme)
 
 (with-system 'darwin
   (custom-set-faces
