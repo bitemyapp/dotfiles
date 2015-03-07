@@ -1,17 +1,21 @@
 [user]
 	name = Chris Allen
 	email = cma@bitemyapp.com
+
 [core]
 	excludesfile = /home/callen/.gitignore
 	autocrlf = input
-	safecrlf = true
+	safecrlf = false
+
 [diff]  
     renamelimit = 0
+
 [color] 
 	diff = auto
     interactive = auto
 	status = auto
 	branch = auto
+
 [alias]
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
