@@ -225,7 +225,9 @@
 (add-hook 'auto-save-hook 'my-desktop-save)
 
 ;; Visuals
-(load-theme 'dark-krystal)
+(add-to-list 'load-path "~/.emacs.d/color-themes")
+;; (require 'cyberpunk-theme)
+(load-theme 'monokai t)
 
 (with-system 'darwin
   (custom-set-faces
