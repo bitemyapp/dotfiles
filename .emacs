@@ -246,7 +246,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(css-electric-keys nil)
- '(custom-safe-themes (quote ("2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "c87cc60d01cf755375759d165c1d60d9586c6a31f0b5437a0378c2a93cfc8407" "789844278c5a75283b5015c1fc7bebe7e4cf97843b8f8cffe21fafa05e81e90a" "6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "e4bc8563d7651b2fed20402fe37b7ab7cb72869f92a3e705907aaecc706117b5" default)))
+ '(custom-safe-themes
+   (quote
+    ("2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "c87cc60d01cf755375759d165c1d60d9586c6a31f0b5437a0378c2a93cfc8407" "789844278c5a75283b5015c1fc7bebe7e4cf97843b8f8cffe21fafa05e81e90a" "6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "e4bc8563d7651b2fed20402fe37b7ab7cb72869f92a3e705907aaecc706117b5" default)))
  '(haskell-interactive-mode-eval-pretty nil)
  '(haskell-interactive-mode-include-file-name nil)
  '(haskell-notify-p t)
@@ -278,7 +280,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono"))))
+ '(default ((t (:height 140 :family "Menlo"))))
  '(agda2-highlight-datatype-face ((t (:foreground "cyan"))))
  '(agda2-highlight-function-face ((t (:foreground "deep sky blue"))))
  '(agda2-highlight-postulate-face ((t (:foreground "cyan"))))
