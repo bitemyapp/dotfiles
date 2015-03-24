@@ -86,5 +86,6 @@ if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
+export PATH=/usr/local/texlive/2014/bin/x86_64-darwin$PATH
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=/Applications/ghc-7.8.3.app/Contents/bin:$PATH

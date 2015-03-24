@@ -67,8 +67,8 @@
 ;; (setq agda2-highlight-level
 
 ;; auto-complete
-(add-to-list 'load-path "~/.emacs.d/auto-complete/")
-(load-library "ac-config.el")
+;; (add-to-list 'load-path "~/.emacs.d/auto-complete/")
+;; (load-library "ac-config.el")
 
 ;; Clojure
 (add-to-list 'load-path "~/.emacs.d/clojure/")
@@ -227,11 +227,14 @@
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
 ;; (require 'cyberpunk-theme)
-(load-theme 'monokai t)
+;; (require 'solarized-dark-theme)
+;; (require 'solarized-theme)
+;; (load-theme 'monokai t)
+(load-theme 'whiteboard t)
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 140 :family "Menlo"))))))
+    '(default ((t (:height 140 :family "Ubuntu Mono"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
