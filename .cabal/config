@@ -11,11 +11,10 @@
 require-sandbox: True
 -- ignore-sandbox: False
 remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
--- remote-repo: stackage:http://www.stackage.org/stackage/78dab1c45f2a43c4fffbaebb5797cf60cb5488b1
-remote-repo-cache: /home/callen/.cabal/packages
+remote-repo-cache: /Users/callen/.cabal/packages
 -- local-repo:
 -- logs-dir:
-world-file: /home/callen/.cabal/world
+world-file: /Users/callen/.cabal/world
 -- verbose: 1
 -- compiler: ghc
 -- with-compiler:
@@ -38,7 +37,7 @@ world-file: /home/callen/.cabal/world
 -- flags:
 -- extra-include-dirs:
 -- extra-lib-dirs:
-extra-prog-path: /home/callen/.cabal/bin
+extra-prog-path: /Users/callen/.cabal/bin
 -- tests: False
 -- library-coverage: False
 -- exact-configuration: False
@@ -48,7 +47,7 @@ extra-prog-path: /home/callen/.cabal/bin
 -- preference:
 -- solver: choose
 -- allow-newer: False
-documentation: True
+-- documentation: False
 -- doc-index-file: $datadir/doc/index.html
 -- max-backjumps: 2000
 -- reorder-goals: False
@@ -60,7 +59,7 @@ documentation: True
 -- upgrade-dependencies: False
 -- root-cmd:
 -- symlink-bindir:
-build-summary: /home/callen/.cabal/logs/build.log
+build-summary: /Users/callen/.cabal/logs/build.log
 -- build-log:
 remote-build-reporting: anonymous
 -- one-shot: False
@@ -85,7 +84,7 @@ haddock
   -- contents-location:
 
 install-dirs user
-  -- prefix: /home/callen/.cabal
+  -- prefix: /Users/callen/.cabal
   -- bindir: $prefix/bin
   -- libdir: $prefix/lib
   -- libsubdir: $arch-$os-$compiler/$pkgid

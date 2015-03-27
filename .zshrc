@@ -20,7 +20,7 @@ alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
-alias ls='ls --color=auto'
+alias ls='ls -G'
 
 alias gpo='git pull origin && git push origin'
 alias gpom='git pull origin master && git push origin master'
@@ -84,4 +84,5 @@ if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
+export PATH=/usr/local/texlive/2014/bin/x86_64-darwin$PATH
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
