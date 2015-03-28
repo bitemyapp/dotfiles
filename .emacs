@@ -227,10 +227,12 @@
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
 ;; (require 'cyberpunk-theme)
+;; (load-theme 'monokai t)
+(load-theme 'misterioso t)
 ;; (require 'solarized-dark-theme)
 ;; (require 'solarized-theme)
 ;; (load-theme 'monokai t)
-(load-theme 'whiteboard t)
+;; (load-theme 'whiteboard t)
 
 (with-system 'darwin
   (custom-set-faces
@@ -243,7 +245,7 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 220 :family "Ubuntu Mono"))))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
