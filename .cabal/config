@@ -8,7 +8,7 @@
 -- used to indicate layout for nested sections.
 
 
-require-sandbox: True
+-- require-sandbox: True
 -- ignore-sandbox: False
 remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
 remote-repo-cache: /Users/callen/.cabal/packages
