@@ -15,8 +15,9 @@
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'hindent-mode)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;; (add-hook 'haskell-mode-hook 'hindent-mode)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
 ;; (require 'ghc)
 ;; (autoload 'ghc-init "ghc" nil t)

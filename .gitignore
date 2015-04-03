@@ -452,4 +452,6 @@ nohup.out
 Screenshots/
 gPodder/
 tor-browser/
-
+locate.db
+.jitsi/
+.texmf-var/
