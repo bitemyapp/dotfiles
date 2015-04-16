@@ -31,6 +31,8 @@ channels = (
   { name = "#haskellbridge"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#scala"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#scalaz"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#nicta-course"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#haskell-infrastructure"; chatnet = "Freenode"; autojoin = "Yes"; },
 );
 
 aliases = {
