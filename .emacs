@@ -226,7 +226,9 @@
 
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
-(load-theme 'misterioso t)
+(require 'bitemyapp-theme)
+
+;; (load-theme 'misterioso t)
 
 (with-system 'darwin
   (custom-set-faces
