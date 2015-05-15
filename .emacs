@@ -62,8 +62,8 @@
 (load-library "misc-config.el")
 
 ;; Agda
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
+;; (load-file (let ((coding-system-for-read 'utf-8))
+;;                 (shell-command-to-string "agda-mode locate")))
 ;; (setq agda2-highlight-level
 
 ;; auto-complete
@@ -226,9 +226,9 @@
 
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
-(require 'bitemyapp-theme)
+;; (require 'bitemyapp-theme)
 
-;; (load-theme 'misterioso t)
+(load-theme 'misterioso t)
 
 (with-system 'darwin
   (custom-set-faces
@@ -281,7 +281,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono"))))
  '(agda2-highlight-datatype-face ((t (:foreground "cyan"))))
  '(agda2-highlight-function-face ((t (:foreground "deep sky blue"))))
  '(agda2-highlight-postulate-face ((t (:foreground "cyan"))))
@@ -308,3 +307,4 @@
  '(font-latex-warning-face ((t nil)))
  '(idris-semantic-type-face ((t (:foreground "deep sky blue"))))
  '(tex-verbatim ((t nil))))
+(setq magit-last-seen-setup-instructions "1.4.0")
