@@ -25,7 +25,6 @@
                      dark-krystal-theme
                      erlang
                      ghc
-                     haskell-mode
                      idris-mode
                      js2-mode
                      json-mode
@@ -88,7 +87,6 @@
 
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
-(load-library "hindent.el")
 (load-library "haskell-config.el")
 
 ;; highlight-symbol
