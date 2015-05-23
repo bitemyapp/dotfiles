@@ -55,6 +55,8 @@ set wildignore+=*/dist/*
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+set swapfile
+set dir=/tmp
 
 " let mapleader = ","
 nnoremap <Leader>b :CtrlPBuffer<CR>

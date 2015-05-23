@@ -226,7 +226,8 @@
 
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
-(require 'bitemyapp-theme)
+;; (require 'bitemyapp-theme)
+(load-theme 'misterioso t)
 
 ;; (load-theme 'misterioso t)
 
@@ -241,7 +242,7 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 160 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 220 :family "Ubuntu Mono"))))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
