@@ -25,7 +25,6 @@
                      dark-krystal-theme
                      erlang
                      ghc
-                     haskell-mode
                      idris-mode
                      js2-mode
                      json-mode
@@ -62,8 +61,8 @@
 (load-library "misc-config.el")
 
 ;; Agda
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
+;; (load-file (let ((coding-system-for-read 'utf-8))
+;;                 (shell-command-to-string "agda-mode locate")))
 ;; (setq agda2-highlight-level
 
 ;; auto-complete
@@ -88,7 +87,6 @@
 
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
-(load-library "hindent.el")
 (load-library "haskell-config.el")
 
 ;; highlight-symbol
@@ -229,8 +227,6 @@
 ;; (require 'bitemyapp-theme)
 (load-theme 'misterioso t)
 
-;; (load-theme 'misterioso t)
-
 (with-system 'darwin
   (custom-set-faces
     '(default ((t (:height 140 :family "Ubuntu Mono"))))))
@@ -250,9 +246,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(css-electric-keys nil)
- '(custom-safe-themes
-   (quote
-    ("2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "c87cc60d01cf755375759d165c1d60d9586c6a31f0b5437a0378c2a93cfc8407" "789844278c5a75283b5015c1fc7bebe7e4cf97843b8f8cffe21fafa05e81e90a" "6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "e4bc8563d7651b2fed20402fe37b7ab7cb72869f92a3e705907aaecc706117b5" default)))
+ '(custom-safe-themes (quote ("2affb26fb9a1b9325f05f4233d08ccbba7ec6e0c99c64681895219f964aac7af" "c87cc60d01cf755375759d165c1d60d9586c6a31f0b5437a0378c2a93cfc8407" "789844278c5a75283b5015c1fc7bebe7e4cf97843b8f8cffe21fafa05e81e90a" "6209442746f8ec6c24c4e4e8a8646b6324594308568f8582907d0f8f0260c3ae" "e4bc8563d7651b2fed20402fe37b7ab7cb72869f92a3e705907aaecc706117b5" default)))
  '(haskell-interactive-mode-eval-pretty nil)
  '(haskell-interactive-mode-include-file-name nil)
  '(haskell-notify-p t)
@@ -290,4 +284,24 @@
  '(agda2-highlight-primitive-face ((t (:foreground "light gray"))))
  '(agda2-highlight-primitive-type-face ((t (:foreground "light gray"))))
  '(agda2-highlight-record-face ((t (:foreground "cyan"))))
- '(idris-semantic-type-face ((t (:foreground "deep sky blue")))))
+ '(font-latex-bold-face ((t nil)))
+ '(font-latex-doctex-documentation-face ((t nil)))
+ '(font-latex-doctex-preprocessor-face ((t nil)))
+ '(font-latex-italic-face ((t nil)))
+ '(font-latex-math-face ((t nil)))
+ '(font-latex-sectioning-0-face ((t nil)))
+ '(font-latex-sectioning-1-face ((t nil)))
+ '(font-latex-sectioning-2-face ((t nil)))
+ '(font-latex-sectioning-3-face ((t nil)))
+ '(font-latex-sectioning-4-face ((t nil)))
+ '(font-latex-sectioning-5-face ((t nil)))
+ '(font-latex-sedate-face ((t nil)))
+ '(font-latex-slide-title-face ((t nil)))
+ '(font-latex-string-face ((t nil)))
+ '(font-latex-subscript-face ((t nil)))
+ '(font-latex-superscript-face ((t nil)))
+ '(font-latex-verbatim-face ((t nil)))
+ '(font-latex-warning-face ((t nil)))
+ '(idris-semantic-type-face ((t (:foreground "deep sky blue"))))
+ '(tex-verbatim ((t nil))))
+(setq magit-last-seen-setup-instructions "1.4.0")
