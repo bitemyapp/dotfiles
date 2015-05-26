@@ -4,7 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
 
 (require 'haskell-mode)
-(require 'hindent)
+;; (require 'hindent)
 (require 'haskell)
 (require 'haskell-indentation)
 (require 'haskell-interactive-mode)
@@ -37,7 +37,7 @@
  '(haskell-process-show-debug-tips nil)
  '(haskell-process-suggest-hoogle-imports nil)
  '(haskell-process-suggest-haskell-docs-imports t)
- '(hindent-style "gibiansky"))
+ '(hindent-style "chris-done"))
 
 (setq haskell-interactive-mode-eval-mode 'haskell-mode)
 
@@ -49,9 +49,9 @@
 (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
 (define-key haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-(define-key haskell-mode-map (kbd "C-i") 'hindent-reformat-buffer)
+;; (define-key haskell-mode-map (kbd "C-i") 'hindent-reformat-buffer)
 (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
-(add-hook 'haskell-mode-hook #'hindent-mode)
+;; (add-hook 'haskell-mode-hook #'hindent-mode)
 
 ;; (require 'company)
 ;; (add-hook 'haskell-mode-hook 'company-mode)
