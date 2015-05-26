@@ -458,3 +458,4 @@ locate.db
 .LUFTRAUSERS
 .android/
 .stackage/
+/.gitconfig.local
