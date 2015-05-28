@@ -39,3 +39,6 @@
     accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
 [push]
 	default = simple
+
+[include]
+    path = ~/.gitconfig.local

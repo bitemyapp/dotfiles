@@ -460,3 +460,5 @@ locate.db
 .texmf-var/
 .LUFTRAUSERS
 .android/
+.stackage/
+/.gitconfig.local

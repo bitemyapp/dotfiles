@@ -25,7 +25,6 @@
                      dark-krystal-theme
                      erlang
                      ghc
-                     haskell-mode
                      idris-mode
                      js2-mode
                      json-mode
@@ -62,8 +61,8 @@
 (load-library "misc-config.el")
 
 ;; Agda
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
+;; (load-file (let ((coding-system-for-read 'utf-8))
+;;                 (shell-command-to-string "agda-mode locate")))
 ;; (setq agda2-highlight-level
 
 ;; auto-complete
@@ -88,7 +87,6 @@
 
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
-(load-library "hindent.el")
 (load-library "haskell-config.el")
 
 ;; highlight-symbol
@@ -226,9 +224,8 @@
 
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
-(require 'bitemyapp-theme)
-
-;; (load-theme 'misterioso t)
+;; (require 'bitemyapp-theme)
+(load-theme 'misterioso t)
 
 (with-system 'darwin
   (custom-set-faces
@@ -241,7 +238,9 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 160 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+
+(setq mac-option-modifier 'meta)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -264,7 +263,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote cabal-repl))
  '(haskell-process-use-presentation-mode t)
- '(haskell-stylish-on-save nil)
+ '(haskell-stylish-on-save t)
  '(haskell-tags-on-save nil)
  '(hindent-style "johan-tibell")
  '(ido-mode (quote both) nil (ido))
@@ -281,7 +280,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono"))))
  '(agda2-highlight-datatype-face ((t (:foreground "cyan"))))
  '(agda2-highlight-function-face ((t (:foreground "deep sky blue"))))
  '(agda2-highlight-postulate-face ((t (:foreground "cyan"))))
@@ -308,3 +306,4 @@
  '(font-latex-warning-face ((t nil)))
  '(idris-semantic-type-face ((t (:foreground "deep sky blue"))))
  '(tex-verbatim ((t nil))))
+(setq magit-last-seen-setup-instructions "1.4.0")
