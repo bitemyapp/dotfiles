@@ -238,7 +238,9 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 220 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+
+(setq mac-option-modifier 'meta)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -261,7 +263,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote cabal-repl))
  '(haskell-process-use-presentation-mode t)
- '(haskell-stylish-on-save nil)
+ '(haskell-stylish-on-save t)
  '(haskell-tags-on-save nil)
  '(hindent-style "johan-tibell")
  '(ido-mode (quote both) nil (ido))
