@@ -434,6 +434,9 @@ work/
 .screenlayout/
 .cask/
 .joe_state
+.ghcjs/
+.mypaint/
+.stackage-update/
 Work/
 .psql_history-*
 .ssr/
