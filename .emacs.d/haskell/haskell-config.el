@@ -41,6 +41,7 @@
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
 ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 (custom-set-variables 
  '(haskell-process-type (quote cabal-repl))
