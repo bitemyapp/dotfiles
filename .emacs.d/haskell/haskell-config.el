@@ -6,8 +6,8 @@
 (require 'haskell-mode)
 ;; (require 'hindent)
 (require 'haskell)
-;; (require 'haskell-indentation)
-(require 'haskell-simple-indent)
+(require 'haskell-indentation)
+;; (require 'haskell-indent)
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (require 'haskell-font-lock)
@@ -40,14 +40,14 @@
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
-;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 (custom-set-variables 
  '(haskell-process-type (quote cabal-repl))
  '(haskell-process-args-ghci '())
- '(haskell-process-args-cabal-repl
-   '("--ghc-option=-ferror-spans" "--with-ghc=ghci-ng"))
+ ;; '(haskell-process-args-cabal-repl
+ ;;   '("--ghc-option=-ferror-spans" "--with-ghc=ghci-ng"))
  '(haskell-notify-p t)
  '(haskell-stylish-on-save nil)
  '(haskell-tags-on-save t)
@@ -70,7 +70,7 @@
 
 (setq haskell-interactive-mode-eval-mode 'haskell-mode)
 
-(setq haskell-process-path-ghci "ghci-ng")
+(setq haskell-process-path-ghci "ghci")
 (setq haskell-process-args-ghci '("-ferror-spans"))
 
 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
@@ -80,12 +80,11 @@
 (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
 
 (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-(define-key haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
+;; (define-key haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
 (define-key interactive-haskell-mode-map (kbd "M-,") 'haskell-who-calls)
 (define-key interactive-haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
 (define-key interactive-haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
-(define-key haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
-(define-key interactive-haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
+;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
 (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
 
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
