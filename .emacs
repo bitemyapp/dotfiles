@@ -11,7 +11,8 @@
 
 (setq package-archives
       (append '(("org"        . "http://orgmode.org/elpa/")
-                ("melpa"      . "http://melpa.milkbox.net/packages/")
+                ("melpa"      . "http://melpa-stable.milkbox.net/packages/")
+                ;; ("melpa"      . "http://melpa.milkbox.net/packages/")
                 ("marmalade"  . "http://marmalade-repo.org/packages/"))
               package-archives))
 
@@ -24,7 +25,6 @@
                      csv-mode
                      dark-krystal-theme
                      erlang
-                     ghc
                      idris-mode
                      js2-mode
                      json-mode

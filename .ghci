@@ -1,5 +1,6 @@
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 
+:set +c
 :set -fno-warn-type-defaults
 :set prompt ">>> "
 
