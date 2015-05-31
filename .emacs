@@ -11,8 +11,8 @@
 
 (setq package-archives
       (append '(("org"        . "http://orgmode.org/elpa/")
-                ("melpa"      . "http://melpa-stable.milkbox.net/packages/")
-                ;; ("melpa"      . "http://melpa.milkbox.net/packages/")
+                ;; ("melpa"      . "http://melpa-stable.milkbox.net/packages/")
+                ("melpa"      . "http://melpa.milkbox.net/packages/")
                 ("marmalade"  . "http://marmalade-repo.org/packages/"))
               package-archives))
 
@@ -25,6 +25,7 @@
                      csv-mode
                      dark-krystal-theme
                      erlang
+                     haskell-mode
                      idris-mode
                      js2-mode
                      json-mode
@@ -58,6 +59,7 @@
 ;; General/Misc stuff
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/misc/")
+
 (load-library "misc-config.el")
 
 ;; Agda

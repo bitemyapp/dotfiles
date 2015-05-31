@@ -1,6 +1,6 @@
 ;; Haskell
 
-(add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
+;; (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
 (add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
 
 (require 'haskell-mode)
