@@ -1,7 +1,7 @@
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 
 :set -fno-warn-type-defaults
-:set prompt ">>> "
+-- :set prompt ">>> "
 
 -- let numPlus = (+)
 -- let x + y = numPlus (numPlus x y) 1
