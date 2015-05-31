@@ -1,6 +1,3 @@
-[submodule ".emacs.d/haskell/haskell-mode"]
-	path = .emacs.d/haskell/haskell-mode
-	url = git@github.com:haskell/haskell-mode.git
 [submodule ".emacs.d/haskell/hindent"]
 	path = .emacs.d/haskell/hindent
 	url = git@github.com:chrisdone/hindent.git
