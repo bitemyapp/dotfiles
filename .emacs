@@ -25,7 +25,7 @@
                      csv-mode
                      dark-krystal-theme
                      erlang
-                     haskell-mode
+                     ;; haskell-mode
                      idris-mode
                      js2-mode
                      json-mode

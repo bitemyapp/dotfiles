@@ -462,3 +462,4 @@ locate.db
 .android/
 .stackage/
 /.gitconfig.local
+.stack/
