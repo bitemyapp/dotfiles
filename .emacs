@@ -11,9 +11,9 @@
 
 (setq package-archives
       (append '(("org"        . "http://orgmode.org/elpa/")
-                ;; ("melpa"      . "http://melpa-stable.milkbox.net/packages/")
-                ("melpa"      . "http://melpa.milkbox.net/packages/")
-                ("marmalade"  . "http://marmalade-repo.org/packages/"))
+                ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+                ("melpa"        . "http://melpa.milkbox.net/packages/")
+                ("marmalade"    . "http://marmalade-repo.org/packages/"))
               package-archives))
 
 (package-initialize)
@@ -25,6 +25,7 @@
                      csv-mode
                      dark-krystal-theme
                      erlang
+                     ghc
                      haskell-mode
                      idris-mode
                      js2-mode
@@ -240,7 +241,7 @@
 (when (> (display-pixel-height) 1080)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 200 :family "Ubuntu Mono"))))))
 
 (setq mac-option-modifier 'meta)
 
