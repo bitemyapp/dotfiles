@@ -463,3 +463,5 @@ locate.db
 .stackage/
 /.gitconfig.local
 .stack/
+.stack-work/
+dist-stack/
