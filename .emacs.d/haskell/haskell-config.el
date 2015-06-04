@@ -74,6 +74,7 @@
 (setq haskell-process-args-ghci '("-ferror-spans"))
 
 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+(define-key haskell-mode-map (kbd "C-c C-r") 'haskell-process-reload-file)
 ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
 (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
 ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
