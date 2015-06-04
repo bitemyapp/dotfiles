@@ -466,3 +466,5 @@ locate.db
 .stack-work/
 dist-stack/
 .atom/
+.gd/
+Data/
