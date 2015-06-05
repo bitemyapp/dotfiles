@@ -79,15 +79,18 @@
 (define-key haskell-mode-map (kbd "C-c C-r") 'haskell-process-reload-file)
 ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
 (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
-(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+
+;; nicer output than haskell-process-do-type
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-doc-show-type)
 (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
 
 ;; GHCi-ng
 ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
 
-(define-key haskell-mode-map (kbd "C-c C-t") 'ghc-show-type)
-(define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
-(define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
+;; ghc-mod
+;; (define-key haskell-mode-map (kbd "C-c C-t") 'ghc-show-type)
+;; (define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
+;; (define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
 
 ;; (define-key haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
 (define-key interactive-haskell-mode-map (kbd "M-,") 'haskell-who-calls)
