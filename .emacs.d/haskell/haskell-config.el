@@ -5,9 +5,11 @@
 
 (require 'haskell-mode)
 ;; (require 'hindent)
+
 (require 'haskell)
-(require 'haskell-indentation)
 ;; (require 'haskell-indent)
+
+(require 'haskell-indentation)
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (require 'haskell-font-lock)
@@ -66,7 +68,7 @@
  '(haskell-process-show-debug-tips nil)
  '(haskell-process-suggest-hoogle-imports nil)
  '(haskell-process-suggest-haskell-docs-imports t)
- '(hindent-style "chris-done"))
+ '(hindent-style "gibiansky"))
 
 (setq haskell-interactive-mode-eval-mode 'haskell-mode)
 
@@ -77,11 +79,14 @@
 (define-key haskell-mode-map (kbd "C-c C-r") 'haskell-process-reload-file)
 ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
 (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
-;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+
+;; GHCi-ng
 ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
-;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
 
 (define-key haskell-mode-map (kbd "C-c C-t") 'ghc-show-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
 (define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
 
 ;; (define-key haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
@@ -93,13 +98,15 @@
 
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 ;; (define-key haskell-mode-map (kbd "C-i") 'hindent-reformat-buffer)
+(define-key haskell-mode-map (kbd "C-c <backtab>") 'indent-rigidly-left-to-tab-stop)
+(define-key haskell-mode-map (kbd "C-c <tab>") 'indent-rigidly-right-to-tab-stop)
 (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
 
-(require 'ghc)
+;; (require 'ghc)
 
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;; (autoload 'ghc-init "ghc" nil t)
+;; (autoload 'ghc-debug "ghc" nil t)
+;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;; (add-hook 'haskell-mode-hook #'hindent-mode)
 
