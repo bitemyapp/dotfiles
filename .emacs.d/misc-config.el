@@ -10,6 +10,7 @@
 
 ;; Manually sets alt key to meta
 (setq x-alt-keysym 'meta)
+(setq mac-command-modifier 'super)
 
 ;; Shut off the obnoxious bell
 (setq ring-bell-function 'ignore)
