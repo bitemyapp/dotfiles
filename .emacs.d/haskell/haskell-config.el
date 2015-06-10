@@ -5,9 +5,11 @@
 
 (require 'haskell-mode)
 ;; (require 'hindent)
+
 (require 'haskell)
-(require 'haskell-indentation)
 ;; (require 'haskell-indent)
+
+(require 'haskell-indentation)
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (require 'haskell-font-lock)
@@ -53,9 +55,12 @@
  '(haskell-tags-on-save t)
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-suggest-hoogle-imports nil)
+ '(haskell-process-suggest-haskell-docs-imports t)
  '(haskell-process-log t)
  '(haskell-process-reload-with-fbytecode nil)
  '(haskell-process-use-presentation-mode t)
+
  '(haskell-interactive-mode-include-file-name nil)
  '(haskell-interactive-mode-eval-pretty nil)
  ;; '(haskell-process-do-cabal-format-string ":!cd %s && unset GHC_PACKAGE_PATH && %s")
@@ -64,9 +69,7 @@
  '(shm-auto-insert-skeletons t)
  '(shm-auto-insert-bangs t)
  '(haskell-process-show-debug-tips nil)
- '(haskell-process-suggest-hoogle-imports nil)
- '(haskell-process-suggest-haskell-docs-imports t)
- '(hindent-style "chris-done"))
+ '(hindent-style "gibiansky"))
 
 (setq haskell-interactive-mode-eval-mode 'haskell-mode)
 
@@ -74,14 +77,21 @@
 (setq haskell-process-args-ghci '("-ferror-spans"))
 
 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+(define-key haskell-mode-map (kbd "C-c C-r") 'haskell-process-reload-file)
 ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
 (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
-;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
-;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
 
-(define-key haskell-mode-map (kbd "C-c C-t") 'ghc-show-type)
-(define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
+;; nicer output than haskell-process-do-type
+(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-doc-show-type)
+(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+
+;; GHCi-ng
+;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
+
+;; ghc-mod
+;; (define-key haskell-mode-map (kbd "C-c C-t") 'ghc-show-type)
+;; (define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
+;; (define-key haskell-mode-map (kbd "C-c C-i") 'ghc-show-info)
 
 ;; (define-key haskell-mode-map (kbd "C-?") 'haskell-mode-find-uses)
 (define-key interactive-haskell-mode-map (kbd "M-,") 'haskell-who-calls)
@@ -92,13 +102,15 @@
 
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 ;; (define-key haskell-mode-map (kbd "C-i") 'hindent-reformat-buffer)
+(define-key haskell-mode-map (kbd "C-c <backtab>") 'indent-rigidly-left-to-tab-stop)
+(define-key haskell-mode-map (kbd "C-c <tab>") 'indent-rigidly-right-to-tab-stop)
 (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
 
-(require 'ghc)
+;; (require 'ghc)
 
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;; (autoload 'ghc-init "ghc" nil t)
+;; (autoload 'ghc-debug "ghc" nil t)
+;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;; (add-hook 'haskell-mode-hook #'hindent-mode)
 

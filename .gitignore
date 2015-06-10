@@ -465,5 +465,8 @@ locate.db
 .stack/
 .stack-work/
 dist-stack/
+.atom/
 .gd/
 Data/
+TAGS
+.xinitrc
