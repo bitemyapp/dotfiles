@@ -42,6 +42,7 @@
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Shakefile" . haskell-mode) auto-mode-alist))
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
