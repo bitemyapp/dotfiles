@@ -200,3 +200,7 @@ settings = {
   core = { real_name = "callen"; user_name = "callen"; nick = "callen"; };
   "fe-text" = { actlist_sort = "refnum"; };
 };
+
+lookandfeel = {
+  activity_hide_level = "QUITS JOINS PARTS KICKS MODES TOPIC NICKS";
+};

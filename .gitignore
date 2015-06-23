@@ -470,3 +470,5 @@ dist-stack/
 Data/
 TAGS
 .xinitrc
+.docker/
+.boot2docker/
