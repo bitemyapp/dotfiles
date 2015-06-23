@@ -14,5 +14,5 @@
              (find (aref (buffer-name buffer) 0) " *"))
            (buffer-list))))
 
-(global-set-key (kbd "S-{") 'tabbar-backward)
-(global-set-key (kbd "S-}") 'tabbar-forward)
+(global-set-key (kbd "s-{") 'tabbar-backward)
+(global-set-key (kbd "s-}") 'tabbar-forward)
