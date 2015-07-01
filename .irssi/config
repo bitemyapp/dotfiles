@@ -202,5 +202,5 @@ settings = {
 };
 
 lookandfeel = {
-  activity_hide_level = "QUITS JOINS PARTS KICKS MODES TOPIC NICKS";
+  activity_hide_level = "QUITS JOINS PARTS KICKS MODES TOPIC NICKS CLIENTNOTICES CLIENTERRORS CLIENTCRAP CRAP";
 };

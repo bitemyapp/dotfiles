@@ -9,7 +9,6 @@ bindkey '^U' backward-kill-line
 bindkey '^Y' yank
 
 # base -> [%n@%m %~]$
-prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%}]%{%F{reset}%}$ '
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 zstyle ':completion:*' expand 'yes'
@@ -86,3 +85,10 @@ fi
 
 export PATH=/usr/local/texlive/2014/bin/x86_64-darwin$PATH
 source ~/.secrets
+
+function git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
+setopt prompt_subst
+prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info)]%{%F{reset}%}$ '
