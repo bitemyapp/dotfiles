@@ -32,8 +32,6 @@ alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
 alias repl='cabal repl --with-ghc=ghci-ng'
 
-# git branch --set-upstream new_frontpage origin/new_frontpage
-
 function gh {
     open "https://github.com/$@"
 }
@@ -83,7 +81,8 @@ if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
-export PATH=/usr/local/texlive/2014/bin/x86_64-darwin$PATH
+export PATH=/usr/local/texlive/2014/bin/x86_64-darwin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 source ~/.secrets
 
 function git_prompt_info() {
@@ -91,4 +90,5 @@ function git_prompt_info() {
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 setopt prompt_subst
-prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info)]%{%F{reset}%}$ '
+prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info)]
+%{%F{reset}%}$ '
