@@ -472,3 +472,6 @@ TAGS
 .xinitrc
 .docker/
 .boot2docker/
+.nviminfo
+.nvimlog
+.tracker
