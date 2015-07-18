@@ -44,8 +44,8 @@ export GIT_EDITOR="emacs -q -nw"
 bindkey ';5D' emacs-backward-word
 bindkey ';5C' emacs-forward-word
 bindkey -e
-bindkey '^[[1;5D' forward-word
-bindkey '^[[1;5C' backward-word
+# bindkey '^[[1;5D' forward-word
+# bindkey '^[[1;5C' backward-word
 # bindkey '^[[1;9C' forward-word
 # bindkey '^[[1;9D' backward-word
 
