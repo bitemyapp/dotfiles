@@ -22,6 +22,7 @@ chatnets = {
 channels = (
   { name = "#haskell"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#haskell-beginners"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#haskell-lens"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#haskell-embedded"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#haskell-stack"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#haskell.au"; chatnet = "Freenode"; autojoin = "Yes"; },
