@@ -116,7 +116,7 @@
 (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
 
 ;; latex
-(add-to-list 'auto-mode-alist '("\\.tex$" . latex-mode))
+(add-to-list 'auto-mode-alist '("\\.tex$" . tex-mode))
 
 ;; Magit
 (require 'magit)
