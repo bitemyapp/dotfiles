@@ -116,7 +116,7 @@
 (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
 
 ;; latex
-(add-to-list 'auto-mode-alist '("\\.tex$" . latex-mode))
+(add-to-list 'auto-mode-alist '("\\.tex$" . tex-mode))
 
 ;; Magit
 (require 'magit)
@@ -238,10 +238,10 @@
   (custom-set-faces
     '(default ((t (:height 120 :family "Ubuntu Mono"))))))
 
-(when (> (display-pixel-height) 1080)
-  ;; retina
-  (custom-set-faces
-    '(default ((t (:height 200 :family "Ubuntu Mono"))))))
+;; (when (> (display-pixel-height) 1080)
+;;   ;; retina
+;;   (custom-set-faces
+;;     '(default ((t (:height 140 :family "Ubuntu Mono"))))))
 
 (setq mac-option-modifier 'meta)
 
