@@ -234,9 +234,6 @@ emu/
 .eclipse/
 .vim-fuf-data/
 .FBReader/
-.vim/bundle/
-.vim/bundle/*
-.vim/
 .stardict/
 .anki/
 .bash_it/
@@ -476,4 +473,6 @@ TAGS
 .nvimlog
 .tracker
 .turses/
+.babel.json
+.mycli*
 

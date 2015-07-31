@@ -37,7 +37,15 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
-;; packages
+set incsearch
+set nohlsearch
+
+" packages
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-colorscheme slate
+execute pathogen#infect()
+
+syntax on
+filetype plugin indent on
+
+colorscheme desert
