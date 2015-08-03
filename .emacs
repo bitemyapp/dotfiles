@@ -184,8 +184,8 @@
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
 (require 'yasnippet)
-(yas-global-mode 1)
-(define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
+;; (yas-global-mode 1)
+;; (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
 
 (defun yas/goto-end-of-active-field ()
   (interactive)
@@ -250,30 +250,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(agda2-highlight-datatype-face ((t (:foreground "cyan"))))
- '(agda2-highlight-function-face ((t (:foreground "deep sky blue"))))
- '(agda2-highlight-postulate-face ((t (:foreground "cyan"))))
- '(agda2-highlight-primitive-face ((t (:foreground "light gray"))))
- '(agda2-highlight-primitive-type-face ((t (:foreground "light gray"))))
- '(agda2-highlight-record-face ((t (:foreground "cyan"))))
- '(font-latex-bold-face ((t nil)))
- '(font-latex-doctex-documentation-face ((t nil)))
- '(font-latex-doctex-preprocessor-face ((t nil)))
- '(font-latex-italic-face ((t nil)))
- '(font-latex-math-face ((t nil)))
- '(font-latex-sectioning-0-face ((t nil)))
- '(font-latex-sectioning-1-face ((t nil)))
- '(font-latex-sectioning-2-face ((t nil)))
- '(font-latex-sectioning-3-face ((t nil)))
- '(font-latex-sectioning-4-face ((t nil)))
- '(font-latex-sectioning-5-face ((t nil)))
- '(font-latex-sedate-face ((t nil)))
- '(font-latex-slide-title-face ((t nil)))
- '(font-latex-string-face ((t nil)))
- '(font-latex-subscript-face ((t nil)))
- '(font-latex-superscript-face ((t nil)))
- '(font-latex-verbatim-face ((t nil)))
- '(font-latex-warning-face ((t nil)))
- '(idris-semantic-type-face ((t (:foreground "deep sky blue"))))
- '(tex-verbatim ((t nil))))
+ )
 (setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc erlang dark-krystal-theme csv-mode company cider auto-complete))))
