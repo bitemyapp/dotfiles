@@ -49,6 +49,7 @@ myStartupHook = do
   spawnOnce "xmodmap ~/.Xmodmap"
   spawnOnce "stalonetray"
   spawnOnce "unity-settings-daemon"
+  spawnOnce "gnome-settings-daemon"
   spawnOnce "nm-applet"
   spawnOnce "pasystray"
   spawnOnce "fdpowermon"

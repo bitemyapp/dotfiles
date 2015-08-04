@@ -475,4 +475,5 @@ TAGS
 .turses/
 .babel.json
 .mycli*
-
+.emacs.d/network-security.data
+.linuxmint/
