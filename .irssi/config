@@ -40,6 +40,7 @@ channels = (
   { name = "#snap-framework"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#lysa"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#haskell-validation"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#servant"; chatnet = "Freenode"; autojoin = "Yes"; },
 );
 
 aliases = {

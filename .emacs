@@ -25,6 +25,8 @@
                      csv-mode
                      dark-krystal-theme
                      erlang
+                     flycheck
+                     flycheck-haskell
                      ghc
                      haskell-mode
                      idris-mode
@@ -88,6 +90,15 @@
 ;; Erlang
 (require 'erlang)
 
+;; flycheck
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; calls runhaskell which doesn't work
+;; (eval-after-load 'flycheck
+;;   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+(autoload 'flycheck-haskell-setup "flycheck-haskell")
+
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
 (load-library "haskell-config.el")
@@ -95,6 +106,7 @@
 ;; highlight-symbol
 (add-to-list 'load-path "~/.emacs.d/idle-highlight/")
 (load-library "idle-highlight.el")
+
 (require 'idle-highlight-mode)
 (add-hook 'text-mode-hook (lambda () (idle-highlight-mode t)))
 (add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t)))
@@ -184,8 +196,8 @@
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
 (require 'yasnippet)
-(yas-global-mode 1)
-(define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
+;; (yas-global-mode 1)
+;; (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
 
 (defun yas/goto-end-of-active-field ()
   (interactive)
@@ -245,35 +257,39 @@
 
 (setq mac-option-modifier 'meta)
 
+(setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(flycheck-disabled-checkers (quote (haskell-ghc)))
+ '(haskell-notify-p t)
+ '(haskell-process-args-ghci (quote nil))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-reload-with-fbytecode nil)
+ '(haskell-process-show-debug-tips nil)
+ '(haskell-process-suggest-haskell-docs-imports t)
+ '(haskell-process-suggest-hoogle-imports nil)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote stack-ghci))
+ '(haskell-process-use-presentation-mode t)
+ '(haskell-stylish-on-save nil)
+ '(haskell-tags-on-save nil)
+ '(hindent-style "johan-tibell")
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always))
+ '(shift-select-mode t)
+ '(shm-auto-insert-bangs t)
+ '(shm-auto-insert-skeletons t)
+ '(shm-use-hdevtools t)
+ '(shm-use-presentation-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(agda2-highlight-datatype-face ((t (:foreground "cyan"))))
- '(agda2-highlight-function-face ((t (:foreground "deep sky blue"))))
- '(agda2-highlight-postulate-face ((t (:foreground "cyan"))))
- '(agda2-highlight-primitive-face ((t (:foreground "light gray"))))
- '(agda2-highlight-primitive-type-face ((t (:foreground "light gray"))))
- '(agda2-highlight-record-face ((t (:foreground "cyan"))))
- '(font-latex-bold-face ((t nil)))
- '(font-latex-doctex-documentation-face ((t nil)))
- '(font-latex-doctex-preprocessor-face ((t nil)))
- '(font-latex-italic-face ((t nil)))
- '(font-latex-math-face ((t nil)))
- '(font-latex-sectioning-0-face ((t nil)))
- '(font-latex-sectioning-1-face ((t nil)))
- '(font-latex-sectioning-2-face ((t nil)))
- '(font-latex-sectioning-3-face ((t nil)))
- '(font-latex-sectioning-4-face ((t nil)))
- '(font-latex-sectioning-5-face ((t nil)))
- '(font-latex-sedate-face ((t nil)))
- '(font-latex-slide-title-face ((t nil)))
- '(font-latex-string-face ((t nil)))
- '(font-latex-subscript-face ((t nil)))
- '(font-latex-superscript-face ((t nil)))
- '(font-latex-verbatim-face ((t nil)))
- '(font-latex-warning-face ((t nil)))
- '(idris-semantic-type-face ((t (:foreground "deep sky blue"))))
- '(tex-verbatim ((t nil))))
-(setq magit-last-seen-setup-instructions "1.4.0")
+ '(default ((t (:height 160 :family "Ubuntu Mono")))))
