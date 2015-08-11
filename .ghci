@@ -2,7 +2,6 @@
 :def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
 
 :set -fno-warn-type-defaults
-:set -XOverloadedStrings
 -- :set -fobject-code
 :def source readFile
 -- :set -fdefer-type-error
