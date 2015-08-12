@@ -462,7 +462,6 @@ locate.db
 .stack/
 .stack-work/
 dist-stack/
-.atom/
 .gd/
 Data/
 TAGS
@@ -477,3 +476,6 @@ TAGS
 .mycli*
 .emacs.d/network-security.data
 .linuxmint/
+.atom/compile-cache
+.atom/storage
+.atom/.apm

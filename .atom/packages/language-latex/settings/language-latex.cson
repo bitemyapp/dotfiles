@@ -1,0 +1,26 @@
+'.text.tex':
+  'editor':
+    'foldEndPattern': '\\*\\*/|^\\s*\\}'
+    'commentStart': '% '
+'.text.bibtex':
+  'editor':
+    'foldEndPattern': '^\\s*[)}]\\s*$'
+'.text.tex.latex':
+  'editor':
+    'increaseIndentPattern': '^\\s*\\\\begin\\{.*\\}'
+    'decreaseIndentPattern': '^\\s*\\\\end(\\{.*\\})?$'
+    'completions': [
+      'corollary'
+      'definition'
+      'description'
+      'enumerate'
+      'equation'
+      'itemize'
+      'lemma'
+      'proof'
+      'proposition'
+      'verbatim'
+    ]
+'.text.log.latex':
+  'editor':
+    'foldEndPattern': '\\*\\*/|^\\s*\\)'

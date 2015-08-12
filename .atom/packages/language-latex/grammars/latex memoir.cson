@@ -1,0 +1,73 @@
+'fileTypes': []
+'firstLineMatch': '^\\\\documentclass(\\[.*\\])?\\{memoir\\}'
+'name': 'LaTeX Memoir'
+'patterns': [
+  {
+    'begin': '(?:\\s*)((\\\\)begin)(\\{)(framed|shaded|leftbar)(\\})'
+    'captures':
+      '1':
+        'name': 'support.function.be.latex'
+      '2':
+        'name': 'punctuation.definition.function.latex'
+      '3':
+        'name': 'punctuation.definition.arguments.begin.latex'
+      '4':
+        'name': 'variable.parameter.function.latex'
+      '5':
+        'name': 'punctuation.definition.arguments.end.latex'
+    'end': '((\\\\)end)(\\{)(\\4)(\\})'
+    'name': 'meta.function.memoir-fbox.latex'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
+  {
+    'begin': '(?:\\s*)((\\\\)begin)(\\{)((?:fboxv|boxedv|V)erbatim)(\\})'
+    'captures':
+      '1':
+        'name': 'support.function.be.latex'
+      '2':
+        'name': 'punctuation.definition.function.latex'
+      '3':
+        'name': 'punctuation.definition.arguments.begin.latex'
+      '4':
+        'name': 'variable.parameter.function.latex'
+      '5':
+        'name': 'punctuation.definition.arguments.end.latex'
+    'contentName': 'markup.raw.verbatim.latex'
+    'end': '((\\\\)end)(\\{)(\\4)(\\})'
+    'name': 'meta.function.memoir-verbatim.latex'
+  }
+  {
+    'begin': '(?:\\s*)((\\\\)begin)(\\{)(alltt)(\\})'
+    'captures':
+      '1':
+        'name': 'support.function.be.latex'
+      '2':
+        'name': 'punctuation.definition.function.latex'
+      '3':
+        'name': 'punctuation.definition.arguments.begin.latex'
+      '4':
+        'name': 'variable.parameter.function.latex'
+      '5':
+        'name': 'punctuation.definition.arguments.end.latex'
+    'contentName': 'markup.raw.verbatim.latex'
+    'end': '((\\\\)end)(\\{)(alltt)(\\})'
+    'name': 'meta.function.memoir-alltt.latex'
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.function.tex'
+        'match': '(\\\\)[A-Za-z]+'
+        'name': 'support.function.general.tex'
+      }
+    ]
+  }
+  {
+    'include': 'text.tex.latex'
+  }
+]
+'scopeName': 'text.tex.latex.memoir'

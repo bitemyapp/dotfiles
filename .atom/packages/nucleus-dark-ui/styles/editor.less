@@ -1,0 +1,111 @@
+atom-text-editor,
+atom-text-editor::shadow,
+:host {
+  .scroll-view {
+    padding: 0;
+  }
+
+  .wrap-guide {
+    background: @indent-guide-color;
+  }
+
+  .indent-guide {
+    color: @indent-guide-color;
+    box-shadow: inset 1px 0 @indent-guide-color;
+  }
+
+  .bracket-matcher .region {
+    box-sizing: border-box;
+    border: 1px solid @background-color-info;
+    border-radius: 2px;
+    background-color: @theme-background-color-light;
+    opacity: 1.0;
+    padding: 1px;
+  }
+
+  .invisible-character {
+    color: @invisibles-color;
+  }
+
+  .invisible {
+    color: @invisibles-color;
+  }
+
+  .line.cursor-line {
+    background: @theme-background-color-light;
+  }
+
+  .selection .region {
+    background-color: @theme-background-color-lighter;
+  }
+
+  .gutter {
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    background-color: @gutter-background-color;
+    margin-right: 0;
+    border-right: 0;
+    padding-right: 0;
+
+    .line-numbers {
+      background: transparent !important;
+    }
+    .line-number {
+      background: transparent;
+      opacity: 1.0;
+
+      color: @gutter-text-color;
+      border-left: 2px solid transparent;
+      padding-left: @component-padding !important;
+      padding-right: 0;
+
+      &.git-line-added {
+        font-weight: 600;
+        color: @text-color-added;
+        border-left-color: @text-color-added;
+      }
+      &.git-line-modified {
+        font-weight: 600;
+        color: @text-color-modified;
+        border-left-color: @text-color-modified;
+      }
+      &.git-line-removed {
+        font-weight: 600;
+        color: @text-color-removed;
+        border-left-color: @text-color-removed;
+      }
+
+      &.cursor-line {
+        background-color: @theme-background-color-lighter;
+        color: @gutter-text-color-selected;
+      }
+
+      &.cursor-line-no-selection {
+        background-color: @theme-background-color-light;
+        color: @text-color-highlight;
+      }
+
+      .icon-right {
+        opacity: 1.0;
+        color: @gutter-text-color;
+      }
+
+      .icon-right:hover {
+        color: @gutter-text-color-selected;
+      }
+    }
+  }
+
+  .gutter .line-number.folded,
+  .gutter .line-number.folded .icon-right,
+  .gutter .line-number.folded .cursor-line,
+  .gutter .line-number:after,
+  .fold-marker:after {
+    font-weight: 600;
+    color: @text-color-info;
+    border-left-color: @text-color-info;
+  }
+  .fold-marker:after {
+    background: transparent;
+  }
+}

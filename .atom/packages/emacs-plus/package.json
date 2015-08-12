@@ -1,0 +1,86 @@
+{
+  "name": "emacs-plus",
+  "main": "./lib/main",
+  "version": "0.9.8",
+  "description": "Emacs-like experience in the Atom.(Fork of atomic-emacs)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aki77/atom-emacs-plus"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.206.0 <2.0.0"
+  },
+  "dependencies": {
+    "underscore-plus": "1.x"
+  },
+  "keywords": [
+    "emacs"
+  ],
+  "readme": "# emacs-plus package\n\nA fork of [atomic-emacs](https://atom.io/packages/atomic-emacs)\n\nEmacs-like experience in the Atom.\n[![Build Status](https://travis-ci.org/aki77/atom-emacs-plus.svg)](https://travis-ci.org/aki77/atom-emacs-plus)\n\n![](http://i.gyazo.com/6c9309e4608286d08c8b353b8011bbcb.gif)\n\n\n## Features\n* Regular Emacs key binding(see below)\n* Marker\n* Appending Kills\n\n## Note\n* Please use [clipboard-plus](https://atom.io/packages/clipboard-plus) instead of kill-ring.\n* Disables keymap in conflicting package using [disable-keybindings](https://atom.io/packages/disable-keybindings).\n\n  [![Gyazo](http://i.gyazo.com/663931390b87c82e89000b18ae710987.png)](http://gyazo.com/663931390b87c82e89000b18ae710987)\n\n## Keymap\n* [emacs.cson](https://github.com/aki77/atom-emacs-plus/blob/master/keymaps/emacs.cson)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/aki77/atom-emacs-plus/issues"
+  },
+  "homepage": "https://github.com/aki77/atom-emacs-plus",
+  "_id": "emacs-plus@0.9.8",
+  "_shasum": "edb1015cbe3f9d77bbd2d65209f2537f5438f542",
+  "_resolved": "file:../d-11579-17891-1bt3zqs/package.tgz",
+  "_from": "../d-11579-17891-1bt3zqs/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "underscore-plus",
+        "version": "1.6.6",
+        "path": "node_modules/underscore-plus/lib/underscore-plus.js"
+      },
+      {
+        "name": "underscore",
+        "version": "1.6.0",
+        "path": "node_modules/underscore-plus/node_modules/underscore/underscore.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/cursor-tools.coffee",
+        "lib/emacs.coffee",
+        "lib/global-emacs-state.coffee",
+        "lib/main.coffee",
+        "lib/mark.coffee",
+        "lib/selection.coffee"
+      ],
+      ".js": [
+        "node_modules/underscore-plus/lib/underscore-plus.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore.js"
+      ],
+      ".json": [
+        "node_modules/underscore-plus/node_modules/underscore/package.json",
+        "node_modules/underscore-plus/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "underscore-plus": "1.x"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/underscore-plus/lib",
+          "node_modules/underscore-plus"
+        ],
+        "dependencies": {
+          "underscore": "~1.6.0"
+        }
+      }
+    ]
+  }
+}

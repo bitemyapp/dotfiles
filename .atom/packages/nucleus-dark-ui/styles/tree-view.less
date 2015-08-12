@@ -1,0 +1,88 @@
+atom-workspace {
+  .tree-view {
+    .text(normal);
+    font-size: @font-size;
+    background: @tree-view-background-color;
+    padding: 0;
+    box-sizing: border-box;
+
+    & > .directory {
+      & > .header {
+        transition: all @transition-time ease;
+        background: @tree-view-background-color;
+        height: @tab-height;
+        line-height: @tab-height;
+
+        & span {
+          .text(bold);
+          color: @text-color-highlight;
+          transition: all @transition-time ease;
+
+          &:before {
+            display: none;
+          }
+        }
+
+        &:hover {
+          & span {
+            color: @text-color-highlight;
+          }
+        }
+
+        &:before {
+          visibility: hidden;
+        }
+
+        &:after {
+          content: "hide";
+          .text(subtle);
+          font-size: 10px;
+          position: absolute;
+          right: @component-padding;
+          opacity: 0;
+          text-transform: uppercase;
+          transform: scale(0);
+          transition: all @transition-time ease;
+        }
+
+        &:hover {
+          background: @tab-background-color-hover;
+
+          &:after {
+            opacity: 1.0;
+            transform: scale(1);
+          }
+        }
+      }
+      & > .entries {
+        opacity: 1;
+        padding-bottom: @component-padding;
+        transition: all @transition-time ease;
+      }
+    }
+
+    & > .directory.collapsed {
+      & > .header {
+        & span {
+          color: @text-color-subtle;
+        }
+
+        &:hover {
+          & span {
+            color: @text-color-highlight;
+          }
+        }
+
+        &:after {
+          content: "show";
+        }
+      }
+
+      & > .entries {
+        display: block !important;
+        padding-bottom: 0;
+        opacity: 0;
+      }
+    }
+  }
+}

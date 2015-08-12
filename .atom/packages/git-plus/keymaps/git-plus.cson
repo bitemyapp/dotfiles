@@ -1,0 +1,31 @@
+# Keybindings require three things to be fully defined: A selector that is
+# matched against the focused element, the keystroke and the command to
+# execute.
+#
+# Below is a basic keybinding which registers on all platforms by applying to
+# the root workspace element.
+
+# For more detailed documentation see
+# https://atom.io/docs/latest/advanced/keymaps
+
+'.platform-darwin':
+  'cmd-shift-h': 'git-plus:menu'
+  'cmd-shift-c': 'git-plus:commit'
+  'cmd-shift-a s': 'git-plus:status'
+  'cmd-shift-a a': 'git-plus:add-all-and-commit'
+  'cmd-shift-a p': 'git-plus:add-all-commit-and-push'
+
+'.platform-win32, .platform-linux':
+  'ctrl-shift-h': 'git-plus:menu'
+  'ctrl-shift-x': 'git-plus:commit'
+  'ctrl-shift-a s': 'git-plus:status'
+  'ctrl-shift-a a': 'git-plus:add-all-and-commit'
+  'ctrl-shift-a p': 'git-plus:add-all-commit-and-push'
+
+'.platform-darwin atom-text-editor':
+  'cmd-shift-a': 'git-plus:add'
+  'cmd-shift-a c': 'git-plus:add-and-commit'
+
+'.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
+  'ctrl-shift-a': 'git-plus:add'
+  'ctrl-shift-a c': 'git-plus:add-and-commit'

@@ -1,0 +1,135 @@
+.tab-bar {
+  background: @tab-bar-background-color;
+  width: 100%;
+  height: @tab-height;
+  padding: 0;
+  display: table;
+  table-layout: fixed;
+  -webkit-transform: scale(1);
+
+  .tab {
+    .text(normal);
+    text-align: center;
+    color: @text-color-subtle;
+    background: @tab-background-color;
+    display:table-cell;
+    width: 100%;
+    height: @tab-height - 1;
+    line-height: @tab-height - 1;
+    box-sizing: border-box;
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid @base-border-color;
+    border-bottom: 1px solid @tab-border-color;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    position: relative;
+    transition: color @transition-time ease, background @transition-time ease;
+
+    &:hover {
+      color: @text-color-highlight;
+      background: @tab-background-color-hover;
+
+      .close-icon {
+        display: block;
+      }
+    }
+  }
+
+  .tab.active,
+  .tab:hover.active {
+    color: @text-color-selected;
+    background: @tab-background-color-active;
+    width: 100%;
+    border-bottom: 0;
+    border-left: 1px solid @base-border-color;
+    border-right: 1px solid @base-border-color;
+    & .title {
+      padding:0;
+    }
+    &:first-child {
+      border-left: 0;
+    }
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  .tab.active[data-type="MarkdownPreviewView"],
+  .tab.active[data-type="TextEditor"] {
+    color: @syntax-text-color;
+    background: @syntax-background-color;
+    .close-icon:before {
+      color: @text-color-highlight;
+    }
+    .close-icon:hover {
+      background: mix(@syntax-text-color, @syntax-background-color, 20%);
+    }
+    .close-icon:hover:before {
+      color: @text-color-highlight;
+    }
+  }
+
+  .tab.modified:hover .close-icon:before {
+    color: @text-color-warning;
+  }
+
+  .tab.modified:not(:hover) .close-icon {
+    opacity: 1;
+    transform: scale(1);
+    top: 12px;
+    left: 8px;
+    display: inline-block;
+    border-color: @background-color-warning;
+    border-width: 1px;
+  }
+
+  .tab.modified .close-icon:hover {
+    background: @background-color-warning !important;
+    border-width: 1px;
+
+    &:before {
+      color: @text-color;
+    }
+  }
+
+  .tab .close-icon {
+    top: (@tab-height - 16) / 2;
+    left: 4px;
+    height: 16px;
+    width: 16px;
+    right: auto;
+    position: absolute;
+    transform: scale(0);
+    opacity: 0;
+    border-radius: 2px;
+    transition: transform @transition-time ease, color @transition-time ease, background @transition-time ease;
+
+    &:before {
+      color: @text-color-highlight;
+      content:'✕';
+      font-size: 12px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 13px;
+      height: 12px;
+    }
+
+    &:hover {
+      background: @tab-background-color;
+    }
+  }
+
+  .tab:hover .close-icon {
+    transform: scale(1);
+    opacity:1;
+  }
+}
+
+atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane-axis.horizontal > atom-pane-axis.vertical > atom-pane:first-child .tab,
+atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane-axis.horizontal > atom-pane .tab,
+atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane-axis.vertical > atom-pane:first-child .tab,
+atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane:first-child .tab {
+  border-top: 0 !important;
+}

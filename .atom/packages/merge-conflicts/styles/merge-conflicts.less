@@ -1,0 +1,117 @@
+@import "variables";
+
+.merge-conflicts {
+  .conflict-list {
+    max-height: 150px;
+    overflow: scroll;
+  }
+
+  .navigate {
+    cursor: pointer;
+
+    &:hover {
+      background-color: @background-color-highlight;
+    }
+  }
+
+  span.icon-fold {
+    cursor: pointer;
+  }
+
+  span.icon-unfold {
+    display: none;
+    cursor: pointer;
+  }
+
+  &.minimized {
+    span.icon-fold {
+      display: none;
+    }
+    span.icon-unfold {
+      display: inline-block;
+    }
+  }
+}
+
+.merge-conflicts-message {
+  cursor: pointer;
+}
+
+.resolver {
+  &.save-needed {
+    .save .text-success { display: none; }
+    .save .text-status { display: inline-block; }
+    .stage { display: none; }
+  }
+
+  &.stage-needed {
+    .stage .text-success { display: none; }
+    .stage .text-status { display: inline-block; }
+  }
+
+  .save .text-status { display: none; }
+  .stage .text-success { display: none; }
+}
+
+// This targetting is temporary until SideViews work as overlay decorations.
+// See https://github.com/smashwilson/merge-conflicts/pull/93 for progress.
+atom-overlay {
+  .side {
+    padding: 0 20px;
+    left: 0;
+    right: 0;
+
+    span {
+      margin-left: 10px;
+    }
+    span.pull-right {
+      clear: right;
+      margin-right: 20px;
+    }
+
+    button.revert {
+      display: none;
+    }
+
+    &.top {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      button {
+        margin-top: 1px;
+      }
+    }
+
+    &.bottom {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      button {
+        margin-top: -1px;
+      }
+    }
+
+    &.dirty {
+      background-color: @ui-site-color-5;
+
+      button.revert {
+        display: inline-block;
+      }
+    }
+  }
+
+  .navigation {
+    padding: 0 20px;
+    left: 0;
+    right: 0;
+    background: @base-background-color;
+
+    span.pull-right {
+      clear: right;
+      margin-right: 20px;
+    }
+
+    button {
+      margin-left: 5px;
+      margin-top: -15px;
+    }
+  }
+}

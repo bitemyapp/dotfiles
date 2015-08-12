@@ -1,0 +1,75 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+.git-plus {
+  .error {
+    color: @text-color-warning;
+  }
+
+  .success {
+    color: @text-color-success;
+  }
+
+  .atom-panel.modal.from-bottom {
+    width: 600px;
+  }
+
+  .info-view {
+    overflow: auto;
+  }
+}
+
+atom-text-editor,
+atom-text-editor::shadow {
+  .meta.diff.range.unified {
+    color: @text-color-info;
+  }
+
+  .meta.diff.header {
+    color: @text-color-info;
+  }
+
+  .markup.deleted.diff {
+    color: @text-color-error;
+  }
+
+  .markup.inserted.diff {
+    color: @text-color-success;
+  }
+}
+
+.git-plus-log {
+    background-color: @base-background-color;
+    overflow-y: auto;
+
+    #git-plus-commits {
+        color: @text-color;
+        cursor: pointer;
+
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #000;
+            vertical-align: top;
+        }
+
+        .author {
+            width: 30%;
+        }
+
+        .date {
+            width: 25%;
+        }
+
+        .message {
+            width: 50%;
+        }
+
+        .hashShort {
+            width: 10%;
+            text-align: right;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "linter-hlint",
+  "main": "./lib/init.coffee",
+  "version": "0.4.2",
+  "description": "Lint haskell code with hlint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AtomLinter/linter-hlint"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0"
+  },
+  "dependencies": {},
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  },
+  "readme": "# linter-hlint\n\nThis package will lint your opened Haskell in Atom, using [hlint](http://community.haskell.org/~ndm/hlint/).\n\n## Installation\n\n* Install [hlint](http://community.haskell.org/~ndm/darcs/hlint/hlint.htm#installation).\n* `$ apm install linter` (if you don't have [AtomLinter/Linter](https://github.com/AtomLinter/Linter) installed).\n* `$ apm install language-haskell` (if you don't have [Haskell syntax highlighting](https://github.com/jroesch/language-haskell) installed).\n* `$ apm install linter-hlint`\n* specify the path to hlint in the settings.  You can find the path by using \"which hlint\" in the terminal\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/AtomLinter/linter-hlint/issues"
+  },
+  "homepage": "https://github.com/AtomLinter/linter-hlint",
+  "_id": "linter-hlint@0.4.2",
+  "_shasum": "c68406d5690be163fbbef7c1a0b41b763cbdc7d8",
+  "_resolved": "file:../d-11579-17771-ktqq0l/package.tgz",
+  "_from": "../d-11579-17771-ktqq0l/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/init.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "batman-syntax",
+  "theme": "syntax",
+  "version": "1.0.0",
+  "description": "A color scheme inspired by the World's Greatest Detective",
+  "keywords": [
+    "syntax",
+    "theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ifcanduela/batman-syntax"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "readme": "# batman-syntax theme for Atom\n\nAn Atom syntax highlighting scheme inspired by the World's Greatest Detective.\n\nBased on [one-dark-syntax](https://atom.io/packages/one-dark-syntax).\n\n![Preview](https://raw.githubusercontent.com/ifcanduela/batman-syntax/master/screenshot.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/ifcanduela/batman-syntax/issues"
+  },
+  "homepage": "https://github.com/ifcanduela/batman-syntax",
+  "_id": "batman-syntax@1.0.0",
+  "_shasum": "93c5a62544d7007dd8fc6bfb55ca6242cbf975ca",
+  "_resolved": "file:../d-115712-5054-t3l0mt/package.tgz",
+  "_from": "../d-115712-5054-t3l0mt/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

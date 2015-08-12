@@ -1,0 +1,40 @@
+{
+  "name": "nucleus-dark-ui",
+  "theme": "ui",
+  "version": "0.1.4",
+  "description": "An adaptable UI with your favorite syntax theme at it's core!",
+  "keywords": [
+    "dark",
+    "adaptive",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ignism/nucleus-dark-ui"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {},
+  "readme": "# nucleus-dark-ui package\n\nAn adaptable UI with your favorite syntax theme at it's core!\n\nThe screenshots below show some of my personal favorites:\n\n+ [gruvbox](https://atom.io/themes/gruvbox)\n+ [adventurous-syntax](https://atom.io/themes/adventurous-syntax)\n+ [polaris-syntax](https://atom.io/themes/polaris-syntax)\n\n![gruvbox](http://i.imgur.com/08GlJ82.png)\n\n![adventurous](http://i.imgur.com/uK4ypRa.png)\n\n![polaris](http://i.imgur.com/AGVIEgs.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/ignism/nucleus-dark-ui/issues"
+  },
+  "homepage": "https://github.com/ignism/nucleus-dark-ui",
+  "_id": "nucleus-dark-ui@0.1.4",
+  "_shasum": "11e7c5a557a5215c7c6722efde2dce67f0eff17e",
+  "_resolved": "file:../d-115712-5061-y8dslb/package.tgz",
+  "_from": "../d-115712-5061-y8dslb/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

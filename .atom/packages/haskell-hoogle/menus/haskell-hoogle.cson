@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Look up on hoogle'
+      'command': 'haskell-hoogle:lookup'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'haskell-hoogle'
+      'submenu': [
+        {
+          'label': 'Look up'
+          'command': 'haskell-hoogle:lookup'
+        }
+      ]
+    ]
+  }
+]

@@ -1,0 +1,8 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  'atom-text-editor[data-grammar~="haskell"]': [
+    {
+      'label': 'Toggle haskell-pointfree'
+      'command': 'haskell-pointfree:toggle'
+    }
+  ]

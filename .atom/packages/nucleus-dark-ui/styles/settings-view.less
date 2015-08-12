@@ -1,0 +1,88 @@
+.settings-view {
+  .text(normal);
+
+  label {
+    .text(normal);
+  }
+
+  .section {
+    background-color: @app-background-color;
+
+    .section-heading {
+      .text(light);
+      font-size: 2em;
+    }
+
+    .sub-section-heading {
+      .text(light);
+      font-size: 1.5em;
+    }
+  }
+  .section:first-of-type {
+    border-top: 0;
+  }
+
+  .packages .themes-label {
+    .text(bold);
+    color: @text-color-highlight;
+  }
+
+  .config-menu {
+    background-color: @app-background-color;
+    .nav > li > a {
+      transition: color @transition-time ease;
+    }
+    .nav > li > a:hover {
+      background: transparent;
+    }
+    .nav > li.active > a:hover {
+      background: @background-color-selected;
+    }
+  }
+
+  .sub-section .row div {
+    background-color: transparent;
+  }
+
+  .package-card {
+    background-color: @tool-panel-background-color !important;
+  }
+
+  .package-update-view .thumbnail {
+    background-color: @tool-panel-background-color !important;
+  }
+
+  .package-update-view .package-status.icon-check {
+    color: @text-color-success;
+  }
+
+  .package-update-view .package-status.icon-cloud-download {
+    color: @text-color-info;
+  }
+
+  // atom-text-editor {
+  //   background-color: @input-background-color !important;
+  //   color: @text-color !important;
+  //   opacity: 1.0 !important;
+  // }
+
+  input[type="checkbox"]:before,
+  input[type="checkbox"]:after {
+    background: @base-background-color;
+  }
+
+  select.form-control {
+    .button(@button-border-color);
+    font-size: 13px;
+    height: 40px;
+    line-height: 40px;
+    text-transform: none;
+    letter-spacing: 0.04em;
+
+    &:focus,
+    &:hover {
+      background: @background-color-highlight;
+      color: @text-color;
+    }
+  }
+}
