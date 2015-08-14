@@ -33,3 +33,9 @@
    'enumerate block':
      'prefix': 'en'
      'body': '\\\\begin{enumerate}\n\\\\item $1\n\\\\end{enumerate}'
+   'prelude':
+     'prefix': 'pr'
+     'body': 'Prelude> $1'
+   'emph':
+     'prefix': 'e'
+     'body': '\\\\emph{$1}'
