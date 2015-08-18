@@ -1,10 +1,11 @@
 #!/bin/bash
+set -e
 
-sudo add-apt-repository ppa:git-core/ppa
-sudo add-apt-repository ppa:ubuntu-elisp/pp
-sudo add-apt-repository ppa:hvr/ghc
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo add-apt-repository -y ppa:ubuntu-elisp/ppa
+sudo add-apt-repository -y ppa:hvr/ghc
 
-sudo apt-get install xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh xorg-dev emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh
+sudo apt-get install xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh xorg-dev emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh xorg-dev
 
 wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -
 echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main'|sudo tee /etc/apt/sources.list.d/fpco.list
