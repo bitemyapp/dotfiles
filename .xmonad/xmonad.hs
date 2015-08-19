@@ -39,7 +39,7 @@ myManageHook = composeAll (
     [ manageHook gnomeConfig
     , resource  =? "stalonetray" --> doIgnore
     , className =? "Unity-2d-panel" --> doIgnore
-    , className =? "Unity-2d-launcher" --> doFloat
+    , className =? "Unity-2d-launcher" --> doIgnore
     , className =? "Gimp"      --> doFloat
     , className =? "Vncviewer" --> doFloat
     , manageDocks

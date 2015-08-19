@@ -5,7 +5,7 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo add-apt-repository -y ppa:ubuntu-elisp/ppa
 sudo add-apt-repository -y ppa:hvr/ghc
 
-sudo apt-get install xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh xorg-dev emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh xorg-dev
+sudo apt-get install xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh xorg-dev emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh xorg-dev htop
 
 wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -
 echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
@@ -25,3 +25,5 @@ sudo ln -sf /opt/cabal/1.22/bin/cabal /usr/bin/cabal
 
 cabal update
 cabal install xmonad xmonad-contrib xmonad-extras
+
+touch .secrets
