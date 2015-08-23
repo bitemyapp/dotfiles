@@ -4,7 +4,6 @@
 :set -fno-warn-type-defaults
 -- :set -fobject-code
 :def source readFile
--- :set -fdefer-type-error
 :set prompt "Prelude> "
 
 -- let numPlus = (+)
