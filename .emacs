@@ -92,8 +92,8 @@
 (require 'erlang)
 
 ;; flycheck
-;; (require 'flycheck)
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; calls runhaskell which doesn't work
 ;; (eval-after-load 'flycheck
