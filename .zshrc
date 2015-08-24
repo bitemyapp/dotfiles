@@ -29,10 +29,6 @@ alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
 alias repl='cabal repl --with-ghc=ghci-ng'
 
-function gh {
-    open "https://github.com/$@"
-}
-
 alias hgdiff='hg diff | colordiff | less -R'
 export EDITOR="emacs -q -nw"
 export GIT_EDITOR="emacs -q -nw"
