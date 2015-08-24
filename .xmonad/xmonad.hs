@@ -40,6 +40,13 @@ myManageHook = composeAll (
     , resource  =? "stalonetray" --> doIgnore
     , className =? "Unity-2d-panel" --> doIgnore
     , className =? "Unity-2d-launcher" --> doIgnore
+    , className =? "dota2" --> doIgnore
+    -- , className =? "DyingLightGame" --> doFloat doesn't work either way.
+    , className =? "Verdun.x86_64" --> doIgnore
+    , className =? "PillarsOfEternity" --> doIgnore
+    , className =? "hl2_linux" --> doIgnore
+    , className =? "eu4" --> doIgnore
+    , className =? "csgo_linux" --> doIgnore
     , className =? "Gimp"      --> doFloat
     , className =? "Vncviewer" --> doFloat
     , manageDocks
@@ -69,4 +76,5 @@ main = do
        , modMask = mod4Mask
        , keys = newKeys
        , terminal = "gnome-terminal"
+       -- , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
        }

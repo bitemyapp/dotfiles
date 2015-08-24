@@ -7,7 +7,8 @@ sudo add-apt-repository -y ppa:hvr/ghc
 
 sudo apt-get update
 
-sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh xorg-dev emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh xorg-dev tmux xorg-dev screen htop silversearcher-ag
+sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh xorg-dev emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh xorg-dev tmux xorg-dev screen htop silversearcher-ag mumble
+
 
 wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -
 echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main' | sudo tee /etc/apt/sources.list.d/fpco.list

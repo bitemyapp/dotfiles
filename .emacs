@@ -49,7 +49,8 @@
                      undo-tree
                      virtualenv
                      warm-night-theme
-                     yaml-mode))
+                     yaml-mode
+                     yasnippet))
 
 ;; rm -rf ~/.emacs.d/elpa to reload
 (when (not package-archive-contents)
@@ -91,8 +92,8 @@
 (require 'erlang)
 
 ;; flycheck
-(require 'flycheck)
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (require 'flycheck)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; calls runhaskell which doesn't work
 ;; (eval-after-load 'flycheck
@@ -193,10 +194,10 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; yasnippet
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
+;; (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
 (require 'yasnippet)
-;; (yas-global-mode 1)
+(yas-global-mode 1)
 ;; (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
 
 (defun yas/goto-end-of-active-field ()
@@ -218,8 +219,8 @@
 (define-key yas-keymap (kbd "C-e") 'yas/goto-end-of-active-field)
 (define-key yas-keymap (kbd "C-a") 'yas/goto-start-of-active-field)
 (setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
-(setq yas-verbosity 1)
-(setq yas-wrap-around-region t)
+;; (setq yas-verbosity 1)
+;; (setq yas-wrap-around-region t)
 
 ;; default browser
 (setq browse-url-browser-function 'browse-url-generic
@@ -265,4 +266,4 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck-haskell flycheck erlang dark-krystal-theme csv-mode company cider auto-complete))))
+    (yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck-haskell flycheck erlang dark-krystal-theme csv-mode company cider auto-complete yasnippet))))
