@@ -98,3 +98,6 @@ function git_prompt_info() {
 setopt prompt_subst
 prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info)]
 %{%F{reset}%}$ '
+
+export NVM_DIR="/home/callen/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
