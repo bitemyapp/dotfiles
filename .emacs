@@ -26,7 +26,6 @@
                      dark-krystal-theme
                      erlang
                      flycheck
-                     flycheck-haskell
                      ghc
                      haskell-mode
                      idris-mode
@@ -49,7 +48,8 @@
                      undo-tree
                      virtualenv
                      warm-night-theme
-                     yaml-mode))
+                     yaml-mode
+                     yasnippet))
 
 ;; rm -rf ~/.emacs.d/elpa to reload
 (when (not package-archive-contents)
@@ -93,15 +93,17 @@
 ;; flycheck
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
+
 
 ;; calls runhaskell which doesn't work
 ;; (eval-after-load 'flycheck
 ;;   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-(autoload 'flycheck-haskell-setup "flycheck-haskell")
 
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
 (load-library "haskell-config.el")
+;; (define-key haskell-mode-map (kbd "M-n") 'flycheck-next-error)
 
 ;; highlight-symbol
 (add-to-list 'load-path "~/.emacs.d/idle-highlight/")
@@ -193,10 +195,10 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; yasnippet
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
+;; (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
 (require 'yasnippet)
-;; (yas-global-mode 1)
+(yas-global-mode 1)
 ;; (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
 
 (defun yas/goto-end-of-active-field ()
@@ -218,8 +220,8 @@
 (define-key yas-keymap (kbd "C-e") 'yas/goto-end-of-active-field)
 (define-key yas-keymap (kbd "C-a") 'yas/goto-start-of-active-field)
 (setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
-(setq yas-verbosity 1)
-(setq yas-wrap-around-region t)
+;; (setq yas-verbosity 1)
+;; (setq yas-wrap-around-region t)
 
 ;; default browser
 (setq browse-url-browser-function 'browse-url-generic
@@ -263,33 +265,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(flycheck-disabled-checkers (quote (haskell-ghc)))
- '(haskell-notify-p t)
- '(haskell-process-args-ghci (quote nil))
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-reload-with-fbytecode nil)
- '(haskell-process-show-debug-tips nil)
- '(haskell-process-suggest-haskell-docs-imports t)
- '(haskell-process-suggest-hoogle-imports nil)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote stack-ghci))
- '(haskell-process-use-presentation-mode t)
- '(haskell-stylish-on-save nil)
- '(haskell-tags-on-save nil)
- '(hindent-style "johan-tibell")
- '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always))
- '(shift-select-mode t)
- '(shm-auto-insert-bangs t)
- '(shm-auto-insert-skeletons t)
- '(shm-use-hdevtools t)
- '(shm-use-presentation-mode t))
+ '(package-selected-packages
+   (quote
+    (yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck-haskell erlang dark-krystal-theme csv-mode company cider auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 160 :family "Ubuntu Mono")))))
+ )

@@ -479,3 +479,5 @@ TAGS
 .atom/compile-cache
 .atom/storage
 .atom/.apm
+.xournal/
+.darcs/

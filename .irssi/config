@@ -41,6 +41,8 @@ channels = (
   { name = "#lysa"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#haskell-validation"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#servant"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#haskell-in-depth"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#cabal"; chatnet = "Freenode"; autojoin = "Yes"; },
 );
 
 aliases = {

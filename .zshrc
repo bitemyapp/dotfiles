@@ -22,19 +22,12 @@ alias qke='emacs -q -nw'
 alias ls='ls -G'
 
 alias gpo='git pull origin && git push origin'
-alias gpom='git pull origin master && git push origin master'
-alias gpgm='git pull gh master && git push gh master'
+alias gpom='git pull origin master'
+alias gpgm='git pull gh master'
 alias ph='gpom && gphm'
-alias gpte='git checkout experimental && git merge master && git push origin experimental && git checkout master'
-alias gpts='git checkout staging && git merge master && git push origin staging && git checkout master'
-alias gptp='git checkout production && git merge master && git push origin production && git checkout master'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
 alias repl='cabal repl --with-ghc=ghci-ng'
-
-function gh {
-    open "https://github.com/$@"
-}
 
 alias hgdiff='hg diff | colordiff | less -R'
 export EDITOR="emacs -q -nw"
@@ -98,3 +91,6 @@ function git_prompt_info() {
 setopt prompt_subst
 prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info)]
 %{%F{reset}%}$ '
+
+export NVM_DIR="/home/callen/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
