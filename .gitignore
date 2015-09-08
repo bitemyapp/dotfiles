@@ -481,3 +481,5 @@ TAGS
 .atom/.apm
 .xournal/
 .darcs/
+.PlayOnLinux/
+PlayOnLinux's virtual drives
