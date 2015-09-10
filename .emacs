@@ -91,8 +91,8 @@
 (require 'erlang)
 
 ;; flycheck
-(require 'flycheck)
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (require 'flycheck)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
 
