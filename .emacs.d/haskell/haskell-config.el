@@ -62,6 +62,7 @@
 (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
 (define-key haskell-mode-map (kbd "C-c C-r") 'haskell-process-reload-file)
 ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
+
 (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
 
 ;; nicer output than haskell-process-do-type

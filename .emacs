@@ -91,8 +91,9 @@
 (require 'erlang)
 
 ;; flycheck
-;; (require 'flycheck)
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
 
@@ -103,7 +104,14 @@
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell/")
 (load-library "haskell-config.el")
-;; (define-key haskell-mode-map (kbd "M-n") 'flycheck-next-error)
+;; Override haskell-mode's BS.
+(global-set-key (kbd "M-n") 'next-error)
+(define-key interactive-haskell-mode-map (kbd "M-n") 'next-error)
+
+;; Stack
+;; (add-to-list 'load-path "~/work/stack-ide/stack-mode/")
+;; (require 'stack-mode)
+;; (add-hook 'haskell-mode-hook 'stack-mode)
 
 ;; highlight-symbol
 (add-to-list 'load-path "~/.emacs.d/idle-highlight/")
@@ -265,12 +273,35 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(haskell-notify-p t)
+ '(haskell-process-args-ghci (quote nil))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-reload-with-fbytecode nil)
+ '(haskell-process-show-debug-tips nil)
+ '(haskell-process-suggest-haskell-docs-imports t)
+ '(haskell-process-suggest-hoogle-imports nil)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote stack-ghci))
+ '(haskell-process-use-presentation-mode t)
+ '(haskell-stylish-on-save nil)
+ '(haskell-tags-on-save nil)
+ '(hindent-style "johan-tibell")
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
-    (yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck-haskell erlang dark-krystal-theme csv-mode company cider auto-complete))))
+    (flycheck-hdevtools flycheck yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc erlang dark-krystal-theme csv-mode company cider auto-complete)))
+ '(shift-select-mode t)
+ '(shm-auto-insert-bangs t)
+ '(shm-auto-insert-skeletons t)
+ '(shm-use-hdevtools t)
+ '(shm-use-presentation-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:height 120 :family "Ubuntu Mono")))))
