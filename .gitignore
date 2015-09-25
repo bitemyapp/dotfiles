@@ -463,7 +463,6 @@ locate.db
 .stack-work/
 dist-stack/
 .gd/
-Data/
 TAGS
 .xinitrc
 .docker/
@@ -484,3 +483,9 @@ TAGS
 .PlayOnLinux/
 PlayOnLinux's virtual drives
 .ts3client/
+.ZAP/
+.charles.config
+.charles/
+.mitmproxy/
+.mono/
+.v8flags.3.14.5.9.callen.json
