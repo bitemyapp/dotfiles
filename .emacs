@@ -294,6 +294,10 @@
  '(package-selected-packages
    (quote
     (flycheck-hdevtools flycheck yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc erlang dark-krystal-theme csv-mode company cider auto-complete)))
+ '(safe-local-variable-values
+   (quote
+    ((evil-shift-width . 2)
+     (hindent-style . "gibiansky"))))
  '(shift-select-mode t)
  '(shm-auto-insert-bangs t)
  '(shm-auto-insert-skeletons t)
