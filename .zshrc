@@ -94,3 +94,5 @@ prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_promp
 
 export NVM_DIR="/home/callen/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+ulimit -n 65536
