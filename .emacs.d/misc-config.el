@@ -300,6 +300,8 @@ If point was already at that position, move point to beginning of line."
 
 (show-paren-mode 1)
 
+(global-set-key (kbd "C-c r g") 'rgrep)
+
 (global-set-key (kbd "C-c g") 'rope-goto-definition)
 
 (defun compile-on-save-start ()
