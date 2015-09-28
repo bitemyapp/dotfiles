@@ -1,0 +1,6 @@
+templates:
+  params:
+    author-email: cma@bitemyapp.com
+    author-name: Chris Allen
+    copyright: 2015, Chris Allen
+    github-username: bitemyapp
