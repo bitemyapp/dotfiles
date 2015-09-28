@@ -489,3 +489,4 @@ PlayOnLinux's virtual drives
 .mitmproxy/
 .mono/
 .v8flags.3.14.5.9.callen.json
+.emacs.d/eshell/
