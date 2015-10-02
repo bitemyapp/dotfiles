@@ -113,6 +113,19 @@
 ;; (require 'stack-mode)
 ;; (add-hook 'haskell-mode-hook 'stack-mode)
 
+;; Helm
+;; [Facultative] Only if you have installed async.
+(add-to-list 'load-path "~/.emacs.d/emacs-async")
+(add-to-list 'load-path "~/.emacs.d/helm")
+(add-to-list 'load-path "~/.emacs.d/emacs-helm-ag")
+(add-to-list 'load-path "~/.emacs.d/helm-swoop")
+(require 'helm-config)
+(require 'helm-swoop)
+(require 'helm-ag)
+;; (helm-mode 1)
+(global-set-key (kbd "C-x C-m") 'helm-M-x)
+(global-set-key (kbd "C-s") 'helm-swoop)
+
 ;; highlight-symbol
 (add-to-list 'load-path "~/.emacs.d/idle-highlight/")
 (load-library "idle-highlight.el")
