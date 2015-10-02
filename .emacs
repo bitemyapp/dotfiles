@@ -198,6 +198,10 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+;; very large files
+(add-to-list 'load-path "~/.emacs.d/vlfi")
+(require 'vlf)
+
 ;; yaml-mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
