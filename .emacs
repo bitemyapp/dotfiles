@@ -125,6 +125,8 @@
 ;; (helm-mode 1)
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
 (global-set-key (kbd "C-s") 'helm-swoop)
+(global-set-key (kbd "C-c p") 'helm-ag-project-root)
+
 
 ;; highlight-symbol
 (add-to-list 'load-path "~/.emacs.d/idle-highlight/")
