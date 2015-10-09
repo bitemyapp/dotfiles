@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: edoc
+# key: edoc
+# --
+\end{code}
+$0
+\begin{code}
