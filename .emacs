@@ -115,17 +115,17 @@
 
 ;; Helm
 ;; [Facultative] Only if you have installed async.
-(add-to-list 'load-path "~/.emacs.d/emacs-async")
-(add-to-list 'load-path "~/.emacs.d/helm")
-(add-to-list 'load-path "~/.emacs.d/emacs-helm-ag")
-(add-to-list 'load-path "~/.emacs.d/helm-swoop")
-(require 'helm-config)
-(require 'helm-swoop)
-(require 'helm-ag)
+;; (add-to-list 'load-path "~/.emacs.d/emacs-async")
+;; (add-to-list 'load-path "~/.emacs.d/helm")
+;; (add-to-list 'load-path "~/.emacs.d/emacs-helm-ag")
+;; (add-to-list 'load-path "~/.emacs.d/helm-swoop")
+;; (require 'helm-config)
+;; (require 'helm-swoop)
+;; (require 'helm-ag)
 ;; (helm-mode 1)
-(global-set-key (kbd "C-x C-m") 'helm-M-x)
-(global-set-key (kbd "C-s") 'helm-swoop)
-(global-set-key (kbd "C-c p") 'helm-ag-project-root)
+;; (global-set-key (kbd "C-x C-m") 'helm-M-x)
+;; (global-set-key (kbd "C-s") 'helm-swoop)
+;; (global-set-key (kbd "C-c p") 'helm-ag-project-root)
 
 
 ;; highlight-symbol
