@@ -60,9 +60,7 @@
     (package-install package)))
 
 ;; General/Misc stuff
-(add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/misc/")
-
 (load-library "misc-config.el")
 
 ;; Agda
