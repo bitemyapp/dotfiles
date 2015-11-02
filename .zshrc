@@ -88,9 +88,25 @@ function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
+
 setopt prompt_subst
-prompt='%{%F{white}%}[%{%F{green}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info)]
+PROMPT='%{%F{white}%}[%{%F{blue}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
 %{%F{reset}%}$ '
+
+parse_git_branch() {
+  (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
+}
+
+parse_git_dirty() {
+  if command git diff-index --quiet HEAD 2> /dev/null; then
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  fi
+}
+
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔ %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✗ %{$reset_color%}"
 
 export NVM_DIR="/home/callen/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
