@@ -24,6 +24,7 @@
                      company
                      csv-mode
                      dark-krystal-theme
+                     dracula-theme
                      erlang
                      flycheck
                      ghc
@@ -267,7 +268,8 @@
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
 ;; (require 'bitemyapp-theme)
-(load-theme 'misterioso t)
+;; (load-theme 'misterioso t)
+(load-theme 'dracula t)
 
 (with-system 'darwin
   (custom-set-faces
@@ -290,41 +292,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(haskell-notify-p t)
- '(haskell-process-args-ghci (quote nil))
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-reload-with-fbytecode nil)
- '(haskell-process-show-debug-tips nil)
- '(haskell-process-suggest-haskell-docs-imports t)
- '(haskell-process-suggest-hoogle-imports nil)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote stack-ghci))
- '(haskell-process-use-presentation-mode t)
- '(haskell-stylish-on-save nil)
- '(haskell-tags-on-save nil)
- '(hindent-style "johan-tibell")
- '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
-    (flycheck-hdevtools flycheck yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc erlang dark-krystal-theme csv-mode company cider auto-complete)))
- '(safe-local-variable-values
-   (quote
-    ((haskell-process-use-ghci . t)
-     (haskell-indent-spaces . 4)
-     (evil-shift-width . 2)
-     (hindent-style . "gibiansky"))))
- '(shift-select-mode t)
- '(shm-auto-insert-bangs t)
- '(shm-auto-insert-skeletons t)
- '(shm-use-hdevtools t)
- '(shm-use-presentation-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono")))))
+    (yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck erlang dracula-theme dark-krystal-theme csv-mode company cider auto-complete))))
