@@ -90,7 +90,7 @@ function git_prompt_info() {
 }
 
 setopt prompt_subst
-PROMPT='%{%F{white}%}[%{%F{blue}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
+PROMPT='%{%F{white}%}[ %{%F{blue}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
 %{%F{reset}%}$ '
 
 parse_git_branch() {
@@ -105,8 +105,8 @@ parse_git_dirty() {
   fi
 }
 
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔ %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✗ %{$reset_color%}"
 
 export NVM_DIR="/home/callen/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
