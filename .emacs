@@ -24,6 +24,7 @@
                      company
                      csv-mode
                      dark-krystal-theme
+                     dracula-theme
                      erlang
                      flycheck
                      ghc
@@ -267,7 +268,8 @@
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
 ;; (require 'bitemyapp-theme)
-(load-theme 'misterioso t)
+;; (load-theme 'misterioso t)
+(load-theme 'dracula t)
 
 (with-system 'darwin
   (custom-set-faces
@@ -310,13 +312,7 @@
  '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
-    (flycheck-hdevtools flycheck yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc erlang dark-krystal-theme csv-mode company cider auto-complete)))
- '(safe-local-variable-values
-   (quote
-    ((haskell-process-use-ghci . t)
-     (haskell-indent-spaces . 4)
-     (evil-shift-width . 2)
-     (hindent-style . "gibiansky"))))
+    (yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck erlang dracula-theme dark-krystal-theme csv-mode company cider auto-complete)))
  '(shift-select-mode t)
  '(shm-auto-insert-bangs t)
  '(shm-auto-insert-skeletons t)
