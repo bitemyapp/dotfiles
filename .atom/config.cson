@@ -7,3 +7,4 @@
   editor:
     invisibles: {}
     softWrap: true
+    fontSize: 25
