@@ -77,8 +77,7 @@
 (global-set-key (kbd "C-c e r") 'eval-region)
 
 ; Alternative to M-x
-;; (global-set-key (kbd "C-x C-m") 'execute-extended-command)
-;; Using Helm instead now.
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 ; Artist Mode
 (global-set-key (kbd "C-c c a m") 'artist-mode)

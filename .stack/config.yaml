@@ -4,3 +4,6 @@ templates:
     author-name: Chris Allen
     copyright: 2015, Chris Allen
     github-username: bitemyapp
+
+# Turn off system GHC
+system-ghc: false
