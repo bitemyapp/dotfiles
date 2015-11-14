@@ -31,6 +31,7 @@ export LANG=en_US.UTF-8
 # hvr PPA
 export PATH=/opt/cabal/1.22/bin:$PATH
 export PATH=/opt/ghc/7.10.2/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Add GHC 7.8.4 to the PATH, via http://ghcformacosx.github.io/
 export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
