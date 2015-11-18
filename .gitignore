@@ -495,3 +495,13 @@ GOG\ Games/
 .mysql/
 Heroes\ of\ the\ Storm/
 StarCraft\ II/
+AppData/
+Contacts/
+Favorites/
+Links/
+NTUSER.DAT*
+OneDrive/
+Saved\ Games/
+Searches/
+ntuser.dat*
+ntuser.ini
