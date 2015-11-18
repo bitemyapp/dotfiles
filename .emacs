@@ -26,6 +26,7 @@
                      dark-krystal-theme
                      dracula-theme
                      erlang
+                     f
                      flycheck
                      ghc
                      haskell-mode
@@ -37,6 +38,7 @@
                      monokai-theme
                      nix-mode
                      php-mode
+                     projectile
                      protobuf-mode
                      puppet-mode
                      pymacs
@@ -176,6 +178,9 @@
 ;; PHP
 (require 'php-mode)
 
+;; Projectile
+(require 'projectile)
+
 ;; Protobuf
 (require 'protobuf-mode)
 
@@ -288,6 +293,38 @@
 
 (setq magit-last-seen-setup-instructions "1.4.0")
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(haskell-notify-p t)
+ '(haskell-process-args-ghci (quote nil))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-reload-with-fbytecode nil)
+ '(haskell-process-show-debug-tips nil)
+ '(haskell-process-suggest-haskell-docs-imports t)
+ '(haskell-process-suggest-hoogle-imports nil)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote stack-ghci))
+ '(haskell-process-use-presentation-mode t)
+ '(haskell-stylish-on-save nil)
+ '(haskell-tags-on-save nil)
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always))
  '(package-selected-packages
    (quote
-    (yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck erlang dracula-theme dark-krystal-theme csv-mode company cider auto-complete))))
+    (projectile f yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck erlang dracula-theme dark-krystal-theme csv-mode company cider auto-complete)))
+ '(shift-select-mode t)
+ '(shm-auto-insert-bangs t)
+ '(shm-auto-insert-skeletons t)
+ '(shm-use-hdevtools t)
+ '(shm-use-presentation-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 120 :family "Ubuntu Mono")))))
