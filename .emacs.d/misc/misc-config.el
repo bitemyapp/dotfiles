@@ -1,19 +1,74 @@
-;; Scrolling behavior
-;; (setq redisplay-dont-pause t
-;;       scroll-margin 1
-;;       scroll-step 1
-;;       scroll-conservatively 10000
-;;       scroll-preserve-screen-position 1)
+;; (require 'f)
 
 ;; Normal config stuff
 (global-set-key (kbd "C-z") nil) ; fuck everything about this.
 
-(defun ggrep ()
-  "Optionally prompt user to enter a grep string X, if nothing is the current target."
-  (interactive)
-  (projectile-grep (thing-at-point 'word)))
+;; There's something similar in vc-git.el: vc-git-grep.  Naturally,
+;; though, I prefer this :)
 
-(global-set-key (kbd "C-c g") 'ggrep)
+;; --perl-regexp seems to be the most flexible flavor; in particular,
+;; it's the only one I know of that supports '\b' to mean "word
+;; boundary".  Unfortunately, not all gits have the requisite support;
+;; for example, on OS X with homebrew, I had to pass "--with-pcre" to
+;; "brew install git".
+
+;; -I means don't search through binary files
+
+;; --no-color, oddly enough, is required to allow emacs to colorize the output
+
+(defcustom git-grep-switches "--perl-regexp -I -n --no-color --ignore-case"
+  "Switches to pass to `git grep'."
+  :type 'string)
+
+(defcustom git-grep-default-work-tree (expand-file-name "~")
+  "Top of your favorite git working tree.  \\[git-grep] will search from here if it cannot figure out where else to look."
+  :type 'directory
+  )
+
+(when (require 'vc-git nil t)
+
+  ;; Uncomment this to try out the built-in-to-Emacs function.
+  ;;(defalias 'git-grep 'vc-git-grep)
+
+  (defun git-grep (command-args)
+    "Run `git-grep' in the current git repo.
+
+You can hit \\<grep-mode-map>\\[recompile] to refresh the buffer if you've saved changes to some files."
+    (interactive
+     (let ((root (vc-git-root default-directory)))
+       (when (not root)
+         (setq root git-grep-default-work-tree)
+         (message "git-grep: %s doesn't look like a git working tree; searching from %s instead" default-directory root))
+       (list (read-shell-command "Run git-grep (like this): "
+                                 (format (concat
+                                          "cd %s && "
+                                          "git grep %s -e %s")
+                                         (shell-quote-argument (expand-file-name root))
+                                         git-grep-switches
+
+                                         ;; don't snarf stuff from the
+                                         ;; buffer if we're not
+                                         ;; looking at a file.
+                                         ;; Perhaps we should also
+                                         ;; check to see if the file
+                                         ;; is part of a git repo.
+                                         (let ((thing (and buffer-file-name (thing-at-point 'symbol))))
+                                           (or (and thing (progn
+                                                            (set-text-properties 0 (length thing) nil thing)
+                                                            (shell-quote-argument (regexp-quote thing))))
+                                               "")))
+                                 'git-grep-history))))
+    (let ((grep-use-null-device nil)
+          (process-environment (cons "PAGER=cat" process-environment)))
+      (grep command-args))))
+
+(global-set-key (kbd "C-c g") 'git-grep)
+
+;; (defun ggrep ()
+;;   "Optionally prompt user to enter a grep string X, if nothing is the current target."
+;;   (interactive)
+;;   (projectile-grep (thing-at-point 'word) (f--traverse-upwards (f-exists? (f-expand ".git" it)) (f-dirname (f-this-file)))))
+
 
 ;; Manually sets alt key to meta
 (setq x-alt-keysym 'meta)
