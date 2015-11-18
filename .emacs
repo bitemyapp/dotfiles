@@ -306,7 +306,6 @@
  '(haskell-process-use-presentation-mode t)
  '(haskell-stylish-on-save nil)
  '(haskell-tags-on-save nil)
- '(hindent-style "johan-tibell")
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always))

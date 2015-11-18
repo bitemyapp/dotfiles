@@ -1,8 +1,9 @@
 ;; Haskell
 
 ;; (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
-;; (add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
+(add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
 
+(require 'hindent)
 (require 'haskell-mode)
 (require 'haskell)
 
@@ -41,11 +42,11 @@
  '(shm-use-presentation-mode t)
  '(shm-auto-insert-skeletons t)
  '(shm-auto-insert-bangs t)
- '(haskell-process-show-debug-tips nil)
- '(hindent-style "johan-tibell"))
+ '(haskell-process-show-debug-tips nil))
 
 (setq haskell-interactive-mode-eval-mode 'haskell-mode)
 
+(setq hindent-style "gibiansky")
 (setq haskell-process-path-ghci "ghci")
 (setq haskell-process-args-ghci '("-ferror-spans"))
 (custom-set-variables
@@ -87,6 +88,7 @@
 (define-key haskell-mode-map (kbd "C-c <backtab>") 'indent-rigidly-left-to-tab-stop)
 (define-key haskell-mode-map (kbd "C-c <tab>") 'indent-rigidly-right-to-tab-stop)
 (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
+(define-key haskell-mode-map (kbd "C-c C-f C-b") 'hindent-reformat-buffer)
 
 (define-key interactive-haskell-mode-map [f5] 'haskell-process-load-or-reload)
 (define-key interactive-haskell-mode-map [f12] 'turbo-devel-reload)
@@ -138,7 +140,7 @@
 ;; (autoload 'ghc-debug "ghc" nil t)
 ;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
-;; (add-hook 'haskell-mode-hook #'hindent-mode)
+(add-hook 'haskell-mode-hook #'hindent-mode)
 
 ;; (require 'company)
 ;; (add-hook 'haskell-mode-hook 'company-mode)
