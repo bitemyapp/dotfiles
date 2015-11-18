@@ -8,6 +8,13 @@
 ;; Normal config stuff
 (global-set-key (kbd "C-z") nil) ; fuck everything about this.
 
+(defun ggrep ()
+  "Optionally prompt user to enter a grep string X, if nothing is the current target."
+  (interactive)
+  (projectile-grep (thing-at-point 'word)))
+
+(global-set-key (kbd "C-c g") 'ggrep)
+
 ;; Manually sets alt key to meta
 (setq x-alt-keysym 'meta)
 (setq mac-command-modifier 'super)
