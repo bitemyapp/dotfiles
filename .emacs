@@ -180,6 +180,7 @@
 
 ;; Projectile
 (require 'projectile)
+(global-set-key (kbd "C-c p g") 'projectile-grep)
 
 ;; Protobuf
 (require 'protobuf-mode)

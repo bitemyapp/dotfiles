@@ -8,47 +8,6 @@
 ;; Normal config stuff
 (global-set-key (kbd "C-z") nil) ; fuck everything about this.
 
-;; (require 'f)
-;; (defun git-grep (regexp path)
-;;   "grep with git."
-;;   (find-grep (format "git grep \"%s\" %s" regexp path)))
-
-;; (defun ggrep (&optional x)
-;;   "Optionally prompt user to enter a grep string X, if nothing is the current target."
-;;   (interactive
-;;    (let ((root (f--traverse-upwards (f-exists? (f-expand ".git" it)) (f-dirname (f-this-file))))
-;;          (target (thing-at-point 'word)))
-;;      (if target
-;;          (git-grep target root)
-;;        (progn
-;;          (setq x (read-string "Regexp: "))
-;;          (git-grep x "*" root))))))
-
-;; (global-set-key (kbd "C-c g") 'ggrep)
-
-;; (grep-apply-setting 'grep-find-command '("find . -type f -print0 | xargs -P4 -0 egrep -nH " . 49))
-
-;; (defun ggrep (&optional x)
-;;   "Optionally prompt user to enter a grep string X, if nothing is the current target."
-;;   (interactive
-;;    (let ((root (f--traverse-upwards (f-exists? (f-expand ".git" it)) (f-dirname (f-this-file))))
-;;          (target (thing-at-point 'word)))
-;;      (if target
-;;          (rgrep target "*" root)
-;;        (progn
-;;          (setq x (read-string "Regexp: "))
-;;          (rgrep x "*" root))))))
-
-;; (defun tap ()
-;;   (interactive)
-;;   (message (thing-at-point 'word)))
-
-;; (thing-at-point 'word)
-
-;; (f-directories (f-dirname (f-this-file)))
-;; (f-directories )
-;; (rgrep REGEXP &optional FILES DIR CONFIRM)
-
 ;; Manually sets alt key to meta
 (setq x-alt-keysym 'meta)
 (setq mac-command-modifier 'super)
