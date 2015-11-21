@@ -10,10 +10,7 @@
 (require 'package)
 
 (setq package-archives
-      (append '(("org"        . "http://orgmode.org/elpa/")
-                ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-                ("melpa"        . "http://melpa.milkbox.net/packages/")
-                ("marmalade"    . "http://marmalade-repo.org/packages/"))
+      (append '(("melpa" . "https://melpa.org/packages/"))
               package-archives))
 
 (package-initialize)
@@ -41,7 +38,6 @@
                      projectile
                      protobuf-mode
                      puppet-mode
-                     pymacs
                      python-mode
                      rainbow-delimiters
                      rainbow-mode
