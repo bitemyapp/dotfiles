@@ -16,13 +16,13 @@ sudo apt-get update && sudo apt-get install stack -y
 
 
 sudo apt-get update
-sudo apt-get install -y ghc-7.10.2
+sudo apt-get install -y ghc-7.10.3
 sudo apt-get install -y cabal-install-1.22
 
-sudo ln -sf /opt/ghc/7.10.2/bin/ghc /usr/bin/ghc
-sudo ln -sf /opt/ghc/7.10.2/bin/ghci /usr/bin/ghci
-sudo ln -sf /opt/ghc/7.10.2/bin/ghc-pkg /usr/bin/ghc-pkg
-sudo ln -sf /opt/ghc/7.10.2/bin/runhaskell /usr/bin/runhaskell
+sudo ln -sf /opt/ghc/7.10.3/bin/ghc /usr/bin/ghc
+sudo ln -sf /opt/ghc/7.10.3/bin/ghci /usr/bin/ghci
+sudo ln -sf /opt/ghc/7.10.3/bin/ghc-pkg /usr/bin/ghc-pkg
+sudo ln -sf /opt/ghc/7.10.3/bin/runhaskell /usr/bin/runhaskell
 
 sudo ln -sf /opt/cabal/1.22/bin/cabal /usr/bin/cabal
 
