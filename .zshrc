@@ -19,11 +19,12 @@ alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
-alias ls='ls -G'
+alias ls='ls --color=auto -G'
 
 alias gpo='git pull origin && git push origin'
 alias gpom='git pull origin master'
 alias gpgm='git pull gh master'
+alias gl='git log --oneline --graph --decorate --all'
 alias ph='gpom && gphm'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
