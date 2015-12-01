@@ -15,7 +15,9 @@
 
 (package-initialize)
 
-(setq package-list '(auto-complete
+(setq package-list '(abyss-theme
+                     aurora-theme
+                     auto-complete
                      cider
                      clojure-mode
                      company
@@ -32,8 +34,11 @@
                      json-mode
                      magit
                      markdown-mode
+                     material-theme
                      monokai-theme
                      nix-mode
+                     phoenix-dark-mono-theme
+                     phoenix-dark-pink-theme
                      php-mode
                      projectile
                      protobuf-mode
@@ -44,6 +49,7 @@
                      scss-mode
                      tabbar
                      twittering-mode
+                     ubuntu-theme
                      undo-tree
                      virtualenv
                      warm-night-theme
@@ -271,7 +277,13 @@
 (add-to-list 'load-path "~/.emacs.d/color-themes")
 ;; (require 'bitemyapp-theme)
 ;; (load-theme 'misterioso t)
-(load-theme 'dracula t)
+;; (load-theme 'dracula t)
+;; (load-theme 'material t)
+;; (load-theme 'aurora t)
+;; (load-theme 'phoenix-dark-pink t)
+;; (load-theme 'ubuntu t)
+;; (load-theme 'phoenix-dark-mono t)
+(load-theme 'abyss t)
 
 (with-system 'darwin
   (custom-set-faces
