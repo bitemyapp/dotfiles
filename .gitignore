@@ -505,3 +505,9 @@ Saved\ Games/
 Searches/
 ntuser.dat*
 ntuser.ini
+.offlineimaprc
+mail
+*.gpg
+.mail
+.mbsyncrc
+.offlineimap/
