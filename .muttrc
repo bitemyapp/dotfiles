@@ -3,7 +3,7 @@ folder-hook 'callen.23dc@gmail.com' 'source ~/.mutt/callen.23dc@gmail.com'
 folder-hook 'cma@bitemyapp.com' 'source ~/.mutt/cma@bitemyapp.com'
 folder-hook 'haskellbook@gmail.com' 'source ~/.mutt/haskellbook@gmail.com'
 
-macro index,pager A "<save-message>=Archive<enter><purge-email>" "Archive Message"
+macro index,pager A ":set confirmappend=no delete=yes auto_tag=yes\n<save-message>=Archive<enter>" "Archive Message"
 
 # Default account
 source ~/.mutt/cma@bitemyapp.com
