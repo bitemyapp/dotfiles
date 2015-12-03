@@ -406,7 +406,6 @@ Zomboid/
 .emacs.d/floobits-emacs/
 floobits/
 .nv/
-.muttrc
 .floo
 .paradox*/
 .pioneer/
@@ -511,3 +510,4 @@ mail
 .mail
 .mbsyncrc
 .offlineimap/
+~/.mutt/passwords
