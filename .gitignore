@@ -511,3 +511,12 @@ mail
 .mbsyncrc
 .offlineimap/
 ~/.mutt/passwords
+.cargo
+.cone
+.notmuch-config
+.oysttyerkey
+.rainbow_config.json
+.rainbow_oauth
+Inbox
+completer.hist
+.image.so
