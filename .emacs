@@ -53,6 +53,7 @@
                      undo-tree
                      virtualenv
                      warm-night-theme
+                     writeroom-mode
                      yaml-mode
                      yasnippet))
 
@@ -223,6 +224,10 @@
 ;; very large files
 (add-to-list 'load-path "~/.emacs.d/vlfi")
 (require 'vlf)
+
+;; distraction free writing
+(require 'writeroom-mode)
+(global-set-key (kbd "C-c w r") 'writeroom-mode)
 
 ;; yaml-mode
 (require 'yaml-mode)
