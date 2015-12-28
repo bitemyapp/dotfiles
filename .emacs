@@ -328,9 +328,10 @@
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always))
- '(package-selected-packages
+ '(safe-local-variable-values
    (quote
-    (projectile f yasnippet yaml-mode warm-night-theme virtualenv undo-tree twittering-mode tabbar scss-mode rainbow-mode rainbow-delimiters python-mode pymacs puppet-mode protobuf-mode php-mode nix-mode monokai-theme markdown-mode magit json-mode js2-mode idris-mode ghc flycheck erlang dracula-theme dark-krystal-theme csv-mode company cider auto-complete)))
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4))))
  '(shift-select-mode t)
  '(shm-auto-insert-bangs t)
  '(shm-auto-insert-skeletons t)
@@ -341,4 +342,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono")))))
+ '(default ((t (:height 160 :family "Ubuntu Mono")))))
