@@ -19,7 +19,6 @@ alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
-alias ls='ls --color=auto -G'
 
 alias gpo='git pull origin && git push origin'
 alias gpom='git pull origin master'
