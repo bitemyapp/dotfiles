@@ -82,6 +82,7 @@ fi
 export PATH=/usr/local/texlive/2014/bin/x86_64-darwin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.stack/programs/x86_64-osx/ghc-7.10.2/bin:$PATH
+export PATH=/opt/ghc/8.0.1/bin:$PATH
 source ~/.secrets
 
 function git_prompt_info() {
