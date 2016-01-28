@@ -168,6 +168,9 @@
 (add-to-list 'auto-mode-alist
          '("\\.md$" . markdown-mode))
 
+;; mu4e
+(require 'mu4e)
+
 ;; Mustache
 (require 'mustache-mode)
 

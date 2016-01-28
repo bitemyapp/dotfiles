@@ -522,3 +522,7 @@ completer.hist
 .image.so
 Wallpapers/
 .forg/
+.nylas/
+.mu/
+.electron/
+.v8flags*
