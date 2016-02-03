@@ -1,10 +1,13 @@
 "*":
-  "exception-reporting":
-    userId: "0c2859be-86fc-00f8-5fb3-112e10187f0a"
-  welcome:
-    showOnStartup: false
-  core: {}
+  core:
+    disabledPackages: [
+      "minimap"
+    ]
   editor:
     invisibles: {}
     softWrap: true
-    fontSize: 25
+  "exception-reporting":
+    userId: "0c2859be-86fc-00f8-5fb3-112e10187f0a"
+  minimap: {}
+  welcome:
+    showOnStartup: false

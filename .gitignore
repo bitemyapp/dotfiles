@@ -530,3 +530,4 @@ Secrets/
 .xsel.log
 .elm/
 .spamassassin/
+.atom/blob-store/
