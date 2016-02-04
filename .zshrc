@@ -21,6 +21,7 @@ alias mg='mg -n'
 alias qke='emacs -q -nw'
 
 alias gpo='git pull origin && git push origin'
+alias gpoc='git pull origin `git name-rev --name-only HEAD` && git push origin `git name-rev --name-only HEAD`'
 alias gpom='git pull origin master'
 alias gpgm='git pull gh master'
 alias gl='git log --oneline --graph --decorate --all'
