@@ -43,14 +43,14 @@ bindkey -e
 # bindkey '^[[1;9D' backward-word
 
 export MARKPATH=$HOME/.marks
-function jump { 
+function jump {
     cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
 }
-function mark { 
+function mark {
     mkdir -p $MARKPATH; ln -s $(pwd) $MARKPATH/$1
 }
-function unmark { 
-    rm -i $MARKPATH/$1 
+function unmark {
+    rm -i $MARKPATH/$1
 }
 # function marks {
 #     ls -l $MARKPATH | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
@@ -79,7 +79,7 @@ if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
-export PATH=/usr/local/texlive/2014/bin/x86_64-darwin:$PATH
+export PATH=/usr/local/texlive/2015/bin/x86_64-darwin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.stack/programs/x86_64-osx/ghc-7.10.2/bin:$PATH
 export PATH=/opt/ghc/8.0.1/bin:$PATH
