@@ -85,6 +85,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.stack/programs/x86_64-osx/ghc-7.10.2/bin:$PATH
 export PATH=/opt/ghc/8.0.1/bin:$PATH
 export PATH=$HOME/work/node-v4.2.0-linux-x64/bin:$PATH
+export PATH=$HOME/.bin:$PATH
 
 source ~/.secrets
 
