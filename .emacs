@@ -46,6 +46,7 @@
                      python-mode
                      rainbow-delimiters
                      rainbow-mode
+                     rust-mode
                      scss-mode
                      tabbar
                      twittering-mode
@@ -205,6 +206,9 @@
 
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
+
+;; Rust mode
+(require 'rust-mode)
 
 ;; SCSS
 (autoload 'scss-mode "scss-mode")
