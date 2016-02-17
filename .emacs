@@ -107,7 +107,7 @@
 ;;   '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
 ;; Haskell
-(add-to-list 'load-path "~/.emacs.d/haskell/")
+(add-to-list 'load-path "~/.emacs.d/haskell")
 (load-library "haskell-config.el")
 ;; Override haskell-mode's BS.
 (global-set-key (kbd "M-n") 'next-error)

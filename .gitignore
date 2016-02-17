@@ -531,3 +531,6 @@ Secrets/
 .elm/
 .spamassassin/
 .atom/blob-store/
+.TeXmacs/
+.oracle_jre_usage/
+.vscode/
