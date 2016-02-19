@@ -534,3 +534,4 @@ Secrets/
 .TeXmacs/
 .oracle_jre_usage/
 .vscode/
+.ansible_galaxy
