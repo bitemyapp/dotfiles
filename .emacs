@@ -24,6 +24,7 @@
                      csv-mode
                      dark-krystal-theme
                      dracula-theme
+                     elixir-mode
                      erlang
                      f
                      flycheck
@@ -84,13 +85,17 @@
 (load-library "clojure-config.el")
 
 ;; Coq
+
+(setq coq-prog-args "-emacs-U")
 (setq coq-prog-name "/usr/bin/coqtop")
-;; (setq coq-prog-args "-emacs-U")
 (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
 (let ((default-directory "~/.emacs.d/proofgeneral/"))
   (normal-top-level-add-subdirs-to-load-path))
 (setq proof-splash-enable nil)
 (load-library "pg-init.el")
+
+;; Elixir
+(require 'elixir-mode)
 
 ;; Erlang
 (require 'erlang)
@@ -179,73 +184,75 @@
 (require 'nix-mode)
 
 ;; OCaml
-(add-to-list 'load-path "~/.emacs.d/ocaml")
-(load-library "ocaml-config.el")
+;; (add-to-list 'load-path "~/.emacs.d/ocaml")
+;; (load-library "ocaml-config.el")
+(add-to-list 'load-path "~/.opam/4.02.1/share/emacs/site-lisp/")
+(load "~/.opam/4.02.1/share/emacs/site-lisp/tuareg-site-file")
 
 ;; PHP
-(require 'php-mode)
+;; (require 'php-mode)
 
 ;; Projectile
-(require 'projectile)
-(global-set-key (kbd "C-c p g") 'projectile-grep)
+;; (require 'projectile)
+;; (global-set-key (kbd "C-c p g") 'projectile-grep)
 
 ;; Protobuf
-(require 'protobuf-mode)
+;; (require 'protobuf-mode)
 
 ;; Puppet
-(require 'puppet-mode)
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+;; (require 'puppet-mode)
+;; (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; Python
-(add-to-list 'load-path "~/.emacs.d/python")
-(load-library "python-config.el")
+;; (add-to-list 'load-path "~/.emacs.d/python")
+;; (load-library "python-config.el")
 
 ;; rainbow-delimiters
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
+;; (require 'rainbow-delimiters)
+;; (global-rainbow-delimiters-mode)
 
 ;; rainbow-mode for CSS
-(require 'rainbow-mode)
+;; (require 'rainbow-mode)
 
 ;; Rust mode
-(require 'rust-mode)
+;; (require 'rust-mode)
 
 ;; SCSS
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-(setq scss-compile-at-save nil)
+;; (autoload 'scss-mode "scss-mode")
+;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+;; (setq scss-compile-at-save nil)
 
 ;; Speedbar
-(require 'speedbar)
-(speedbar-add-supported-extension ".hs")
+;; (require 'speedbar)
+;; (speedbar-add-supported-extension ".hs")
 
 ;; Tabbar
-(add-to-list 'load-path "~/.emacs.d/tabbar")
-(if (display-graphic-p)
-    (load-library "tabbar-config.el"))
+;; (add-to-list 'load-path "~/.emacs.d/tabbar")
+;; (if (display-graphic-p)
+;;     (load-library "tabbar-config.el"))
 
 ;; Undo Tree
-(require 'undo-tree)
-(global-undo-tree-mode)
+;; (require 'undo-tree)
+;; (global-undo-tree-mode)
 
 ;; very large files
-(add-to-list 'load-path "~/.emacs.d/vlfi")
-(require 'vlf)
+;; (add-to-list 'load-path "~/.emacs.d/vlfi")
+;; (require 'vlf)
 
 ;; distraction free writing
-(require 'writeroom-mode)
-(global-set-key (kbd "C-c w r") 'writeroom-mode)
+;; (require 'writeroom-mode)
+;; (global-set-key (kbd "C-c w r") 'writeroom-mode)
 
 ;; yaml-mode
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+;; (require 'yaml-mode)
+;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; yasnippet
-;; (add-to-list 'load-path "~/.emacs.d/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
 (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
 (require 'yasnippet)
 (yas-global-mode 1)
-;; (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
+(define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
 
 (defun yas/goto-end-of-active-field ()
   (interactive)
@@ -266,8 +273,8 @@
 (define-key yas-keymap (kbd "C-e") 'yas/goto-end-of-active-field)
 (define-key yas-keymap (kbd "C-a") 'yas/goto-start-of-active-field)
 (setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
-;; (setq yas-verbosity 1)
-;; (setq yas-wrap-around-region t)
+(setq yas-verbosity 1)
+(setq yas-wrap-around-region t)
 
 ;; default browser
 (setq browse-url-browser-function 'browse-url-generic
@@ -296,6 +303,8 @@
 ;; (load-theme 'ubuntu t)
 ;; (load-theme 'phoenix-dark-mono t)
 (load-theme 'abyss t)
+;; (set-face-foreground 'font-lock-string-face "red")
+;; (set-face-foreground 'font-lock-comment-face "light pink")
 
 (with-system 'darwin
   (custom-set-faces
@@ -313,34 +322,3 @@
 (setq mac-option-modifier 'meta)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(haskell-notify-p t)
- '(haskell-process-args-ghci (quote nil))
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-reload-with-fbytecode nil)
- '(haskell-process-show-debug-tips nil)
- '(haskell-process-suggest-haskell-docs-imports t)
- '(haskell-process-suggest-hoogle-imports nil)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote stack-ghci))
- '(haskell-process-use-presentation-mode t)
- '(haskell-stylish-on-save nil)
- '(haskell-tags-on-save nil)
- '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always))
- '(safe-local-variable-values
-   (quote
-    ((haskell-process-use-ghci . t)
-     (haskell-indent-spaces . 4))))
- '(shift-select-mode t)
- '(shm-auto-insert-bangs t)
- '(shm-auto-insert-skeletons t)
- '(shm-use-hdevtools t)
- '(shm-use-presentation-mode t))
