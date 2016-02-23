@@ -184,10 +184,12 @@
 (require 'nix-mode)
 
 ;; OCaml
-;; (add-to-list 'load-path "~/.emacs.d/ocaml")
+(add-to-list 'load-path "~/.emacs.d/ocaml")
+(load "~/.emacs.d/ocaml/tuareg-site-file")
+
 ;; (load-library "ocaml-config.el")
-(add-to-list 'load-path "~/.opam/4.02.1/share/emacs/site-lisp/")
-(load "~/.opam/4.02.1/share/emacs/site-lisp/tuareg-site-file")
+;; (add-to-list 'load-path "~/.opam/4.02.1/share/emacs/site-lisp/")
+;; (load "~/.opam/4.02.1/share/emacs/site-lisp/tuareg-site-file")
 
 ;; PHP
 ;; (require 'php-mode)
