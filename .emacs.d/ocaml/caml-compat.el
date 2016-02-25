@@ -1,3 +1,15 @@
+;(***********************************************************************)
+;(*                                                                     *)
+;(*                                OCaml                                *)
+;(*                                                                     *)
+;(*           Xavier Leroy, projet Cristal, INRIA Rocquencourt          *)
+;(*                                                                     *)
+;(*  Copyright 1998 Institut National de Recherche en Informatique et   *)
+;(*  en Automatique.  All rights reserved.  This file is distributed    *)
+;(*  under the terms of the GNU General Public License.                 *)
+;(*                                                                     *)
+;(***********************************************************************)
+
 ;; function definitions for old versions of emacs
 
 ;; indent-line-to
@@ -9,10 +21,10 @@
 This function removes or adds spaces and tabs at beginning of line
 only if necessary.  It leaves point at end of indentation."
       (if (= (current-indentation) column)
-	  (back-to-indentation)
-	(beginning-of-line 1)
-	(delete-horizontal-space)
-	(indent-to column))))
+          (back-to-indentation)
+        (beginning-of-line 1)
+        (delete-horizontal-space)
+        (indent-to column))))
 
 ;; buffer-substring-no-properties
 
@@ -25,4 +37,3 @@ only if necessary.  It leaves point at end of indentation."
   (defalias 'buffer-substring-no-properties 'buffer-substring)))
 
 (provide 'caml-compat)
-

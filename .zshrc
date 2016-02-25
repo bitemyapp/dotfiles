@@ -25,6 +25,7 @@ alias gpoc='git pull origin `git name-rev --name-only HEAD` && git push origin `
 alias gpom='git pull origin master'
 alias gpgm='git pull gh master'
 alias gl='git log --oneline --graph --decorate --all'
+alias glr='git shortlog --format=format:"%cI %s"'
 alias ph='gpom && gphm'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
