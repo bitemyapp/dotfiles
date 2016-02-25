@@ -195,43 +195,43 @@
 ;; (require 'php-mode)
 
 ;; Projectile
-;; (require 'projectile)
-;; (global-set-key (kbd "C-c p g") 'projectile-grep)
+(require 'projectile)
+(global-set-key (kbd "C-c p g") 'projectile-grep)
 
 ;; Protobuf
-;; (require 'protobuf-mode)
+(require 'protobuf-mode)
 
 ;; Puppet
-;; (require 'puppet-mode)
-;; (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+(require 'puppet-mode)
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; Python
 ;; (add-to-list 'load-path "~/.emacs.d/python")
 ;; (load-library "python-config.el")
 
 ;; rainbow-delimiters
-;; (require 'rainbow-delimiters)
-;; (global-rainbow-delimiters-mode)
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
 
 ;; rainbow-mode for CSS
-;; (require 'rainbow-mode)
+(require 'rainbow-mode)
 
 ;; Rust mode
-;; (require 'rust-mode)
+(require 'rust-mode)
 
 ;; SCSS
-;; (autoload 'scss-mode "scss-mode")
-;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-;; (setq scss-compile-at-save nil)
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save nil)
 
 ;; Speedbar
-;; (require 'speedbar)
-;; (speedbar-add-supported-extension ".hs")
+(require 'speedbar)
+(speedbar-add-supported-extension ".hs")
 
 ;; Tabbar
-;; (add-to-list 'load-path "~/.emacs.d/tabbar")
-;; (if (display-graphic-p)
-;;     (load-library "tabbar-config.el"))
+(add-to-list 'load-path "~/.emacs.d/tabbar")
+(if (display-graphic-p)
+    (load-library "tabbar-config.el"))
 
 ;; Undo Tree
 ;; (require 'undo-tree)
