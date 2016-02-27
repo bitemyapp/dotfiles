@@ -536,3 +536,4 @@ Secrets/
 .vscode/
 .ansible_galaxy
 .aptitude/
+.multirust/
