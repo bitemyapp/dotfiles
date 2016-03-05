@@ -2,6 +2,8 @@
 \setenv LESS -imx4F
 \x auto
 
+SET client_encoding = 'UTF8';
+
 \pset null '[NULL]'
 \set HISTCONTROL ignorespace
 \set HISTFILE ~/.psql_history- :DBNAME
