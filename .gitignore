@@ -76,7 +76,6 @@ chmod
 .htaccess
 .#test_event*
 .vboxclient*
-examples*
 .Heroes*
 .Skype*
 .Xauthority
@@ -537,3 +536,9 @@ Secrets/
 .ansible_galaxy
 .aptitude/
 .multirust/
+Games/
+.utop-history
+.doomsday/
+GPMDP_STORE/
+examples.desktop
+.prboom-plus/
