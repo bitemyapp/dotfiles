@@ -94,6 +94,11 @@
 (setq proof-splash-enable nil)
 (load-library "pg-init.el")
 
+;; Dockerfile
+(add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
 ;; Elixir
 (require 'elixir-mode)
 
