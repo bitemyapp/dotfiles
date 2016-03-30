@@ -30,6 +30,7 @@
                      flycheck
                      ghc
                      haskell-mode
+                     hcl-mode
                      idris-mode
                      js2-mode
                      json-mode
@@ -237,6 +238,12 @@
 (add-to-list 'load-path "~/.emacs.d/tabbar")
 (if (display-graphic-p)
     (load-library "tabbar-config.el"))
+
+;; Terraform
+(add-to-list 'load-path "~/.emacs.d/terraform-mode")
+(require 'terraform-mode)
+(custom-set-variables
+ '(terraform-indent-level 2))
 
 ;; Undo Tree
 ;; (require 'undo-tree)

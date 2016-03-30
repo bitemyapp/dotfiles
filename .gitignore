@@ -546,3 +546,9 @@ examples.desktop
 .moonchild\ productions/
 .scribus/
 .vault_pass.txt
+.bin/
+.flowblade/
+.kinorc
+.lives
+.lives-dir/
+kdenlive/
