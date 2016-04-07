@@ -552,3 +552,4 @@ examples.desktop
 .lives
 .lives-dir/
 kdenlive/
+.terraform.d/
