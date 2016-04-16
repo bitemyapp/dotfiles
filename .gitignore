@@ -505,7 +505,6 @@ ntuser.dat*
 ntuser.ini
 .offlineimaprc
 mail
-*.gpg
 .mail
 .mbsyncrc
 .offlineimap/
@@ -553,3 +552,5 @@ examples.desktop
 .lives-dir/
 kdenlive/
 .terraform.d/
+.password-store/
+.shout/
