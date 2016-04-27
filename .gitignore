@@ -554,3 +554,5 @@ kdenlive/
 .terraform.d/
 .password-store/
 .shout/
+.bash_sessions/
+Creative\ Cloud*
