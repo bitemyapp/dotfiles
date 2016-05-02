@@ -466,4 +466,14 @@ the mode, `toggle' toggles the state."
                (string-starts-with message "Your `load-path' seems to contain\nyour `.emacs.d' directory"))
     ad-do-it))
 
+(defun texttt (&optional arg)
+  "wraps word in texttt"
+  (interactive "p") (kmacro-exec-ring-item (quote ([C-left 92 116 101 120 116 116 116 123 C-right 125] 0 "%d")) arg))
+(global-set-key (kbd "C-c t t") 'texttt)
+
+(defun emph (&optional arg)
+  "wraps word in emph"
+  (interactive "p") (kmacro-exec-ring-item (quote ([C-left 92 101 109 112 104 123 C-right 125] 0 "%d")) arg))
+(global-set-key (kbd "C-c e e") 'emph)
+
 (require 'graphviz-dot-mode)
