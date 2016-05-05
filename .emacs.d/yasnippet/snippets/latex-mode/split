@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: split
+# key: spl
+# --
+\begin{split}
+$0
+\end{split}
