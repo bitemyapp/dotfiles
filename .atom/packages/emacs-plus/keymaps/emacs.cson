@@ -13,23 +13,24 @@
 'atom-workspace':
   'alt-x': 'command-palette:toggle'
   'ctrl-x 0': 'pane:close'
-  'ctrl-x 1': 'pane:close-other-items'
-  'ctrl-x 2': 'pane:split-down'
-  'ctrl-x 3': 'pane:split-right'
+  'ctrl-x 1': 'emacs-plus:close-other-panes'
+  'ctrl-x 2': 'pane:split-down-and-copy-active-item'
+  'ctrl-x 3': 'pane:split-right-and-copy-active-item'
   'ctrl-x b': 'fuzzy-finder:toggle-buffer-finder'
   'ctrl-x ctrl-c': 'application:quit'
-  'ctrl-x ctrl-f': 'fuzzy-finder:toggle-file-finder'
+  'ctrl-x ctrl-f': 'advanced-open-file:toggle'
   'ctrl-x ctrl-j': 'tree-view:reveal-active-file'
   'ctrl-x k': 'core:close'
   'ctrl-x o': 'window:focus-next-pane'
 
-'atom-text-editor':
+'atom-workspace atom-text-editor':
   'ctrl-/': 'core:undo'
   'ctrl-_': 'core:undo'
   'ctrl-a': 'editor:move-to-beginning-of-line'
   'ctrl-b': 'core:move-left'
   'ctrl-e': 'editor:move-to-end-of-screen-line'
   'ctrl-f': 'core:move-right'
+  'ctrl-g': 'editor:consolidate-selections'
   'ctrl-t': 'editor:transpose'
   'ctrl-y': 'core:paste'
   'alt-b': 'editor:move-to-beginning-of-word'
@@ -40,7 +41,7 @@
   'ctrl-x ctrl-u': 'editor:upper-case'
   'ctrl-x u': 'core:undo'
 
-'atom-text-editor.emacs-plus:not([mini])':
+'atom-workspace atom-text-editor.emacs-plus:not([mini])':
   'alt-.': 'symbols-view:toggle-file-symbols'
   'alt-/': 'autocomplete-plus:activate'
   'alt-;': 'editor:toggle-line-comments'
@@ -62,6 +63,7 @@
   'alt-{': 'editor:move-to-beginning-of-previous-paragraph'
   'alt-}': 'editor:move-to-beginning-of-next-paragraph'
   'ctrl-alt-w': 'emacs-plus:append-next-kill'
+  'ctrl-i': 'editor:auto-indent'
   'ctrl-j': 'editor:newline'
   'ctrl-k': 'emacs-plus:kill-line'
   'ctrl-l': 'emacs-plus:recenter-top-bottom'
@@ -77,7 +79,7 @@
   'ctrl-x ctrl-x': 'emacs-plus:exchange-point-and-mark'
   'ctrl-x h': 'core:select-all'
 
-'atom-text-editor.emacs-plus.mark-mode:not([mini])':
+'atom-workspace atom-text-editor.emacs-plus.mark-mode:not([mini])':
   'alt-<': 'core:select-to-top'
   'alt->': 'core:select-to-bottom'
   'alt-b': 'editor:select-to-beginning-of-word'
@@ -91,6 +93,7 @@
   'ctrl-b': 'core:select-left'
   'ctrl-e': 'editor:select-to-end-of-line'
   'ctrl-f': 'core:select-right'
+  'ctrl-g': 'core:cancel'
   'ctrl-n': 'core:select-down'
   'ctrl-p': 'core:select-up'
   'ctrl-v': 'core:select-page-down'
@@ -104,7 +107,7 @@
   'ctrl-s': 'find-and-replace:find-next'
 
 # autocomplete-plus
-'atom-text-editor:not(mini).emacs-plus.autocomplete-active':
+'atom-workspace atom-text-editor:not(mini).emacs-plus.autocomplete-active':
   'ctrl-g': 'autocomplete-plus:cancel'
   'ctrl-m': 'autocomplete-plus:confirm'
   'enter': 'autocomplete-plus:confirm'
@@ -120,3 +123,11 @@
   'shift-d': 'tree-view:remove'
   'shift-e': 'tree-view:recursive-expand-directory'
   'shift-r': 'tree-view:rename'
+
+# advanced-open-file
+'.advanced-open-file atom-text-editor':
+  'ctrl-i': 'advanced-open-file:autocomplete'
+  'ctrl-p': 'advanced-open-file:move-cursor-up'
+  'ctrl-n': 'advanced-open-file:move-cursor-down'
+  'ctrl-w': 'advanced-open-file:delete-path-component'
+  'ctrl-/': 'advanced-open-file:undo'

@@ -1,41 +1,98 @@
+@import "ui-variables.less";
+@import "ui-mixins.less";
+@import "octicon-mixins";
+
 body {
-  font-weight: 300;
+  font-weight: 400;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: 300;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  .text(heading);
+
+  small {
+    font-weight: 200;
+  }
 }
 
-.text-subtle { .text(subtle); }
-.text-highlight { .text(highlight); }
-.text-selected { .text(selected); }
-.text-info { .text(info); }
-.text-success { .text(success); }
-.text-warning { .text(warning); }
-.text-error { .text(error); }
+.text-subtle {
+  .text(subtle);
+}
+
+.text-highlight {
+  .text(highlight);
+}
+
+.text-selected {
+  .text(selected);
+}
+
+.text-info {
+  .text(info);
+}
+
+.text-success {
+  .text(success);
+}
+
+.text-warning {
+  .text(warning);
+}
+
+.text-error {
+  .text(error);
+}
 
 .highlight {
   .highlight-type(@text-color);
 }
+
 .highlight-info {
   .highlight-type(@text-color-info);
 }
+
 .highlight-success {
   .highlight-type(@text-color-success);
 }
+
 .highlight-warning {
   .highlight-type(@text-color-warning);
 }
+
 .highlight-error {
   .highlight-type(@text-color-error);
 }
 
 .highlight-type(@color) {
   .text(normal);
+  font-family: inherit !important;
   padding-left: @component-padding/2;
   padding-right: @component-padding/2;
   color: @theme-background-color !important;
   border-radius: @component-border-radius;
   background-color: @color;
+}
+
+pre {
+  .text(normal);
+  border-color: @base-border-color;
+  background: @base-background-color;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: @text-color-info;
+  background-color: @base-border-color;
+  border-radius: 4px;
 }

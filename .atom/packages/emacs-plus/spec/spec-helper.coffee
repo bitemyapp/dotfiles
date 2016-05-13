@@ -7,7 +7,7 @@ getEditorElement = (callback) ->
     atom.workspace.open().then (editor) ->
       callback(atom.views.getView(editor))
 
-keydown = (key, options) ->
+keydown = (key, options = {}) ->
   {buildKeydownEvent} = atom.keymaps.constructor
   unless options.target?
     options.target = atom.views.getView(atom.workspace.getActiveTextEditor())

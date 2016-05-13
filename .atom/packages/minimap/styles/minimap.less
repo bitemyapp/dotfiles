@@ -4,28 +4,42 @@ atom-notifications:empty {
   pointer-events: none
 }
 
-atom-text-editor::shadow .editor--private {
+atom-text-editor:not([mini])::shadow .editor--private,
+atom-text-editor:not([mini]).editor--private {
   order: 2;
+  flex: 1 0 0;
 }
 
-atom-text-editor::shadow, atom-text-editor {
+atom-text-editor::shadow, atom-text-editor, html {
   atom-text-editor-minimap {
     display: block;
-    width: 10%;
-    height: 100%;
     overflow: hidden;
     position: relative;
-    order: 2;
-
     -webkit-user-select: none;
 
-    &.left {
-      order: 1;
+    &:not([stand-alone]) {
+      height: 100%;
+      order: 3;
+      width: 10%;
+      flex: 0 0 10%;
+
+      &.left {
+        order: 1;
+      }
     }
 
     &.absolute {
       position: absolute;
       right: 0;
+
+      &.adjust-absolute-height {
+        pointer-events: none;
+        &::shadow {
+          canvas {
+            pointer-events: auto;
+          }
+        }
+      }
 
       // absolute mode do nothing when the minimap is on the left, because
       // it would conflict with the editor's gutter
@@ -49,7 +63,7 @@ atom-text-editor::shadow, atom-text-editor {
 
       .minimap-visible-area {
         position: absolute;
-        display: 'block';
+        display: block;
         background-color: #888;
         opacity: .2;
         cursor: -webkit-grab;
@@ -88,7 +102,7 @@ atom-text-editor::shadow, atom-text-editor {
         width: 24px;
         height: 24px;
         display: block;
-        right: 4px;
+        right: 8px;
         transition: opacity 0.4s;
 
         &:before {
@@ -131,6 +145,11 @@ minimap-quick-settings {
     li:hover {
       background: @background-color-highlight;
     }
+  }
+
+  .select-list.popover-list ol.list-group {
+    overflow: visible;
+    max-height: none;
   }
 
   .btn-group {

@@ -1,4 +1,4 @@
-# Git-Plus package
+# Git-Plus package ![Build Status](https://travis-ci.org/akonwi/git-plus.svg?branch=5.5.0)
 
 [![endorse](https://api.coderwall.com/akonwi/endorsecount.png)](https://coderwall.com/akonwi)
 
@@ -8,78 +8,61 @@ vim-fugitive like package for atom. make commits and other git things without th
 
 ## Usage
 
-# IMPORTANT: Make sure your gitconfig file is configured or at least your `user.email` and `user.name` variables are initialized
+# IMPORTANT:
+Make sure your gitconfig file is configured. You must configure at least the `user.email` and `user.name` variables.
 
-### Git-Plus Palette
+Also, the package currently favors an ssh setup that doesn't expect to be prompted for credentials in order to push/pull, .etc. Github has a guide to help you set that up [here](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+
+### Showing the Git-Plus Palette
 >- `Cmd-Shift-H` on MacOS
 >- `Ctrl-Shift-H` on Windows + Linux
 >- `Git Plus: Menu` on the atom command palette.
 
-### Commands (All commands are available for keymapping)
-  __Note: This list is not exclusive__
-1. `Git add [all]`
+### Push/Pull/Fetch notifications
+Notifications will appear in a console output above the status bar.
+This view can be toggled by clicking the pin icon in the bottom right of the status bar.
 
-  Git add will add the current file and 'add all' will add all changed files
-  Default key binding: `Cmd-Shift-A`
+![screenshot](https://raw.githubusercontent.com/akonwi/git-plus/5.5.0/pin.png)
 
-2. `Git add all commit and push`
+### Commands
+_Commands are accessible for keybindings by dasherizing the command title._
+> Git Add ==  `git-plus:add`
 
-  `Cmd-Shift-A P`
+> Git Add All Commit And Push == `git-plus:add-all-commit-and-push`
 
-3. `Git commit`
+  __Note: This list is not exhaustive. And if what you want isn't a feature, You can use `Git Run` and enter the command__
 
-  Will pull up a commit message file. The commit will be made when the file is saved NOT when the pane is closed. You can just cancel by closing the tab.
-  Default key binding: `Cmd-Shift-C`(*`Ctrl-Shift-X`* on Windows + Linux)
+| Command | Effect | Default key binding |
+|----------|--------|------------------
+| `Git Run ` | Execute a custom command. ex. `fetch --all` | |
+| `Git Status ` | Show current status. | `Cmd-Shift-A S` |
+| `Git Add ` | Add the current file. | `Cmd-Shift-A` |
+| `Git Add All` | Adds all changed files. | |
+| `Git add all commit and push` | Commit every changed file and push to a remote repo. | `Cmd-Shift-A P` |
+| `Git commit` | Commit the staged changes. Git-Plus shows a commit message editor. To make the commit, save the file. To cancel the commit, close the tab. | `Cmd-Shift-C`(*`Ctrl-Shift-X`* on Windows and Linux) |
+| `Git commit amend` | Amend the changes to previous commit. |  |
+| `Git checkout current file` | Undo changes and checkout the current file. | |
+| `Git Checkout `*`[ref]`* | Change to another ref (branch or tag). | |
+| `Git Diff [All]` | Show the diff for the current file, or all files. The diff can either be against the staged or un-staged tree, as selected in the options. | |
+| `Git new branch` | Create a new branch. | |
+| `Git` *`[push⎮pull]`* | Push to or pull from a remote repo. If you have multiple remote repos, you can choose which to push to or pull from. | |
+| `Git Add and Commit` | Add all changed files and show the commit message file. Similar to `Git add all` and `Git commit` run in succession. | `Cmd-Shift-A c` |
+| `Git Add All and Commit` | Add all changed files and show the commit message file. Similar to `Git add all` and `Git commit` in succession. | `Cmd-Shift-A a` |
+| `Git rm [current file]` | `git rm` the current file or open an selector to select the files to remove. You can select multiple files at once. | |
+| `Git Log [Current File]` | Show the commit history [for the current file] and show display the selected commit. | |
+| `Git Show` | Show the specified object, for example `HEAD`, `HEAD~2`,`3925a0d`, `origin/master` or `v2.7.3`. | |
 
-4. `Git commit amend`
-
-  Will amend the changes to previous commit.
-
-5. `Git checkout current file`
-
-  Undo changes and checkout current file.
-
-6. `Git [checkout]`
-
-  Change branches
-
-7. `Git Diff [All]`
-
-  Shows diff for current file or All the files. Diff can either be with staged or unstaged as selected in options.
-
-8. `Git new branch`
-
-  Create a new branch
-
-9. `Git [push|pull]`
-
-  When Pushing, if you have multiple remote repos, you can choose which to push to.
-10. `Git Add and Commit`
-
-  Add the current file and pull up the commit message file. Similar to `Git add` and `Git commit` in succession.
-  Default key binding: `Cmd-Shift-A c`
-
-11. `Git Add All and Commit`
-
-  Add all changed files and pull up the commit message file. Similar to `Git add all` and `Git commit` in succession.
-  Default key binding: `Cmd-Shift-A a`
-
-12. `Git rm [current file]`
-
-  Git rm the current file or open an selector to select the files to remove. You can select multiple files at once.
-
-13. `Git Log [Current File]`
-
-  Show the commit history [for the current file] and show display the selected commit.
-
-13. `Git Show`
-
-  Show the specified object, for example `HEAD`, `HEAD~2`, `3925a0d`, `origin/master` or `v2.7.3`.
+### Commit window
+To change where the commit window appears go to settings and find
+![screenshot](http://imgur.com/cdc7M5p.png)
 
 ## Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+3. Write tests
+4. Make your changes
+5. Run `apm test`
+6. Commit your changes (`git commit -am 'Add some feature'`)
+7. Push to the branch (`git push origin my-new-feature`)
+8. Create new Pull Request

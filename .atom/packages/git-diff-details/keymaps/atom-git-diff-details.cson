@@ -2,4 +2,3 @@
   'alt-g alt-d': 'git-diff-details:toggle-git-diff-details'
   'alt-u': 'git-diff-details:undo'
   'alt-c': 'git-diff-details:copy'
-  'escape': 'git-diff-details:close-git-diff-details'

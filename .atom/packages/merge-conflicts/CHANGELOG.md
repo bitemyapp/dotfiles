@@ -1,3 +1,29 @@
+## 1.4.2
+
+- Rewrite the Conflict parser as a proper recursive descent parser. [#229](https://github.com/smashwilson/merge-conflicts/pull/229)
+- Register custom repository contexts to move toward support for non-git repositories. [#222](https://github.com/smashwilson/merge-conflicts/pull/222)
+- Transact resolve actions to group as single undo operations. [#221](https://github.com/smashwilson/merge-conflicts/pull/221)
+
+## 1.4.1
+
+- Fix hangs with broken conflict markers. [#220](https://github.com/smashwilson/merge-conflicts/pull/220)
+
+## 1.4.0
+
+- Handle three-way merge markers. [#219](https://github.com/smashwilson/merge-conflicts/pull/219)
+- Support for nodegit operations when available, currently in Atom Beta. [#205](https://github.com/smashwilson/merge-conflicts/pull/192)
+
+## 1.3.7
+
+- Resolving entire files as ours or theirs works again. [#192](https://github.com/smashwilson/merge-conflicts/pull/192)
+- Use GitUtils to stage files instead of shelling out to git. [#191](https://github.com/smashwilson/merge-conflicts/pull/191)
+- Update the method I was using to read the scrollbar width. [#190](https://github.com/smashwilson/merge-conflicts/pull/190)
+
+## 1.3.6
+
+- Use transparency instead of `mix()` to allow selection to show through. [#181](https://github.com/smashwilson/merge-conflicts/pull/181)
+- Updated the README to include how-to instructions. [#178](https://github.com/smashwilson/merge-conflicts/pull/178)
+
 ## 1.3.5
 
 - Using the "stage" button no longer triggers a crash. [#173](https://github.com/smashwilson/merge-conflicts/pull/173)

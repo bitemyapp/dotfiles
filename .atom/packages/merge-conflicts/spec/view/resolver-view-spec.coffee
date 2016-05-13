@@ -1,15 +1,17 @@
 {ResolverView} = require '../../lib/view/resolver-view'
 
-{GitBridge} = require '../../lib/git-bridge'
+{GitOps} = require '../../lib/git'
 util = require '../util'
 
 describe 'ResolverView', ->
   [view, fakeEditor, pkg] = []
 
   state =
-    repo:
-      getWorkingDirectory: -> "/fake/gitroot/"
-      relativize: (filepath) -> filepath["/fake/gitroot/".length..]
+    context:
+      isResolvedFile: -> Promise.resolve false
+      resolveFile: ->
+      resolveText: "Stage"
+    relativize: (filepath) -> filepath["/fake/gitroot/".length..]
 
   beforeEach ->
     pkg = util.pkgEmitter()
@@ -20,45 +22,27 @@ describe 'ResolverView', ->
       onDidSave: ->
     }
 
-    atom.config.set('merge-conflicts.gitPath', 'git')
-    done = false
-    GitBridge.locateGitAnd (err) ->
-      throw err if err?
-      done = true
-
-    waitsFor -> done
-
-    GitBridge.process = ({stdout, exit}) ->
-      stdout('UU lib/file1.txt')
-      exit(0)
-      { process: { on: (err) -> } }
-
     view = new ResolverView(fakeEditor, state, pkg)
 
   it 'begins needing both saving and staging', ->
-    view.refresh()
-    expect(view.actionText.text()).toBe('Save and stage')
+    waitsForPromise -> view.refresh()
+    runs -> expect(view.actionText.text()).toBe('Save and stage')
 
   it 'shows if the file only needs staged', ->
     fakeEditor.isModified = -> false
-    view.refresh()
-    expect(view.actionText.text()).toBe('Stage')
+    waitsForPromise -> view.refresh()
+    runs -> expect(view.actionText.text()).toBe('Stage')
 
   it 'saves and stages the file', ->
-    [c, a, o] = []
-    GitBridge.process = ({command, args, options, stdout, exit}) ->
-      if 'add' in args
-        [c, a, o] = [command, args, options]
-        exit(0)
-      if 'status' in args
-        stdout('M  lib/file1.txt')
-        exit(0)
-      { process: { on: (err) -> } }
+    p = null
+    state.context.resolveFile = (filepath) ->
+      p = filepath
+      Promise.resolve()
 
     spyOn(fakeEditor, 'save')
 
-    view.resolve()
-    expect(fakeEditor.save).toHaveBeenCalled()
-    expect(c).toBe('git')
-    expect(a).toEqual(['add', 'lib/file1.txt'])
-    expect(o).toEqual({ cwd: state.repo.getWorkingDirectory() })
+    waitsForPromise -> view.resolve()
+
+    runs ->
+      expect(fakeEditor.save).toHaveBeenCalled()
+      expect(p).toBe('lib/file1.txt')

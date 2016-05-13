@@ -1,3 +1,6 @@
+## 0.1.3
+* Defer require until needed
+
 ## 0.1.2
 * General cleanup and updates for Atom 1.0
 * Trigger only on Haskell sources

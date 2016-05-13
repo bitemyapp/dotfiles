@@ -1,11 +1,11 @@
 {
   "name": "linter-hlint",
   "main": "./lib/init.coffee",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Lint haskell code with hlint",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AtomLinter/linter-hlint"
+    "url": "git+https://github.com/AtomLinter/linter-hlint.git"
   },
   "license": "MIT",
   "engines": {
@@ -24,11 +24,11 @@
   "bugs": {
     "url": "https://github.com/AtomLinter/linter-hlint/issues"
   },
-  "homepage": "https://github.com/AtomLinter/linter-hlint",
-  "_id": "linter-hlint@0.4.2",
-  "_shasum": "c68406d5690be163fbbef7c1a0b41b763cbdc7d8",
-  "_resolved": "file:../d-11579-17771-ktqq0l/package.tgz",
-  "_from": "../d-11579-17771-ktqq0l/package.tgz",
+  "homepage": "https://github.com/AtomLinter/linter-hlint#readme",
+  "_id": "linter-hlint@0.4.3",
+  "_shasum": "e45a1be5735a7ab15b41295e9a8b50a3fdf558d0",
+  "_resolved": "file:../d-116412-12424-gm3ad4/package.tgz",
+  "_from": "../d-116412-12424-gm3ad4/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],

@@ -5,56 +5,68 @@
   color: @text-color;
   font-family: @font-family;
   font-size: @font-size;
-  letter-spacing: 0.04em;
-  font-weight: 300;
+  font-weight: 400;
 }
+
 .text(bold) {
-  font-family: @font-family;
-  letter-spacing: 0.04em;
+  color: @text-color;
+  font-family: @font-family-bold;
+  font-size: @font-size;
   font-weight: 600;
 }
+
 .text(light) {
-  font-family: @font-family;
-  letter-spacing: 0.04em;
-  font-weight: 100;
+  color: @text-color;
+  font-family: @font-family-light;
+  font-size: @font-size;
+  font-weight: 200;
 }
+
+.text(heading) {
+  color: @text-color;
+  font-family: @font-family-light;
+  font-weight: 200;
+}
+
 .text(subtle) {
-  font-family: @font-family;
-  letter-spacing: 0.04em;
+  .text(light);
+  font-size: inherit;
   color: @text-color-subtle;
-  font-weight: 300;
 }
+
 .text(highlight) {
-  font-family: @font-family;
-  letter-spacing: 0.04em;
-  color: @text-color-highlight !important;
-  font-weight: 300;
+  .text(normal);
+  font-size: inherit;
+  color: @text-color-highlight;
 }
+
 .text(selected) {
-  font-family: @font-family;
-  letter-spacing: 0.04em;
-  color: @text-color-selected !important;
-  font-weight: 300;
+  .text(normal);
+  font-size: inherit;
+  color: @text-color-selected;
 }
 
 .text(info) {
-  .text(highlight);
+  .text(normal);
   color: @text-color-info;
 }
+
 .text(success) {
-  .text(highlight);
+  .text(normal);
   color: @text-color-success;
 }
+
 .text(warning) {
-  .text(highlight);
+  .text(normal);
   color: @text-color-warning;
 }
+
 .text(error) {
-  .text(highlight);
+  .text(normal);
   color: @text-color-error;
 }
 
 // Shadow ----------------------------------------------------------------------
 .overlay-shadow() {
-  box-shadow: 0  12px 48px 0 rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.4) !important;
 }

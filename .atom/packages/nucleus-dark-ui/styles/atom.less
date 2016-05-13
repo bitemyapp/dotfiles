@@ -1,34 +1,162 @@
+@import "ui-variables.less";
+@import "ui-mixins.less";
+@import "octicon-mixins";
+
 status-bar {
   .text(subtle);
   background: @base-background-color;
   height: @input-height;
   line-height: @component-line-height;
-  font-size: 10px;
+  font-size: 11px;
 
   & > .flexbox-repaint-hack {
     padding-top: 3px;
   }
-}
 
-atom-workspace {
-  border-top: 1px solid @base-border-color;
-}
-
-.find-and-replace .find-meta-container {
-  top: 4px;
-
-  & span {
-    font-size: 10px;
-    text-transform: uppercase;
+  span {
+    font-size: 11px;
   }
 }
 
+.platform-darwin .close-icon:before {
+  content: '✕' !important;
+}
+
+.platform-darwin .icon-x:before {
+  content: '✕' !important;
+}
+
+.platform-darwin .icon.x:before {
+  content: '✕' !important;
+}
+
+.project-find,
+.find-and-replace {
+  .btn-group-find .btn {
+    .button-variant(@text-color-info);
+  }
+
+  .btn-group-replace .btn,
+  .btn-group-replace-all .btn, {
+    .button-variant(@text-color-warning);
+  }
+
+  .find-meta-container {
+    top: 4px;
+
+    span {
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+atom-notifications {
+  .text(normal);
+  top: 32px;
+
+  .close {
+    transition: all @transition-time ease;
+
+    &:before {
+      color: fade(@theme-background-color, 50%);
+    }
+  }
+  .btn {
+    height: 24px !important;
+    line-height: 20px !important;
+
+    &.close-all {
+      color: fade(@theme-background-color, 40%) !important;
+      border-color: fade(@theme-background-color, 40%) !important;
+
+      &:hover {
+        color: @text-color-highlight !important;
+        background-color: fade(@theme-background-color, 40%) !important;
+        border-color: fade(@theme-background-color, 0%) !important;
+      }
+    }
+  }
+}
+
+.background-message .message,
+.background-message li {
+  .text(subtle);
+  font-size: 24px;
+
+  .keystroke {
+    .text(normal);
+    color: @tooltip-key-text-color;
+    background: @tooltip-key-background-color;
+    font-size: 90%;
+    border: 1px solid @tooltip-key-text-color;
+    border-radius: @component-border-radius/2;
+    margin-left: @component-padding/2;
+  }
+}
+
+kbd {
+  .text(normal);
+  color: @tooltip-key-text-color;
+  background: @tooltip-key-background-color;
+  font-size: 90%;
+  border: 1px solid @tooltip-key-text-color;
+  border-radius: @component-border-radius/2;
+  margin-left: @component-padding/2;
+}
+
+.scrollbars-visible-always {
+  /deep/ ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /deep/ ::-webkit-scrollbar-track,
+  /deep/ ::-webkit-scrollbar-corner {
+    background: @scrollbar-track-color;
+  }
+
+  /deep/ ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    border: 1px solid @scrollbar-border-color;
+    background: @scrollbar-color;
+    background-clip: content-box;
+
+    &:active,
+    &:hover {
+      border: 1px solid @scrollbar-border-color;
+      background: @scrollbar-color-active;
+    }
+  }
+
+  atom-text-editor,
+  .settings-view {
+    /deep/ ::-webkit-scrollbar-track,
+    /deep/ ::-webkit-scrollbar-corner {
+      background: @base-background-color;
+    }
+
+    /deep/ ::-webkit-scrollbar-thumb {
+      border: 1px solid @base-background-color;
+      background: @scrollbar-color;
+      &:active,
+      &:hover {
+        border: 1px solid @base-background-color;
+      }
+    }
+  }
+}
+
+.well {
+  border-radius: @component-border-radius;
+}
+
+// input -----------------------------------------------------------------------
 atom-text-editor[mini],
 atom-text-editor[mini]::shadow {
   transition: all @transition-time ease;
-  letter-spacing: 0;
   color: @text-color-highlight;
-  background-color: transparent;
+  background-color: @input-background-color;
   border: 1px solid @input-background-color;
   border-radius: @component-border-radius;
   padding-left: @component-padding / 2;
@@ -37,7 +165,8 @@ atom-text-editor[mini]::shadow {
   line-height: @input-height - 2px;
 
   &:hover {
-    background-color: @button-background-color-hover !important;
+    border: 1px solid @input-border-color !important;
+    color: @text-color-highlight !important;
   }
 
   .placeholder-text {
@@ -61,7 +190,9 @@ atom-text-editor[mini].is-focused::shadow {
   background-color: @input-background-color-active;
 
   &:hover {
+    border: 1px solid @text-color-highlight !important;
     background-color: @input-background-color-active !important;
+    color: @text-color-highlight !important;
   }
 
   .selection .region {
@@ -69,38 +200,26 @@ atom-text-editor[mini].is-focused::shadow {
   }
 }
 
-.icon-x::before {
-  content: '✕' !important;
-}
-
-atom-notification .close:before {
-  color: fade(@theme-background-color, 50%);
-}
-
-atom-notification .close {
-  transition: all @transition-time ease;
-}
-
-atom-notifications {
-  .text(normal);
-}
-
-.background-message .message,
-.background-message li {
-  .text(subtle);
-  font-size: 24px;
-  font-weight: 300;
-
-  .keystroke {
-    border-width: 1px;
-    font-weight: 300;
+input[type="checkbox"] {
+  &:focus {
+    box-shadow: none !important;
+  }
+  &:before,
+  &:after {
+    background: @base-background-color;
   }
 }
 
-kbd {
-  .text(info);
-  color: @tooltip-background-color;
-  background: @text-color;
-  font-size: 90%;
-  border-radius: @component-border-radius/2;
+select.form-control {
+  .button(@button-border-color);
+  .text(normal);
+  height: @input-height;
+  line-height: @input-height;
+  text-transform: none;
+
+  &:focus,
+  &:hover {
+   background: @button-border-color !important;
+   color: @base-background-color !important;
+  }
 }

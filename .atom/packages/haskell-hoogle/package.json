@@ -1,7 +1,7 @@
 {
   "name": "haskell-hoogle",
   "main": "./lib/haskell-hoogle",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Lets you look up the marked text on http://www.haskell.org/hoogle via context menu, toolbar item and the exposed command haskell-hoogle:lookup.",
   "keywords": [
     "hoogle",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kaeluka/atom-haskell-hoogle"
+    "url": "git+https://github.com/kaeluka/atom-haskell-hoogle.git"
   },
   "license": "MIT",
   "engines": {
@@ -27,11 +27,11 @@
   "bugs": {
     "url": "https://github.com/kaeluka/atom-haskell-hoogle/issues"
   },
-  "homepage": "https://github.com/kaeluka/atom-haskell-hoogle",
-  "_id": "haskell-hoogle@0.1.2",
-  "_shasum": "7c303fa86195b6758ce0523f2c70bfb6350e8785",
-  "_resolved": "file:../d-11579-17704-1nhr7ff/package.tgz",
-  "_from": "../d-11579-17704-1nhr7ff/package.tgz",
+  "homepage": "https://github.com/kaeluka/atom-haskell-hoogle#readme",
+  "_id": "haskell-hoogle@0.1.3",
+  "_shasum": "b32c42a7197d1a6ea73134d5a9c51ab64f0bf3c9",
+  "_resolved": "file:../d-116412-12395-f13hul/package.tgz",
+  "_from": "../d-116412-12395-f13hul/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

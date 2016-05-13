@@ -1,18 +1,34 @@
+@import "ui-variables.less";
+@import "ui-mixins.less";
+@import "octicon-mixins";
+
 atom-panel {
   .text(normal);
   background: @tool-panel-background-color;
 
+  &.bottom {
+    background: @app-background-color;
+  }
+  &.bottom > *:not(:empty) {
+    background: @app-background-color;
+    padding-top: @component-padding/2;
+    z-index: 3;
+  }
+}
+
+atom-panel-container {
   &.left:not(:empty) {
     border-right: 1px solid @tool-panel-border-color;
   }
+
   &.right:not(:empty) {
     border-left: 1px solid @tool-panel-border-color;
   }
-  &.top:not(:empty) {
-    border-bottom: 1px solid @tool-panel-border-color;
-  }
-  &.bottom > *:not(:empty) {
+
+  &.bottom {
+    margin-top: 2px;
     border-top: 1px solid @tool-panel-border-color;
+    z-index: 3;
   }
 }
 
@@ -30,9 +46,38 @@ atom-panel-container,
 
 .inset-panel .panel-heading,
 .panel-heading {
-  .text(light);
-  font-size: 2em;
+  .text(heading);
+  font-size: 24px;
   border-radius: 0;
+
+  & .btn {
+    .button(@button-border-color);
+
+    &.btn-primary {
+      .button-variant(@text-color-info);
+    }
+
+    &.btn-info {
+      .button-variant(@text-color-info);
+    }
+
+    &.btn-success {
+      .button-variant(@text-color-success);
+    }
+
+    &.btn-warning {
+      .button-variant(@text-color-warning);
+    }
+
+    &.btn-error {
+      .button-variant(@text-color-error);
+    }
+
+    font-size: 11px !important;
+    padding: 0 8px !important;
+    height: 24px !important;
+    line-height: 24px !important;
+  }
 }
 
 .panel-body {
@@ -46,4 +91,9 @@ atom-pane-container atom-pane-axis.horizontal > *:last-child {
 
 atom-pane-container atom-pane-axis.horizontal > * {
   border-right: 1px solid @base-border-color;
+}
+
+atom-pane-container atom-pane-axis.vertical > atom-pane-resize-handle.vertical {
+  border-bottom: 1px solid @base-border-color;
+  margin-bottom: -1px;
 }

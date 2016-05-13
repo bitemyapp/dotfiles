@@ -1,3 +1,28 @@
+## 0.11.0
+* Add advanced-open-file to package-deps
+
+## 0.10.0
+* Refactor mark(Fix #6, #14)
+
+## 0.9.14
+* Bind C-i to auto-indent(@itiut)
+
+## 0.9.13
+* Update keymaps
+* Add 'emacs-plus:close-other-panes' command
+
+## 0.9.12
+* Bind C-g to consolidate selections(@itiut)
+
+## 0.9.11
+* Fix deprecated calls
+
+## 0.9.10
+* Update keymaps (#11)
+
+## 0.9.9
+* Fix kill-line bug(#7)
+
 ## 0.9.8
 * Fix #4
 

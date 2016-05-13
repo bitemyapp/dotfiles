@@ -1,3 +1,7 @@
+@import "ui-variables.less";
+@import "ui-mixins.less";
+@import "octicon-mixins";
+
 .tab-bar {
   background: @tab-bar-background-color;
   width: 100%;
@@ -12,23 +16,42 @@
     text-align: center;
     color: @text-color-subtle;
     background: @tab-background-color;
-    display:table-cell;
+    display: table-cell;
     width: 100%;
-    height: @tab-height - 1;
-    line-height: @tab-height - 1;
+    height: @tab-height;
+    line-height: @tab-height;
     box-sizing: border-box;
-    border-left: 0;
-    border-right: 0;
-    border-top: 1px solid @base-border-color;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-top: 1px solid transparent;
     border-bottom: 1px solid @tab-border-color;
     padding-left: 20px !important;
     padding-right: 20px !important;
     position: relative;
-    transition: color @transition-time ease, background @transition-time ease;
+    transition: all @transition-time ease;
+
+    .status-modified,
+    .status-added,
+    .status-ignored {
+      transition: color @transition-time ease, background @transition-time ease;
+
+      &:hover {
+        color: @text-color-highlight;
+      }
+    }
+
+    .status-modified {
+      color: mix(@syntax-background-color, @text-color-modified, 48%);
+    }
+
+    .status-added {
+      color: mix(@syntax-background-color, @text-color-added, 48%);
+    }
 
     &:hover {
       color: @text-color-highlight;
       background: @tab-background-color-hover;
+      border: 1px solid @base-border-color;
 
       .close-icon {
         display: block;
@@ -41,17 +64,34 @@
     color: @text-color-selected;
     background: @tab-background-color-active;
     width: 100%;
-    border-bottom: 0;
+    border-top: 1px solid @base-border-color;
+    border-bottom: 1px solid transparent;
     border-left: 1px solid @base-border-color;
     border-right: 1px solid @base-border-color;
+
     & .title {
-      padding:0;
+      color: @text-color-selected;
+      padding: 0;
     }
+
     &:first-child {
       border-left: 0;
     }
+
     &:last-child {
       border-right: 0;
+    }
+
+    .status-modified {
+      color: @text-color-modified;
+    }
+
+    .status-added {
+      color: @text-color-added;
+    }
+
+    .status-ignored {
+      color: @text-color-ignored;
     }
   }
 
@@ -59,12 +99,15 @@
   .tab.active[data-type="TextEditor"] {
     color: @syntax-text-color;
     background: @syntax-background-color;
+
     .close-icon:before {
       color: @text-color-highlight;
     }
+
     .close-icon:hover {
       background: mix(@syntax-text-color, @syntax-background-color, 20%);
     }
+
     .close-icon:hover:before {
       color: @text-color-highlight;
     }
@@ -78,7 +121,7 @@
     opacity: 1;
     transform: scale(1);
     top: 12px;
-    left: 8px;
+    right: 8px;
     display: inline-block;
     border-color: @background-color-warning;
     border-width: 1px;
@@ -89,16 +132,17 @@
     border-width: 1px;
 
     &:before {
-      color: @text-color;
+      color: @text-color-highlight;
     }
   }
 
+
   .tab .close-icon {
     top: (@tab-height - 16) / 2;
-    left: 4px;
     height: 16px;
     width: 16px;
-    right: auto;
+    left: auto;
+    right: 4px;
     position: absolute;
     transform: scale(0);
     opacity: 0;
@@ -107,7 +151,6 @@
 
     &:before {
       color: @text-color-highlight;
-      content:'✕';
       font-size: 12px;
       position: absolute;
       top: 2px;
@@ -123,13 +166,19 @@
 
   .tab:hover .close-icon {
     transform: scale(1);
-    opacity:1;
+    opacity: 1;
   }
 }
 
-atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane-axis.horizontal > atom-pane-axis.vertical > atom-pane:first-child .tab,
-atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane-axis.horizontal > atom-pane .tab,
-atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane-axis.vertical > atom-pane:first-child .tab,
-atom-workspace > atom-workspace-axis.horizontal > atom-workspace-axis.vertical > atom-pane-container > atom-pane:first-child .tab {
-  border-top: 0 !important;
+.platform-darwin {
+  .tab .close-icon {
+    left: 4px !important;
+    right: auto !important;
+  }
+
+  .tab.modified:not(:hover) .close-icon {
+    top: 12px !important;
+    left: 8px !important;
+    right: auto !important;
+  }
 }

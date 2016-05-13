@@ -45,6 +45,8 @@ Contributors:
 * mdgriffith
 * Michael Rawson
 * Nikolay Yakimov
+* Ranjit Jhala
+* Rob Rix
 * Ross Ogilvie
 * samuela
 
