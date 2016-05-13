@@ -1,0 +1,36 @@
+# Keybindings require three things to be fully defined: A selector that is
+# matched against the focused element, the keystroke and the command to
+# execute.
+#
+# Below is a basic keybinding which registers on all platforms by applying to
+# the root workspace element.
+
+# For more detailed documentation see
+# https://atom.io/docs/latest/advanced/keymaps
+'.platform-darwin atom-workspace':
+  'alt-cmd-o': 'advanced-open-file:toggle'
+
+'.platform-win32 atom-workspace, .platform-linux atom-workspace':
+  'ctrl-alt-o': 'advanced-open-file:toggle'
+
+'.advanced-open-file atom-text-editor':
+  'tab': 'advanced-open-file:autocomplete'
+  'up': 'advanced-open-file:move-cursor-up'
+  'down': 'advanced-open-file:move-cursor-down'
+
+  # Emacs-style movement
+  'ctrl-p': 'advanced-open-file:move-cursor-up'
+  'ctrl-n': 'advanced-open-file:move-cursor-down'
+
+  # Alternative movement keys
+  'ctrl-i': 'advanced-open-file:move-cursor-up'
+  'ctrl-k': 'advanced-open-file:move-cursor-down'
+
+  # A more powerful version of alt-backspace
+  'ctrl-l': 'advanced-open-file:delete-path-component'
+
+'.platform-darwin .advanced-open-file atom-text-editor':
+  'cmd-z': 'advanced-open-file:undo'
+
+'.platform-win32 .advanced-open-file atom-text-editor, .platform-linux .advanced-open-file atom-text-editor':
+  'ctrl-z': 'advanced-open-file:undo'

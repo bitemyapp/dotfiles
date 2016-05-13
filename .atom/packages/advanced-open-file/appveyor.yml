@@ -1,0 +1,19 @@
+version: "{build}"
+os: Windows Server 2012 R2
+
+test: off
+deploy: off
+
+environment:
+  AOF_WINDOWS_TESTS: 1
+
+install:
+  - appveyor DownloadFile https://atom.io/download/windows -FileName AtomSetup.exe
+  - AtomSetup.exe /silent
+
+build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - SET PATH=%LOCALAPPDATA%\atom\bin;%PATH%
+  - apm clean
+  - apm install
+  - apm test

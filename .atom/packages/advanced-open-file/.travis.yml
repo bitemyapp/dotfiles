@@ -1,0 +1,9 @@
+language: objective-c
+sudo: false
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+script: './bin/build-package.sh'
+git:
+  depth: 10
