@@ -557,3 +557,4 @@ kdenlive/
 .bash_sessions/
 Creative\ Cloud*
 .homebrew_analytics_user_uuid
+.jspm/
