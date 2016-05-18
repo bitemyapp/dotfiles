@@ -1,8 +1,17 @@
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
-:def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
+-- :def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
 
 :set -fno-warn-type-defaults
 -- :set -fobject-code
+
+:def browser \u -> return $ ":! open " ++ u
+:def package \m -> return $ ":! stack exec -- ghc-pkg --simple-output find-module " ++ m
+:{
+:def doc \m -> return $ if m == ""
+                        then ":browser $(stack exec -- ghc --print-libdir)/../../share/doc/ghc/html/index.html"
+                        else ":browser $(stack exec -- ghc-pkg --simple-output field $(stack exec -- ghc-pkg --simple-output find-module " ++ m ++ ") haddock-html)/$(echo " ++ m ++ " | tr . -).html"
+:}
+
 :def source readFile
 :set prompt "Prelude> "
 
