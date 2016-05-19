@@ -26,8 +26,8 @@
   "homepage": "https://github.com/atom-haskell/language-haskell#readme",
   "_id": "language-haskell@1.7.15",
   "_shasum": "6c4ef60c953223f9d026fd2854a8da47ef1ac31f",
-  "_resolved": "file:../d-116412-12417-yaprf9/package.tgz",
-  "_from": "../d-116412-12417-yaprf9/package.tgz",
+  "_resolved": "file:../d-116419-34270-rk1gwt/package.tgz",
+  "_from": "../d-116419-34270-rk1gwt/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

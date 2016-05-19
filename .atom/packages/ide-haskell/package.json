@@ -1,0 +1,278 @@
+{
+  "name": "ide-haskell",
+  "main": "./lib/ide-haskell",
+  "version": "1.6.5",
+  "description": "Haskell IDE",
+  "keywords": [
+    "ide-haskell",
+    "ide",
+    "haskell"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom-haskell/ide-haskell.git"
+  },
+  "license": "MIT",
+  "activationHooks": [
+    "language-haskell:grammar-used"
+  ],
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "providedServices": {
+    "ide-haskell-upi": {
+      "description": "Universal pluggable interface",
+      "versions": {
+        "0.0.1": "provideUpi"
+      }
+    }
+  },
+  "dependencies": {
+    "temp": "^0.8.1",
+    "sub-atom": "^1.0.0",
+    "atom-haskell-utils": "^0.7.8"
+  },
+  "readme": "# IDE-Haskell [![Join the chat at https://gitter.im/atom-haskell/ide-haskell](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/atom-haskell/ide-haskell?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\nWelcome to IDE-Haskell plugin for amazing [Atom](http://atom.io) editor! This\nplugin is intended to help you with development in\n[Haskell](http://haskell.org).\n\n**NOTE:** You must install all this plugin's dependencies in addition to\ninstalling this plugin.  Jump to the [Requirements section](#requirements) below\nand follow all setup instructions.\n\n## Implemented features\n\n#### Haskell project autodetection\n\nIDE-Haskell works only with Haskell projects. When you open a Haskell source file, IDE-Haskell will start automatically.\n\n#### Errors, warnings and linter\n\nAfter saving the current file the check and linter processes will be executed.\nAfter processes are finished, the results can be seen in output panel. You can\nsee different kind of results by switching `Errors`, `Warnings` and `Lints` tab\nbuttons. If you click on message's file name in output panel, Atom will open\nthis file and put cursor near problem that triggered output message.\n\nCheck results can also be seen in left editor gutter (near line numbers) as\nicons. If you hover mouse pointer over such an icon, a tooltip will be shown\nwith problem description. Results are highlighted inside editor as well, so you\ncan easily determine where the problem is.\n\n\n![errors](https://cloud.githubusercontent.com/assets/7275622/9705079/52b38f7c-54c1-11e5-9b23-6b932100e876.gif)\n\n#### Get type/info\n\nIf you have `haskell-ghc-mod` or similar package installed, you can get type of any expression and get info on any symbol.\n\nThere are two options to do so.\n\nFirst one is to hover mouse pointer over any Haskell source in editor, or any\nselection. By default, this will show type for expression/selecton under cursor.\nYou can change this behavior to show info for symbol, or disable it completely\nin IDE-Haskell settings.\n\nAnother option is to use keyboard to get type/info under cursor. No default\nbindings are specified, but you can specify them in your Atom keymap.\n\nSee [Configuration](#configuration) for more information.\n\n![typeinfo](https://cloud.githubusercontent.com/assets/7275622/9705082/52daa81e-54c1-11e5-88a8-99c8029eb14e.gif)\n\n![typeins](https://cloud.githubusercontent.com/assets/7275622/9705080/52cd7e64-54c1-11e5-8ee3-120641da2f85.gif)\n\n#### Autocompletion\n\nAutocompletion facilities have been moved to\n[autocomplete-haskell](https://atom.io/packages/autocomplete-haskell) package.\n\nPlease install it if you want autocompletion.\n\n#### Code beautify\n\nYou can use `stylish-haskell` utility to indent pragmas, imports and data type\ndefinitions. Simply select `Prettify` from Haskel IDE menu to apply\n`stylish-haskell` to current file.\n\n![prettify](https://cloud.githubusercontent.com/assets/7275622/9705081/52d97cf0-54c1-11e5-94f0-96f09e43ada3.gif)\n\n#### Build and test project\n\nIf you have `ide-haskell-cabal` or similar package installed, you can build,\nclean and test your project from ide-haskell.\n\n## Requirements\n\nThe `ide-haskell` plugin assumes that you have a minimal Haskell toolchain\ninstalled on your system.  You can install this toolchain by following the\ninstructions here:\n\n* [Minimal Haskell installers](https://www.haskell.org/downloads#minimal)\n\nAtom plugin dependencies:\n\nOnly the `language-haskell` plugin is strictly required, but you will probably\nalso want to install one of these other plugins as well:\n\n* [`language-haskell`](https://atom.io/packages/language-haskell) - **ABSOLUTELY\n  REQUIRED!**\n* [`ide-haskell-cabal`](https://atom.io/packages/ide-haskell-cabal) - Use this\n  plugin to build and launch Haskell projects\n* [`haskell-ghc-mod`](https://atom.io/packages/haskell-ghc-mod) - Use this plugin\n  to type-check your code on save and add type highlights on mouseover\n* [`autocomplete-haskell`](https://atom.io/packages/autocomplete-haskell) - Use\n  this plugin to autocomplete code.  This plugin depends on `haskell-ghc-mod`\n\nBinary dependencies:\n\n* [`stylish-haskell`](https://github.com/jaspervdj/stylish-haskell) - Required by\n  `ide-haskell` plugin\n* [`ghc-mod` / `ghc-modi`](https://github.com/kazu-yamamoto/ghc-mod) and\n  [`hlint`](https://github.com/ndmitchell/hlint) - Required by `haskell-ghc-mod`\n  if you choose to install that plugin\n\n### Installing binary dependencies with stack\n\nThe most reliable way to build these executable binaries is to use\n`stack install`.  Note that `ide-haskell` currently only supports `cabal` and\ndoes not yet support `stack`-based Haskell projects; for now we are only using\n`stack` to build the executables that `ide-haskell` depends on.\n\nRun the following commands from a command line terminal after you finish\ninstalling the minimal Haskell toolchain:\n\n```bash\n$ stack install stylish-haskell\n...\nCopied executables to {STACK_INSTALL_PATH}:\n- stylish-haskell\n$ stack install ghc-mod\n...\nCopied executables to {STACK_INSTALL_PATH}:\n- ghc-mod\n- ghc-modi\n$ stack install hlint\n...\nCopied executables to {STACK_INSTALL_PATH}:\n- hlint\n```\n\n... where `STACK_INSTALL_PATH` depends on your operating system.  For example,\non OS X or Linux this path will usually be `~/.local/bin/`.\n\nFirst, make sure that `STACK_INSTALL_PATH` is on your executable search path\n(i.e. `$PATH` for OS X and Linux).  However, this alone might not be enough for\nAtom to find your installed executables since Atom in\n[some cases](https://github.com/atom-community/linter/issues/150) Atom does not\ncorrectly pick up the search path upon launch.\n\nIf Atom fails to find a required executable (such as `stylish-haskell`) you will\nget an error that reads something like this:\n\n> Ide-haskell could not spawn stylish-haskell\n>\n> Error: spawn stylish-haskell ENOENT\n\nIf this happens, you will need to modify this package's settings to point to the\nabsolute path to where you installed `stylish-haskell` executable.  For example,\nif your `STACK_INSTALL_PATH` were `/home/johndoe/.local/bin/` then the\nabsolute path to the executable would be\n`/home/johndoe/.local/bin/stylish-haskell`.\n\n### Installing binary dependencies with cabal\n\n***NOTE:*** You do not need to do this if you already installed with stack.\n\nAlternatively, you can use cabal-install if you don't want to use stack for some reason.\n\nIt is advisable to first create a cabal sandbox for the installation to avoid global package database pollution and conflicts. This will also make updating easy.\n\nTo create a sandbox, create a directory, f.ex.\n\n```bash\nmkdir $HOME/ghc-mod-sandbox\n```\n\n***NOTE:*** Windows command line shell uses different syntax for environment variables, and there is usually no `HOME` defined anyway. I sincerely hope you can figure this out.\n\nThen, `cd` into int:\n\n```bash\ncd $HOME/ghc-mod-sandbox\n```\n\nAnd run the following command\n\n```bash\ncabal sandbox init --sandbox=.\n```\n\nThe last `--sandbox=.` part is to simplify paths.\n\nNow you can install ghc-mod and stylish-haskell. *In the same directory* run\n\n```bash\ncabal install ghc-mod stylish-haskell\n```\n*Note:* hlint will be pulled in as ghc-mod dependency.\n\nNow you have ghc-mod and stylish-haskell installed. Binary files are in `$HOME/ghc-mod-sandbox/bin`. You can add this path to PATH, or put full path to **executables** in relevant ide-haskell and haskell-ghc-mod settings.\n\n**Don't forget to replace `$HOME` with actual path to home directory** for the latter option. On Linux, you can run\n\n```bash\necho $HOME/ghc-mod-sandbox/bin/*\n```\n\nin the terminal to get actual paths to all executables, if not sure what those should look like. ***NOTE:*** Bear in mind this trick probably won't work on Windows.\n\nFor example, assuming your `HOME` is `/home/user`:\n\n* In ide-haskell settings, set 'Stylish Haskell Path' to `/home/user/ghc-mod-sandbox/bin/stylish-haskell`\n* In haskell-ghc-mod settings, set 'Ghc Mod Path' to `/home/user/ghc-mod-sandbox/bin/ghc-mod`\n\n## Known conflicts\n\nThis package relies on grammar defined by `language-haskell`. Any other Haskell grammar packages (such as `haskell-grammar`) may conflict with it.\n\n## Installation\n\n```\n$ apm install language-haskell haskell-ghc-mod ide-haskell-cabal ide-haskell autocomplete-haskell\n```\n\n## Configuration\n\nPackage is fully configurable via **Edit → Preferences → Packages → ide-haskell\n→ Settings**\n\nYou will likely need to specify full paths to `stylish-haskell`, if it is not in\nyour `PATH`, at the very least.\n\nYou might also want to look into configuring haskell-ghc-mod ([haskell-ghc-mod README](https://github.com/atom-haskell/haskell-ghc-mod#haskell-ghc-mod-atom-package)) and ide-haskell-cabal ([ide-haskell-cabal README](https://github.com/atom-haskell/ide-haskell-cabal#ide-haskell-cabal-package))\n\n***NOTE***: Since version 1.0.0, some configuration options have been moved to\nbackends, in particular, haskell-ghc-mod. Migration should be automatic, but\nplease check if your configuration is correct just in case.\n\n### Keyboard shortcuts\n\n***NOTE***: Since version 1.0.0, most commands are provided by\nbackends, in particular, haskell-ghc-mod and ide-haskell-cabal. Please revise\nyour keymap accordingly. Refer to ([haskell-ghc-mod README](https://github.com/atom-haskell/haskell-ghc-mod#haskell-ghc-mod-atom-package)) and ([ide-haskell-cabal README](https://github.com/atom-haskell/ide-haskell-cabal#ide-haskell-cabal-package)) for details\n\nIde-Haskell comes with little pre-specified keybindings, so you will need to specify your own, if you want those.\n\nYou can edit Atom keybindings by opening 'Edit → Open Your Keymap'. Here is a template for all commands, provided by ide-haskell:\n\n```cson\n'atom-text-editor[data-grammar~=\"haskell\"]':\n  'escape': 'ide-haskell:close-tooltip' #this is set by default\n  '':'ide-haskell:prettify-file'\n  '':'ide-haskell:next-error'\n  '':'ide-haskell:prev-error'\n\n'atom-text-editor[data-grammar~=\"cabal\"]':\n  '': 'ide-haskell:prettify-file'\n\n'atom-workspace':\n  '': 'ide-haskell:toggle-output'\n```\n\n## API\n\nIde-haskell provides service-hub API with `ide-haskell-upi` service.\n\nMore information is available in [lib/upi.coffee][upi] source file\n\n[upi]: https://github.com/atom-haskell/ide-haskell/blob/master/lib/upi.coffee\n\n## TODO\n\n- [x] Cabal project autodetection\n- [x] Errors, warnings and linter\n- [x] Get type at point\n- [x] Autocompletion\n- [x] Code beautify\n- [x] Cabal project management (with ide-haskell-cabal)\n- [x] Jump to definition (since haskell-ghc-mod 1.3.0)\n- [x] Interactive REPL (alpha, with ide-haskell-repl)\n- [ ] Stack project management\n- [ ] Who calls and vice versa\n- [ ] Documentation support\n\n## Changelog\n\nChangelog is available [here][CHANGELOG].\n\n## License\n\nCopyright © 2015 Alexander Chaika, Nikolay Yakimov\n\nContributors:\n* John Quigley\n* Ondřej Janošík\n* Luka Horvat\n* Daniel Beskin\n* Daniel Gröber\n\nSee the [LICENSE.md][LICENSE] for details.\n\n[CHANGELOG]: https://github.com/atom-haskell/ide-haskell/blob/master/CHANGELOG.md\n[LICENSE]: https://github.com/atom-haskell/ide-haskell/blob/master/LICENSE.md\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/atom-haskell/ide-haskell/issues"
+  },
+  "homepage": "https://github.com/atom-haskell/ide-haskell#readme",
+  "_id": "ide-haskell@1.6.5",
+  "_shasum": "d88c1b6bc732539ee969ba8574a1731a468cd4e3",
+  "_resolved": "file:../d-116419-34270-d5zgr/package.tgz",
+  "_from": "../d-116419-34270-d5zgr/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "atom-haskell-utils",
+        "version": "0.7.8",
+        "path": "node_modules/atom-haskell-utils/lib/util.js"
+      },
+      {
+        "name": "sub-atom",
+        "version": "1.1.0",
+        "path": "node_modules/sub-atom/lib/sub-atom.coffee"
+      },
+      {
+        "name": "jquery",
+        "version": "2.2.3",
+        "path": "node_modules/sub-atom/node_modules/jquery/dist/jquery.js"
+      },
+      {
+        "name": "temp",
+        "version": "0.8.3",
+        "path": "node_modules/temp/lib/temp.js"
+      },
+      {
+        "name": "os-tmpdir",
+        "version": "1.0.1",
+        "path": "node_modules/temp/node_modules/os-tmpdir/index.js"
+      },
+      {
+        "name": "rimraf",
+        "version": "2.2.8",
+        "path": "node_modules/temp/node_modules/rimraf/rimraf.js"
+      }
+    ],
+    "extensions": {
+      ".json": [
+        "coffeelint.json",
+        "node_modules/atom-haskell-utils/package.json",
+        "node_modules/sub-atom/node_modules/jquery/bower.json",
+        "node_modules/sub-atom/node_modules/jquery/package.json",
+        "node_modules/sub-atom/package.json",
+        "node_modules/temp/node_modules/os-tmpdir/package.json",
+        "node_modules/temp/node_modules/rimraf/package.json",
+        "node_modules/temp/package.json",
+        "package.json"
+      ],
+      ".coffee": [
+        "lib/binutils/prettify.coffee",
+        "lib/binutils/util-cabal-format.coffee",
+        "lib/binutils/util-stylish-haskell.coffee",
+        "lib/editor-control.coffee",
+        "lib/ide-haskell.coffee",
+        "lib/message-object.coffee",
+        "lib/output-panel/output-panel.coffee",
+        "lib/output-panel/views/output-panel-buttons.coffee",
+        "lib/output-panel/views/output-panel-item.coffee",
+        "lib/output-panel/views/output-panel-items.coffee",
+        "lib/output-panel/views/output-panel.coffee",
+        "lib/output-panel/views/progress-bar.coffee",
+        "lib/plugin-manager.coffee",
+        "lib/result-item.coffee",
+        "lib/results-db.coffee",
+        "lib/upi.coffee",
+        "lib/utils.coffee",
+        "lib/views/tooltip-view.coffee",
+        "node_modules/sub-atom/lib/sub-atom.coffee"
+      ],
+      ".js": [
+        "node_modules/atom-haskell-utils/hs/hs.min.js",
+        "node_modules/atom-haskell-utils/lib/util.js",
+        "node_modules/sub-atom/node_modules/jquery/dist/jquery.js",
+        "node_modules/sub-atom/node_modules/jquery/dist/jquery.min.js",
+        "node_modules/sub-atom/node_modules/jquery/dist/jquery.slim.js",
+        "node_modules/sub-atom/node_modules/jquery/dist/jquery.slim.min.js",
+        "node_modules/sub-atom/node_modules/jquery/sizzle/dist/sizzle.js",
+        "node_modules/sub-atom/node_modules/jquery/sizzle/dist/sizzle.min.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/jsonp.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/load.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/parseJSON.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/parseXML.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/script.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/var/location.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/var/nonce.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/var/rquery.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax/xhr.js",
+        "node_modules/sub-atom/node_modules/jquery/src/ajax.js",
+        "node_modules/sub-atom/node_modules/jquery/src/attributes/attr.js",
+        "node_modules/sub-atom/node_modules/jquery/src/attributes/classes.js",
+        "node_modules/sub-atom/node_modules/jquery/src/attributes/prop.js",
+        "node_modules/sub-atom/node_modules/jquery/src/attributes/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/attributes/val.js",
+        "node_modules/sub-atom/node_modules/jquery/src/attributes.js",
+        "node_modules/sub-atom/node_modules/jquery/src/callbacks.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core/DOMEval.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core/access.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core/init.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core/parseHTML.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core/ready.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core/var/rsingleTag.js",
+        "node_modules/sub-atom/node_modules/jquery/src/core.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/addGetHookIf.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/adjustCSS.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/curCSS.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/defaultDisplay.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/hiddenVisibleSelectors.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/showHide.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/var/cssExpand.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/var/getStyles.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/var/isHidden.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/var/rmargin.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/var/rnumnonpx.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css/var/swap.js",
+        "node_modules/sub-atom/node_modules/jquery/src/css.js",
+        "node_modules/sub-atom/node_modules/jquery/src/data/Data.js",
+        "node_modules/sub-atom/node_modules/jquery/src/data/accepts.js",
+        "node_modules/sub-atom/node_modules/jquery/src/data/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/data/var/acceptData.js",
+        "node_modules/sub-atom/node_modules/jquery/src/data/var/dataPriv.js",
+        "node_modules/sub-atom/node_modules/jquery/src/data/var/dataUser.js",
+        "node_modules/sub-atom/node_modules/jquery/src/data.js",
+        "node_modules/sub-atom/node_modules/jquery/src/deferred/exceptionHook.js",
+        "node_modules/sub-atom/node_modules/jquery/src/deferred.js",
+        "node_modules/sub-atom/node_modules/jquery/src/deprecated.js",
+        "node_modules/sub-atom/node_modules/jquery/src/dimensions.js",
+        "node_modules/sub-atom/node_modules/jquery/src/effects/Tween.js",
+        "node_modules/sub-atom/node_modules/jquery/src/effects/animatedSelector.js",
+        "node_modules/sub-atom/node_modules/jquery/src/effects/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/effects.js",
+        "node_modules/sub-atom/node_modules/jquery/src/event/ajax.js",
+        "node_modules/sub-atom/node_modules/jquery/src/event/alias.js",
+        "node_modules/sub-atom/node_modules/jquery/src/event/focusin.js",
+        "node_modules/sub-atom/node_modules/jquery/src/event/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/event/trigger.js",
+        "node_modules/sub-atom/node_modules/jquery/src/event.js",
+        "node_modules/sub-atom/node_modules/jquery/src/exports/amd.js",
+        "node_modules/sub-atom/node_modules/jquery/src/exports/global.js",
+        "node_modules/sub-atom/node_modules/jquery/src/intro.js",
+        "node_modules/sub-atom/node_modules/jquery/src/jquery.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/_evalUrl.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/buildFragment.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/createSafeFragment.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/getAll.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/setGlobalEval.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/var/nodeNames.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/var/rcheckableType.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/var/rleadingWhitespace.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/var/rscriptType.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/var/rtagName.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation/wrapMap.js",
+        "node_modules/sub-atom/node_modules/jquery/src/manipulation.js",
+        "node_modules/sub-atom/node_modules/jquery/src/offset.js",
+        "node_modules/sub-atom/node_modules/jquery/src/outro.js",
+        "node_modules/sub-atom/node_modules/jquery/src/queue/delay.js",
+        "node_modules/sub-atom/node_modules/jquery/src/queue.js",
+        "node_modules/sub-atom/node_modules/jquery/src/selector-native.js",
+        "node_modules/sub-atom/node_modules/jquery/src/selector-sizzle.js",
+        "node_modules/sub-atom/node_modules/jquery/src/selector.js",
+        "node_modules/sub-atom/node_modules/jquery/src/serialize.js",
+        "node_modules/sub-atom/node_modules/jquery/src/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/traversing/findFilter.js",
+        "node_modules/sub-atom/node_modules/jquery/src/traversing/var/dir.js",
+        "node_modules/sub-atom/node_modules/jquery/src/traversing/var/rneedsContext.js",
+        "node_modules/sub-atom/node_modules/jquery/src/traversing/var/siblings.js",
+        "node_modules/sub-atom/node_modules/jquery/src/traversing.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/arr.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/class2type.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/concat.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/deletedIds.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/document.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/documentElement.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/hasOwn.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/indexOf.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/pnum.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/push.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/rcssNum.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/rnotwhite.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/slice.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/support.js",
+        "node_modules/sub-atom/node_modules/jquery/src/var/toString.js",
+        "node_modules/sub-atom/node_modules/jquery/src/wrap.js",
+        "node_modules/temp/examples/grepcount.js",
+        "node_modules/temp/examples/pdfcreator.js",
+        "node_modules/temp/lib/temp.js",
+        "node_modules/temp/no_cleanup.js",
+        "node_modules/temp/no_cleanup_on_exit.js",
+        "node_modules/temp/no_cleanup_on_exit.spec.js",
+        "node_modules/temp/node_modules/os-tmpdir/index.js",
+        "node_modules/temp/node_modules/rimraf/bin.js",
+        "node_modules/temp/node_modules/rimraf/rimraf.js"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "",
+          "lib/binutils",
+          "lib",
+          "lib/output-panel",
+          "lib/output-panel/views",
+          "lib/views"
+        ],
+        "dependencies": {
+          "temp": "^0.8.1",
+          "sub-atom": "^1.0.0",
+          "atom-haskell-utils": "^0.7.8"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/sub-atom/lib",
+          "node_modules/sub-atom"
+        ],
+        "dependencies": {
+          "jquery": "^2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/temp/examples",
+          "node_modules/temp/lib",
+          "node_modules/temp",
+          "node_modules/temp/test"
+        ],
+        "dependencies": {
+          "os-tmpdir": "^1.0.0",
+          "rimraf": "~2.2.6"
+        }
+      }
+    ]
+  }
+}
