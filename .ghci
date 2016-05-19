@@ -12,6 +12,3 @@
 
 :def source readFile
 :set prompt "Prelude> "
-
--- let numPlus = (+)
--- let x + y = numPlus (numPlus x y) 1
