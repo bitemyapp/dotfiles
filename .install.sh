@@ -13,7 +13,7 @@ sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-to
 wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -
 echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
 sudo apt-get update && sudo apt-get install stack -y
-
+stack install ghc-mod hlint stylish-haskell
 
 sudo apt-get update
 sudo apt-get install -y ghc-7.10.3
