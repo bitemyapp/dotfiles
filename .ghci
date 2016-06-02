@@ -1,5 +1,6 @@
 -- :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 -- :def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
+import Prelude (readFile, return, ($), (++), String, IO)
 
 :def hoogle \x -> return $ ":!hoogle search \"" ++ x ++ "\""
 :def doc \x -> return $ ":!hoogle search -i \"" ++ x ++ "\""
