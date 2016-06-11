@@ -560,3 +560,10 @@ Creative\ Cloud*
 .jspm/
 .hoogle/
 .ghc-mod/
+.xmonad/xmonad-x86_64-openbsd
+.mailrc
+.xsession
+.login
+.cshrc
+.cvsrc
+.Xdefaults
