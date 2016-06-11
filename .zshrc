@@ -1,3 +1,5 @@
+source ~/.profile
+
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 autoload -U colors && colors
@@ -15,7 +17,7 @@ zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-slashes 'yes'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+l:|=*'
 
-alias grep='grep --colour=auto'
+# alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
