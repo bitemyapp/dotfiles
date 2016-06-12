@@ -21,6 +21,7 @@
                      cider
                      clojure-mode
                      company
+                     company-ghci
                      csv-mode
                      dark-krystal-theme
                      dracula-theme
@@ -108,8 +109,8 @@
 (require 'erlang)
 
 ;; flycheck
-(require 'flycheck)
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (require 'flycheck)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
@@ -124,6 +125,13 @@
 ;; Override haskell-mode's BS.
 (global-set-key (kbd "M-n") 'next-error)
 (define-key interactive-haskell-mode-map (kbd "M-n") 'next-error)
+(setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
+(setq exec-path (append exec-path '("~/.local/bin")))
+
+;; (require 'company)
+;; (require 'company-ghci)
+;; (setq company-idle-delay 0)
+;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 ;; Stack
 ;; (add-to-list 'load-path "~/work/stack-ide/stack-mode/")
