@@ -25,6 +25,7 @@
                      dark-krystal-theme
                      dracula-theme
                      elixir-mode
+                     elm-mode
                      erlang
                      f
                      flycheck
