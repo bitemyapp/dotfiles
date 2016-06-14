@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 
 sudo add-apt-repository -y ppa:git-core/ppa
@@ -7,12 +8,13 @@ sudo add-apt-repository -y ppa:hvr/ghc
 
 sudo apt-get update
 
-sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh xorg-dev emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh xorg-dev tmux xorg-dev screen htop silversearcher-ag mumble darcs libtinfo-dev openjdk-7-jdk inotify-tools colordiff
+sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff
 
 
 wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -
 echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
 sudo apt-get update && sudo apt-get install stack -y
+stack setup
 stack install ghc-mod hlint stylish-haskell
 
 sudo apt-get update
@@ -26,6 +28,7 @@ sudo ln -sf /opt/ghc/7.10.3/bin/runhaskell /usr/bin/runhaskell
 
 sudo ln -sf /opt/cabal/1.22/bin/cabal /usr/bin/cabal
 
+sudo apt-get install libghc-x11-xft-dev
 cabal update
 cabal install xmonad xmonad-contrib xmonad-extras
 
