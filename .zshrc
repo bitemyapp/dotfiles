@@ -17,11 +17,9 @@ zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-slashes 'yes'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+l:|=*'
 
-# alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
 alias qke='emacs -q -nw'
-# alias ls='ls --color=auto'
 
 alias gpo='git pull origin && git push origin'
 alias gpoc='git pull origin `git name-rev --name-only HEAD` && git push origin `git name-rev --name-only HEAD`'
@@ -32,7 +30,6 @@ alias glr='git shortlog --format=format:"%cI %s"'
 alias ph='gpom && gphm'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
-alias repl='cabal repl --with-ghc=ghci-ng'
 
 alias hgdiff='hg diff | colordiff | less -R'
 export EDITOR="emacs -q -nw"

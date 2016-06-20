@@ -17,6 +17,20 @@ alias m="mate ."
 alias s="subl ."
 alias o="open"
 alias oo="open ."
+alias l='ls -CF'
+alias less='less -R'
+alias mg='mg -n'
+alias qke='emacs -q -nw'
+
+alias gpo='git pull origin && git push origin'
+alias gpoc='git pull origin `git name-rev --name-only HEAD` && git push origin `git name-rev --name-only HEAD`'
+alias gpom='git pull origin master'
+alias gpgm='git pull gh master'
+alias gl='git log --oneline --graph --decorate --all'
+alias glr='git shortlog --format=format:"%cI %s"'
+alias ph='gpom && gphm'
+alias act='source `find . -name "activate" | grep "bin/activate"`'
+alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
