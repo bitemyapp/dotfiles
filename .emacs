@@ -53,6 +53,7 @@
                      rust-mode
                      scss-mode
                      tabbar
+                     toml-mode
                      twittering-mode
                      ubuntu-theme
                      undo-tree
