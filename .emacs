@@ -271,33 +271,33 @@
 ;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; yasnippet
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
-(setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
-(require 'yasnippet)
-(yas-global-mode 1)
-(define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
+;; (add-to-list 'load-path "~/.emacs.d/yasnippet")
+;; (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
+;; (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
 
-(defun yas/goto-end-of-active-field ()
-  (interactive)
-  (let* ((snippet (car (yas--snippets-at-point)))
-        (position (yas--field-end (yas--snippet-active-field snippet))))
-    (if (= (point) position)
-        (move-end-of-line 1)
-      (goto-char position))))
+;; (defun yas/goto-end-of-active-field ()
+;;   (interactive)
+;;   (let* ((snippet (car (yas--snippets-at-point)))
+;;         (position (yas--field-end (yas--snippet-active-field snippet))))
+;;     (if (= (point) position)
+;;         (move-end-of-line 1)
+;;       (goto-char position))))
 
-(defun yas/goto-start-of-active-field ()
-  (interactive)
-  (let* ((snippet (car (yas--snippets-at-point)))
-        (position (yas--field-start (yas--snippet-active-field snippet))))
-    (if (= (point) position)
-        (move-beginning-of-line 1)
-      (goto-char position))))
+;; (defun yas/goto-start-of-active-field ()
+;;   (interactive)
+;;   (let* ((snippet (car (yas--snippets-at-point)))
+;;         (position (yas--field-start (yas--snippet-active-field snippet))))
+;;     (if (= (point) position)
+;;         (move-beginning-of-line 1)
+;;       (goto-char position))))
 
-(define-key yas-keymap (kbd "C-e") 'yas/goto-end-of-active-field)
-(define-key yas-keymap (kbd "C-a") 'yas/goto-start-of-active-field)
-(setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
-(setq yas-verbosity 1)
-(setq yas-wrap-around-region t)
+;; (define-key yas-keymap (kbd "C-e") 'yas/goto-end-of-active-field)
+;; (define-key yas-keymap (kbd "C-a") 'yas/goto-start-of-active-field)
+;; (setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
+;; (setq yas-verbosity 1)
+;; (setq yas-wrap-around-region t)
 
 ;; default browser
 (setq browse-url-browser-function 'browse-url-generic
@@ -340,7 +340,7 @@
 (when (> (display-pixel-height) 1200)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 200 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 160 :family "Ubuntu Mono"))))))
 
 (setq mac-option-modifier 'meta)
 
