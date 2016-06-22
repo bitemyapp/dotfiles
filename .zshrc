@@ -1,4 +1,5 @@
 source ~/.profile
+source ~/.aliases
 
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
@@ -82,7 +83,7 @@ function git_prompt_info() {
 }
 
 setopt prompt_subst
-PROMPT='%{%F{white}%}[ %{%F{blue}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
+PROMPT='%{%F{white}%}[ %{%F{blue}%}%n@%m %{%F{red}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
 %{%F{reset}%}$ '
 
 parse_git_branch() {
