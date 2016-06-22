@@ -1,9 +1,5 @@
-templates:
-  params:
-    author-email: cma@bitemyapp.com
-    author-name: Chris Allen
-    copyright: 2015, Chris Allen
-    github-username: bitemyapp
-
-# Turn off system GHC
-system-ghc: false
+# This file contains default non-project-specific settings for 'stack', used
+# in all projects.  For more information about stack's configuration, see
+# http://docs.haskellstack.org/en/stable/yaml_configuration/
+#
+{}
