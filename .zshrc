@@ -1,4 +1,5 @@
 source ~/.profile
+source ~/.aliases
 
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
@@ -17,21 +18,6 @@ zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-slashes 'yes'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+l:|=*'
 
-alias less='less -R'
-alias mg='mg -n'
-alias qke='emacs -q -nw'
-
-alias gpo='git pull origin && git push origin'
-alias gpoc='git pull origin `git name-rev --name-only HEAD` && git push origin `git name-rev --name-only HEAD`'
-alias gpom='git pull origin master'
-alias gpgm='git pull gh master'
-alias gl='git log --oneline --graph --decorate --all'
-alias glr='git shortlog --format=format:"%cI %s"'
-alias ph='gpom && gphm'
-alias act='source `find . -name "activate" | grep "bin/activate"`'
-alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
-
-alias hgdiff='hg diff | colordiff | less -R'
 export EDITOR="emacs -q -nw"
 export GIT_EDITOR="emacs -q -nw"
 
@@ -97,7 +83,7 @@ function git_prompt_info() {
 }
 
 setopt prompt_subst
-PROMPT='%{%F{white}%}[ %{%F{blue}%}%n@%m %{%F{cyan}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
+PROMPT='%{%F{white}%}[ %{%F{blue}%}%n@%m %{%F{red}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
 %{%F{reset}%}$ '
 
 parse_git_branch() {

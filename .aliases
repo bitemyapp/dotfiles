@@ -32,6 +32,24 @@ alias ph='gpom && gphm'
 alias act='source `find . -name "activate" | grep "bin/activate"`'
 alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
 
+# Personal shortcuts
+alias less='less -R'
+alias mg='mg -n'
+alias qke='emacs -q -nw'
+
+alias gpo='git pull origin && git push origin'
+alias gpoc='git pull origin `git name-rev --name-only HEAD` && git push origin `git name-rev --name-only HEAD`'
+alias gpom='git pull origin master'
+alias gpgm='git pull gh master'
+alias gl='git log --oneline --graph --decorate --all'
+alias glr='git shortlog --format=format:"%cI %s"'
+alias ph='gpom && gphm'
+alias act='source `find . -name "activate" | grep "bin/activate"`'
+alias kill-ghc-modi="ps aux | grep ghc-modi | grep -v grep | awk '{print $2}' | xargs kill"
+alias repl='cabal repl --with-ghc=ghci-ng'
+
+alias hgdiff='hg diff | colordiff | less -R'
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -70,14 +88,14 @@ alias whois="whois -h whois-servers.net"
 alias flush="dscacheutil -flushcache"
 
 # View HTTP traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+# alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+# alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Canonical hex dump; some systems have this symlinked
-type -t hd > /dev/null || alias hd="hexdump -C"
+# type -t hd > /dev/null || alias hd="hexdump -C"
 
 # OS X has no `md5sum`, so use `md5` as a fallback
-type -t md5sum > /dev/null || alias md5sum="md5"
+# type -t md5sum > /dev/null || alias md5sum="md5"
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
