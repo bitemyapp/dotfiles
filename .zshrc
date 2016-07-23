@@ -74,6 +74,8 @@ export PATH=/opt/ghc/8.0.1/bin:$PATH
 export PATH=$HOME/work/node-v4.2.0-linux-x64/bin:$PATH
 export PATH=$HOME/.bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH="$HOME/work/rustc/src"
+export CARGO_HOME="$HOME/.cargo"
 
 source ~/.secrets
 

@@ -8,7 +8,7 @@ sudo add-apt-repository -y ppa:hvr/ghc
 
 sudo apt-get update
 
-sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff
+sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff fonts-roboto
 
 
 wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -

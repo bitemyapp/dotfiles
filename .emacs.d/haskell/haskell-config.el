@@ -8,8 +8,8 @@
 (require 'haskell)
 
 ;; (require 'haskell-indentation-mode)
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
+;; (require 'haskell-interactive-mode)
+;; (require 'haskell-process)
 ;; (require 'haskell-font-lock)
 
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))

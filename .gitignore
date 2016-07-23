@@ -568,3 +568,6 @@ Creative\ Cloud*
 .cvsrc
 .Xdefaults
 .*-secrets*
+Backup/
+.TelegramDesktop/
+.wget-hsts

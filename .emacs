@@ -48,6 +48,7 @@
                      protobuf-mode
                      puppet-mode
                      python-mode
+                     racer
                      rainbow-delimiters
                      rainbow-mode
                      rust-mode
@@ -58,6 +59,7 @@
                      ubuntu-theme
                      undo-tree
                      virtualenv
+                     w3m
                      warm-night-theme
                      writeroom-mode
                      yaml-mode
@@ -128,6 +130,7 @@
 (define-key interactive-haskell-mode-map (kbd "M-n") 'next-error)
 (setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
 (setq exec-path (append exec-path '("~/.local/bin")))
+;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 ;; (require 'company)
 ;; (require 'company-ghci)
@@ -235,6 +238,15 @@
 ;; Rust mode
 (require 'rust-mode)
 
+;; (setq racer-cmd "$HOME/.cargo/bin/racer")
+(setq racer-rust-src-path (concat (getenv "HOME") "/work/rustc/src"))
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+
 ;; SCSS
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
@@ -252,8 +264,6 @@
 ;; Terraform
 (add-to-list 'load-path "~/.emacs.d/terraform-mode")
 (require 'terraform-mode)
-(custom-set-variables
- '(terraform-indent-level 2))
 
 ;; Undo Tree
 ;; (require 'undo-tree)
@@ -301,8 +311,7 @@
 ;; (setq yas-wrap-around-region t)
 
 ;; default browser
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "google-chrome")
+(setq browse-url-browser-function 'w3m-goto-url-new-session)
 
 ;; Desktop mode
 (setq desktop-load-locked-desktop t)
@@ -346,3 +355,39 @@
 (setq mac-option-modifier 'meta)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 120 :family "Ubuntu Mono")))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(haskell-notify-p t)
+ '(haskell-process-args-ghci (quote nil))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-reload-with-fbytecode nil)
+ '(haskell-process-show-debug-tips nil)
+ '(haskell-process-suggest-haskell-docs-imports t)
+ '(haskell-process-suggest-hoogle-imports nil)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote stack-ghci))
+ '(haskell-process-use-presentation-mode t)
+ '(haskell-stylish-on-save nil)
+ '(haskell-tags-on-save nil)
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always))
+ '(package-selected-packages
+   (quote
+    (intero yasnippet yaml-mode writeroom-mode warm-night-theme w3m virtualenv undo-tree ubuntu-theme twittering-mode toml-mode tabbar scss-mode rainbow-mode rainbow-delimiters racer python-mode puppet-mode protobuf-mode projectile php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme nix-mode monokai-theme material-theme markdown-mode magit json-mode js2-mode idris-mode hcl-mode ghc flycheck erlang elm-mode elixir-mode dracula-theme dark-krystal-theme csv-mode company-ghci cider auto-complete aurora-theme abyss-theme)))
+ '(shift-select-mode t)
+ '(shm-auto-insert-bangs t)
+ '(shm-auto-insert-skeletons t)
+ '(shm-use-hdevtools t)
+ '(shm-use-presentation-mode t))

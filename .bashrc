@@ -116,4 +116,6 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$HOME/.local/bin:$PATH
-
+export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH="$HOME/work/rustc/src"
+export CARGO_HOME="$HOME/.cargo"
