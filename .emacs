@@ -31,6 +31,7 @@
                      f
                      flycheck
                      ghc
+                     go-mode
                      haskell-mode
                      hcl-mode
                      idris-mode
@@ -117,6 +118,8 @@
 
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
+;; go
+(require 'go-mode-autoloads)
 
 ;; calls runhaskell which doesn't work
 ;; (eval-after-load 'flycheck
