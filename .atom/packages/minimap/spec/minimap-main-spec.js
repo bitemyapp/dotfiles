@@ -55,6 +55,28 @@ describe('Minimap package', () => {
     it('attaches a minimap element to the editor view', () => {
       expect(editorElement.shadowRoot.querySelector('atom-text-editor-minimap')).toExist()
     })
+
+    describe('when the package is deactivated', () => {
+      beforeEach(() => {
+        atom.packages.deactivatePackage('minimap')
+      })
+      it('removes the minimap from their editor parent', () => {
+        expect(editorElement.shadowRoot.querySelector('atom-text-editor-minimap')).not.toExist()
+      })
+
+      describe('and reactivated with a remaining minimap in the DOM', () => {
+        beforeEach(() => {
+          const m = new Minimap({textEditor: editor})
+          const v = atom.views.getView(m)
+          editorElement.shadowRoot.appendChild(v)
+          waitsForPromise(() => atom.packages.activatePackage('minimap'))
+        })
+
+        it('removes the remaining minimap', () => {
+          expect(editorElement.shadowRoot.querySelectorAll('atom-text-editor-minimap').length).toEqual(1)
+        })
+      })
+    })
   })
 
   describe('::observeMinimaps', () => {

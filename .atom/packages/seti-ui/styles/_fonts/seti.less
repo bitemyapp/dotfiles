@@ -1,0 +1,430 @@
+@font-face {
+	font-family: 'seti';
+	src: url('atom://seti-ui/styles/_fonts/seti/seti.eot');
+	src: url('atom://seti-ui/styles/_fonts/seti/seti.eot?#iefix') format('eot'),
+		url('atom://seti-ui/styles/_fonts/seti/seti.woff2') format('woff2'),
+		url('atom://seti-ui/styles/_fonts/seti/seti.woff') format('woff'),
+		url('atom://seti-ui/styles/_fonts/seti/seti.ttf') format('truetype'),
+		url('atom://seti-ui/styles/_fonts/seti/seti.svg#seti') format('svg');
+		font-weight: normal;
+		font-style: normal;
+}
+
+.icon-base-pseudo {
+	font-family: 'seti';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-decoration: none;
+	text-transform: none;
+}
+
+.icon-char(@filename) {
+	@apple: '\E001';
+	@audio: '\E002';
+	@bower: '\E003';
+	@c-sharp: '\E004';
+	@c: '\E005';
+	@cake_php: '\E006';
+	@checkbox-unchecked: '\E007';
+	@checkbox: '\E008';
+	@cjsx: '\E009';
+	@clock: '\E00A';
+	@coffee: '\E00B';
+	@coffee_erb: '\E00C';
+	@coldfusion: '\E00D';
+	@config: '\E00E';
+	@cpp: '\E00F';
+	@css: '\E010';
+	@csv: '\E011';
+	@default: '\E012';
+	@deprecation-cop: '\E013';
+	@docker: '\E014';
+	@editorconfig: '\E015';
+	@ejs: '\E016';
+	@elm: '\E017';
+	@error: '\E018';
+	@favicon: '\E019';
+	@folder: '\E01A';
+	@font: '\E01B';
+	@git_folder: '\E01C';
+	@git_ignore: '\E01D';
+	@github: '\E01E';
+	@go: '\E01F';
+	@go2: '\E020';
+	@gradle: '\E021';
+	@grails: '\E022';
+	@grunt: '\E023';
+	@gulp: '\E024';
+	@hacklang: '\E025';
+	@haml: '\E026';
+	@haskell: '\E027';
+	@heroku: '\E028';
+	@html: '\E029';
+	@html_erb: '\E02A';
+	@ignored: '\E02B';
+	@illustrator: '\E02C';
+	@image: '\E02D';
+	@info: '\E02E';
+	@ionic: '\E02F';
+	@jade: '\E030';
+	@java: '\E031';
+	@javascript: '\E032';
+	@js_erb: '\E033';
+	@json: '\E034';
+	@julia: '\E035';
+	@karma: '\E036';
+	@less: '\E037';
+	@license: '\E038';
+	@liquid: '\E039';
+	@livescript: '\E03A';
+	@lua: '\E03B';
+	@markdown: '\E03C';
+	@mustache: '\E03D';
+	@new-file: '\E03E';
+	@npm: '\E03F';
+	@npm_ignored: '\E040';
+	@ocaml: '\E041';
+	@pdf: '\E042';
+	@perl: '\E043';
+	@photoshop: '\E044';
+	@php: '\E045';
+	@project: '\E046';
+	@pug: '\E047';
+	@puppet: '\E048';
+	@python: '\E049';
+	@rails: '\E04A';
+	@react: '\E04B';
+	@ruby: '\E04C';
+	@rust: '\E04D';
+	@sass: '\E04E';
+	@sbt: '\E04F';
+	@scala: '\E050';
+	@search: '\E051';
+	@settings: '\E052';
+	@shell: '\E053';
+	@slim: '\E054';
+	@smarty: '\E055';
+	@stylus: '\E056';
+	@svg: '\E057';
+	@swift: '\E058';
+	@terraform: '\E059';
+	@tex: '\E05A';
+	@time-cop: '\E05B';
+	@todo: '\E05C';
+	@twig: '\E05D';
+	@typescript: '\E05E';
+	@vala: '\E05F';
+	@video: '\E060';
+	@xml: '\E061';
+	@yml: '\E062';
+	
+	content: @@filename;
+}
+
+.icon(@filename, @color: @white, @insert: before) {
+	@pseudo-selector: ~':@{insert}';
+
+	&@{pseudo-selector} {
+		&:extend(.icon-base-pseudo);
+		.icon-char(@filename);
+		color: @color;
+	}
+}
+
+.icon-apple {
+	.icon(apple);
+}
+.icon-audio {
+	.icon(audio);
+}
+.icon-bower {
+	.icon(bower);
+}
+.icon-c-sharp {
+	.icon(c-sharp);
+}
+.icon-c {
+	.icon(c);
+}
+.icon-cake_php {
+	.icon(cake_php);
+}
+.icon-checkbox-unchecked {
+	.icon(checkbox-unchecked);
+}
+.icon-checkbox {
+	.icon(checkbox);
+}
+.icon-cjsx {
+	.icon(cjsx);
+}
+.icon-clock {
+	.icon(clock);
+}
+.icon-coffee {
+	.icon(coffee);
+}
+.icon-coffee_erb {
+	.icon(coffee_erb);
+}
+.icon-coldfusion {
+	.icon(coldfusion);
+}
+.icon-config {
+	.icon(config);
+}
+.icon-cpp {
+	.icon(cpp);
+}
+.icon-css {
+	.icon(css);
+}
+.icon-csv {
+	.icon(csv);
+}
+.icon-default {
+	.icon(default);
+}
+.icon-deprecation-cop {
+	.icon(deprecation-cop);
+}
+.icon-docker {
+	.icon(docker);
+}
+.icon-editorconfig {
+	.icon(editorconfig);
+}
+.icon-ejs {
+	.icon(ejs);
+}
+.icon-elm {
+	.icon(elm);
+}
+.icon-error {
+	.icon(error);
+}
+.icon-favicon {
+	.icon(favicon);
+}
+.icon-folder {
+	.icon(folder);
+}
+.icon-font {
+	.icon(font);
+}
+.icon-git_folder {
+	.icon(git_folder);
+}
+.icon-git_ignore {
+	.icon(git_ignore);
+}
+.icon-github {
+	.icon(github);
+}
+.icon-go {
+	.icon(go);
+}
+.icon-go2 {
+	.icon(go2);
+}
+.icon-gradle {
+	.icon(gradle);
+}
+.icon-grails {
+	.icon(grails);
+}
+.icon-grunt {
+	.icon(grunt);
+}
+.icon-gulp {
+	.icon(gulp);
+}
+.icon-hacklang {
+	.icon(hacklang);
+}
+.icon-haml {
+	.icon(haml);
+}
+.icon-haskell {
+	.icon(haskell);
+}
+.icon-heroku {
+	.icon(heroku);
+}
+.icon-html {
+	.icon(html);
+}
+.icon-html_erb {
+	.icon(html_erb);
+}
+.icon-ignored {
+	.icon(ignored);
+}
+.icon-illustrator {
+	.icon(illustrator);
+}
+.icon-image {
+	.icon(image);
+}
+.icon-info {
+	.icon(info);
+}
+.icon-ionic {
+	.icon(ionic);
+}
+.icon-jade {
+	.icon(jade);
+}
+.icon-java {
+	.icon(java);
+}
+.icon-javascript {
+	.icon(javascript);
+}
+.icon-js_erb {
+	.icon(js_erb);
+}
+.icon-json {
+	.icon(json);
+}
+.icon-julia {
+	.icon(julia);
+}
+.icon-karma {
+	.icon(karma);
+}
+.icon-less {
+	.icon(less);
+}
+.icon-license {
+	.icon(license);
+}
+.icon-liquid {
+	.icon(liquid);
+}
+.icon-livescript {
+	.icon(livescript);
+}
+.icon-lua {
+	.icon(lua);
+}
+.icon-markdown {
+	.icon(markdown);
+}
+.icon-mustache {
+	.icon(mustache);
+}
+.icon-new-file {
+	.icon(new-file);
+}
+.icon-npm {
+	.icon(npm);
+}
+.icon-npm_ignored {
+	.icon(npm_ignored);
+}
+.icon-ocaml {
+	.icon(ocaml);
+}
+.icon-pdf {
+	.icon(pdf);
+}
+.icon-perl {
+	.icon(perl);
+}
+.icon-photoshop {
+	.icon(photoshop);
+}
+.icon-php {
+	.icon(php);
+}
+.icon-project {
+	.icon(project);
+}
+.icon-pug {
+	.icon(pug);
+}
+.icon-puppet {
+	.icon(puppet);
+}
+.icon-python {
+	.icon(python);
+}
+.icon-rails {
+	.icon(rails);
+}
+.icon-react {
+	.icon(react);
+}
+.icon-ruby {
+	.icon(ruby);
+}
+.icon-rust {
+	.icon(rust);
+}
+.icon-sass {
+	.icon(sass);
+}
+.icon-sbt {
+	.icon(sbt);
+}
+.icon-scala {
+	.icon(scala);
+}
+.icon-search {
+	.icon(search);
+}
+.icon-settings {
+	.icon(settings);
+}
+.icon-shell {
+	.icon(shell);
+}
+.icon-slim {
+	.icon(slim);
+}
+.icon-smarty {
+	.icon(smarty);
+}
+.icon-stylus {
+	.icon(stylus);
+}
+.icon-svg {
+	.icon(svg);
+}
+.icon-swift {
+	.icon(swift);
+}
+.icon-terraform {
+	.icon(terraform);
+}
+.icon-tex {
+	.icon(tex);
+}
+.icon-time-cop {
+	.icon(time-cop);
+}
+.icon-todo {
+	.icon(todo);
+}
+.icon-twig {
+	.icon(twig);
+}
+.icon-typescript {
+	.icon(typescript);
+}
+.icon-vala {
+	.icon(vala);
+}
+.icon-video {
+	.icon(video);
+}
+.icon-xml {
+	.icon(xml);
+}
+.icon-yml {
+	.icon(yml);
+}

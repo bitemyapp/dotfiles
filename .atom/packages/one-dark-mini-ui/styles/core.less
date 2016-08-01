@@ -1,0 +1,88 @@
+// Misc
+
+// Remove extra space
+// TODO: fix in core/background-tips
+atom-workspace .horizontal atom-pane-resize-handle.vertical {
+  position: absolute;
+}
+
+.preview-pane .results-view .path-match-number {
+  // show number also on selected item
+  color: inherit;
+  opacity: .6;
+}
+
+.tool-panel.incompatible-packages {
+  // incompatible-packages isn't really a tool-panel and more a whole pane
+  .text(normal);
+  background-color: @level-2-color;
+}
+
+atom-notifications {
+  font-size: 14px;
+  atom-notification {
+    &:first-child.has-close .message {
+      padding-right: 120px;
+    }
+    &:only-child.has-close .message,
+    &.has-close .message {
+      padding-right: 40px;
+    }
+    .item {
+      padding: @ui-padding/2;
+    }
+    &.icon:before {
+      padding-top: .85em;
+    }
+  }
+}
+
+// Styleguide ----------------------------------------------
+
+.styleguide {
+  font-size: inherit;
+  padding: 0;
+
+  section.bordered,
+  .section.bordered {
+    border-top: none;
+  }
+
+  .example {
+    border: none;
+
+    .example-rendered {
+      border: 1px solid @base-border-color;
+      border-right: none;
+      background: @base-background-color;
+    }
+
+    .example-code {
+      border: 1px solid @base-border-color;
+      border-radius: 0 @component-border-radius @component-border-radius 0;
+    }
+  }
+
+  [data-name="variables"] .example-rendered {
+    border-right: 1px solid @base-border-color;
+    border-radius: @component-border-radius;
+  }
+
+  // Components
+  atom-panel.modal:after {
+    position: absolute;  // prevent overlay backdrop from leaking outside
+    left: -@ui-padding;
+    right: -@ui-padding;
+    bottom: -@ui-padding;
+  }
+
+  atom-panel.modal:after {
+    position: absolute;  // prevent overlay backdrop from leaking outside
+  }
+
+  .select-list atom-text-editor[mini],
+  .popover-list atom-text-editor[mini] {
+    height: initial;
+  }
+
+}

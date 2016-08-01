@@ -4,7 +4,7 @@
 
 status-bar {
   .text(subtle);
-  background: @base-background-color;
+  background: @base-border-color;
   height: @input-height;
   line-height: @component-line-height;
   font-size: 11px;
@@ -155,7 +155,6 @@ kbd {
 atom-text-editor[mini],
 atom-text-editor[mini]::shadow {
   transition: all @transition-time ease;
-  color: @text-color-highlight;
   background-color: @input-background-color;
   border: 1px solid @input-background-color;
   border-radius: @component-border-radius;
@@ -165,8 +164,13 @@ atom-text-editor[mini]::shadow {
   line-height: @input-height - 2px;
 
   &:hover {
-    border: 1px solid @input-border-color !important;
-    color: @text-color-highlight !important;
+    border: 1px solid @input-border-color;
+    color: @text-color-highlight;
+  }
+
+  .text,
+  .source {
+    color: @text-color;
   }
 
   .placeholder-text {
@@ -176,27 +180,29 @@ atom-text-editor[mini]::shadow {
   }
 
   .cursor {
-    border-color: @text-color;
-  }
-
-  .selection .region {
-    background-color: @background-color-highlight !important;
+    border-color: @text-color-highlight;
   }
 }
 
 atom-text-editor[mini].is-focused,
 atom-text-editor[mini].is-focused::shadow {
-  border: 1px solid @text-color-highlight;
+  border: 1px solid @input-border-color;
   background-color: @input-background-color-active;
 
+  .text,
+  .source {
+    color: @input-text-color-active;
+  }
+
+
   &:hover {
-    border: 1px solid @text-color-highlight !important;
-    background-color: @input-background-color-active !important;
-    color: @text-color-highlight !important;
+    border: 1px solid @text-color-highlight;
+    background-color: @input-background-color-active;
+    color: @text-color-highlight;
   }
 
   .selection .region {
-    background-color: @background-color-highlight !important;
+    background-color: fade(@background-color-highlight, 40%);
   }
 }
 

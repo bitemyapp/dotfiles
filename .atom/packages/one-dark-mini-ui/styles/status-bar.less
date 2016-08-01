@@ -1,0 +1,37 @@
+@status-bar-height: @ui-padding*1.75;
+@status-bar-padding: @ui-padding;
+
+.status-bar {
+  font-size: @ui-size;
+  height: @status-bar-height;
+  line-height: @status-bar-height;
+  background-color: @level-3-color;
+
+  .flexbox-repaint-hack {
+    padding: 0 @status-bar-padding/2;
+  }
+
+  .inline-block {
+    margin-right: @status-bar-padding;
+    vertical-align: top;
+  }
+
+  .status-bar-right {
+    .inline-block {
+      margin-right: 0;
+      margin-left: @status-bar-padding;
+      & > .inline-block {
+        margin-left: 0;
+      }
+    }
+    .icon {
+      margin-right: @status-bar-padding/8;
+    }
+  }
+
+  .icon::before {
+    font-size: 16px; // keeps them sharp
+  	width: 16px;
+    height: 16px;
+  }
+}

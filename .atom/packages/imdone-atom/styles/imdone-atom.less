@@ -1,0 +1,305 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+@menu-component-width: 178px;
+@menu-width: 232px;
+@board-list-width: 362px;
+@board-list-name-width: 330px;
+@config-height: 300px;
+@task-font-size: 14px;
+// @task-background-color: @inset-panel-background-color;
+@task-background-color: @tab-background-color;
+
+.imdone-atom {
+  .mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 99;
+    .spinner {
+      text-align: center;
+      margin-top: 20em;
+    }
+    .spinner-container, .spinner-mask {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .spinner-mask {
+      background-color: @tab-background-color;
+      opacity: .45;
+    }
+  }
+  .btn {
+    height: 27px;
+  }
+  .imdone-loading {
+    p, ul {
+      font-size: 16px;
+    }
+  }
+
+  .split-handle-y {
+    height: 8px;
+    margin-top: -2px;
+    width: 100%;
+    cursor: row-resize;
+  }
+
+  .imdone-app-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    &.shift {
+      bottom: @config-height;
+    }
+  }
+
+  .imdone-main-container {
+    display: none;
+  }
+
+  .imdone-config-container {
+    position: absolute;
+    bottom: -@config-height;
+    right: 0;
+    left: 0;
+    height: @config-height;
+    background-color: @tool-panel-background-color;
+    border-top: 1px solid @tool-panel-border-color;
+    padding: 0 1em;
+    &.open {
+      bottom: 0;
+      z-index: 100;
+      display: block;
+    }
+    .input-small {
+      width: 200px;
+      float: left;
+      margin-right: 5px;
+    }
+    .config-panel {
+      display: none;
+    }
+    .close-button {
+      position: absolute;
+      top: 2px;
+      right: 8px;
+      cursor: default;
+      font-size: 2em;
+      font-weight: bold;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  .imdone-ghost {
+    background-color: @background-color-highlight !important;
+  }
+  .imdone-loading {
+    margin: 1em;
+  }
+  color: @text-color;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  .imdone-menu {
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    left: -196px;
+    width: @menu-width;
+    z-index: 1;
+    background-color: @base-background-color;
+    transition: left  0.2s;
+    &.open {
+      left: 0;
+    }
+    .imdone-menu-inner {
+      position:absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: 1.5em 0 1em 1em;
+    }
+    .imdone-toolbar {
+      right: 6px;
+      top: 2px;
+      position: absolute;
+      width: 24px;
+      .imdone-toolbar-button {
+        cursor: pointer;
+        text-align: center;
+        border: none;
+        background-color: inherit;
+        height: 24px;
+        padding: 4px;
+      }
+    }
+    .imdone-filter {
+      width: @menu-component-width;
+      atom-text-editor {
+        padding-right: 24px;
+      }
+      .clear-filter {
+        cursor: pointer;
+        position: absolute;
+        top: 2px;
+        right: 42px;
+        width: 24px;
+        border: none;
+        background-color: inherit;
+        height: 22px;
+        padding: 4px;
+      }
+    }
+    .lists-wrapper {
+      overflow: auto;
+      position: absolute;
+      top: 30px;
+      bottom: 0;
+    }
+    .lists {
+      list-style: none;
+      padding-left: 0;
+      margin-top: .5em;
+      width: @menu-component-width;
+      .hidden-list {
+        color: @text-color-subtle;
+      }
+      li {
+        line-height: 1.5;
+        font-size: 1em;
+        padding-left: 2px;
+        &:hover {
+          background-color: @background-color-highlight;
+        }
+        .toggle-list {
+          font-size: 1.25em;
+          cursor: pointer;
+        }
+        .reorder {
+          cursor: move;
+        }
+      }
+    }
+  }
+
+  .imdone-board-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 32px;
+    right: 0;
+    overflow: auto;
+    &.shift {
+      left: @menu-width;
+    }
+    transition: left 0.2s;
+    .imdone-board {
+      margin: .5em 1em 1em 0;
+      height: 96%;
+      .list {
+        float: left;
+        width: @board-list-width;
+        padding: 10px;
+        background-color: @panel-heading-background-color;
+        margin-right: 10px;
+        .list-name-wrapper {
+          background-color: @task-background-color;
+          font-size: 1.5em;
+          padding: .5em;
+          .list-name {
+            display: inline-block;
+            width: @board-list-name-width;
+            .toggle-list-rename {
+              display: none;
+              float: right;
+            }
+            .delete-list {
+              float: right;
+            }
+            &:hover .toggle-list-rename {
+              display: inline;
+            }
+          }
+        }
+        .tasks {
+          min-height: 50px;
+          list-style: none;
+          padding-left: 0;
+        }
+        .task {
+          background-color: @task-background-color;
+          font-size: @task-font-size;
+          white-space: normal;
+          word-wrap: break-word;
+          position: relative;
+          cursor: move;
+          border: 2px solid @task-background-color;
+          .task-text {
+            p {
+              margin: 0 0 5px;
+            }
+          }
+          .task-order {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+          }
+          .task-context {
+            color: @text-color-warning;
+          }
+          .task-tags {
+            color: @text-color-success;
+          }
+          .task-meta table {
+            border: 1px solid @panel-heading-background-color;
+            border-bottom: none;
+            width: 100%;
+            margin: .5em 0 .5em 0;
+            tr {
+              border-bottom: 1px solid @panel-heading-background-color;
+              word-break: break-word;
+              td {
+                padding: 3px;
+                &:nth-child(n+2) {
+                  text-align: right;
+                }
+              }
+            }
+          }
+          .task-source {
+            a {
+              color: @text-color-info;
+            }
+          }
+          .imdone-task-plugins {
+            text-align: right;
+          }
+          &.selected {
+            border-color: @text-color-info;
+          }
+        }
+      }
+    }
+  }
+
+  .well {
+    padding: 10px;
+    margin-bottom: @task-font-size;
+  }
+}

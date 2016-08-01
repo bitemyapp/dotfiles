@@ -1,0 +1,86 @@
+@tree-view-height: @ui-line-height;
+
+.tree-view {
+  font-size: @ui-size;
+  background: @tree-view-background-color;
+
+  .project-root.project-root {
+    &:first-child {
+      padding-top: @ui-padding-pane;
+    }
+    &:before {
+      height: @ui-tab-height;
+      background-clip: padding-box;
+    }
+    & > .header .name {
+      line-height: @ui-tab-height;
+    }
+  }
+
+  .selected:before {
+    background: @background-color-highlight;
+  }
+}
+
+.theme-one-dark-mini-ui .tree-view .project-root.project-root::before {
+  border-top: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.tree-view-resizer {
+  .tree-view-resize-handle {
+    width: 8px;
+  }
+}
+
+.tree-view-scroller {
+  border-width: 0 0 1px 0;
+  border-image: linear-gradient(to right, @tree-view-background-color @component-padding, @base-border-color @component-padding * 5) 0 0 1 0 stretch;
+}
+
+// Variable height, based on ems
+.list-group li:not(.list-nested-item),
+.list-tree li:not(.list-nested-item),
+.list-group li.list-nested-item > .list-item,
+.list-tree li.list-nested-item > .list-item {
+  line-height: @tree-view-height;
+}
+
+.list-group .selected::before,
+.list-tree .selected::before {
+  height: @tree-view-height;
+}
+
+// icon
+.list-group .icon,
+.list-tree .icon {
+  display: inline-block;
+  height: inherit;
+  &::before {
+    top: initial;
+    line-height: inherit;
+    height: inherit;
+    vertical-align: top;
+  }
+}
+
+// Active tree-view marker --------------
+
+.tree-view::before {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  margin-top: @ui-padding-pane;
+  margin-left: -@component-icon-padding;
+  height: @ui-tab-height;
+  width: 2px;
+  background: @base-accent-color;
+  opacity: 0;
+  transition: opacity .16s;
+}
+
+.tree-view:focus::before {
+  opacity: 1;
+  transition-duration: .32s;
+}

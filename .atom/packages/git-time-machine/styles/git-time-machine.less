@@ -1,0 +1,121 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+@import "../node_modules/split-diff/styles/split-diff.less";
+
+.git-time-machine {
+  .timeplot {
+    .placeholder {
+      height: 100px;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+  .close-handle {
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    border: 1px solid #BBB;
+    display: inline-block;
+    border-radius: 14px;
+    /* background-color: red; */
+    font-size: 13px;
+    margin-right: 12px;
+    margin-top: 4px;
+    cursor: pointer;
+    z-index: 4;
+  }
+  .close-handle:hover {
+    background-color: red;
+  }
+  
+  .stats {
+    display: inline-block;
+    float: left;
+    margin-top: 3px;
+  }
+
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: #eee;
+      shape-rendering: crispEdges;
+  }
+
+  .axis text {
+      font-family: sans-serif;
+      font-size: 11px;
+      fill: @text-color-subtle;
+  }
+
+  .loading {
+      font-family: sans-serif;
+      font-size: 15px;
+  }
+
+  .circle {
+      fill: @text-color-highlight;
+      opacity: .3;
+  }
+
+  .hover-marker {
+    position: absolute;
+    height: ~"calc(100% - 25px)";
+    width: 5px;
+    top: 0px;
+    right: 10px;
+    background-color: @pane-item-border-color;
+  }
+
+}
+
+.git-timemachine-popup {
+  background: @base-background-color;
+  color: @text-color;
+
+  &.popover-list {
+    position: absolute;
+    z-index: 10;
+    width: 400px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: solid 4px @pane-item-border-color;
+  }
+
+  .controls {
+    float: right;
+  }
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    .commit {
+      background-color: @inset-panel-background-color;
+      margin-left: -35px;
+      margin-bottom: 4px;
+      padding: 3px 4px;
+      white-space: pre-wrap;
+
+      &:hover {
+        background-color: @background-color-selected;
+
+      }
+
+      > div {
+        margin-bottom: 4px;
+      }
+
+      .header {
+        width: 100%;
+        overflow: hidden;
+        > div {
+          display: inline-block;
+          width: 30%;
+        }
+      }
+    }
+  }
+}

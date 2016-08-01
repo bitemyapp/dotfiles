@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle git-time-machine view'
+      'command': 'git-time-machine:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'git-time-machine'
+      'submenu': [
+        {
+          'label': 'Toggle for current file'
+          'command': 'git-time-machine:toggle'
+        }
+      ]
+    ]
+  }
+]

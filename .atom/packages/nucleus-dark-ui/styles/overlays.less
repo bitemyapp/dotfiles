@@ -31,7 +31,9 @@ atom-panel.modal,
   atom-text-editor.mini::shadow,
   atom-text-editor[mini]::shadow {
     .text(heading);
-    color: @text-color-highlight;
+    .text {
+      color: @text-color-highlight;
+    }
     font-size: 24px;
     line-height: 32px;
     height: auto;

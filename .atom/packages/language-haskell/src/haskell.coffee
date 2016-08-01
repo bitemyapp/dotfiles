@@ -1,4 +1,5 @@
 makeGrammar = require './syntax-tools'
+prelude = require './prelude'
 
 toString = (rx) ->
   if rx instanceof RegExp
@@ -150,23 +151,7 @@ haskellGrammar =
         1: name: 'keyword.other.haskell'
       patterns: [
           name: 'support.class.prelude.haskell'
-          match: ///
-            {lb}
-            (Monad
-            |Functor
-            |Eq
-            |Ord
-            |Read
-            |Show
-            |Num
-            |(Frac|Ra)tional
-            |Enum
-            |Bounded
-            |Real(Frac|Float)?
-            |Integral
-            |Floating
-            ){rb}
-            ///
+          match: "{lb}(#{prelude.classes.join('|')}){rb}"
         ,
           include: '#type_name'
         ,
@@ -378,34 +363,13 @@ haskellGrammar =
         1: name: 'keyword.other.double-colon.haskell'
         2: {name: 'meta.type-signature.haskell', patterns: [include: '#type_signature']}
     ,
-      match: /{lb}(Just|Left|Right|Nothing|True|False|LT|EQ|GT){rb}/
       name: 'support.tag.haskell'
+      match: "{lb}(#{prelude.constr.join('|')}){rb}"
     ,
       include: '#comments'
     ,
       name: 'support.function.prelude.haskell'
-      match: ///
-        {lb}(abs|acos|acosh|all|and|any|appendFile|applyM|asTypeOf|asin|asinh
-        |atan|atan2|atanh|break|catch|ceiling|compare|concat|concatMap|const
-        |cos|cosh|curry|cycle|decodeFloat|div|divMod|drop|dropWhile|elem
-        |encodeFloat|enumFrom|enumFromThen|enumFromThenTo|enumFromTo
-        |error|even|exp|exponent|fail|filter|flip|floatDigits|floatRadix
-        |floatRange|floor|fmap|foldl|foldl1|foldr|foldr1|fromEnum|fromInteger
-        |fromIntegral|fromRational|fst|gcd|getChar|getContents|getLine|head
-        |id|init|interact|ioError|isDenormalized|isIEEE|isInfinite|isNaN
-        |isNegativeZero|iterate|last|lcm|length|lex|lines|log|logBase|lookup
-        |map|mapM|mapM_|max|maxBound|maximum|maybe|min|minBound|minimum|mod
-        |negate|not|notElem|null|odd|or|otherwise|pi|pred|print|product
-        |properFraction|putChar|putStr|putStrLn|quot|quotRem|read|readFile
-        |readIO|readList|readLn|readParen|reads|readsPrec|realToFrac|recip
-        |rem|repeat|replicate|return|reverse|round|scaleFloat|scanl|scanl1
-        |scanr|scanr1|seq|sequence|sequence_|show|showChar|showList|showParen
-        |showString|shows|showsPrec|significand|signum|sin|sinh|snd|span
-        |splitAt|sqrt|subtract|succ|sum|tail|take|takeWhile|tan|tanh|toEnum
-        |toInteger|toRational|truncate|uncurry|undefined|unlines|until
-        |unwords|unzip|unzip3|userError|words|writeFile|zip|zip3
-        |zipWith|zipWith3){rb}
-        ///
+      match: "{lb}(#{prelude.funct.join('|')}){rb}"
     ,
       include: '#infix_op'
     ,
@@ -624,22 +588,7 @@ haskellGrammar =
           match: /=>|⇒/
         ,
           name: 'support.class.prelude.haskell'
-          match: ///{lb}
-            (Int(eger)?
-            |Maybe
-            |Either
-            |Bool
-            |Float
-            |Double
-            |Char
-            |String
-            |Ordering
-            |ShowS
-            |ReadS
-            |FilePath
-            |IO(Error)?
-            ){rb}
-            ///
+          match: "{lb}(#{prelude.types.join('|')}){rb}"
         ,
           include: '#generic_type'
         ,
@@ -808,9 +757,7 @@ literateHaskellGrammar =
       begin: '(?<!\\\\verb)\\|'
       end: /\|/
       name: 'meta.embedded.text.haskell.latex'
-      patterns: [
-          include: 'source.haskell'
-      ]
+      patterns: haskellGrammar.patterns
     ,
       include: 'text.tex.latex'
   ]
@@ -819,5 +766,6 @@ literateHaskellGrammar =
 literateHaskellGrammar.macros.maybeBirdTrack = /^(?:>|<) /
 literateHaskellGrammar.macros.indentBlockEnd =
   /^(?!(?:>|<) \1{indentChar}|(?:>|<) {indentChar}*$)|^(?!(?:>|<) )/
+literateHaskellGrammar.macros.operatorChar = /[\p{S}\p{P}&&[^(),;\[\]`{}_"'\|]]/
 
 makeGrammar literateHaskellGrammar, "grammars/literate haskell.cson"

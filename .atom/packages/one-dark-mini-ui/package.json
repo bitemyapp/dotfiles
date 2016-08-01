@@ -1,0 +1,71 @@
+{
+  "name": "one-dark-mini-ui",
+  "theme": "ui",
+  "version": "2.0.5",
+  "description": "Minimized Atom One dark UI theme, for better multi pane programming.",
+  "keywords": [
+    "dark",
+    "adaptive",
+    "ui"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/5argon/dark-one-mini-ui.git"
+  },
+  "main": "lib/main",
+  "engines": {
+    "atom": ">0.40.0"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.9.7"
+  },
+  "configSchema": {
+    "fontSize": {
+      "title": "Font Size",
+      "description": "Change the UI font size. Needs to be between 8 and 20.",
+      "type": [
+        "integer",
+        "string"
+      ],
+      "minimum": 8,
+      "maximum": 20,
+      "default": "Auto"
+    },
+    "tabSizing": {
+      "title": "Tab Sizing",
+      "description": "In minimum width mode the tabs will be as small as possible but in even width mode, all tabs will be the same size. In auto mode the tabs switch based on the window size.",
+      "type": "string",
+      "default": "Auto",
+      "enum": [
+        "Even",
+        "Auto",
+        "Minimum"
+      ]
+    }
+  },
+  "readme": "## One Dark Mini UI theme\n\nMinimized Atom One Dark UI Theme, for better multi pane programming.\n\nNot suitable for users who use mouse to click on the tab or users who mainly use multi tab over multi pane.\n\nModified from Atom One Dark UI Theme. See [one-dark-ui](https://atom.io/themes/one-dark-ui) for more details.\n\n### Comparison\n\n#### Mini\n![After](http://i.imgur.com/rwlgWmM.png)\n\n#### Original\n![Before](http://i.imgur.com/4C7f1Vi.png)\n\n### Changes\n\n#### Smallest tab bar\n\n![Tab Bar](http://i.imgur.com/hVojaQd.png)\n\nThis is the most important change. I usually do horizontal and vertical split programming workflow as inherited from when I was using Vim, and tab bar takes too much space on vertical stacking alignment. Not only more space gained, overall the screen looks less \"bulky\" too.\n\nThe original height I believe was designed to be easily clicked on. But if you rely on shortcut keys it will not be a problem. Plus if you do split pane, you might not need a stacking tabs anyway. The tab acts like file name indicator for each pane. Smaller tabs makes horizontal splitter looks more like one thin line.\n\nThere is a problem with characters with tail like g or q that goes out of the tab, but I think the trade off worths it because I have no problem guessing name of files. Also tab with icon like Settings will be overflowed badly, but I rarely open Settings when I am working so that's fine.\n\n#### Line number smaller than actual program\n\n![Line Number](http://i.imgur.com/aysiFbn.png)\n\nI think the default design was distracting. Smaller font not only improve the concentration on actual code, but you gain a bit of horizontal space too especially if you have side by side split pane.\n\n#### Smaller status bar, pane divider and tree view\n\nStatus bar is only a little bit smaller. Pane divider reduced to thin line at all times. Tree view got line spacing reduced.\n\n#### Accent color changed to yellow-green\n\n![Accent1](http://i.imgur.com/IdfiusO.png)\n\n![Accent2](http://i.imgur.com/LUgBuoh.png)\n\n![Accent3](http://i.imgur.com/hTej5oQ.png)\n\nBecause it is my favorite color.\n\nIf you don't like it, the place to change is `ui-variables.less`. First search for number `68` in the code, there are two of them which is the hue. Next search for `@base-accent-color` which you can adjust saturation and brightness of that hue.\n\nNote that not all blue has been changed to green. Like hyperlink color or file changed indicator dot stay with the same color.\n\n### Settings changes\n\nLayout mode (Auto, Compact, Spacious) has been removed. Because this theme is even more compact than Compact.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/5argon/dark-one-mini-ui/issues"
+  },
+  "homepage": "https://github.com/5argon/dark-one-mini-ui#readme",
+  "_id": "one-dark-mini-ui@2.0.5",
+  "_shasum": "cc3d92b3e18b9b2bb33571d58067f3cd84416a2c",
+  "_resolved": "file:../d-116627-18901-h4c9ah/package.tgz",
+  "_from": "../d-116627-18901-h4c9ah/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "coffeelint.json",
+        "package.json"
+      ],
+      ".coffee": [
+        "lib/main.coffee"
+      ]
+    },
+    "folders": []
+  }
+}

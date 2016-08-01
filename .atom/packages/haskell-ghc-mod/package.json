@@ -1,7 +1,7 @@
 {
   "name": "haskell-ghc-mod",
   "main": "./lib/haskell-ghc-mod",
-  "version": "1.14.2",
+  "version": "1.16.0",
   "description": "Provides backends for ide-haskell and autocomplete-haskell",
   "keywords": [
     "ide-haskell",
@@ -28,6 +28,7 @@
     "promise-queue": "^2.2.0",
     "atom-space-pen-views": "^2.0.3",
     "atom-haskell-utils": "^0.7.8",
+    "underscore-plus": "^1.6.6",
     "clone": "^1.0.2"
   },
   "consumedServices": {
@@ -51,16 +52,16 @@
       }
     }
   },
-  "readme": "# haskell-ghc-mod atom package\n\nThis package is primarily intended as backend for [ide-haskell](https://atom.io/packages/ide-haskell).\n\nHaskell ghc-mod opens pipe to ghc-modi and queries types, info and checks\nfor errors. It uses temporary files to feed them into ghc-mod (since it does\nnot read from stdin)\n\nIf ghc-mod/ghc-modi is not in your PATH, set full path to those in config.\n\n## Dependencies\n\nNOTE: when using with stack, see https://github.com/atom-haskell/haskell-ghc-mod/wiki/Using-with-stack\n\nYou need to have `ghc-mod`, `ghc-modi` (part of ghc-mod) and `hlint` executables\ninstalled on your system. `ghc-mod` needs to be able to find `hlint` (eiter add `hlint` directory to PATH, or install both in the same cabal sandbox).\n\nSupported `ghc-mod` versions are 5.5.x. and up. 5.4 is deprecated, but should work in most cases. Earlier versions most likely won't work.\n\nQuick setup is as follows:\n\n```\n$ cabal update\n$ cabal install ghc-mod\n```\n\nAfter this process finishes, you'll have `ghc-mod`, `ghc-modi` and `hlint` available in `$HOME/.cabal/bin/` directory.\n\nPlease note, that for ghc>=7.10 and/or cabal>=1.22, you need ghc-mod>=5.3.0.0. ghc-mod versions before 5.3.0.0 won't work.\n\nUser interface is provided by [ide-haskell](https://atom.io/packages/ide-haskell)\n\n## Atom Linter package support\n\nhaskell-ghc-mod can use [linter](https://atom.io/packages/linter) package instead of ide-haskell to show check and lint results. You still need ide-haskell for type/info tooltips though.\n\nTo use linter, enable 'Use Linter' option in haskell-ghc-mod settings. Bear in mind, that it will disable ide-haskell markers for check/lint results. As of now, no additional checks are preformed, so if linter package is not installed or disabled, you won't see check/lint results at all.\n\n## Installation\n\n```\n$ apm install language-haskell haskell-ghc-mod ide-haskell autocomplete-haskell\n```\n\n## Configuration\n\nNOTE: when using with stack, see https://github.com/atom-haskell/haskell-ghc-mod/wiki/Using-with-stack\n\nOnly configuration option you will likely need to set is `ghcModPath`. It needs to be set to full path to `ghc-mod` executable, if it is not in your PATH. For example, if you have `ghc-mod` in `/home/user/.cabal/bin/`, you need to write `/home/user/.cabal/bin/ghc-mod` in `ghcModPath`. Note that shell expansions are *not* suported, i.e. you can't use `~` or `$HOME`.\n\nThere can be some problems with ghc-modi upstream, most notably, it does not\nwork on paths with whitespace. If you experience problems, try disabling\n`ghc-modi` by setting `enableGhcModi` to `false` (or uncheck tick in settings).\nThis will be slower, but may work better on some configurations.\n\nIf you are on OSX, or have ghc installed with non-standard prefix, you may also\nconsider adding path to directory containing ghc/ghci executable to\n`additionalPathDirectories` configuration option. It is a comma-separated list\nof directories that will be added to your search path when invoking ghc-mod.\nFor example, if you have ghc installed to `/usr/local`, then you would add\n`/usr/local/bin` to `additionalPathDirectories`.\n\nOn OSX, if you start Atom from Finder or with desktop icon, it doesn't inherit\nenvironment variables specified in your user shell (in `.profile`, `.bashrc`,\netc). You can copy `PATH` settings from your shell to\n`additionalPathDirectories`, if you'd like to run Atom in this way.\n\n## Keybindings\n\nHaskell-ghc-mod comes with little pre-specified keybindings, so you will need to specify your own, if you want those.\n\nYou can edit Atom keybindings by opening 'Edit → Open Your Keymap'. Here is a template for all commands, provided by haskell-ghc-mod:\n\n```cson\n'atom-text-editor[data-grammar~=\"haskell\"]':\n  '': 'haskell-ghc-mod:check-file'\n  '': 'haskell-ghc-mod:lint-file'\n  'ctrl-alt-t': 'haskell-ghc-mod:show-type' #this is an example binding\n  'ctrl-alt-i': 'haskell-ghc-mod:show-info' #this is an example binding\n  'ctrl-alt-T': 'haskell-ghc-mod:insert-type' #this is an example binding\n  '': 'haskell-ghc-mod:case-split'\n  '': 'haskell-ghc-mod:show-info-fallback-to-type'\n  '': 'haskell-ghc-mod:insert-import'\n  '': 'haskell-ghc-mod:go-to-declaration'\n\n'atom-workspace':\n  '': 'haskell-ghc-mod:shutdown-backend'\n```\n\n## Service-hub API\n\nSince 1.0.0, haskell-ghc-mod provides `haskell-completion-backend` service.\n\n**NOTE**: Prior to 1.0.0, ide-backend service was provided. It has been scrapped in favor of ide-haskell's UPI.\n\nYou can find description in [completion-backend.coffee][2]\n\n[2]:https://github.com/atom-haskell/haskell-ghc-mod/blob/master/lib/completion-backend/completion-backend.coffee\n",
+  "readme": "# haskell-ghc-mod atom package\n\nThis package is primarily intended as backend for [ide-haskell](https://atom.io/packages/ide-haskell).\n\nHaskell ghc-mod opens pipe to ghc-modi and queries types, info and checks\nfor errors. It uses temporary files to feed them into ghc-mod (since it does\nnot read from stdin)\n\nIf ghc-mod/ghc-modi is not in your PATH, set full path to those in config.\n\n## Dependencies\n\nNOTE: when using with stack, see https://github.com/atom-haskell/haskell-ghc-mod/wiki/Using-with-stack\n\nYou need to have `ghc-mod`, `ghc-modi` (part of ghc-mod) and `hlint` executables\ninstalled on your system. `ghc-mod` needs to be able to find `hlint` (eiter add `hlint` directory to PATH, or install both in the same cabal sandbox).\n\nSupported `ghc-mod` versions are 5.5.x. and up. 5.4 is deprecated, but should work in most cases. Earlier versions most likely won't work.\n\nQuick setup is as follows:\n\n```\n$ cabal update\n$ cabal install ghc-mod\n```\n\nAfter this process finishes, you'll have `ghc-mod`, `ghc-modi` and `hlint` available in `$HOME/.cabal/bin/` directory.\n\nPlease note, that for ghc>=7.10 and/or cabal>=1.22, you need ghc-mod>=5.3.0.0. ghc-mod versions before 5.3.0.0 won't work.\n\nUser interface is provided by [ide-haskell](https://atom.io/packages/ide-haskell)\n\n## Atom Linter package support\n\nhaskell-ghc-mod can use [linter](https://atom.io/packages/linter) package instead of ide-haskell to show check and lint results. You still need ide-haskell for type/info tooltips though.\n\nTo use linter, enable 'Use Linter' option in haskell-ghc-mod settings. Bear in mind, that it will disable ide-haskell markers for check/lint results. As of now, no additional checks are preformed, so if linter package is not installed or disabled, you won't see check/lint results at all.\n\n## Installation\n\n```\n$ apm install language-haskell haskell-ghc-mod ide-haskell autocomplete-haskell\n```\n\n## Configuration\n\nNOTE: when using with stack, see https://github.com/atom-haskell/haskell-ghc-mod/wiki/Using-with-stack\n\nOnly configuration option you will likely need to set is `ghcModPath`. It needs to be set to full path to `ghc-mod` executable, if it is not in your PATH. For example, if you have `ghc-mod` in `/home/user/.cabal/bin/`, you need to write `/home/user/.cabal/bin/ghc-mod` in `ghcModPath`. Note that shell expansions are *not* suported, i.e. you can't use `~` or `$HOME`.\n\nThere can be some problems with ghc-modi upstream, most notably, it does not\nwork on paths with whitespace. If you experience problems, try disabling\n`ghc-modi` by setting `enableGhcModi` to `false` (or uncheck tick in settings).\nThis will be slower, but may work better on some configurations.\n\nIf you are on OSX, or have ghc installed with non-standard prefix, you may also\nconsider adding path to directory containing ghc/ghci executable to\n`additionalPathDirectories` configuration option. It is a comma-separated list\nof directories that will be added to your search path when invoking ghc-mod.\nFor example, if you have ghc installed to `/usr/local`, then you would add\n`/usr/local/bin` to `additionalPathDirectories`.\n\nOn OSX, if you start Atom from Finder or with desktop icon, it doesn't inherit\nenvironment variables specified in your user shell (in `.profile`, `.bashrc`,\netc). You can copy `PATH` settings from your shell to\n`additionalPathDirectories`, if you'd like to run Atom in this way.\n\n## Keybindings\n\nHaskell-ghc-mod comes with little pre-specified keybindings, so you will need to specify your own, if you want those.\n\nYou can edit Atom keybindings by opening 'Edit → Open Your Keymap'. Here is a template for all commands, provided by haskell-ghc-mod:\n\n```cson\n'atom-text-editor[data-grammar~=\"haskell\"]':\n  '': 'haskell-ghc-mod:check-file'\n  '': 'haskell-ghc-mod:lint-file'\n  'ctrl-alt-t': 'haskell-ghc-mod:show-type' #this is an example binding\n  'ctrl-alt-i': 'haskell-ghc-mod:show-info' #this is an example binding\n  'ctrl-alt-T': 'haskell-ghc-mod:insert-type' #this is an example binding\n  '': 'haskell-ghc-mod:case-split'\n  '': 'haskell-ghc-mod:sig-fill'\n  '': 'haskell-ghc-mod:show-info-fallback-to-type'\n  '': 'haskell-ghc-mod:show-type-fallback-to-info'\n  '': 'haskell-ghc-mod:show-type-and-info'\n  '': 'haskell-ghc-mod:insert-import'\n  '': 'haskell-ghc-mod:go-to-declaration'\n\n'atom-workspace':\n  '': 'haskell-ghc-mod:shutdown-backend'\n```\n\n## Service-hub API\n\nSince 1.0.0, haskell-ghc-mod provides `haskell-completion-backend` service.\n\n**NOTE**: Prior to 1.0.0, ide-backend service was provided. It has been scrapped in favor of ide-haskell's UPI.\n\nYou can find description in [completion-backend.coffee][2]\n\n[2]:https://github.com/atom-haskell/haskell-ghc-mod/blob/master/lib/completion-backend/completion-backend.coffee\n\n# Advanced configuration\n\nIn some cases, it could be useful to disable ghc-mod completely for a given project (e.g. GHCJS), or suppress error pop-ups (e.g. in case of known ghc-mod bugs where some features don't work, or don't always work).\n\nYou can create `.haskell-ghc-mod.json` file in project root (i.e. directory containing a `*.cabal` file, or -- in case of plain projects -- Atom's project root directory).\n\nIt's a JSON file with following fields:\n\n- `\"disable\"` -- `true`/`false`. Will disable all ghc-mod functions entirely. If omitted, defaults to `false`.\n- `\"suppressErrors\"` -- `true`/`false`. Will suppress error pop-ups. Those still will be displayed in Atom's console (View → Developer → Toggle Developer Tools), so if someting seems wierd, one could check there.\n\nExample:\n\n```json\n{\n  \"disable\": false,\n  \"suppressErrors\": true\n}\n```\n\n# License\n\nThis software is licensed under MIT license. See LICENSE.md for details.\n\nContributors:\n\n* Nikolay Yakimov\n* Daniel Gröber\n* Petr Gladkikh\n* Mike MacDonald\n* Maiddog\n* Jason Jackson\n* Dennis J. McWherter Jr\n* Aaron Wolf\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/atom-haskell/haskell-ghc-mod/issues"
   },
   "homepage": "https://github.com/atom-haskell/haskell-ghc-mod#readme",
-  "_id": "haskell-ghc-mod@1.14.2",
-  "_shasum": "643ab6229bfb5fb04a25a53a23d48cf36e45c366",
-  "_resolved": "file:../d-116419-34270-1i5ru/package.tgz",
-  "_from": "../d-116419-34270-1i5ru/package.tgz",
+  "_id": "haskell-ghc-mod@1.16.0",
+  "_shasum": "5b4c6b3f28b369c5b4aaa36ebda8ee521269f0c0",
+  "_resolved": "file:../d-116627-17212-2j48wq/package.tgz",
+  "_from": "../d-116627-17212-2j48wq/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -101,7 +102,7 @@
       },
       {
         "name": "es5-ext",
-        "version": "0.10.11",
+        "version": "0.10.12",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/index.js"
       },
       {
@@ -111,7 +112,7 @@
       },
       {
         "name": "es6-symbol",
-        "version": "3.0.2",
+        "version": "3.1.0",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/node_modules/es6-symbol/index.js"
       },
       {
@@ -138,16 +139,6 @@
         "name": "jquery",
         "version": "2.1.4",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/dist/jquery.js"
-      },
-      {
-        "name": "underscore-plus",
-        "version": "1.6.6",
-        "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/lib/underscore-plus.js"
-      },
-      {
-        "name": "underscore",
-        "version": "1.6.0",
-        "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/underscore.js"
       },
       {
         "name": "clone",
@@ -183,6 +174,16 @@
         "name": "rimraf",
         "version": "2.2.8",
         "path": "node_modules/temp/node_modules/rimraf/rimraf.js"
+      },
+      {
+        "name": "underscore-plus",
+        "version": "1.6.6",
+        "path": "node_modules/underscore-plus/lib/underscore-plus.js"
+      },
+      {
+        "name": "underscore",
+        "version": "1.6.0",
+        "path": "node_modules/underscore-plus/node_modules/underscore/underscore.js"
       }
     ],
     "extensions": {
@@ -203,8 +204,6 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/package.json",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/bower.json",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/package.json",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/package.json",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/package.json",
         "node_modules/atom-space-pen-views/node_modules/space-pen/package.json",
         "node_modules/atom-space-pen-views/package.json",
         "node_modules/clone/package.json",
@@ -216,6 +215,8 @@
         "node_modules/temp/node_modules/os-tmpdir/package.json",
         "node_modules/temp/node_modules/rimraf/package.json",
         "node_modules/temp/package.json",
+        "node_modules/underscore-plus/node_modules/underscore/package.json",
+        "node_modules/underscore-plus/package.json",
         "package.json"
       ],
       ".coffee": [
@@ -755,9 +756,6 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/support.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/toString.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/wrap.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/lib/underscore-plus.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/underscore.js",
         "node_modules/clone/clone.js",
         "node_modules/clone/test.js",
         "node_modules/fs/index.js",
@@ -776,7 +774,10 @@
         "node_modules/temp/no_cleanup_on_exit.spec.js",
         "node_modules/temp/node_modules/os-tmpdir/index.js",
         "node_modules/temp/node_modules/rimraf/bin.js",
-        "node_modules/temp/node_modules/rimraf/rimraf.js"
+        "node_modules/temp/node_modules/rimraf/rimraf.js",
+        "node_modules/underscore-plus/lib/underscore-plus.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore.js"
       ]
     },
     "folders": [
@@ -795,6 +796,7 @@
           "promise-queue": "^2.2.0",
           "atom-space-pen-views": "^2.0.3",
           "atom-haskell-utils": "^0.7.8",
+          "underscore-plus": "^1.6.6",
           "clone": "^1.0.2"
         }
       },
@@ -1018,7 +1020,7 @@
         ],
         "dependencies": {
           "es6-iterator": "2",
-          "es6-symbol": "~3.0.2"
+          "es6-symbol": "~3.1"
         }
       },
       {
@@ -1041,7 +1043,7 @@
         ],
         "dependencies": {
           "d": "~0.1.1",
-          "es5-ext": "~0.10.10"
+          "es5-ext": "~0.10.11"
         }
       },
       {
@@ -1079,15 +1081,6 @@
       },
       {
         "paths": [
-          "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/lib",
-          "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus"
-        ],
-        "dependencies": {
-          "underscore": "~1.6.0"
-        }
-      },
-      {
-        "paths": [
           "node_modules/temp/examples",
           "node_modules/temp/lib",
           "node_modules/temp",
@@ -1096,6 +1089,15 @@
         "dependencies": {
           "os-tmpdir": "^1.0.0",
           "rimraf": "~2.2.6"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/underscore-plus/lib",
+          "node_modules/underscore-plus"
+        ],
+        "dependencies": {
+          "underscore": "~1.6.0"
         }
       }
     ]

@@ -1,3 +1,63 @@
+<a name="v4.24.7"></a>
+# v4.24.7 (2016-07-05)
+
+## :bug: Bug Fixes
+
+- Fix minimal width badly measured after a split pane ([1f97824e](https://github.com/atom-minimap/minimap/commit/1f97824e23706d10fb0c6e35da9000388d20ef46), [#497](https://github.com/atom-minimap/minimap/issues/497))
+- Add guard against duplicated minimap ([d782ed65](https://github.com/atom-minimap/minimap/commit/d782ed650775d82d32e3cd0c18105ca7e82acb59), [#504](https://github.com/atom-minimap/minimap/issues/504))
+
+<a name="v4.24.5"></a>
+# v4.24.5 (2016-06-14)
+
+## :bug: Bug Fixes
+
+- Fix invalid invisible regexp when show invisible is disabled ([5b762a54](https://github.com/atom-minimap/minimap/commit/5b762a540bbc812df583fb67ec58c3b27432c6c7), [#502](https://github.com/atom-minimap/minimap/issues/502))
+
+<a name="v4.24.4"></a>
+# v4.24.4 (2016-06-09)
+
+## :bug: Bug Fixes
+
+- Fix infinite loop in scroll top listener ([46b6f1fc](https://github.com/atom-minimap/minimap/commit/46b6f1fc894f22ec8a0c40cb93bef6df616c71b8), [#491](https://github.com/atom-minimap/minimap/issues/491))
+
+<a name="v4.24.3"></a>
+# v4.24.3 (2016-05-27)
+
+## :bug: Bug Fixes
+
+- Use a border to offset the visible area instead of a transform ([8e65b938](https://github.com/atom-minimap/minimap/commit/8e65b9384dd226670e6054cb45bec36a43dcb4e8), [#484](https://github.com/atom-minimap/minimap/issues/484))
+
+<a name="v4.24.2"></a>
+# v4.24.2 (2016-05-25)
+
+## :bug: Bug Fixes
+
+- Set the with-minimap attribute in attached callback ([478e5ef7](https://github.com/atom-minimap/minimap/commit/478e5ef75b6652329f7696ffffb03b56d6ac4066), [#487](https://github.com/atom-minimap/minimap/issues/487))
+- Add another guard when accessing tokenLinesForScreenRows ([80fd6533](https://github.com/atom-minimap/minimap/commit/80fd65332e396b818c67b1387742c2ddeb361c21))
+
+<a name="v4.24.1"></a>
+# v4.24.1 (2016-05-24)
+
+## :bug: Bug Fixes
+
+- Fix disappearing minimap on master ([9b7425f8](https://github.com/atom-minimap/minimap/commit/9b7425f88b500c9cf8ea7726a735beefbe42f560))
+
+<a name="v4.24.0"></a>
+# v4.24.0 (2016-05-21)
+
+## :sparkles: Features
+
+- Add a new adjustMinimapWidthOnlyIfSmaller  setting to disable CSS limitation ([cc7161e5](https://github.com/atom-minimap/minimap/commit/cc7161e57176eed177940776d994e358813fffcc), [#452](https://github.com/atom-minimap/minimap/issues/452))
+- Add a with-minimal attribute on text editors ([d76d4109](https://github.com/atom-minimap/minimap/commit/d76d410924c718d78d32c9ea819d51a0a983042a))  <br>Gives a way to hide the scrollbar only when a minimap is present, as
+  requested in #479
+
+## :bug: Bug Fixes
+
+- Fix error in minimal plugin generation dialog ([e72e2dd3](https://github.com/atom-minimap/minimap/commit/e72e2dd35bc1b65c8069d44e1e8f483260984e32), [#476](https://github.com/atom-minimap/minimap/issues/476))
+- Fix error raised when emitting changes and text editor is no longer referenced ([abc29f46](https://github.com/atom-minimap/minimap/commit/abc29f4648f7c8b3966e38673162e7a6558acf2e), [#482](https://github.com/atom-minimap/minimap/issues/482))
+- Add guard when calling tokenLinesForScreenRows ([fc2622f5](https://github.com/atom-minimap/minimap/commit/fc2622f561fc9508e3da12fe4e874b06ea28039b))
+- Fix linter issue ([f7d1878c](https://github.com/atom-minimap/minimap/commit/f7d1878c64f6ba290b37c510f74130f8d272fd24))
+
 <a name="v4.23.5"></a>
 # v4.23.5 (2016-05-06)
 

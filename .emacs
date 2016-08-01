@@ -18,51 +18,50 @@
 (setq package-list '(abyss-theme
                      aurora-theme
                      auto-complete
-                     cider
-                     clojure-mode
-                     company
-                     company-ghci
-                     csv-mode
+                     ; cider
+                     ; clojure-mode
+                     ; company
+                     ; company-ghci
+                     ; csv-mode
                      dark-krystal-theme
                      dracula-theme
-                     elixir-mode
-                     elm-mode
-                     erlang
-                     f
+                     ; elixir-mode
+                     ; elm-mode
+                     ; erlang
+                     ; f
                      flycheck
-                     ghc
-                     go-mode
+                     ; go-mode
                      haskell-mode
-                     hcl-mode
-                     idris-mode
-                     js2-mode
-                     json-mode
+                     ; hcl-mode
+                     ; idris-mode
+                     ; js2-mode
+                     ; json-mode
                      magit
                      markdown-mode
                      material-theme
                      monokai-theme
-                     nix-mode
+                     ; nix-mode
                      phoenix-dark-mono-theme
                      phoenix-dark-pink-theme
-                     php-mode
-                     projectile
-                     protobuf-mode
-                     puppet-mode
-                     python-mode
-                     racer
+                     ; php-mode
+                     ; projectile
+                     ; protobuf-mode
+                     ; puppet-mode
+                     ; python-mode
+                     ; racer
                      rainbow-delimiters
                      rainbow-mode
-                     rust-mode
-                     scss-mode
+                     ; rust-mode
+                     ; scss-mode
                      tabbar
-                     toml-mode
-                     twittering-mode
+                     ; toml-mode
+                     ; twittering-mode
                      ubuntu-theme
                      undo-tree
-                     virtualenv
-                     w3m
+                     ; virtualenv
+                     ; w3m
                      warm-night-theme
-                     writeroom-mode
+                     ; writeroom-mode
                      yaml-mode
                      yasnippet))
 
@@ -88,29 +87,28 @@
 ;; (load-library "ac-config.el")
 
 ;; Clojure
-(add-to-list 'load-path "~/.emacs.d/clojure/")
-(load-library "clojure-config.el")
+;; (add-to-list 'load-path "~/.emacs.d/clojure/")
+;; (load-library "clojure-config.el")
 
 ;; Coq
-
-(setq coq-prog-args "-emacs-U")
-(setq coq-prog-name "/usr/bin/coqtop")
-(add-to-list 'load-path "~/.emacs.d/proofgeneral/")
-(let ((default-directory "~/.emacs.d/proofgeneral/"))
-  (normal-top-level-add-subdirs-to-load-path))
-(setq proof-splash-enable nil)
-(load-library "pg-init.el")
+;; (setq coq-prog-args "-emacs-U")
+;; (setq coq-prog-name "/usr/bin/coqtop")
+;; (add-to-list 'load-path "~/.emacs.d/proofgeneral/")
+;; (let ((default-directory "~/.emacs.d/proofgeneral/"))
+;;   (normal-top-level-add-subdirs-to-load-path))
+;; (setq proof-splash-enable nil)
+;; (load-library "pg-init.el")
 
 ;; Dockerfile
-(add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
-(require 'dockerfile-mode)
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+;; (add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
+;; (require 'dockerfile-mode)
+;; (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 ;; Elixir
-(require 'elixir-mode)
+;; (require 'elixir-mode)
 
 ;; Erlang
-(require 'erlang)
+;; (require 'erlang)
 
 ;; flycheck
 ;; (require 'flycheck)
@@ -119,7 +117,7 @@
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
 ;; go
-(require 'go-mode-autoloads)
+;; (require 'go-mode-autoloads)
 
 ;; calls runhaskell which doesn't work
 ;; (eval-after-load 'flycheck
@@ -129,10 +127,6 @@
 (add-to-list 'load-path "~/.emacs.d/haskell")
 (load-library "haskell-config.el")
 ;; Override haskell-mode's BS.
-(global-set-key (kbd "M-n") 'next-error)
-(define-key interactive-haskell-mode-map (kbd "M-n") 'next-error)
-(setenv "PATH" (concat (getenv "PATH") ":~/.local/bin"))
-(setq exec-path (append exec-path '("~/.local/bin")))
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 ;; (require 'company)
@@ -161,13 +155,12 @@
 
 
 ;; highlight-symbol
-(add-to-list 'load-path "~/.emacs.d/idle-highlight/")
-(load-library "idle-highlight.el")
-
-(require 'idle-highlight-mode)
-(add-hook 'text-mode-hook (lambda () (idle-highlight-mode t)))
-(add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t)))
-(setq idle-highlight-idle-time 0.5)
+;; (add-to-list 'load-path "~/.emacs.d/idle-highlight/")
+;; (load-library "idle-highlight.el")
+;; (require 'idle-highlight-mode)
+;; (add-hook 'text-mode-hook (lambda () (idle-highlight-mode t)))
+;; (add-hook 'prog-mode-hook (lambda () (idle-highlight-mode t)))
+;; (setq idle-highlight-idle-time 0.5)
 
 ;; (require 'highlight-symbol)
 ;; (global-set-key [(control f3)] 'highlight-symbol-at-point)
@@ -177,37 +170,37 @@
 ;; (setq highlight-symbol-idle-delay 0.2)
 
 ;; JavaScript
-(require 'js2-mode)
-(add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-mode))
+;; (require 'js2-mode)
+;; (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-mode))
 
 ;; JSON
-(require 'json-mode)
-(add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
+;; (require 'json-mode)
+;; (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
 
 ;; latex
 (add-to-list 'auto-mode-alist '("\\.tex$" . tex-mode))
 
 ;; Magit
-(require 'magit)
-(global-set-key (kbd "C-c m g") 'magit-status)
+;; (require 'magit)
+;; (global-set-key (kbd "C-c m g") 'magit-status)
 
 ;; Markdown
-(require 'markdown-mode)
-(add-to-list 'auto-mode-alist
-         '("\\.md$" . markdown-mode))
+;; (require 'markdown-mode)
+;; (add-to-list 'auto-mode-alist
+;;          '("\\.md$" . markdown-mode))
 
 ;; mu4e
 ;; (require 'mu4e)
 
 ;; Mustache
-(require 'mustache-mode)
+;; (require 'mustache-mode)
 
 ;; Nix
-(require 'nix-mode)
+;; (require 'nix-mode)
 
 ;; OCaml
-(add-to-list 'load-path "~/.emacs.d/ocaml")
-(load "~/.emacs.d/ocaml/tuareg-site-file")
+;; (add-to-list 'load-path "~/.emacs.d/ocaml")
+;; (load "~/.emacs.d/ocaml/tuareg-site-file")
 
 ;; (load-library "ocaml-config.el")
 ;; (add-to-list 'load-path "~/.opam/4.02.1/share/emacs/site-lisp/")
@@ -217,15 +210,15 @@
 ;; (require 'php-mode)
 
 ;; Projectile
-(require 'projectile)
-(global-set-key (kbd "C-c p g") 'projectile-grep)
+;; (require 'projectile)
+;; (global-set-key (kbd "C-c p g") 'projectile-grep)
 
 ;; Protobuf
-(require 'protobuf-mode)
+;; (require 'protobuf-mode)
 
 ;; Puppet
-(require 'puppet-mode)
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+;; (require 'puppet-mode)
+;; (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; Python
 ;; (add-to-list 'load-path "~/.emacs.d/python")
@@ -239,21 +232,19 @@
 (require 'rainbow-mode)
 
 ;; Rust mode
-(require 'rust-mode)
-
-;; (setq racer-cmd "$HOME/.cargo/bin/racer")
-(setq racer-rust-src-path (concat (getenv "HOME") "/work/rustc/src"))
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
+;; (require 'rust-mode)
+;; ;; (setq racer-cmd "$HOME/.cargo/bin/racer")
+;; (setq racer-rust-src-path (concat (getenv "HOME") "/work/rustc/src"))
+;; (add-hook 'rust-mode-hook #'racer-mode)
+;; (add-hook 'racer-mode-hook #'eldoc-mode)
+;; (add-hook 'racer-mode-hook #'company-mode)
+;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;; (setq company-tooltip-align-annotations t)
 
 ;; SCSS
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-(setq scss-compile-at-save nil)
+;; (autoload 'scss-mode "scss-mode")
+;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+;; (setq scss-compile-at-save nil)
 
 ;; Speedbar
 (require 'speedbar)
@@ -265,8 +256,8 @@
     (load-library "tabbar-config.el"))
 
 ;; Terraform
-(add-to-list 'load-path "~/.emacs.d/terraform-mode")
-(require 'terraform-mode)
+;; (add-to-list 'load-path "~/.emacs.d/terraform-mode")
+;; (require 'terraform-mode)
 
 ;; Undo Tree
 ;; (require 'undo-tree)
@@ -314,7 +305,7 @@
 ;; (setq yas-wrap-around-region t)
 
 ;; default browser
-(setq browse-url-browser-function 'w3m-goto-url-new-session)
+;; (setq browse-url-browser-function 'w3m-goto-url-new-session)
 
 ;; Desktop mode
 (setq desktop-load-locked-desktop t)
@@ -358,39 +349,3 @@
 (setq mac-option-modifier 'meta)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono")))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(haskell-notify-p t)
- '(haskell-process-args-ghci (quote nil))
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-reload-with-fbytecode nil)
- '(haskell-process-show-debug-tips nil)
- '(haskell-process-suggest-haskell-docs-imports t)
- '(haskell-process-suggest-hoogle-imports nil)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote stack-ghci))
- '(haskell-process-use-presentation-mode t)
- '(haskell-stylish-on-save nil)
- '(haskell-tags-on-save nil)
- '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always))
- '(package-selected-packages
-   (quote
-    (intero yasnippet yaml-mode writeroom-mode warm-night-theme w3m virtualenv undo-tree ubuntu-theme twittering-mode toml-mode tabbar scss-mode rainbow-mode rainbow-delimiters racer python-mode puppet-mode protobuf-mode projectile php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme nix-mode monokai-theme material-theme markdown-mode magit json-mode js2-mode idris-mode hcl-mode ghc flycheck erlang elm-mode elixir-mode dracula-theme dark-krystal-theme csv-mode company-ghci cider auto-complete aurora-theme abyss-theme)))
- '(shift-select-mode t)
- '(shm-auto-insert-bangs t)
- '(shm-auto-insert-skeletons t)
- '(shm-use-hdevtools t)
- '(shm-use-presentation-mode t))

@@ -1,0 +1,82 @@
+atom-workspace {
+  // One Dark/One Light
+  &.theme-one-dark-ui,
+  &.theme-one-light-ui {
+    // Find in Project
+    .preview-pane .path.list-nested-item {
+      .icon-book,
+      .icon-file-media,
+      .icon-file-text {
+        &:before {
+          top: 0;
+        }
+      }
+    }
+  }
+
+  // Atom Dark/Atom Light
+  &.theme-atom-dark-ui,
+  &.theme-atom-light-ui {
+    // Sidebar
+    .entries.list-tree {
+      .file .icon {
+        &::before {
+          top: 7px;
+        }
+      }
+    }
+  }
+
+  // Atom Material
+  &.theme-atom-material-ui {
+    // Tab Bar
+    .tab-bar .tab {
+      .title:before {
+        margin-left: 0;
+        margin-right: 5px !important;
+        position: relative;
+        vertical-align: middle;
+      }
+
+      .title.icon:before {
+        vertical-align: text-bottom;
+      }
+    }
+
+    .icon-file-directory {
+      &:before {
+        margin-right: 10px !important;
+      }
+    }
+
+    .icon-file-text,
+    .icon-book {
+      &:before {
+        top: 6px;
+      }
+    }
+  }
+
+  // Seti
+  &.theme-seti-ui {
+    // Tab Bar
+    .tab-bar .tab {
+      .title:before {
+        float: none;
+        margin-left: 0;
+        margin-right: 5px !important;
+        position: relative;
+        vertical-align: middle;
+      }
+
+      .title.icon:before {
+        margin-top: 0;
+        vertical-align: middle;
+      }
+    }
+
+    .name.icon.icon-repo:before {
+      top: -3px;
+    }
+  }
+}

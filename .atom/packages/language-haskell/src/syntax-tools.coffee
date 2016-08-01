@@ -191,6 +191,7 @@ class GrammarCreator
     P
 
 makeGrammar = (grammar, print = false) ->
-  (new GrammarCreator grammar, print).process()
+  grammar_ = (require 'clone')(grammar)
+  (new GrammarCreator grammar_, print).process()
 
 module.exports = makeGrammar

@@ -17,20 +17,19 @@ Every color used in the UI is taken directly from a (dark) syntax theme. In orde
 
 ## Features
 - Clutterless new windows with a flat background.
-![Batman](http://i.imgur.com/U6sn2Ji.png)
+![Atom Dark Fusion](http://i.imgur.com/UOAuMpg.png)
 
 - A minimal approach by using only three colors in the background of the theme. All colors used are mixed variations on colors from the syntax theme.
-![Adventurous](http://i.imgur.com/lu29fwb.png)
+![Gruvbox Plus](http://i.imgur.com/SkwaV9x.png)
 
 - Floating modal overlays (Command Palette, Fuzzy Finder etc) with a nice big type, strongly inspired by Spotlight on OS X.
-![Atom Dark Fusion](http://i.imgur.com/tCjZCSV.png)
+![Gruvbox Plus](http://i.imgur.com/inUen2W.png)
 
 - Consistent design over different packages. File an issue if you think a package you're using needs some tweaking.
-![Gruvbox](http://i.imgur.com/M26tZ35.png)
+![Firewatch](http://i.imgur.com/O3cdoGH.png)
 
 #### Themes used in screenshots
 The syntax themes in the screenshots are some of my personal favorites:
-- [Batman](https://atom.io/themes/batman-syntax)
-- [Adventurous](https://atom.io/themes/adventurous-syntax)
 - [Atom Fusion Dark](https://atom.io/themes/atom-dark-fusion-syntax)
-- [Gruvbox](https://atom.io/themes/gruvbox)
+- [Gruvbox Plus](https://atom.io/themes/gruvbox-plus-syntax)
+- [Firewatch](https://atom.io/themes/firewatch-syntax)
