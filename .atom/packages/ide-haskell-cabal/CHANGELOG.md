@@ -1,3 +1,7 @@
+## 1.4.1
+* Add ghc-8 to version list
+* Activate on grammar-used
+
 ## 1.4.0
 * Option for enabling cabal-nix
 * Merge remote-tracking branch 'origin/pr/add-cabal-nix-builder'

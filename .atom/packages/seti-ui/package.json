@@ -1,0 +1,115 @@
+{
+  "name": "seti-ui",
+  "theme": "ui",
+  "version": "1.3.1",
+  "description": "A dark colored UI theme for Atom with custom file icons.",
+  "main": "lib/main",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesseweed/seti-ui.git"
+  },
+  "engines": {
+    "atom": ">1.7.0"
+  },
+  "configSchema": {
+    "themeColor": {
+      "title": "Theme Color",
+      "order": 1,
+      "description": "Select a default theme color. If you don't notice a difference, you may have to reload Atom to see them.",
+      "type": "string",
+      "enum": [
+        "Blue",
+        "Green",
+        "Orange",
+        "Pink",
+        "Purple",
+        "Red",
+        "Steel",
+        "Yellow"
+      ],
+      "default": "Blue"
+    },
+    "font": {
+      "title": "Font Family",
+      "order": 2,
+      "description": "Select default UI font.",
+      "type": "string",
+      "enum": [
+        "Roboto",
+        "Default Atom Font"
+      ],
+      "default": "Roboto"
+    },
+    "compactView": {
+      "title": "Compact Mode",
+      "order": 3,
+      "description": "Enable this is you prefer less padding in your workspace.",
+      "type": "boolean",
+      "default": false
+    },
+    "disableAnimations": {
+      "title": "Disable Animations",
+      "order": 4,
+      "description": "Select this if you want to disable animations.",
+      "type": "boolean",
+      "default": false
+    },
+    "fileIcons": {
+      "title": "Custom Icons",
+      "order": 5,
+      "description": "Disable this if you are using file-icons or another atom file icon package (or simply don't want custom icons)",
+      "type": "boolean",
+      "default": true
+    },
+    "displayIgnored": {
+      "title": "Display Ignored Files",
+      "order": 6,
+      "description": "Enable this if you would like to not see ignored files at all (as opposed to simple muting the style)",
+      "type": "boolean",
+      "default": true
+    },
+    "hideTabs": {
+      "title": "Hide Tabs",
+      "order": 7,
+      "description": "Enable this if you prefer to rely on the sidebar for nagivation and don't want to see tabs at all.",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-iconfont": "^6.0.0",
+    "gulp-iconfont-css": "^2.1.0"
+  },
+  "readme": "# Seti UI\n\n[![Gitter](https://img.shields.io/gitter/room/jesseweed/seti-ui.svg?style=flat-square)](https://gitter.im/jesseweed/seti-ui) [![apm](https://img.shields.io/apm/dm/seti-ui.svg?style=flat-square)](https://atom.io/themes/seti-ui) [![apm](https://img.shields.io/apm/v/seti-ui.svg?style=flat-square)](https://atom.io/themes/seti-ui) [![apm](https://img.shields.io/apm/l/seti-ui.svg?style=flat-square)](https://atom.io/themes/seti-ui)\n[![Gratipay Team](https://img.shields.io/gratipay/team/atom-seti-ui.svg?style=flat-square)](https://gratipay.com/Atom-Seti-UI/)\n\n\nThis is the latest version of the Seti UI theme. It's a dark interface theme crafted especially for [Atom](http://atom.io), with subtle colors that are meant to be easy on the eyes. It includes custom file icons, and new user configurable settings. [Seti Syntax](https://atom.io/themes/seti-syntax) is also available for all your codez.\n\n-----\n\n##### **Please Note:** This is the Seti interface theme for [Atom](http://atom.io) only\n\nThis is for the _interface_ of the Atom editor. I also have [Seti Syntax](https://atom.io/themes/seti-syntax) for theming the _code view_ in Atom.\n\nIf these are not the droids you're looking for, may I point you in the drection of these great ports:\n\n+ [Emacs](https://github.com/caisah/seti-theme)\n+ [iTerm](https://github.com/willmanduffy/seti-iterm)\n+ [JetBrains](https://github.com/zchee/Seti_JetBrains)\n+ [Sublime Text 3](https://packagecontrol.io/packages/Seti_UI)\n+ [Vim](https://github.com/trusktr/seti.vim)\n\n-----\n\n## What's New? 1.0 Update\nSeti UI has been updated with a cleaner, more streamlined interface, a slightly tweaked color scheme, additional icons and new user settings, as well as a handful of other small ui improvements and a refactored code base.\n\n![Screenshot](https://github.com/jesseweed/seti-ui/raw/master/screenshot.png)\n\n-----\n\n### More colors\nSeti now has 8 theme colors to choose from:\n![Screenshot](https://github.com/jesseweed/seti-ui/raw/master/screenshot-colors.png)\n\n-----\n\n### More icons\nFile icons will now show up in the file search (`cmd+ p`) dialog in addition to the side bar and tabs. This should make for easier grokking when you're searching for a file.\n\n![Screenshot](https://github.com/jesseweed/seti-ui/raw/master/screenshot-search.png)\n\n-----\n\n### Settings\n_To get here, Go to \"Atom > Preferences\" Select \"Themes\"  and click the settings icon next to \"Seti\" under UI Theme dropdown_\n\nWith 1.0 you can now adjust some of the more commonly requested features directly in Atom's settings view (Settings > Themes > Click the gear icon next to Seti).\n\n+ **File Icons:** Probably the most frequet requests has been a simpler way to disable the file icons for those of you using other file icon packages. Now you can :)\n+ **Compact Mode :** Seti 1.0's face-lift brings a cleaner, less cramped interface, which also happens to take up a bit more space. If you prefer the old more compact version, you can revert it here.\n+ **Ignored Files:** By default, ignored files are shown as a muted grey. However, if you'd like to hide them altogether you can use this.\n+ **Hide Tabs:** Lastly (for now), there have been a few requests to be able to hide tabs altogether. This is of course disabled by default, but if you're the anti-tab type, you can hide them here.\n\n![Screenshot](https://github.com/jesseweed/seti-ui/raw/master/screenshot-settings.png)\n\nSetting are brand new, and still have a few kinks to be worked out. If you run into any problems with them, or would like to request an additional setting, please file an issue!\n\n\n-----\n\n## Bugs\nIf you find a bug, please do [add a bug](https://github.com/jesseweed/seti-ui/issues). However, first make sure it is for Seti UI in Atom. I only support the Atom versions, please check the links above to report a bug on another platforms.\n\n##### Seti 1.0 has been optimized to work with Atom 1.6 and above:\n###### Including the 1.7 beta\nMost if not everything should work on older versions as well, but if you see something that doesn't look quite right, make sure you have the latest version of Atom installed before filling a bug.\n\n-----\n\n## Installation\nThe easiest way to install Seti is to do as follows:\n\n+ Go to Atom > Settings\n+ Click \"+ Install\"\n+ Search for `seti ui` and click `themes` button to search.\n+ Browse for `Seti UI` and click `install`\n\nAlternatively you can use the [Atom Package Manager](https://github.com/atom/apm):\n\n```bash\napm install seti-ui\n```\n\n\n-----\n\n## Contributing\nAnyone is welcome to contribute to the development of this theme. If can be a lot of work to keep up on, and I'll take help wherever i can get it :)\n\n### 1. Fork\nIf you're keen to contribute, start by [forking](https://github.com/jesseweed/seti-ui/tree/1.0-beta#fork-destination-box) the repo and cloning it to your computer.\n\n**Note:** To use the development version, you must first install the production version (`apm uninstall seti-ui`), then and run the following commands:\n\n```bash\n# To install the local version as an Atom Theme\napm link .\n\n# Open with dev mode:\natom --dev .\n```\n\n### 2. Make Some Changes\n\nOnce this is complete you will be able to edit seti files directly in Atom and see your changes in real time.\n\n### 3. Create a Pull Request\n\nOnce you are satisfied, with your updates, commit your change, push them to your fork and submit a pull request with a description of the changes that you made.\n\n### 4. Unlink\n\nOnce you're done working locally and ready to install the production version again, simply run `apm unlink .` from the root of the seti-ui project.\n\n\n-----\n\n## Adding File Icons\nThe process of adding file icons is still a bit complex, but it _has_ been greatly simplified in 1.0. It does howevere require that you have [node](https://nodejs.org/en/) and [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) installed.\n\nOnce you have these, you will need to open a terminal window, navigate to the _seti-ui_ folder and run `npm install` (note you only need to do this once).\n\nOnce everything is setup, follow these steps any time you want to add a new icon:\n\n  1. Create an SVG icon with the name of the language, and save it to the `icons` folder _(do not use any spaces or special characters)_\n\n  2. Navigate to the _seti-ui_ folder in your terminal and run `gulp fonts` (this will add the new svg file to our icon font, update our file as well as the less file with the mixins we'll need to link to the icon later.)\n\n  3. Lastly, open [styles/icons/mapping.less](styles/icons/mapping.less) and create a link for the icon you just added with the `.icon-set` mixin. Assuming you were adding an icon for Sass it might look something like this: ```.icon-set('.scss', 'sass', @pink)```\n\n  The first parameter `'.scss'` is the file extension you want to target, the second parameter `'sass'` is the name of the icon you just created, without the extension (sass.svg), and the last parameter `@pink` indicated what color the icon should be.\n\n  There are currently 9 supported icon colors:\n    - @blue\n    - @grey\n    - @green\n    - @orange\n    - @pink\n    - @purple\n    - @red\n    - @white\n    - @yellow\n\n\n  While, you _can_ add additional colors to [styles/ui-variables.less](styles/ui-variables.less), but please do not do this unless you find it _absolutely_ necessary. If you do add another color, please make sure that matches the general feel of the other colors. If you add something really bright or really pale, your pull request will likely be declined.\n\n  You will need to do this once for every extension, you want to target. For example, if you want to target both **.sass** and **.scss** extensions, you would add the following:\n\n```\n.icon-set('.sass', 'sass', @pink);\n.icon-set('.scss', 'sass', @pink);\n```\n\n-----\n\n## Current Icons\n![Screenshot](https://github.com/jesseweed/seti-ui/raw/master/screenshot-icons.png)\n\n-----\n\n## Custom App Icons\nIf you'd like a new app icon to match the look & feel of Seti, feel free to use one of these:\n\n[ ![Screenshot](https://github.com/jesseweed/seti-syntax/raw/master/_icons/circular/circular-128x128.png) ](https://github.com/jesseweed/seti-syntax/tree/master/_icons/circular)\n[ ![Screenshot](https://github.com/jesseweed/seti-syntax/raw/master/_icons/rounded/rounded-128x128.png) ](https://github.com/jesseweed/seti-syntax/tree/master/_icons/rounded/)\n[ ![Screenshot](https://github.com/jesseweed/seti-syntax/raw/master/_icons/squared/squared-128x128.png) ](https://github.com/jesseweed/seti-syntax/tree/master/_icons/squared/)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/jesseweed/seti-ui/issues"
+  },
+  "homepage": "https://github.com/jesseweed/seti-ui#readme",
+  "_id": "seti-ui@1.3.1",
+  "_shasum": "54affda5c6d8dd4689227b8a206bcb419069526d",
+  "_resolved": "file:../d-116627-17761-101j1o6/package.tgz",
+  "_from": "../d-116627-17761-101j1o6/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".js": [
+        "gulpfile.js"
+      ],
+      ".coffee": [
+        "lib/dom.coffee",
+        "lib/headers.coffee",
+        "lib/main.coffee",
+        "lib/settings.coffee",
+        "lib/utility.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

@@ -167,6 +167,14 @@ The scrolling speed when the `Independent Minimap Scroll On Mouse Wheel Events` 
 
 If checked the Minimap scroll is done using a `translate3d` transform, otherwise the `translate` transform is used. `(default=true)`
 
+#### Adjust Minimap Width To Soft Wrap
+
+If this option is enabled and Soft Wrap is checked then the Minimap max width is set to the Preferred Line Length value. `(default=true)`
+
+#### Adjust Minimap Width Only When Smaller
+
+If this option and `adjustMinimapWidthToSoftWrap` are enabled the minimap width will never go past the limit sets by CSS. On the other hand, when disabled the minimap will expand to honor the preferred line width. `(default=true)`
+
 #### Absolute Mode
 
 When enabled the Minimap uses an absolute positioning, letting the editor's content flow below the Minimap. `(default=false)`
@@ -202,8 +210,8 @@ The Minimap package doesn't provide any default keybindings. But you can define 
 If you want to hide the default editor scrollbar, edit your `style.less` (Open Your Stylesheet) and use the following snippet:
 
 ```css
-atom-text-editor .vertical-scrollbar,
-atom-text-editor::shadow .vertical-scrollbar {
+atom-text-editor[with-minimap] .vertical-scrollbar,
+atom-text-editor[with-minimap]::shadow .vertical-scrollbar {
   opacity: 0;
   width: 0;
 }
@@ -225,10 +233,9 @@ atom-text-editor::shadow atom-text-editor-minimap {
 ![minimap-custom-background](https://github.com/atom-minimap/minimap/blob/master/resources/minimap-custom-visible-area.png?raw=true)
 
 ```css
-atom-text-editor atom-text-editor-minimap::shadow .minimap-visible-area,
-atom-text-editor::shadow atom-text-editor-minimap::shadow .minimap-visible-area {
-  background-color: green;
-  opacity: .5;
+atom-text-editor atom-text-editor-minimap::shadow .minimap-visible-area::after,
+atom-text-editor::shadow atom-text-editor-minimap::shadow .minimap-visible-area::after {
+  background-color: rgba(0, 255, 0, 0.5);
 }
 ```
 
@@ -294,6 +301,58 @@ atom-text-editor {
   }
 }
 ```
+
+#### Make Minimap Visible area display like Sublime Text 
+
+Put the following code in your user stylesheet to make your minimap look like Sublime text.
+It's more easy to view when you have code hightlight in minimap.
+
+`Default State (Hidden)`|`Hover`|`Only display Visible area when hover or click/drag event.`
+---|---|:---:
+![](https://github.com/machinavn/minimap/blob/master/resources/on-default-minimap.png?raw=true)|![](https://github.com/machinavn/minimap/blob/master/resources/on-hover-minimap.png?raw=true)|![](https://github.com/machinavn/minimap/blob/master/resources/on-scroll-minimap.png?raw=true)
+
+```css
+atom-text-editor,
+atom-text-editor::shadow,
+html {
+    atom-text-editor-minimap {
+        &::shadow {
+            .minimap-visible-area {
+                background-color: #7c7c7c;
+                // Color of Visible area.
+                opacity: 0;
+                // Default 0 when you not working with minimap
+                cursor: default;
+                // Change cursor style to pointer.
+                transition: 0.5s opacity;
+                // Better UI.
+                &:hover {
+                    opacity: 0.2;
+                } // Only display Minimap visible area when working.
+                &:active {
+                    cursor: default;
+                } // Change cursor when dragging.
+            }
+        }
+        &:hover::shadow {
+            .minimap-visible-area {
+                opacity: 0.2;
+                transition: opacity 1s;
+            } // When Hover to all minimap area, visible area will display. 
+        }
+        
+        &:active::shadow {
+            .minimap-visible-area {
+                opacity: 0.2;
+                transition: opacity 0.5s;
+            } // Display Minimap visible area when dragging.
+        }
+    }
+}
+
+```
+
+
 
 ### ASCII Art Comments
 

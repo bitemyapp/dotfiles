@@ -4,10 +4,11 @@ atom-notifications:empty {
   pointer-events: none
 }
 
-atom-text-editor:not([mini])::shadow .editor--private,
-atom-text-editor:not([mini]).editor--private {
+atom-text-editor[with-minimap]::shadow .editor--private,
+atom-text-editor[with-minimap] .editor--private {
   order: 2;
-  flex: 1 0 0;
+  flex: 1 0 90%;
+  width: 90%;
 }
 
 atom-text-editor::shadow, atom-text-editor, html {
@@ -64,12 +65,22 @@ atom-text-editor::shadow, atom-text-editor, html {
       .minimap-visible-area {
         position: absolute;
         display: block;
-        background-color: #888;
-        opacity: .2;
         cursor: -webkit-grab;
+
+        border-left: 0px solid rgba(127, 127, 127, 0.1);
 
         &:active {
           cursor: -webkit-grabbing;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(127, 127, 127, 0.2);
         }
       }
 

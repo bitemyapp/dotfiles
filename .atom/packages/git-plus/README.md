@@ -1,6 +1,6 @@
-# Git-Plus package ![Build Status](https://travis-ci.org/akonwi/git-plus.svg?branch=5.5.0)
+# Git-Plus package ![Build Status](https://travis-ci.org/akonwi/git-plus.svg?branch=master)
 
-[![endorse](https://api.coderwall.com/akonwi/endorsecount.png)](https://coderwall.com/akonwi)
+[![forthebadge](http://forthebadge.com/images/badges/uses-git.svg)](http://forthebadge.com)
 
 vim-fugitive like package for atom. make commits and other git things without the terminal
 
@@ -38,6 +38,7 @@ _Commands are accessible for keybindings by dasherizing the command title._
 | `Git Status ` | Show current status. | `Cmd-Shift-A S` |
 | `Git Add ` | Add the current file. | `Cmd-Shift-A` |
 | `Git Add All` | Adds all changed files. | |
+| `Git add and commit and push` | Commit currently open file and push to a remote repo. | `Cmd-Shift-A P` |
 | `Git add all commit and push` | Commit every changed file and push to a remote repo. | `Cmd-Shift-A P` |
 | `Git commit` | Commit the staged changes. Git-Plus shows a commit message editor. To make the commit, save the file. To cancel the commit, close the tab. | `Cmd-Shift-C`(*`Ctrl-Shift-X`* on Windows and Linux) |
 | `Git commit amend` | Amend the changes to previous commit. |  |
@@ -51,6 +52,7 @@ _Commands are accessible for keybindings by dasherizing the command title._
 | `Git rm [current file]` | `git rm` the current file or open an selector to select the files to remove. You can select multiple files at once. | |
 | `Git Log [Current File]` | Show the commit history [for the current file] and show display the selected commit. | |
 | `Git Show` | Show the specified object, for example `HEAD`, `HEAD~2`,`3925a0d`, `origin/master` or `v2.7.3`. | |
+| `Git Open Changed Files` | Open tabs with all added, modified or renamed files. | |
 
 ### Commit window
 To change where the commit window appears go to settings and find

@@ -24,7 +24,7 @@
     'body': '#!/usr/bin/env ${1:runhaskell}\n'
   'Lambda Expression':
     'prefix': '\\'
-    'body': '\\${1:pattern} -> ${0:expression}'
+    'body': "\\\\${1:pattern} -> ${0:expression}"
   'Left Arrow':
     'prefix': '<'
     'body': '${1:name} <- ${0:expression}'

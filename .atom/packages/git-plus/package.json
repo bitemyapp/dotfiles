@@ -1,7 +1,7 @@
 {
   "name": "git-plus",
   "main": "./lib/git-plus",
-  "version": "5.13.4",
+  "version": "5.16.2",
   "description": "Do git things without the terminal",
   "keywords": [
     "git"
@@ -14,6 +14,7 @@
       "git-plus:add-all-and-commit",
       "git-plus:add-all-commit-and-push",
       "git-plus:add-and-commit",
+      "git-plus:add-and-commit-and-push",
       "git-plus:delete-local-branch",
       "git-plus:delete-remote-branch",
       "git-plus:diff-all",
@@ -42,6 +43,7 @@
       "git-plus:stage-files",
       "git-plus:stage-hunk",
       "git-plus:stash-save",
+      "git-plus:stash-save-message",
       "git-plus:stash-pop",
       "git-plus:stash-keep",
       "git-plus:stash-drop",
@@ -51,7 +53,8 @@
       "git-plus:run",
       "git-plus:merge",
       "git-plus:merge-remote",
-      "git-plus:rebase"
+      "git-plus:rebase",
+      "git-plus:open-changed-files"
     ]
   },
   "consumedServices": {
@@ -77,16 +80,16 @@
     "flavored-path": "0.0.8",
     "atom-notify": "^1.1.0"
   },
-  "readme": "# Git-Plus package ![Build Status](https://travis-ci.org/akonwi/git-plus.svg?branch=5.5.0)\n\n[![endorse](https://api.coderwall.com/akonwi/endorsecount.png)](https://coderwall.com/akonwi)\n\nvim-fugitive like package for atom. make commits and other git things without the terminal\n\n![A screenshot of your spankin' package](https://raw.githubusercontent.com/akonwi/git-plus/master/commit.gif)\n\n## Usage\n\n# IMPORTANT:\nMake sure your gitconfig file is configured. You must configure at least the `user.email` and `user.name` variables.\n\nAlso, the package currently favors an ssh setup that doesn't expect to be prompted for credentials in order to push/pull, .etc. Github has a guide to help you set that up [here](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)\n\n### Showing the Git-Plus Palette\n>- `Cmd-Shift-H` on MacOS\n>- `Ctrl-Shift-H` on Windows + Linux\n>- `Git Plus: Menu` on the atom command palette.\n\n### Push/Pull/Fetch notifications\nNotifications will appear in a console output above the status bar.\nThis view can be toggled by clicking the pin icon in the bottom right of the status bar.\n\n![screenshot](https://raw.githubusercontent.com/akonwi/git-plus/5.5.0/pin.png)\n\n### Commands\n_Commands are accessible for keybindings by dasherizing the command title._\n> Git Add ==  `git-plus:add`\n\n> Git Add All Commit And Push == `git-plus:add-all-commit-and-push`\n\n  __Note: This list is not exhaustive. And if what you want isn't a feature, You can use `Git Run` and enter the command__\n\n| Command | Effect | Default key binding |\n|----------|--------|------------------\n| `Git Run ` | Execute a custom command. ex. `fetch --all` | |\n| `Git Status ` | Show current status. | `Cmd-Shift-A S` |\n| `Git Add ` | Add the current file. | `Cmd-Shift-A` |\n| `Git Add All` | Adds all changed files. | |\n| `Git add all commit and push` | Commit every changed file and push to a remote repo. | `Cmd-Shift-A P` |\n| `Git commit` | Commit the staged changes. Git-Plus shows a commit message editor. To make the commit, save the file. To cancel the commit, close the tab. | `Cmd-Shift-C`(*`Ctrl-Shift-X`* on Windows and Linux) |\n| `Git commit amend` | Amend the changes to previous commit. |  |\n| `Git checkout current file` | Undo changes and checkout the current file. | |\n| `Git Checkout `*`[ref]`* | Change to another ref (branch or tag). | |\n| `Git Diff [All]` | Show the diff for the current file, or all files. The diff can either be against the staged or un-staged tree, as selected in the options. | |\n| `Git new branch` | Create a new branch. | |\n| `Git` *`[push⎮pull]`* | Push to or pull from a remote repo. If you have multiple remote repos, you can choose which to push to or pull from. | |\n| `Git Add and Commit` | Add all changed files and show the commit message file. Similar to `Git add all` and `Git commit` run in succession. | `Cmd-Shift-A c` |\n| `Git Add All and Commit` | Add all changed files and show the commit message file. Similar to `Git add all` and `Git commit` in succession. | `Cmd-Shift-A a` |\n| `Git rm [current file]` | `git rm` the current file or open an selector to select the files to remove. You can select multiple files at once. | |\n| `Git Log [Current File]` | Show the commit history [for the current file] and show display the selected commit. | |\n| `Git Show` | Show the specified object, for example `HEAD`, `HEAD~2`,`3925a0d`, `origin/master` or `v2.7.3`. | |\n\n### Commit window\nTo change where the commit window appears go to settings and find\n![screenshot](http://imgur.com/cdc7M5p.png)\n\n## Contributing\n\n1. Fork it\n2. Create your feature branch (`git checkout -b my-new-feature`)\n3. Write tests\n4. Make your changes\n5. Run `apm test`\n6. Commit your changes (`git commit -am 'Add some feature'`)\n7. Push to the branch (`git push origin my-new-feature`)\n8. Create new Pull Request\n",
+  "readme": "# Git-Plus package ![Build Status](https://travis-ci.org/akonwi/git-plus.svg?branch=master)\n\n[![forthebadge](http://forthebadge.com/images/badges/uses-git.svg)](http://forthebadge.com)\n\nvim-fugitive like package for atom. make commits and other git things without the terminal\n\n![A screenshot of your spankin' package](https://raw.githubusercontent.com/akonwi/git-plus/master/commit.gif)\n\n## Usage\n\n# IMPORTANT:\nMake sure your gitconfig file is configured. You must configure at least the `user.email` and `user.name` variables.\n\nAlso, the package currently favors an ssh setup that doesn't expect to be prompted for credentials in order to push/pull, .etc. Github has a guide to help you set that up [here](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)\n\n### Showing the Git-Plus Palette\n>- `Cmd-Shift-H` on MacOS\n>- `Ctrl-Shift-H` on Windows + Linux\n>- `Git Plus: Menu` on the atom command palette.\n\n### Push/Pull/Fetch notifications\nNotifications will appear in a console output above the status bar.\nThis view can be toggled by clicking the pin icon in the bottom right of the status bar.\n\n![screenshot](https://raw.githubusercontent.com/akonwi/git-plus/5.5.0/pin.png)\n\n### Commands\n_Commands are accessible for keybindings by dasherizing the command title._\n> Git Add ==  `git-plus:add`\n\n> Git Add All Commit And Push == `git-plus:add-all-commit-and-push`\n\n  __Note: This list is not exhaustive. And if what you want isn't a feature, You can use `Git Run` and enter the command__\n\n| Command | Effect | Default key binding |\n|----------|--------|------------------\n| `Git Run ` | Execute a custom command. ex. `fetch --all` | |\n| `Git Status ` | Show current status. | `Cmd-Shift-A S` |\n| `Git Add ` | Add the current file. | `Cmd-Shift-A` |\n| `Git Add All` | Adds all changed files. | |\n| `Git add and commit and push` | Commit currently open file and push to a remote repo. | `Cmd-Shift-A P` |\n| `Git add all commit and push` | Commit every changed file and push to a remote repo. | `Cmd-Shift-A P` |\n| `Git commit` | Commit the staged changes. Git-Plus shows a commit message editor. To make the commit, save the file. To cancel the commit, close the tab. | `Cmd-Shift-C`(*`Ctrl-Shift-X`* on Windows and Linux) |\n| `Git commit amend` | Amend the changes to previous commit. |  |\n| `Git checkout current file` | Undo changes and checkout the current file. | |\n| `Git Checkout `*`[ref]`* | Change to another ref (branch or tag). | |\n| `Git Diff [All]` | Show the diff for the current file, or all files. The diff can either be against the staged or un-staged tree, as selected in the options. | |\n| `Git new branch` | Create a new branch. | |\n| `Git` *`[push⎮pull]`* | Push to or pull from a remote repo. If you have multiple remote repos, you can choose which to push to or pull from. | |\n| `Git Add and Commit` | Add all changed files and show the commit message file. Similar to `Git add all` and `Git commit` run in succession. | `Cmd-Shift-A c` |\n| `Git Add All and Commit` | Add all changed files and show the commit message file. Similar to `Git add all` and `Git commit` in succession. | `Cmd-Shift-A a` |\n| `Git rm [current file]` | `git rm` the current file or open an selector to select the files to remove. You can select multiple files at once. | |\n| `Git Log [Current File]` | Show the commit history [for the current file] and show display the selected commit. | |\n| `Git Show` | Show the specified object, for example `HEAD`, `HEAD~2`,`3925a0d`, `origin/master` or `v2.7.3`. | |\n| `Git Open Changed Files` | Open tabs with all added, modified or renamed files. | |\n\n### Commit window\nTo change where the commit window appears go to settings and find\n![screenshot](http://imgur.com/cdc7M5p.png)\n\n## Contributing\n\n1. Fork it\n2. Create your feature branch (`git checkout -b my-new-feature`)\n3. Write tests\n4. Make your changes\n5. Run `apm test`\n6. Commit your changes (`git commit -am 'Add some feature'`)\n7. Push to the branch (`git push origin my-new-feature`)\n8. Create new Pull Request\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/akonwi/git-plus/issues"
   },
   "homepage": "https://github.com/akonwi/git-plus#readme",
-  "_id": "git-plus@5.13.4",
-  "_shasum": "8f2646818368e125415df3a7d3f1635c8d27ea78",
-  "_resolved": "file:../d-116412-12381-17vfoqd/package.tgz",
-  "_from": "../d-116412-12381-17vfoqd/package.tgz",
+  "_id": "git-plus@5.16.2",
+  "_shasum": "e479b016f06d3ad326dc6311800f678211655147",
+  "_resolved": "file:../d-116627-17200-ybg928/package.tgz",
+  "_from": "../d-116627-17200-ybg928/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -132,7 +135,7 @@
       },
       {
         "name": "es5-ext",
-        "version": "0.10.11",
+        "version": "0.10.12",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/index.js"
       },
       {
@@ -142,7 +145,7 @@
       },
       {
         "name": "es6-symbol",
-        "version": "3.0.2",
+        "version": "3.1.0",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/node_modules/es6-symbol/index.js"
       },
       {
@@ -187,7 +190,7 @@
       },
       {
         "name": "fs-plus",
-        "version": "2.8.2",
+        "version": "2.9.1",
         "path": "node_modules/fs-plus/lib/fs-plus.js"
       },
       {
@@ -243,6 +246,7 @@
         "lib/models/git-init.coffee",
         "lib/models/git-log.coffee",
         "lib/models/git-merge.coffee",
+        "lib/models/git-open-changed-files.coffee",
         "lib/models/git-pull.coffee",
         "lib/models/git-push.coffee",
         "lib/models/git-rebase.coffee",
@@ -254,6 +258,7 @@
         "lib/models/git-stash-apply.coffee",
         "lib/models/git-stash-drop.coffee",
         "lib/models/git-stash-pop.coffee",
+        "lib/models/git-stash-save-message.coffee",
         "lib/models/git-stash-save.coffee",
         "lib/models/git-status.coffee",
         "lib/models/git-tags.coffee",
@@ -280,6 +285,7 @@
         "lib/views/select-stage-hunk-file-view.coffee",
         "lib/views/select-stage-hunks-view.coffee",
         "lib/views/select-unstage-files-view.coffee",
+        "lib/views/stash-message-view.coffee",
         "lib/views/status-list-view.coffee",
         "lib/views/status-view.coffee",
         "lib/views/tag-create-view.coffee",
@@ -1106,7 +1112,7 @@
         ],
         "dependencies": {
           "es6-iterator": "2",
-          "es6-symbol": "~3.0.2"
+          "es6-symbol": "~3.1"
         }
       },
       {
@@ -1129,7 +1135,7 @@
         ],
         "dependencies": {
           "d": "~0.1.1",
-          "es5-ext": "~0.10.10"
+          "es5-ext": "~0.10.11"
         }
       },
       {

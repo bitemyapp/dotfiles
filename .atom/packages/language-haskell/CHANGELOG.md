@@ -1,3 +1,11 @@
+## 1.7.17
+* Prelude typeclasses
+* Merge branch 'master' of github.com:atom-haskell/language-haskell
+* Grab prelude definitions from Prelude
+
+## 1.7.16
+* Fix #76
+
 ## 1.7.15
 * Another stab at Windows postinstall
 

@@ -58,6 +58,7 @@ autocomplete-suggestion-list.select-list.popover-list .suggestion-description-co
   animation: none !important;
 
   .title {
+    //my git-diff addition
     background: transparent !important;
     &.success {
       color: @text-color-success;
@@ -592,5 +593,14 @@ atom-text-editor::shadow .gutter .line-number.atom-jshint-error,
         color: @text-color-highlight !important;
       }
     }
+  }
+}
+
+// atom-elixir -----------------------------------------------------------------
+.elixir-quoted-view {
+  background-color: @base-background-color;
+
+  atom-text-editor[mini], atom-text-editor[mini]::shadow {
+    height: auto;
   }
 }

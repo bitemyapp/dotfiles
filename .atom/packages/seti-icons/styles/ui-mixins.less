@@ -1,0 +1,47 @@
+// SET ICON FILE BASED ON DATA NAME
+.icon-set( @extension, @file, @color) {
+
+  .icon:not(.icon-file-directory),
+  .title {
+    &[data-name$="@{extension}"] {
+      .icon(@file, @color)
+    }
+  }
+
+}
+
+// SET ICON FILE BASED ON DATA NAME
+.icon-partial( @extension, @file, @color) {
+
+  .icon:not(.icon-file-directory),
+  .title {
+    &[data-name*="@{extension}"] {
+      .icon(@file, @color)
+    }
+  }
+
+}
+
+// SET ICON FOR TAB BASED ON DATA TYPE
+.tab-icon(@data-type, @file-type, @color) {
+  &[data-type="@{data-type}"] .icon {
+    .icon(@file-type, @color);
+    &::before {
+      margin-right: 7px;
+    }
+  }
+}
+
+// ICON BASE, KEEP HERE TO PREVENT BREAKING `No Color` SETTING
+.icon(@filename, @color: @white, @insert: before) {
+  @pseudo-selector: ~':@{insert}';
+
+  &@{pseudo-selector} {
+    &:extend(.icon-base-pseudo);
+    .icon-char(@filename);
+
+    body:not(.seti-icons-no-color) & {
+      color: @color;
+    }
+  }
+}

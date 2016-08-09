@@ -1,0 +1,145 @@
+@import "ui-variables";
+
+.show-todo-preview {
+  @todo-color: @base-background-color;
+  @todo-color-light: lighten(@todo-color, 5%);
+
+  .todo-font {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .todo-loading {
+    padding: @component-padding;
+  }
+
+  background-color: @todo-color;
+  color: @text-color;
+  overflow: scroll;
+
+  .input-block {
+    @item-width: 200px;
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .input-block-item {
+      display: flex;
+      flex: 1 1 @item-width;
+      padding: @component-padding / 2 @component-padding;
+
+      .btn-group {
+        display: flex;
+        flex: 1 1 220px;
+
+        .btn {
+          flex: 1 1 @item-width;
+          padding: 0;
+          text-align: center;
+        }
+        .btn:first-child {
+          flex: 1 1 @item-width * 2.5;
+        }
+      }
+    }
+
+    .input-block-item--flex {
+      flex: 100 1 @item-width;
+      position: relative;
+      atom-text-editor {
+        width: 100%;
+      }
+    }
+
+    &.todo-info-block {
+      padding-left: 5px;
+    }
+  }
+
+  .todo-options {
+    border: 2px solid @todo-color-light;
+    margin: @component-padding / 2 @component-padding;
+    padding: 0 @component-padding;
+
+    .option {
+      display: flex;
+      align-items: center;
+      & > h2 {
+        .todo-font;
+        flex: 1 1 120px;
+      }
+      & > div {
+        word-wrap: break-word;
+        flex: 100;
+      }
+    }
+
+    .items-on-table, .items-off-table {
+      .badge {
+        .todo-font;
+        width: 80px;
+        margin: 5px 10px 5px 0;
+        cursor: move;
+      }
+
+      .ghost {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  .todo-table {
+    margin: @component-padding / 2 @component-padding;
+
+    table {
+      width: 100%;
+    }
+
+    tr {
+      &:nth-child(2n + 1) {
+        background-color: @todo-color-light;
+      }
+      &:hover {
+        background-color: lighten(@todo-color-light, 5%);
+      }
+    }
+
+    td + td, th + th {
+      border-left: 1px groove @text-color;
+    }
+
+    th, td {
+      padding: 10px 6px;
+      word-break: break-word;
+      cursor: pointer;
+    }
+
+    th {
+      .todo-font;
+      min-width: 75px;
+
+      .sort-asc, .sort-desc {
+        float: right;
+        pointer-events: none;
+        &:not(.active) {
+          opacity: 0.2;
+        }
+      }
+      .sort-desc {
+        margin: -6px -16px 0 0;
+      }
+    }
+  }
+
+  code {
+    margin-right: 2px;
+    color: @text-color;
+  }
+}
+
+.theme-atom-material-ui .todo-table tr {
+  &:nth-child(2n + 1), &:hover {
+    background-color: @base-border-color;
+  }
+}

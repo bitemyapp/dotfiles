@@ -20,6 +20,11 @@ status =
 commentchar_config = ''
 templateFile = ''
 commitTemplate = 'foobar'
+commitFileContent =
+  toString: -> commitFileContent
+  indexOf: -> 5
+  substring: -> 'commit message'
+  split: (splitPoint) -> if splitPoint is '\n' then ['commit message', '# comments to be deleted']
 commitResolution = Promise.resolve 'commit success'
 
 setupMocks = ->
@@ -33,11 +38,12 @@ setupMocks = ->
   spyOn(atom.workspace, 'paneForURI').andReturn commitPane
   spyOn(status, 'replace').andCallFake -> status
   spyOn(status, 'trim').andCallThrough()
+  spyOn(commitFileContent, 'substring').andCallThrough()
   spyOn(fs, 'readFileSync').andCallFake ->
     if fs.readFileSync.mostRecentCall.args[0] is 'template'
       commitTemplate
     else
-      ''
+      commitFileContent
   spyOn(fs, 'writeFileSync')
   spyOn(fs, 'writeFile')
   spyOn(fs, 'unlink')
@@ -102,7 +108,9 @@ describe "GitCommit", ->
 
     it "calls git.cmd with ['commit'...] on textEditor save", ->
       textEditor.save()
-      expect(git.cmd).toHaveBeenCalledWith ['commit', '--cleanup=strip', "--file=#{commitFilePath}"], cwd: repo.getWorkingDirectory()
+      waitsFor -> git.cmd.callCount > 1
+      runs ->
+        expect(git.cmd).toHaveBeenCalledWith ['commit', "--cleanup=strip", "--file=#{commitFilePath}"], cwd: repo.getWorkingDirectory()
 
     it "closes the commit pane when commit is successful", ->
       textEditor.save()
@@ -173,6 +181,24 @@ describe "GitCommit", ->
       runs ->
         expect(notifier.addError).toHaveBeenCalledWith 'commit error'
         expect(commitPane.destroy).not.toHaveBeenCalled()
+
+  describe "when the verbose commit setting is true", ->
+    beforeEach ->
+      atom.config.set "git-plus.openInPane", false
+      atom.config.set "git-plus.experimental", true
+      atom.config.set "git-plus.verboseCommits", true
+      setupMocks()
+
+    it "calls git.cmd with the --verbose flag", ->
+      waitsForPromise -> GitCommit(repo)
+      runs ->
+        expect(git.cmd).toHaveBeenCalledWith ['diff', '--color=never', '--staged'], cwd: repo.getWorkingDirectory()
+
+    it "trims the commit file", ->
+      textEditor.save()
+      waitsFor -> commitFileContent.substring.callCount > 0
+      runs ->
+        expect(commitFileContent.substring).toHaveBeenCalledWith 0, commitFileContent.indexOf()
 
   ## atom.config.get('git-plus.openInPane') is always false inside the module
   # describe "when the `git-plus.openInPane` setting is true", ->

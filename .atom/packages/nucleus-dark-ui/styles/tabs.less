@@ -2,10 +2,14 @@
 @import "ui-mixins.less";
 @import "octicon-mixins";
 
+
 .tab-bar {
   background: @tab-bar-background-color;
   width: 100%;
   height: @tab-height;
+  // @media (min-width: 800px) {
+  //   height: @tab-height/2;
+  // }
   padding: 0;
   display: table;
   table-layout: fixed;
@@ -28,7 +32,7 @@
     padding-left: 20px !important;
     padding-right: 20px !important;
     position: relative;
-    transition: all @transition-time ease;
+    transition: color @transition-time ease, border @transition-time ease, background @transition-time ease;
 
     .status-modified,
     .status-added,
@@ -180,5 +184,16 @@
     top: 12px !important;
     left: 8px !important;
     right: auto !important;
+  }
+}
+
+@media (max-width: 1280px), (max-height: 800px) {
+  .tab-bar {
+    height: @tab-height * 0.8;
+
+    .tab {
+      height: @tab-height * 0.8;
+      line-height: @tab-height * 0.8;
+    }
   }
 }

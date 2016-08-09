@@ -1,6 +1,6 @@
 {
   "name": "language-haskell",
-  "version": "1.7.15",
+  "version": "1.7.18",
   "description": "Haskell language support in Atom",
   "repository": {
     "type": "git",
@@ -9,11 +9,12 @@
   "license": "MIT",
   "main": "src/main.coffee",
   "engines": {
-    "atom": ">=0.174.0 <2.0.0"
+    "atom": ">=1.8.0 <2.0.0"
   },
   "dependencies": {
     "season": "^2.0.0",
-    "coffee-script": "~1.9.0"
+    "coffee-script": "~1.9.0",
+    "clone": "^1.0.2"
   },
   "scripts": {
     "postinstall": "node ./node_modules/coffee-script/bin/coffee src/haskell.coffee"
@@ -24,13 +25,18 @@
     "url": "https://github.com/atom-haskell/language-haskell/issues"
   },
   "homepage": "https://github.com/atom-haskell/language-haskell#readme",
-  "_id": "language-haskell@1.7.15",
-  "_shasum": "6c4ef60c953223f9d026fd2854a8da47ef1ac31f",
-  "_resolved": "file:../d-116419-34270-rk1gwt/package.tgz",
-  "_from": "../d-116419-34270-rk1gwt/package.tgz",
+  "_id": "language-haskell@1.7.18",
+  "_shasum": "0c5600c0c30a49248ddf546c2c9ceb8c3d08a150",
+  "_resolved": "file:../d-116627-17268-1vl37t6/package.tgz",
+  "_from": "../d-116627-17268-1vl37t6/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
+      {
+        "name": "clone",
+        "version": "1.0.2",
+        "path": "node_modules/clone/clone.js"
+      },
       {
         "name": "coffee-script",
         "version": "1.9.3",
@@ -113,7 +119,7 @@
       },
       {
         "name": "abbrev",
-        "version": "1.0.7",
+        "version": "1.0.9",
         "path": "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/nopt/node_modules/abbrev/abbrev.js"
       },
       {
@@ -133,7 +139,7 @@
       },
       {
         "name": "fs-plus",
-        "version": "2.8.2",
+        "version": "2.9.1",
         "path": "node_modules/season/node_modules/fs-plus/lib/fs-plus.js"
       },
       {
@@ -175,6 +181,7 @@
     "extensions": {
       ".json": [
         "coffeelint.json",
+        "node_modules/clone/package.json",
         "node_modules/coffee-script/bower.json",
         "node_modules/coffee-script/package.json",
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/StringScanner/package.json",
@@ -209,6 +216,8 @@
         "package.json"
       ],
       ".js": [
+        "node_modules/clone/clone.js",
+        "node_modules/clone/test.js",
         "node_modules/coffee-script/lib/coffee-script/browser.js",
         "node_modules/coffee-script/lib/coffee-script/cake.js",
         "node_modules/coffee-script/lib/coffee-script/coffee-script.js",
@@ -310,7 +319,6 @@
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/nopt/examples/my-program.js",
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/nopt/lib/nopt.js",
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/nopt/node_modules/abbrev/abbrev.js",
-        "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/nopt/node_modules/abbrev/test.js",
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/source-map/Makefile.dryice.js",
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/source-map/build/assert-shim.js",
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/source-map/build/mini-require.js",
@@ -364,6 +372,7 @@
         "node_modules/season/node_modules/cson-safe/node_modules/coffee-script-redux/node_modules/esmangle/node_modules/escope/gulpfile.coffee",
         "src/haskell.coffee",
         "src/main.coffee",
+        "src/prelude.coffee",
         "src/syntax-tools.coffee"
       ]
     },
@@ -376,7 +385,8 @@
         ],
         "dependencies": {
           "season": "^2.0.0",
-          "coffee-script": "~1.9.0"
+          "coffee-script": "~1.9.0",
+          "clone": "^1.0.2"
         }
       },
       {

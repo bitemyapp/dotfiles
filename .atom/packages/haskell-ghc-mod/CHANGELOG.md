@@ -1,3 +1,58 @@
+## 1.16.0
+* Change onMouseHoverShow default to 'Type and Info'
+* More type/info tooltip options
+* Add sig-fill command
+* Fix caps display in error messages
+* Kill ghc-modi on InteractiveActionTimeout
+* Add special handler for interactive action timeout
+
+## 1.15.3
+* Make interactiveActionTimeout actually work
+
+## 1.15.2
+* Configurable timeouts
+
+## 1.15.1
+* Fix Promise.resolve
+
+## 1.15.0
+* Add .haskell-ghc-mod.json to readme
+* Add message on .haskell-ghc-mod.json parse error
+* Handle JSON.parse errors
+* .haskell-ghc-mod.json
+
+## 1.14.7
+* Add contributors to README
+* Merge pull request #162 from DeathByTape/master
+* Set maxBuffer to 'Infinity'.
+
+## 1.14.6
+* Use absolute paths in go-to-declaration
+
+## 1.14.5
+* Add option for low-memory systems
+
+## 1.14.4
+* Avoid reporting Atom bugs
+
+## 1.14.3
+* Dir/Path cleanup in initBackend
+* Use _.extend for extending process options
+* Log options as object
+* Remove unused child_process
+* Cleanup getVersion, checkComp
+* A bit more GhcModiProcessReal-related cleanup
+* Clean up GhcModiProcessReal
+* Log ghc-modi spawn options as object
+* Stringify log messages
+* Change debug text
+* Refactor execFile into execPromise
+* Don't use BufferedProcess because WEIRDNESS on Win
+* Print stderr/stdout when checking ghc version
+* Print stdout on stack path error
+* getProcessOptions once in initBackend
+* Always show stderr on stack path
+
 ## 1.14.2
 * Use 'n' as EOL in Atom
 * Merge branch 'upi-refactor'

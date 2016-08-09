@@ -1,0 +1,39 @@
+atom-text-editor[mini] {
+  line-height: @component-line-height;
+  max-height: @component-line-height + 2; // +2 for borders
+  overflow: auto;
+}
+
+atom-text-editor[mini] {
+  font-size: @ui-input-size;
+  line-height: @ui-line-height;
+  max-height: none;
+  padding-left: @ui-padding/3;
+  border-radius: @component-border-radius;
+  color: @text-color-highlight;
+  border: 1px solid @input-border-color;
+  background-color: @input-background-color;
+
+  &,
+  &::shadow {
+    .placeholder-text {
+      color: @text-color-subtle;
+    }
+    .selection .region {
+      background-color: @input-selection-color;
+    }
+    .cursor {
+      border-color: @base-accent-color;
+      border-width: 2px;
+    }
+  }
+
+  &.is-focused,
+  &.is-focused::shadow {
+    .focus();
+    background-color: @input-background-color-focus;
+    .selection .region {
+      background-color: @input-selection-color-focus;
+    }
+  }
+}

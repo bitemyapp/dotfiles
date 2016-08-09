@@ -1,7 +1,6 @@
 @import "syntax-variables";
 
 // UI Theme colors -------------------------------------------------------------
-
 @theme-text-color-highlight: rgb(255, 255, 255);
 @theme-text-color-accent:    mix(@syntax-text-color, @theme-text-color-highlight, 50%);
 @theme-text-color-normal:    mix(@syntax-background-color, @theme-text-color-accent, 32%);
@@ -15,7 +14,6 @@
 @theme-green:  @syntax-color-added;
 @theme-orange: @syntax-color-modified;
 @theme-red:    @syntax-color-removed;
-
 
 // Editor colors ---------------------------------------------------------------
 @theme-syntax-text-color:            @syntax-text-color;
@@ -62,6 +60,13 @@
 @text-color-modified:  @text-color-warning;
 @text-color-removed:   @text-color-error;
 
+// Site colors -----------------------------------------------------------------
+@ui-site-color-1: @theme-blue; // blue
+@ui-site-color-2: @theme-green; // green
+@ui-site-color-3: @theme-orange; // orange
+@ui-site-color-4: @theme-red;             // pink
+@ui-site-color-5: @theme-blue;            // yellow
+
 // Editor ----------------------------------------------------------------------
 @indent-guide-color: @theme-background-color-dark;
 @invisibles-color:   @theme-background-color-light;
@@ -79,7 +84,8 @@
 
 @input-background-color: @theme-background-color-light;
 @input-border-color: @text-color;
-@input-background-color-active: @theme-background-color;
+@input-background-color-active: @text-color;
+@input-text-color-active: @base-background-color;
 
 @tool-panel-background-color: @theme-background-color-dark;
 @tool-panel-border-color: @base-border-color;
@@ -132,7 +138,7 @@
 @ui-site-color-5: @theme-blue;
 
 // Sizes -----------------------------------------------------------------------
-@font-size: 13px;
+@font-size: 14px;
 
 @input-font-size: 14px;
 @input-height: 32px;
@@ -140,12 +146,12 @@
 @component-padding: 10px;
 @component-icon-padding: 5px;
 @component-icon-size: 16px;
-@component-line-height: 24px;
+@component-line-height: 26px;
 @component-border-radius: 4px;
 
 @disclosure-arrow-size: 12px;
 
-@tab-height: 32px;
+@tab-height: 40px;
 
 // Other -----------------------------------------------------------------------
 @font-family: '.SFNSText-Regular', 'SF UI Text', 'Helvetica Neue', 'Arial', 'Lucida Grande', 'Segoe UI', Noto Sans, sans-serif;
