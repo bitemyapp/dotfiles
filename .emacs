@@ -31,8 +31,10 @@
                      ; f
                      flycheck
                      ; go-mode
+                     groovy-mode
                      haskell-mode
-                     ; hcl-mode
+                     ;; intero
+                     hcl-mode
                      ; idris-mode
                      ; js2-mode
                      ; json-mode
@@ -51,7 +53,7 @@
                      ; racer
                      rainbow-delimiters
                      rainbow-mode
-                     ; rust-mode
+                     rust-mode
                      ; scss-mode
                      tabbar
                      ; toml-mode
@@ -118,6 +120,10 @@
 
 ;; go
 ;; (require 'go-mode-autoloads)
+
+;; groovy
+(require 'groovy-mode)
+(add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
 
 ;; calls runhaskell which doesn't work
 ;; (eval-after-load 'flycheck
@@ -232,7 +238,7 @@
 (require 'rainbow-mode)
 
 ;; Rust mode
-;; (require 'rust-mode)
+(require 'rust-mode)
 ;; ;; (setq racer-cmd "$HOME/.cargo/bin/racer")
 ;; (setq racer-rust-src-path (concat (getenv "HOME") "/work/rustc/src"))
 ;; (add-hook 'rust-mode-hook #'racer-mode)
@@ -256,8 +262,8 @@
     (load-library "tabbar-config.el"))
 
 ;; Terraform
-;; (add-to-list 'load-path "~/.emacs.d/terraform-mode")
-;; (require 'terraform-mode)
+(add-to-list 'load-path "~/.emacs.d/terraform-mode")
+(require 'terraform-mode)
 
 ;; Undo Tree
 ;; (require 'undo-tree)
