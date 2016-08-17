@@ -98,7 +98,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
+   dotspacemacs-themes '(gotham
+                         dracula
+                         monokai
                          spacemacs-dark
                          spacemacs-light
                          solarized-light
@@ -282,6 +284,18 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (require 'find-file-in-repository)
   (global-set-key (kbd "C-x f") 'find-file-in-repository)
 
+  (setq auto-mode-alist (cons '("\.md$" . markdown-mode) auto-mode-alist))
+
+  (require 'rect)
+  (defadvice kill-region (before smart-cut activate compile)
+    "When called interactively with no active region, kill a single line instead."
+    (interactive
+     (if mark-active (list (region-beginning) (region-end) rectangle-mark-mode)
+       (list (line-beginning-position)
+             (line-beginning-position 2)))))
+  (global-set-key "\C-w" 'kill-region)
+  (delete-selection-mode 1) ;; overwrite marked regions
+  ;; backward-kill-word
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
