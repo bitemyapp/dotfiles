@@ -1,16 +1,15 @@
 ;; Haskell
 
 ;; (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
-;; (add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
 
-;; (require 'hindent)
-;; (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
-;; (require 'haskell-mode-autoloads)
+(add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
+(require 'hindent)
+(add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
+(require 'haskell-mode-autoloads)
 ;; (add-to-list 'Info-default-directory-list "~/.emacs.d/haskell/haskell-mode/")
+;; (setq load-prefer-newer t)
 
-(setq load-prefer-newer t)
-
-(require 'haskell-mode)
+;; (require 'haskell-mode)
 (require 'haskell-indentation)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 

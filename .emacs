@@ -5,6 +5,7 @@
 
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
+;; (setq load-file-rep-suffixes '(""))
 
 ;; Use package management!
 (require 'package)
@@ -31,9 +32,9 @@
                      ; f
                      flycheck
                      ; go-mode
-                     groovy-mode
+                     ;; groovy-mode
                      ;; intero
-                     haskell-mode
+                     ;; haskell-mode
                      hcl-mode
                      ; idris-mode
                      ; js2-mode
@@ -122,8 +123,8 @@
 ;; (require 'go-mode-autoloads)
 
 ;; groovy
-(require 'groovy-mode)
-(add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
+;; (require 'groovy-mode)
+;; (add-to-list 'auto-mode-alist '("Jenkinsfile" . groovy-mode))
 
 ;; calls runhaskell which doesn't work
 ;; (eval-after-load 'flycheck
@@ -314,16 +315,16 @@
 ;; (setq browse-url-browser-function 'w3m-goto-url-new-session)
 
 ;; Desktop mode
-(setq desktop-load-locked-desktop t)
-(setq desktop-path '("~/.emacs.d/"))
-(setq desktop-dirname "~/.emacs.d/")
-(setq desktop-base-file-name "emacs-desktop")
-(desktop-read desktop-dirname)
-(defun my-desktop-save ()
-    (interactive)
-    ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
-    (desktop-save desktop-dirname))
-(add-hook 'auto-save-hook 'my-desktop-save)
+;; (setq desktop-load-locked-desktop t)
+;; (setq desktop-path '("~/.emacs.d/"))
+;; (setq desktop-dirname "~/.emacs.d/")
+;; (setq desktop-base-file-name "emacs-desktop")
+;; (desktop-read desktop-dirname)
+;; (defun my-desktop-save ()
+;;     (interactive)
+;;     ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
+;;     (desktop-save desktop-dirname))
+;; (add-hook 'auto-save-hook 'my-desktop-save)
 
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
