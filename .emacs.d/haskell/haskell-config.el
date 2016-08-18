@@ -1,20 +1,15 @@
 ;; Haskell
 
-;; (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
+(add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
+(require 'haskell-mode-autoloads)
 
 (add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
 (require 'hindent)
-(add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
-(require 'haskell-mode-autoloads)
-;; (add-to-list 'Info-default-directory-list "~/.emacs.d/haskell/haskell-mode/")
-;; (setq load-prefer-newer t)
+(add-hook 'haskell-mode-hook #'hindent-mode)
+(define-key haskell-mode-map (kbd "C-c f b") 'hindent-reformat-buffer)
 
-;; (require 'haskell-mode)
 (require 'haskell-indentation)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-
-;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
@@ -26,7 +21,6 @@
 ;; (require 'haskell-interactive-mode)
 ;; (require 'haskell-process)
 ;; (require 'haskell-font-lock)
-
 
 ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 ;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
