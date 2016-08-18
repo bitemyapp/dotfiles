@@ -1,0 +1,3 @@
+[submodule ".emacs.d/haskell/hindent"]
+	path = .emacs.d/haskell/hindent
+	url = https://github.com/chrisdone/hindent
