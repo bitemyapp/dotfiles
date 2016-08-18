@@ -46,7 +46,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(find-file-in-repository)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(smartparens)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -99,11 +99,12 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(stekene-dark
+   dotspacemacs-themes '(spacemacs-dark
+                         tao-yin
+                         stekene-dark
                          gotham
                          dracula
                          monokai
-                         spacemacs-dark
                          spacemacs-light
                          solarized-light
                          solarized-dark
@@ -297,7 +298,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
              (line-beginning-position 2)))))
   (global-set-key "\C-w" 'kill-region)
   (delete-selection-mode 1) ;; overwrite marked regions
-  ;; backward-kill-word
+  (remove-hook 'prog-mode-hook #'smartparens-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
