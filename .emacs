@@ -267,8 +267,8 @@
 (require 'terraform-mode)
 
 ;; Undo Tree
-;; (require 'undo-tree)
-;; (global-undo-tree-mode)
+(require 'undo-tree)
+(global-undo-tree-mode)
 
 ;; very large files
 ;; (add-to-list 'load-path "~/.emacs.d/vlfi")
@@ -283,11 +283,11 @@
 ;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; yasnippet
-;; (add-to-list 'load-path "~/.emacs.d/yasnippet")
-;; (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
-;; (require 'yasnippet)
-;; (yas-global-mode 1)
-;; (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
+(setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
+(require 'yasnippet)
+(yas-global-mode 1)
+(define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
 
 ;; (defun yas/goto-end-of-active-field ()
 ;;   (interactive)

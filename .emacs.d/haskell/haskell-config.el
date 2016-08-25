@@ -2,6 +2,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
 (require 'haskell-mode-autoloads)
+(require 'haskell-mode)
 
 (add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
 (require 'hindent)
