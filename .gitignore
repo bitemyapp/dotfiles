@@ -571,3 +571,5 @@ Creative\ Cloud*
 Backup/
 .TelegramDesktop/
 .wget-hsts
+.emacs.d/haskell/haskell-mode
+.emacs.d/haskell/hindent

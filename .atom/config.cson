@@ -3,6 +3,8 @@
     disabledPackages: [
       "minimap"
       "emacs-plus"
+      "git-diff-details"
+      "git-time-machine"
     ]
     themes: [
       "one-dork-ui"
