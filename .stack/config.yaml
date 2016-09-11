@@ -2,4 +2,4 @@
 # in all projects.  For more information about stack's configuration, see
 # http://docs.haskellstack.org/en/stable/yaml_configuration/
 #
-{}
+system-ghc: false
