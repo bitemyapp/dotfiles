@@ -573,3 +573,5 @@ Backup/
 .wget-hsts
 .emacs.d/haskell/haskell-mode
 .emacs.d/haskell/hindent
+.bundle/cache
+
