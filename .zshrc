@@ -78,6 +78,8 @@ export PATH=$HOME/.bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$HOME/work/rustc/src"
 export CARGO_HOME="$HOME/.cargo"
+export NODE_PATH="/usr/local/lib/node_modules"
+export GOPATH="$HOME/.local/goworkspace"
 
 source ~/.secrets
 

@@ -2,14 +2,14 @@
 -- :def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
 -- import Prelude (readFile, return, ($), (++), String, IO)
 
-:def hoogle \x -> return $ ":!hoogle search \"" ++ x ++ "\""
-:def doc \x -> return $ ":!hoogle search -i \"" ++ x ++ "\""
+-- :def hoogle \x -> return $ ":!hoogle search \"" ++ x ++ "\""
+-- :def doc \x -> return $ ":!hoogle search -i \"" ++ x ++ "\""
 
 :set -fno-warn-type-defaults
 -- :set -fobject-code
 
-:def browser \u -> return $ ":! open " ++ u
-:def package \m -> return $ ":! stack exec -- ghc-pkg --simple-output find-module " ++ m
+-- :def browser \u -> return $ ":! open " ++ u
+-- :def package \m -> return $ ":! stack exec -- ghc-pkg --simple-output find-module " ++ m
+-- :def source readFile
 
-:def source readFile
 :set prompt "Prelude> "

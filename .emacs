@@ -19,8 +19,8 @@
 (setq package-list '(abyss-theme
                      aurora-theme
                      auto-complete
-                     ; cider
-                     ; clojure-mode
+                     cider
+                     clojure-mode
                      ; company
                      ; company-ghci
                      ; csv-mode
@@ -31,7 +31,7 @@
                      ; erlang
                      ; f
                      flycheck
-                     ; go-mode
+                     go-mode
                      ;; groovy-mode
                      ;; intero
                      ;; haskell-mode
@@ -90,8 +90,8 @@
 ;; (load-library "ac-config.el")
 
 ;; Clojure
-;; (add-to-list 'load-path "~/.emacs.d/clojure/")
-;; (load-library "clojure-config.el")
+(add-to-list 'load-path "~/.emacs.d/clojure/")
+(load-library "clojure-config.el")
 
 ;; Coq
 ;; (setq coq-prog-args "-emacs-U")
@@ -120,7 +120,7 @@
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
 ;; go
-;; (require 'go-mode-autoloads)
+(require 'go-mode-autoloads)
 
 ;; groovy
 ;; (require 'groovy-mode)
