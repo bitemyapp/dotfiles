@@ -67,6 +67,9 @@ if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
+GPG_TTY=$(tty)
+export GPG_TTY
+
 export PATH=/usr/local/texlive/2015/bin/x86_64-darwin:$PATH
 export PATH=/usr/local/texlive/2016/bin/x86_64-darwin:$PATH
 
