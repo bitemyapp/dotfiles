@@ -574,4 +574,5 @@ Backup/
 .emacs.d/haskell/haskell-mode
 .emacs.d/haskell/hindent
 .bundle/cache
+.lci_history
 
