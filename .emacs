@@ -351,7 +351,7 @@
 (when (> (display-pixel-height) 1200)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 260 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
 (setq mac-option-modifier 'meta)
 
