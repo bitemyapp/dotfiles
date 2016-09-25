@@ -214,48 +214,6 @@ You can hit \\<grep-mode-map>\\[recompile] to refresh the buffer if you've saved
            (list (region-beginning) (region-end))
          (list (line-beginning-position) (line-beginning-position 2)))))
 
-(defun duplicate-start-of-line-or-region ()
-  (interactive)
-  (if mark-active
-      (duplicate-region)
-    (duplicate-start-of-line)))
-
-(defun duplicate-start-of-line ()
-  (let ((text (buffer-substring (point)
-                                (beginning-of-thing 'line))))
-    (forward-line)
-    (push-mark)
-    (insert text)
-    (open-line 1)))
-
-(defun duplicate-region ()
-  (let* ((end (region-end))
-         (text (buffer-substring (region-beginning)
-                                 end)))
-    (goto-char end)
-    (insert text)
-    (push-mark end)
-    (setq deactivate-mark nil)
-    (exchange-point-and-mark)))
-
-(global-set-key (kbd "C-c <down>") 'duplicate-start-of-line-or-region)
-
-(defun accum (pattern)
-  (interactive "sPattern: ")
-  (beginning-of-buffer)
-  (let ((matched ""))
-    (while (re-search-forward pattern nil t)
-      (setq matched (concat matched (buffer-substring (match-beginning 1) (match-end 0)) "\n")))
-    (switch-to-buffer "*Dump Matched*")
-    (concat matched)
-    (insert matched)))
-
-(defun delete-line-numbers ()
-  (interactive)
-  (replace-regexp "^[0-9]* *" "")
-)
-(global-set-key (kbd "C-c d l n") 'delete-line-numbers)
-
 (defun smart-beginning-of-line ()
   "Move point to first non-whitespace character or beginning-of-line.
 

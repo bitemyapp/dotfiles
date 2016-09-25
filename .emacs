@@ -17,21 +17,19 @@
 (package-initialize)
 
 (setq package-list '(abyss-theme
-                     aurora-theme
-                     auto-complete
-                     cider
-                     clojure-mode
+                     ;; cider
+                     ;; clojure-mode
                      ; company
                      ; company-ghci
                      ; csv-mode
-                     dark-krystal-theme
-                     dracula-theme
+                     ;; dark-krystal-theme
+                     ;; dracula-theme
                      ; elixir-mode
                      ; elm-mode
                      ; erlang
                      ; f
-                     flycheck
-                     go-mode
+                     ;; flycheck
+                     ;; go-mode
                      ;; groovy-mode
                      ;; intero
                      ;; haskell-mode
@@ -39,13 +37,13 @@
                      ; idris-mode
                      ; js2-mode
                      ; json-mode
-                     magit
+                     ;; magit
                      markdown-mode
-                     material-theme
-                     monokai-theme
+                     ;; material-theme
+                     ;; monokai-theme
                      ; nix-mode
-                     phoenix-dark-mono-theme
-                     phoenix-dark-pink-theme
+                     ;; phoenix-dark-mono-theme
+                     ;; phoenix-dark-pink-theme
                      ; php-mode
                      ; projectile
                      ; protobuf-mode
@@ -59,11 +57,11 @@
                      tabbar
                      ; toml-mode
                      ; twittering-mode
-                     ubuntu-theme
+                     ;; ubuntu-theme
                      undo-tree
                      ; virtualenv
                      ; w3m
-                     warm-night-theme
+                     ;; warm-night-theme
                      ; writeroom-mode
                      yaml-mode
                      yasnippet))
@@ -90,8 +88,8 @@
 ;; (load-library "ac-config.el")
 
 ;; Clojure
-(add-to-list 'load-path "~/.emacs.d/clojure/")
-(load-library "clojure-config.el")
+;; (add-to-list 'load-path "~/.emacs.d/clojure/")
+;; (load-library "clojure-config.el")
 
 ;; Coq
 ;; (setq coq-prog-args "-emacs-U")
@@ -120,7 +118,7 @@
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
 ;; go
-(require 'go-mode-autoloads)
+;; (require 'go-mode-autoloads)
 
 ;; groovy
 ;; (require 'groovy-mode)
@@ -185,7 +183,7 @@
 ;; (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
 
 ;; latex
-(add-to-list 'auto-mode-alist '("\\.tex$" . tex-mode))
+;; (add-to-list 'auto-mode-alist '("\\.tex$" . tex-mode))
 
 ;; Magit
 ;; (require 'magit)
@@ -240,6 +238,7 @@
 
 ;; Rust mode
 (require 'rust-mode)
+
 ;; ;; (setq racer-cmd "$HOME/.cargo/bin/racer")
 ;; (setq racer-rust-src-path (concat (getenv "HOME") "/work/rustc/src"))
 ;; (add-hook 'rust-mode-hook #'racer-mode)
@@ -254,8 +253,8 @@
 ;; (setq scss-compile-at-save nil)
 
 ;; Speedbar
-(require 'speedbar)
-(speedbar-add-supported-extension ".hs")
+;; (require 'speedbar)
+;; (speedbar-add-supported-extension ".hs")
 
 ;; Tabbar
 (add-to-list 'load-path "~/.emacs.d/tabbar")
@@ -279,11 +278,11 @@
 ;; (global-set-key (kbd "C-c w r") 'writeroom-mode)
 
 ;; yaml-mode
-;; (require 'yaml-mode)
-;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; yasnippet
-(add-to-list 'load-path "~/.emacs.d/yasnippet")
+;; (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (setq yas-snippet-dirs '("~/.emacs.d/yasnippet/snippets"))
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -352,6 +351,8 @@
   ;; retina
   (custom-set-faces
     '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+
+;; (custom-set-faces '(default ((t (:height 260 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
 
