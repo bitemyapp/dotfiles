@@ -53,7 +53,7 @@
                      rainbow-delimiters
                      rainbow-mode
                      rust-mode
-                     ; scss-mode
+                     scss-mode
                      tabbar
                      ; toml-mode
                      ; twittering-mode
@@ -248,9 +248,9 @@
 ;; (setq company-tooltip-align-annotations t)
 
 ;; SCSS
-;; (autoload 'scss-mode "scss-mode")
-;; (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-;; (setq scss-compile-at-save nil)
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save nil)
 
 ;; Speedbar
 ;; (require 'speedbar)

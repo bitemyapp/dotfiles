@@ -112,3 +112,6 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✗ %{$reset_color%}"
 
 export NVM_DIR="/home/callen/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# added by travis gem
+[ -f /home/callen/.travis/travis.sh ] && source /home/callen/.travis/travis.sh

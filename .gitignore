@@ -575,4 +575,4 @@ Backup/
 .emacs.d/haskell/hindent
 .bundle/cache
 .lci_history
-
+.travis/
