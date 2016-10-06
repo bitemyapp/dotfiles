@@ -327,6 +327,7 @@
 
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes")
 ;; (require 'bitemyapp-theme)
 ;; (load-theme 'misterioso t)
 ;; (load-theme 'dracula t)
@@ -335,7 +336,8 @@
 ;; (load-theme 'phoenix-dark-pink t)
 ;; (load-theme 'ubuntu t)
 ;; (load-theme 'phoenix-dark-mono t)
-(load-theme 'abyss t)
+;; (load-theme 'abyss t)
+(load-theme 'gruvbox t)
 ;; (set-face-foreground 'font-lock-string-face "red")
 ;; (set-face-foreground 'font-lock-comment-face "light pink")
 
