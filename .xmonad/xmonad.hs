@@ -23,7 +23,8 @@ myKeys x = [ ((modMask x,               xK_Right), nextWS)
            , ((modMask x .|. shiftMask, xK_Right), shiftToNext)
            , ((modMask x .|. shiftMask, xK_Left),  shiftToPrev)
            , ((modMask x,               xK_t),     toggleWS)
-           , ((modMask x,               xK_s),     shellPrompt defaultXPConfig)
+           -- , ((modMask x,               xK_s),     shellPrompt defaultXPConfig)
+           , ((modMask x,               xK_s),     spawn "dmenu_run -fn 'Droid Sans Mono-12'")
            , ((mod1Mask .|. controlMask, xK_l),    spawn "xtrlock -b")
            , ((0                , 0x1008ff11),     spawn "amixer -c 1 sset Master 4-")
            , ((0                , 0x1008ff13),     spawn "amixer -c 1 sset Master 4+")
@@ -76,5 +77,8 @@ main = do
        , modMask = mod4Mask
        , keys = newKeys
        , terminal = "gnome-terminal"
+       , handleEventHook =
+         mconcat [ docksEventHook
+                 , handleEventHook defaultConfig ]
        -- , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
        }
