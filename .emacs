@@ -54,6 +54,7 @@
                      rainbow-mode
                      rust-mode
                      scss-mode
+                     shakespeare-mode
                      tabbar
                      ; toml-mode
                      ; twittering-mode
@@ -251,6 +252,9 @@
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (setq scss-compile-at-save nil)
+
+;; Shakespeare
+(require 'shakespeare-mode)
 
 ;; Speedbar
 ;; (require 'speedbar)
