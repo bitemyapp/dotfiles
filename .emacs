@@ -16,7 +16,7 @@
 
 (package-initialize)
 
-(setq package-list '(abyss-theme
+(setq package-list '(;; abyss-theme
                      ;; cider
                      ;; clojure-mode
                      ; company
@@ -374,11 +374,11 @@
  '(org-support-shift-select (quote always) t)
  '(package-selected-packages
    (quote
-    (yasnippet yaml-mode undo-tree tabbar scss-mode rust-mode rainbow-mode rainbow-delimiters markdown-mode hcl-mode abyss-theme)))
+    (yasnippet yaml-mode undo-tree tabbar shakespeare-mode scss-mode rust-mode rainbow-mode rainbow-delimiters markdown-mode hcl-mode)))
  '(shift-select-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono")))))
+ '(default ((t (:height 160 :family "Ubuntu Mono")))))
