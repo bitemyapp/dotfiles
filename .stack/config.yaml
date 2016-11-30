@@ -3,3 +3,9 @@
 # http://docs.haskellstack.org/en/stable/yaml_configuration/
 #
 system-ghc: false
+
+extra-include-dirs:
+  - /usr/local/opt/openssl/include
+
+extra-lib-dirs:
+  - /usr/local/opt/openssl/lib

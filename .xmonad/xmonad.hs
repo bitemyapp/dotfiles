@@ -55,7 +55,7 @@ myManageHook = composeAll (
 
 myStartupHook = do
   spawnOnce "xmodmap ~/.Xmodmap"
-  spawnOnce "stalonetray"
+  spawnOnce "stalonetray --dockapp-mode simple"
   spawnOnce "unity-settings-daemon"
   spawnOnce "gnome-settings-daemon"
   spawnOnce "nm-applet"
@@ -68,7 +68,7 @@ main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/callen/.xmobarrc"
     xmonad $ gnomeConfig {
          manageHook = myManageHook
-       , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
+       , layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
        , logHook = dynamicLogWithPP xmobarPP
                    { ppOutput = hPutStrLn xmproc
                    , ppTitle = xmobarColor "green" "" . shorten 50
