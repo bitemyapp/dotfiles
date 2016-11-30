@@ -16,7 +16,7 @@
 
 (package-initialize)
 
-(setq package-list '(abyss-theme
+(setq package-list '(;; abyss-theme
                      ;; cider
                      ;; clojure-mode
                      ; company
