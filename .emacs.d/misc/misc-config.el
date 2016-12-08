@@ -434,4 +434,5 @@ the mode, `toggle' toggles the state."
   (interactive "p") (kmacro-exec-ring-item (quote ([C-left 92 101 109 112 104 123 C-right 125] 0 "%d")) arg))
 (global-set-key (kbd "C-c e e") 'emph)
 
-(require 'graphviz-dot-mode)
+;; (require 'cc-mode)
+;; (require 'graphviz-dot-mode)
