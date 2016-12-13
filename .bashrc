@@ -120,5 +120,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$HOME/work/rustc/src"
 export CARGO_HOME="$HOME/.cargo"
 
+# For cargo
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
 # added by travis gem
 [ -f /home/callen/.travis/travis.sh ] && source /home/callen/.travis/travis.sh

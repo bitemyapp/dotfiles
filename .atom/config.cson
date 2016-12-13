@@ -6,6 +6,7 @@
       "git-diff-details"
       "git-time-machine"
     ]
+    telemetryConsent: "limited"
     themes: [
       "one-dork-ui"
       "one-dark-syntax"
