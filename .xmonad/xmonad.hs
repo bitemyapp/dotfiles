@@ -48,8 +48,12 @@ myManageHook = composeAll (
     , className =? "hl2_linux" --> doIgnore
     , className =? "eu4" --> doIgnore
     , className =? "csgo_linux" --> doIgnore
+    , className =? "RocketLeague" --> doIgnore
     , className =? "Gimp"      --> doFloat
     , className =? "Vncviewer" --> doFloat
+    , className =? "Steam" --> doFloat
+    , className =? "steam" --> doIgnore -- bigpicture-mode
+    , className =? "MainThrd" --> doFloat
     , manageDocks
     ])
 
