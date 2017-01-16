@@ -578,3 +578,4 @@ Backup/
 .travis/
 nltk_data/
 .cpanm/
+.exercism.json

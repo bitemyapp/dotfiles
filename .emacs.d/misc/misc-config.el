@@ -3,6 +3,8 @@
 ;; Normal config stuff
 (global-set-key (kbd "C-z") nil) ; fuck everything about this.
 
+(global-set-key (kbd "M-*") 'pop-tag-mark)
+
 ;; There's something similar in vc-git.el: vc-git-grep.  Naturally,
 ;; though, I prefer this :)
 
