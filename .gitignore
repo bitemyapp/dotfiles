@@ -579,3 +579,5 @@ Backup/
 nltk_data/
 .cpanm/
 .exercism.json
+.multirust
+.rustup/
