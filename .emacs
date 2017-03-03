@@ -347,7 +347,7 @@
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 160 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
