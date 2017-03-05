@@ -85,7 +85,7 @@ export NODE_PATH="/usr/local/lib/node_modules"
 export GOPATH="$HOME/.local/goworkspace"
 
 # For cargo
-export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+# export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 source ~/.secrets
 
