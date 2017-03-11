@@ -581,3 +581,4 @@ nltk_data/
 .exercism.json
 .multirust
 .rustup/
+.yarnrc
