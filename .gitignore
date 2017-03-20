@@ -582,3 +582,4 @@ nltk_data/
 .multirust
 .rustup/
 .yarnrc
+.matplotlib/
