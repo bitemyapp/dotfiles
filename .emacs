@@ -359,6 +359,8 @@
 ;; (set-face-foreground 'font-lock-string-face "red")
 ;; (set-face-foreground 'font-lock-comment-face "light pink")
 
+(setq mac-command-modifier 'meta)
+
 (with-system 'darwin
   (custom-set-faces
     '(default ((t (:height 180 :family "Ubuntu Mono"))))))
