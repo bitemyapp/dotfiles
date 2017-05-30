@@ -191,6 +191,20 @@
 
 ;; latex
 ;; (add-to-list 'auto-mode-alist '("\\.tex$" . tex-mode))
+;; Only change sectioning colour
+(eval-after-load "tex-mode" '(fset 'tex-font-lock-suscript 'ignore))
+
+;; (setq font-latex-fontify-sectioning 'color)
+;; ;; super-/sub-script on baseline
+;; (setq font-latex-script-display (quote (nil)))
+;; ;; Do not change super-/sub-script font
+;; (custom-set-faces
+;;  '(font-latex-subscript-face ((t nil)))
+;;  '(font-latex-superscript-face ((t nil)))
+;;  )
+;; ;; Exclude bold/italic from keywords
+;; (setq font-latex-deactivated-keyword-classes
+;;       '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))
 
 ;; Magit
 ;; (require 'magit)
@@ -359,9 +373,11 @@
 ;; (set-face-foreground 'font-lock-string-face "red")
 ;; (set-face-foreground 'font-lock-comment-face "light pink")
 
+(setq mac-command-modifier 'meta)
+
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 160 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
@@ -372,7 +388,7 @@
   (custom-set-faces
     '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
-;; (custom-set-faces '(default ((t (:height 260 :family "Ubuntu Mono")))))
+;; (custom-set-faces '(default ((t (:height 220 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
 

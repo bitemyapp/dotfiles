@@ -592,3 +592,7 @@ snap/
 .zcash-params/
 .zcash/
 FiraxisLive/
+.multirust
+.rustup/
+.yarnrc
+.matplotlib/

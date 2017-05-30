@@ -85,7 +85,29 @@ export NODE_PATH="/usr/local/lib/node_modules"
 export GOPATH="$HOME/.local/goworkspace"
 
 # For cargo
-export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+# export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+if [[ `uname` == 'Linux' ]]
+then
+        export LINUX=1
+        export GNU_USERLAND=1
+else
+        export LINUX=
+fi
+
+if [[ `uname` == 'Darwin' ]]
+then
+        export OSX=1
+else
+        export OSX=
+fi
+if [[ "$OSX" == "1" ]]
+then
+    export OPENSSL_INCLUDE_DIR=`brew --prefix openssl`/include
+    export OPENSSL_LIB_DIR=`brew --prefix openssl`/lib
+    export DEP_OPENSSL_INCLUDE=`brew --prefix openssl`/include
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
+fi
+
 
 source ~/.secrets
 
