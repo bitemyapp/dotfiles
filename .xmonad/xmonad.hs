@@ -81,6 +81,7 @@ main = do
        , modMask = mod4Mask
        , keys = newKeys
        , terminal = "gnome-terminal"
+       -- , terminal = "alacritty"
        , handleEventHook =
          mconcat [ docksEventHook
                  , handleEventHook defaultConfig ]

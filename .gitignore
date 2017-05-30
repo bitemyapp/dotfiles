@@ -579,3 +579,16 @@ Backup/
 nltk_data/
 .cpanm/
 .exercism.json
+.work/
+.atom/
+.Heaven/
+.ZCash*/
+.multirust
+.rustup/
+.python_history
+.node_repl_history
+snap/
+.hpmyroom/
+.zcash-params/
+.zcash/
+FiraxisLive/

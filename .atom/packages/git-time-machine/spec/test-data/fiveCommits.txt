@@ -1,9 +1,0 @@
-###
-
-This file has been committed 5 times. This is used to test the parsing of git log messages by git-time-machine.
-
-This line added on the second commit
-This line added on the third commit
-This line added on the forth commit
-
-###

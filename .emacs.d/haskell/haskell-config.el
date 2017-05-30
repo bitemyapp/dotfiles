@@ -10,6 +10,7 @@
 ;; (add-hook 'haskell-mode-hook 'haskell-setup)
 
 (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
+(add-to-list 'load-path "~/.emacs.d/haskell/intero/")
 (require 'haskell-mode-autoloads)
 (require 'haskell-mode)
 
@@ -18,8 +19,11 @@
 (add-hook 'haskell-mode-hook #'hindent-mode)
 (define-key haskell-mode-map (kbd "C-c f b") 'hindent-reformat-buffer)
 
-(require 'haskell-indentation)
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+;; (require 'haskell-indentation)
+;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(require 'haskell-simple-indent)
+;; (require 'intero)
+;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
