@@ -1,6 +1,0 @@
-fileTypes: [ 'hsc' ]
-name: 'Hsc2Hs'
-scopeName: 'source.hsc2hs'
-patterns: [
-    include: 'source.haskell'
-]

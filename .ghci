@@ -11,5 +11,8 @@
 -- :def browser \u -> return $ ":! open " ++ u
 -- :def package \m -> return $ ":! stack exec -- ghc-pkg --simple-output find-module " ++ m
 -- :def source readFile
+import Prelude
+
+:def rr (\a -> return (unlines [":r", a]))
 
 :set prompt "Prelude> "

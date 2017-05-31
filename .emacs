@@ -19,16 +19,17 @@
 (setq package-list '(;; abyss-theme
                      ;; cider
                      ;; clojure-mode
-                     ; company
-                     ; company-ghci
+                     company
+                     company-ghci
                      ; csv-mode
                      ;; dark-krystal-theme
+                     dash
                      ;; dracula-theme
+                     editorconfig
                      ; elixir-mode
                      ; elm-mode
                      ; erlang
-                     ; f
-                     ;; flycheck
+                     flycheck
                      ;; go-mode
                      ;; groovy-mode
                      ;; intero
@@ -44,18 +45,19 @@
                      ; nix-mode
                      ;; phoenix-dark-mono-theme
                      ;; phoenix-dark-pink-theme
-                     ; php-mode
+                     php-mode
                      ; projectile
                      ; protobuf-mode
                      ; puppet-mode
                      ; python-mode
-                     ; racer
+                     racer
                      rainbow-delimiters
                      rainbow-mode
                      rust-mode
                      scss-mode
                      shakespeare-mode
                      tabbar
+                     typescript-mode
                      ; toml-mode
                      ; twittering-mode
                      ;; ubuntu-theme
@@ -102,9 +104,13 @@
 ;; (load-library "pg-init.el")
 
 ;; Dockerfile
-;; (add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
-;; (require 'dockerfile-mode)
-;; (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+(add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
+;; Editorconfig
+(require 'editorconfig)
+(editorconfig-mode 1)
 
 ;; Elixir
 ;; (require 'elixir-mode)
@@ -135,7 +141,7 @@
 ;; Override haskell-mode's BS.
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
-;; (require 'company)
+(require 'company)
 ;; (require 'company-ghci)
 ;; (setq company-idle-delay 0)
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
@@ -227,7 +233,7 @@
 ;; (load "~/.opam/4.02.1/share/emacs/site-lisp/tuareg-site-file")
 
 ;; PHP
-;; (require 'php-mode)
+(require 'php-mode)
 
 ;; Projectile
 ;; (require 'projectile)
@@ -253,6 +259,12 @@
 
 ;; Rust mode
 (require 'rust-mode)
+(add-hook 'rust-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+(setq racer-rust-src-path "/home/callen/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
 
 ;; ;; (setq racer-cmd "$HOME/.cargo/bin/racer")
 ;; (setq racer-rust-src-path (concat (getenv "HOME") "/work/rustc/src"))
@@ -286,6 +298,8 @@
 ;; Undo Tree
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+(require 'typescript-mode)
 
 ;; very large files
 ;; (add-to-list 'load-path "~/.emacs.d/vlfi")
@@ -359,6 +373,8 @@
 ;; (set-face-foreground 'font-lock-string-face "red")
 ;; (set-face-foreground 'font-lock-comment-face "light pink")
 
+(setq mac-command-modifier 'meta)
+
 (with-system 'darwin
   (custom-set-faces
     '(default ((t (:height 180 :family "Ubuntu Mono"))))))
@@ -377,3 +393,23 @@
 (setq mac-option-modifier 'meta)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always) t)
+ '(safe-local-variable-values
+   (quote
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4))))
+ '(shift-select-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 160 :family "Ubuntu Mono")))))

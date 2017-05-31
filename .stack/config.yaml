@@ -9,3 +9,5 @@ extra-include-dirs:
 
 extra-lib-dirs:
   - /usr/local/opt/openssl/lib
+
+# jobs: 4
