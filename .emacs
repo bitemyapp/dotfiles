@@ -233,7 +233,7 @@
 ;; (load "~/.opam/4.02.1/share/emacs/site-lisp/tuareg-site-file")
 
 ;; PHP
-(require 'php-mode)
+;; (require 'php-mode)
 
 ;; Projectile
 ;; (require 'projectile)
