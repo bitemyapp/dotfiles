@@ -583,3 +583,5 @@ nltk_data/
 .rustup/
 .yarnrc
 .matplotlib/
+.node_repl_history
+servers/
