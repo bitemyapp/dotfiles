@@ -117,6 +117,8 @@ fi
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/home/callen/anaconda2/bin:$PATH"
+
 export RUST_SRC_PATH="$HOME/work/rustc/src"
 export CARGO_HOME="$HOME/.cargo"
 
