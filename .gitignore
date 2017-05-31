@@ -585,3 +585,5 @@ nltk_data/
 .matplotlib/
 .node_repl_history
 servers/
+.slocdata/
+
