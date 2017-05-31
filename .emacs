@@ -402,6 +402,9 @@
  '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
  '(org-support-shift-select (quote always) t)
+ '(package-selected-packages
+   (quote
+    (yasnippet yaml-mode undo-tree typescript-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode markdown-mode hcl-mode flycheck editorconfig dash company-ghci company)))
  '(safe-local-variable-values
    (quote
     ((haskell-process-use-ghci . t)
