@@ -39,7 +39,7 @@
                      ; js2-mode
                      ; json-mode
                      ;; magit
-                     markdown-mode
+                     ;; markdown-mode
                      ;; material-theme
                      ;; monokai-theme
                      ; nix-mode
@@ -211,9 +211,10 @@
 ;; (global-set-key (kbd "C-c m g") 'magit-status)
 
 ;; Markdown
-;; (require 'markdown-mode)
-;; (add-to-list 'auto-mode-alist
-;;          '("\\.md$" . markdown-mode))
+(add-to-list 'load-path "~/.emacs.d/markdown-mode/")
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist
+         '("\\.md$" . markdown-mode))
 
 ;; mu4e
 ;; (require 'mu4e)

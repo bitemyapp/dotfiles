@@ -600,3 +600,5 @@ FiraxisLive/
 servers/
 .slocdata/
 anaconda2/
+.aws/
+.technic/
