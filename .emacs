@@ -260,12 +260,12 @@
 
 ;; Rust mode
 (require 'rust-mode)
-(add-hook 'rust-mode-hook #'company-mode)
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
-(setq racer-rust-src-path "/home/callen/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+;; (add-hook 'rust-mode-hook #'company-mode)
+;; (add-hook 'rust-mode-hook #'racer-mode)
+;; (add-hook 'racer-mode-hook #'eldoc-mode)
+;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;; (setq company-tooltip-align-annotations t)
+;; (setq racer-rust-src-path "/home/callen/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
 
 ;; ;; (setq racer-cmd "$HOME/.cargo/bin/racer")
 ;; (setq racer-rust-src-path (concat (getenv "HOME") "/work/rustc/src"))
@@ -394,20 +394,3 @@
 (setq mac-option-modifier 'meta)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always) t)
- '(package-selected-packages
-   (quote
-    (yasnippet yaml-mode undo-tree typescript-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode markdown-mode hcl-mode flycheck editorconfig dash company-ghci company)))
- '(safe-local-variable-values
-   (quote
-    ((haskell-process-use-ghci . t)
-     (haskell-indent-spaces . 4))))
- '(shift-select-mode t))
