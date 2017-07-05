@@ -606,3 +606,5 @@ anaconda2/
 .Spotlight*/
 .fseventsd/
 Drivers/
+.jackdrc
+.lmmsrc.xml
