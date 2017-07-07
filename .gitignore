@@ -605,5 +605,9 @@ anaconda2/
 ._.Trashes
 .Spotlight*/
 .fseventsd/
+<<<<<<< HEAD
 .php_history
 Telegram/
+Drivers/
+.jackdrc
+.lmmsrc.xml
