@@ -605,3 +605,5 @@ anaconda2/
 ._.Trashes
 .Spotlight*/
 .fseventsd/
+.php_history
+Telegram/
