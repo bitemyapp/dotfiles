@@ -611,3 +611,6 @@ Telegram/
 Drivers/
 .jackdrc
 .lmmsrc.xml
+.audacity-data/
+Art/
+Streams/
