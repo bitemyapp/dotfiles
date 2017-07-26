@@ -614,3 +614,6 @@ Drivers/
 .audacity-data/
 Art/
 Streams/
+.xmonad/xmonad.state
+.ppub.conf
+.easy-ebook-viewer.conf

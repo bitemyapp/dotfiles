@@ -16,15 +16,15 @@
 
 (package-initialize)
 
-(setq package-list '(;; abyss-theme
+(setq package-list '(abyss-theme
                      ;; cider
                      ;; clojure-mode
                      company
                      company-ghci
                      ; csv-mode
-                     ;; dark-krystal-theme
+                     dark-krystal-theme
                      dash
-                     ;; dracula-theme
+                     dracula-theme
                      editorconfig
                      ; elixir-mode
                      ; elm-mode
@@ -40,11 +40,11 @@
                      ; json-mode
                      ;; magit
                      ;; markdown-mode
-                     ;; material-theme
-                     ;; monokai-theme
+                     material-theme
+                     monokai-theme
                      ; nix-mode
-                     ;; phoenix-dark-mono-theme
-                     ;; phoenix-dark-pink-theme
+                     phoenix-dark-mono-theme
+                     phoenix-dark-pink-theme
                      php-mode
                      ; projectile
                      ; protobuf-mode
@@ -64,7 +64,7 @@
                      undo-tree
                      ; virtualenv
                      ; w3m
-                     ;; warm-night-theme
+                     warm-night-theme
                      ; writeroom-mode
                      yaml-mode
                      yasnippet))
@@ -369,8 +369,8 @@
 ;; (load-theme 'phoenix-dark-pink t)
 ;; (load-theme 'ubuntu t)
 ;; (load-theme 'phoenix-dark-mono t)
-;; (load-theme 'abyss t)
-(load-theme 'gruvbox t)
+(load-theme 'abyss t)
+;; (load-theme 'gruvbox t)
 ;; (set-face-foreground 'font-lock-string-face "red")
 ;; (set-face-foreground 'font-lock-comment-face "light pink")
 
