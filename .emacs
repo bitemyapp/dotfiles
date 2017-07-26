@@ -382,7 +382,7 @@
 
 (with-system 'gnu/linux
   (custom-set-faces
-    '(default ((t (:height 160 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
 (when (> (display-pixel-height) 1200)
   ;; retina
@@ -394,3 +394,22 @@
 (setq mac-option-modifier 'meta)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always) t)
+ '(package-selected-packages
+   (quote
+    (abyss-theme yasnippet yaml-mode undo-tree typescript-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode markdown-mode hcl-mode flycheck editorconfig company-ghci)))
+ '(shift-select-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 160 :family "Ubuntu Mono")))))
