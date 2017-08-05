@@ -32,7 +32,7 @@
                      flycheck
                      ;; go-mode
                      ;; groovy-mode
-                     ;; intero
+                     intero
                      ;; haskell-mode
                      hcl-mode
                      ; idris-mode
@@ -62,6 +62,7 @@
                      ; twittering-mode
                      ;; ubuntu-theme
                      undo-tree
+                     use-package
                      ; virtualenv
                      ; w3m
                      warm-night-theme
@@ -80,7 +81,7 @@
 ;; General/Misc stuff
 (add-to-list 'load-path "~/.emacs.d/misc/")
 (load-library "misc-config.el")
-
+(require 'use-package)
 ;; Agda
 ;; (load-file (let ((coding-system-for-read 'utf-8))
 ;;                 (shell-command-to-string "agda-mode locate")))
@@ -138,7 +139,15 @@
 ;; Haskell
 (add-to-list 'load-path "~/.emacs.d/haskell")
 (load-library "haskell-config.el")
+;; (use-package dante
+;;   :ensure t
+;;   :commands 'dante-mode
+;;   :init
+;;   (add-hook 'haskell-mode-hook 'dante-mode)
+;;   (add-hook 'haskell-mode-hook 'flycheck-mode))
 ;; Override haskell-mode's BS.
+(require 'intero)
+(intero-global-mode 1)
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 (require 'company)
@@ -394,3 +403,22 @@
 (setq mac-option-modifier 'meta)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always) t)
+ '(package-selected-packages
+   (quote
+    (intero use-package dante yasnippet yaml-mode warm-night-theme undo-tree typescript-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme material-theme hcl-mode flycheck editorconfig dracula-theme dark-krystal-theme company-ghci abyss-theme)))
+ '(shift-select-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 160 :family "Ubuntu Mono")))))
