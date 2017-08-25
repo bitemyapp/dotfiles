@@ -611,3 +611,10 @@ Telegram/
 Drivers/
 .jackdrc
 .lmmsrc.xml
+.audacity-data/
+Art/
+Streams/
+.xmonad/xmonad.state
+.ppub.conf
+.easy-ebook-viewer.conf
+.buckaroo/

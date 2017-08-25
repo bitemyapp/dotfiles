@@ -21,7 +21,7 @@
 
 ;; (require 'haskell-indentation)
 ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(require 'haskell-simple-indent)
+;; (require 'haskell-simple-indent)
 ;; (require 'intero)
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
