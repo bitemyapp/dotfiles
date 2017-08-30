@@ -32,7 +32,7 @@
                      flycheck
                      ;; go-mode
                      ;; groovy-mode
-                     intero
+                     ;; intero
                      ;; haskell-mode
                      hcl-mode
                      ; idris-mode
@@ -146,8 +146,8 @@
 ;;   (add-hook 'haskell-mode-hook 'dante-mode)
 ;;   (add-hook 'haskell-mode-hook 'flycheck-mode))
 ;; Override haskell-mode's BS.
-(require 'intero)
-(intero-global-mode 1)
+;; (require 'intero)
+;; (intero-global-mode 1)
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 (require 'company)

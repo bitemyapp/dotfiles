@@ -10,7 +10,7 @@
 ;; (add-hook 'haskell-mode-hook 'haskell-setup)
 
 (add-to-list 'load-path "~/.emacs.d/haskell/haskell-mode/")
-(add-to-list 'load-path "~/.emacs.d/haskell/intero/")
+;; (add-to-list 'load-path "~/.emacs.d/haskell/intero/")
 (require 'haskell-mode-autoloads)
 (require 'haskell-mode)
 
