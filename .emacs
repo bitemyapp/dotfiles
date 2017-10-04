@@ -58,7 +58,7 @@
                      shakespeare-mode
                      tabbar
                      typescript-mode
-                     ; toml-mode
+                     toml-mode
                      ; twittering-mode
                      ;; ubuntu-theme
                      undo-tree

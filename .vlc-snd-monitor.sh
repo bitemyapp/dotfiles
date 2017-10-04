@@ -1,10 +1,21 @@
 #!/bin/bash
 
+# vlc \
+#     --no-video-deco \
+#     --no-embedded-video \
+#     --screen-fps=30 \
+#     --screen-top=380 \
+#     --screen-left=1920 \
+#     --screen-width=1920 \
+#     --screen-height=1080 \
+#     screen://
+
+
 vlc \
     --no-video-deco \
     --no-embedded-video \
-    --screen-fps=20 \
-    --screen-top=24 \
+    --screen-fps=30 \
+    --screen-top=0 \
     --screen-left=1920 \
     --screen-width=1920 \
     --screen-height=1080 \
@@ -15,7 +26,7 @@ vlc \
 #     --no-video-deco \
 #     --no-embedded-video \
 #     --screen-fps=20 \
-#     --screen-top=0 \
+#     --screen-top=24 \
 #     --screen-left=1920 \
 #     --screen-width=1920 \
 #     --screen-height=1080 \
