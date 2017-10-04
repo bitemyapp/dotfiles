@@ -1,5 +1,7 @@
 #!/bin/bash
 
+osascript .disable-natural-scrolling.scpt
+
 mkdir ~/Screenshots
 
 defaults write com.apple.screencapture ~/Screenshots
