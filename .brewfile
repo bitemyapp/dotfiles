@@ -9,7 +9,7 @@
  brew "neovim"
  brew "youtube-dl"
  brew "gnupg"
- brew "emacs", args: ['HEAD', 'use-git-head', 'cocoa', 'srgb']
+ brew "emacs", args: ['cocoa', 'srgb']
  brew "node"
  brew "go"
  brew "htop"
@@ -28,6 +28,7 @@
  brew "siege"
  brew "imagemagick"
  brew "rtv"
+ brew "mobile-shell"
 
  tap "caskroom/fonts"
  tap "caskroom/cask"
@@ -37,20 +38,14 @@
  cask "qlimagesize"
  cask "qlmarkdown"
  cask "qlstephen"
- cask "cert-quicklook"
  cask "quicklook-json"
  cask "google-chrome"
  cask "skype"
- cask "openemu-experimental"
- cask "iterm2-nightly"
- cask "vlc-nightly"
  cask "flux"
- cask "mou"
  cask "caffeine"
  cask "cheatsheet"
- cask "blockblock"
- cask "knockknock"
- cask "appcleaner"
 
  cask "font-hack"
  cask "font-source-code-pro"
+ cask "font-ubuntu"
+
