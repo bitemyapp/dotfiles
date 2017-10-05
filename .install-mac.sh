@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # osascript .disable-natural-scrolling.scpt
+touch .profile
+touch .secrets
 
 mkdir ~/Screenshots
 
@@ -19,6 +21,8 @@ brew doctor
 brew update
 
 brew bundle --file=.brewfile
+
+chsh -s /bin/zsh
 
 curl -sSL https://get.haskellstack.org/ | sh
 
