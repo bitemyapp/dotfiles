@@ -619,3 +619,6 @@ Streams/
 .easy-ebook-viewer.conf
 .buckaroo/
 .quodlibet/
+.gradle/
+.sdkman/
+GNUstep/

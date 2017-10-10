@@ -127,3 +127,7 @@ export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 # added by travis gem
 [ -f /home/callen/.travis/travis.sh ] && source /home/callen/.travis/travis.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/callen/.sdkman"
+[[ -s "/home/callen/.sdkman/bin/sdkman-init.sh" ]] && source "/home/callen/.sdkman/bin/sdkman-init.sh"
