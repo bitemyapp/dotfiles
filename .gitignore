@@ -605,7 +605,6 @@ anaconda2/
 ._.Trashes
 .Spotlight*/
 .fseventsd/
-<<<<<<< HEAD
 .php_history
 Telegram/
 Drivers/
@@ -622,3 +621,5 @@ Streams/
 .gradle/
 .sdkman/
 GNUstep/
+Preboot/
+Macintosh\ HD
