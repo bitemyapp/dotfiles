@@ -387,7 +387,7 @@
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 240 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 140 :family "Hack"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces

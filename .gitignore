@@ -605,7 +605,6 @@ anaconda2/
 ._.Trashes
 .Spotlight*/
 .fseventsd/
-<<<<<<< HEAD
 .php_history
 Telegram/
 Drivers/
@@ -619,3 +618,10 @@ Streams/
 .easy-ebook-viewer.conf
 .buckaroo/
 .quodlibet/
+.gradle/
+.sdkman/
+GNUstep/
+Preboot/
+Macintosh\ HD
+.p2/
+.tooling/
