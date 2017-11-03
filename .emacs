@@ -391,7 +391,7 @@
 
 (with-system 'gnu/linux
   (custom-set-faces
-    '(default ((t (:height 160 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 220 :family "Ubuntu Mono"))))))
 
 (when (> (display-pixel-height) 1200)
   ;; retina

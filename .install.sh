@@ -8,7 +8,7 @@ sudo add-apt-repository -y ppa:hvr/ghc
 
 sudo apt-get update
 
-sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff fonts-roboto postgresql-9.5 postgresql-server-dev-9.5 libpq-dev libmysqlclient-dev libpcre3-dev cmake gimp audacity libav-tools normalize-audio libavcodec-extra curl libcurl4-openssl-dev
+sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff fonts-roboto postgresql-9.5 postgresql-server-dev-9.5 libpq-dev libmysqlclient-dev libpcre3-dev cmake gimp audacity libav-tools normalize-audio libavcodec-extra curl libcurl4-openssl-dev libavcodec-dev libavdevice-dev libvulkan1
 
 # SDL deps
 sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
