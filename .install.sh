@@ -18,6 +18,7 @@ echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main' | sudo tee /e
 sudo apt-get update && sudo apt-get install stack -y
 stack setup
 stack install hlint stylish-haskell
+stack install purescript psc-package
 
 sudo apt-get update
 sudo apt-get install -y ghc-7.10.3
@@ -38,5 +39,6 @@ curl https://sh.rustup.rs -sSf | sh
 
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
+sudo npm install -g parcel-bundler bower pulp
 
 touch .secrets
