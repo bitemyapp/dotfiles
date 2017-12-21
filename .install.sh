@@ -17,7 +17,7 @@ wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | s
 echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
 sudo apt-get update && sudo apt-get install stack -y
 stack setup
-stack install ghc-mod hlint stylish-haskell
+stack install hlint stylish-haskell
 
 sudo apt-get update
 sudo apt-get install -y ghc-7.10.3
@@ -36,7 +36,7 @@ cabal install xmonad xmonad-contrib xmonad-extras
 
 curl https://sh.rustup.rs -sSf | sh
 
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 touch .secrets
