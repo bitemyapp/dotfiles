@@ -85,6 +85,7 @@ export PATH="/home/callen/anaconda2/bin:$PATH"
 
 export NODE_PATH="/usr/local/lib/node_modules"
 export GOPATH="$HOME/.local/goworkspace"
+export PATH="$PATH:node_modules/.bin"
 
 # For cargo
 # export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -149,3 +150,5 @@ export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/callen/.sdkman"
 [[ -s "/home/callen/.sdkman/bin/sdkman-init.sh" ]] && source "/home/callen/.sdkman/bin/sdkman-init.sh"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

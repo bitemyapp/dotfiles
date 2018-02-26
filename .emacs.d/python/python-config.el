@@ -11,11 +11,11 @@
 
 ;; (require 'virtualenv)
 
-;; (defun ipdb ()
-;;     (interactive)
-;;     (insert "import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()"))
+(defun ipdb ()
+    (interactive)
+    (insert "import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()"))
 
-;; (global-set-key (kbd "C-c p d b") 'ipdb)
+(global-set-key (kbd "C-c p d b") 'ipdb)
 
 ;; (defun pprint ()
 ;;   (interactive)

@@ -89,7 +89,7 @@
 ;; ;; nicer output than haskell-process-do-type
 ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-doc-show-type)
 ;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-;; (define-key haskell-mode-map (kbd "C-c C-s") 'haskell-mode-stylish-buffer)
+(define-key haskell-mode-map (kbd "C-c C-s") 'haskell-mode-stylish-buffer)
 
 ;; ;; GHCi-ng
 ;; ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
