@@ -36,8 +36,8 @@
                      ;; haskell-mode
                      hcl-mode
                      ; idris-mode
-                     ; js2-mode
-                     ; json-mode
+                     js2-mode
+                     json-mode
                      ;; magit
                      ;; markdown-mode
                      material-theme
@@ -136,16 +136,17 @@
 (add-to-list 'load-path "~/.emacs.d/haskell")
 (load-library "haskell-config.el")
 
-(require 'company)
+;; (require 'company)
 ;; (require 'company-ghci)
 ;; (setq company-idle-delay 0)
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
-JavaScript
+;; JavaScript
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-mode))
+(setq js-indent-level 2)
 
-JSON
+;; JSON
 (require 'json-mode)
 (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
 
@@ -261,3 +262,22 @@ JSON
 ;; (custom-set-faces '(default ((t (:height 220 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(ido-mode 'both nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select 'always t)
+ '(safe-local-variable-values
+   '((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4)))
+ '(shift-select-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 180 :family "Ubuntu Mono")))))
