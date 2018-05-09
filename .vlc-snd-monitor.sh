@@ -11,7 +11,7 @@
 #     screen://
 
 
-vlc \
+cvlc \
     --no-video-deco \
     --no-embedded-video \
     --screen-fps=30 \

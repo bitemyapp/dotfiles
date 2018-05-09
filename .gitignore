@@ -625,3 +625,14 @@ Preboot/
 Macintosh\ HD
 .p2/
 .tooling/
+.bashrc-anaconda*
+.bosh_config
+.cert/
+.cmake/
+.hspec
+.yarn/
+.zoom/
+.zotero/
+Updater
+Zotero/
+.conan/
