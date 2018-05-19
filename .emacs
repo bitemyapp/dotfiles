@@ -36,8 +36,8 @@
                      ;; haskell-mode
                      hcl-mode
                      ; idris-mode
-                     ; js2-mode
-                     ; json-mode
+                     js2-mode
+                     json-mode
                      ;; magit
                      ;; markdown-mode
                      material-theme
@@ -136,16 +136,17 @@
 (add-to-list 'load-path "~/.emacs.d/haskell")
 (load-library "haskell-config.el")
 
-(require 'company)
+;; (require 'company)
 ;; (require 'company-ghci)
 ;; (setq company-idle-delay 0)
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
-JavaScript
+;; JavaScript
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-mode))
+(setq js-indent-level 2)
 
-JSON
+;; JSON
 (require 'json-mode)
 (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
 
@@ -250,12 +251,12 @@ JSON
 
 (with-system 'gnu/linux
   (custom-set-faces
-    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 140 :family "Ubuntu Mono"))))))
 
 (when (> (display-pixel-height) 1200)
   ;; retina
   (custom-set-faces
-    '(default ((t (:height 240 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
 ;; (custom-set-faces '(default ((t (:height 120 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 220 :family "Ubuntu Mono")))))

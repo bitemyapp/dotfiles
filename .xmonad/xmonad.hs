@@ -58,13 +58,17 @@ myManageHook = composeAll (
     ])
 
 myStartupHook = do
-  spawnOnce "xmodmap ~/.Xmodmap"
-  spawnOnce "stalonetray --dockapp-mode simple"
-  spawnOnce "unity-settings-daemon"
-  spawnOnce "gnome-settings-daemon"
-  spawnOnce "nm-applet"
-  spawnOnce "pasystray"
-  spawnOnce "fdpowermon"
+  spawn "/usr/bin/synclient TouchpadOff=1"
+  spawn "/usr/bin/synclient MinSpeed=0.75"
+  spawn "/usr/bin/synclient MaxSpeed=1.5"
+  spawn "/usr/bin/synclient AccelFactor=0.015"
+  spawn "xmodmap ~/.Xmodmap"
+  spawn "stalonetray --dockapp-mode simple"
+  -- spawnOnce "unity-settings-daemon"
+  spawn "gnome-settings-daemon"
+  spawn "nm-applet"
+  spawn "pasystray"
+  spawn "fdpowermon"
 
 -- myLayoutHook = noBorders Full ||| noBorders (tabbed shrinkText defaultTheme) ||| Accordion
 
