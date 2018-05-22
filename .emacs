@@ -14,7 +14,7 @@
       (append '(("melpa" . "https://melpa.org/packages/"))
               package-archives))
 
-(package-initialize)
+;; (package-initialize)
 
 (setq package-list '(abyss-theme
                      ;; cider
@@ -38,7 +38,7 @@
                      ; idris-mode
                      js2-mode
                      json-mode
-                     ;; magit
+                     magit
                      ;; markdown-mode
                      material-theme
                      monokai-theme
@@ -155,6 +155,9 @@
 ;; Only change sectioning colour
 (eval-after-load "tex-mode" '(fset 'tex-font-lock-suscript 'ignore))
 
+;; magit
+(require 'magit)
+
 ;; Markdown
 (add-to-list 'load-path "~/.emacs.d/markdown-mode/")
 (require 'markdown-mode)
@@ -243,6 +246,10 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes")
 (load-theme 'abyss t)
 
+(add-to-list 'load-path "~/.emacs.d/emacs-which-key")
+(require 'which-key)
+(which-key-mode)
+
 (setq mac-command-modifier 'meta)
 
 (with-system 'darwin
@@ -251,33 +258,15 @@
 
 (with-system 'gnu/linux
   (custom-set-faces
-    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 120 :family "Ubuntu Mono"))))))
 
 (when (> (display-pixel-height) 1200)
   ;; retina
   (custom-set-faces
     '(default ((t (:height 240 :family "Ubuntu Mono"))))))
 
-;; (custom-set-faces '(default ((t (:height 120 :family "Ubuntu Mono")))))
+;; (custom-set-faces '(default ((t (:height 180 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 220 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(ido-mode 'both nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select 'always t)
- '(safe-local-variable-values
-   '((haskell-process-use-ghci . t)
-     (haskell-indent-spaces . 4)))
- '(shift-select-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 180 :family "Ubuntu Mono")))))
+(put 'downcase-region 'disabled nil)

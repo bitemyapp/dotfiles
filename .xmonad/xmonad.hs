@@ -1,22 +1,23 @@
-import qualified Data.Map as M
 import System.IO
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.FloatKeys
 import XMonad.Actions.SpawnOn
 import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Layout.Accordion
 import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
 import XMonad.Prompt
 import XMonad.Prompt.Shell
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
-import XMonad.Util.SpawnOnce
 import XMonad.StackSet(greedyView)
-
+import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.SpawnOnce
+import qualified Data.Map as M
   
 myKeys x = [ ((modMask x,               xK_Right), nextWS)
            , ((modMask x,               xK_Left),  prevWS)
@@ -30,7 +31,11 @@ myKeys x = [ ((modMask x,               xK_Right), nextWS)
            , ((0                , 0x1008ff13),     spawn "amixer -c 1 sset Master 4+")
            , ((0                , 0x1008ff03),     spawn "xbacklight -inc -10%")
            , ((0                , 0x1008ff02),     spawn "xbacklight -inc +10%")
-
+           , ((modMask x,               xK_i     ), withFocused (keysResizeWindow (-10,-10) (1,1)))
+           , ((modMask x,               xK_o     ), withFocused (keysResizeWindow (10,10) (1,1)))
+           -- , ((modMask .|. shiftMask x, xK_d     ), withFocused (keysAbsResizeWindow (-10,-10) (1024,752)))
+           -- , ((modMask .|. shiftMask x, xK_s     ), withFocused (keysAbsResizeWindow (10,10) (1024,752)))
+           -- , ((modMask,               xK_a     ), withFocused (keysMoveWindowTo (512,384) (1 % 2, 1 % 2)))
            -- , ((0                , 0x1008ff12),     spawn "amixer sset Master toggle")
            ]
 
@@ -58,6 +63,7 @@ myManageHook = composeAll (
     ])
 
 myStartupHook = do
+  setWMName "LG3D"
   spawnOnce "xmodmap ~/.Xmodmap"
   spawnOnce "stalonetray --dockapp-mode simple"
   spawnOnce "unity-settings-daemon"
