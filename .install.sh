@@ -14,11 +14,12 @@ sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex biber git suckl
 sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
 
 wget -q -O- https://s3.amazonaws.com/download.fpcomplete.com/ubuntu/fpco.key | sudo apt-key add -
-echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
+echo 'deb http://download.fpcomplete.com/ubuntu/xenial stable main' | sudo tee /etc/apt/sources.list.d/fpco.list
 sudo apt-get update && sudo apt-get install stack -y
+stack upgrade
 stack setup
 stack install hlint stylish-haskell
-stack install purescript psc-package
+stack install purescript
 
 sudo apt-get update
 sudo apt-get install -y ghc-7.10.3
