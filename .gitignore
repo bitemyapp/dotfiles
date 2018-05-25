@@ -635,3 +635,11 @@ Macintosh\ HD
 Updater
 Zotero/
 .conan/
+.aws-env/
+.debug/
+.kube/
+.password-store
+.ngrok2/
+.pyenv/
+.var/
+.webex/

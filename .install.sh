@@ -8,7 +8,7 @@ sudo add-apt-repository -y ppa:hvr/ghc
 
 sudo apt-get update
 
-sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex biber git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff fonts-roboto postgresql-9.5 postgresql-server-dev-9.5 libpq-dev libmysqlclient-dev libpcre3-dev cmake gimp audacity libav-tools normalize-audio libavcodec-extra curl libcurl4-openssl-dev libavcodec-dev libavdevice-dev libvulkan1 libgraphite2-dev libharfbuzz-dev libharfbuzz-gobject0
+sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex biber git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff fonts-roboto postgresql-9.5 postgresql-server-dev-9.5 libpq-dev libmysqlclient-dev libpcre3-dev cmake gimp audacity libav-tools normalize-audio libavcodec-extra curl libcurl4-openssl-dev libavcodec-dev libavdevice-dev libvulkan1 libgraphite2-dev libharfbuzz-dev libharfbuzz-gobject0 libpam0g-dev libreadline-dev
 
 # SDL deps
 sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
@@ -41,5 +41,16 @@ curl https://sh.rustup.rs -sSf | sh
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g parcel-bundler bower pulp
+
+mkdir ~/work
+cd ~/work
+git clone git@github.com:google/xsecurelock.git
+cd xsecurelock
+sh autogen.sh
+./configure --with-pam-service-name=common-auth
+make
+sudo make install
+
+cd ~
 
 touch .secrets
