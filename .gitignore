@@ -159,7 +159,6 @@ bitemyapp/
 .pentadactyl/
 .xsession-errors
 env/
-bin/
 .crawl/
 .dbshell
 .elinks/
@@ -637,3 +636,11 @@ Updater
 Zotero/
 .conan/
 Podcast/
+.aws-env/
+.debug/
+.kube/
+.password-store
+.ngrok2/
+.pyenv/
+.var/
+.webex/

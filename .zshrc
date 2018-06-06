@@ -114,6 +114,8 @@ fi
 
 source ~/.secrets
 
+# git diff --quiet --ignore-submodules HEAD
+
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
@@ -128,6 +130,11 @@ parse_git_branch() {
 }
 
 parse_git_dirty() {
+  # if git diff --quiet --ignore-submodules HEAD; then
+  #     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  # else
+  #     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  # fi
   if command git diff-index --quiet HEAD 2> /dev/null; then
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
   else
@@ -152,3 +159,11 @@ export SDKMAN_DIR="/home/callen/.sdkman"
 [[ -s "/home/callen/.sdkman/bin/sdkman-init.sh" ]] && source "/home/callen/.sdkman/bin/sdkman-init.sh"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Add PostgreSQL stuff to path
+export PATH="/usr/lib/postgresql/9.5/bin:$PATH"
+
+# Python stuff?
+export PATH="/home/callen/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
