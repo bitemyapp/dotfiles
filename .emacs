@@ -260,5 +260,7 @@
 
 ;; (custom-set-faces '(default ((t (:height 120 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 220 :family "Ubuntu Mono")))))
+;; (custom-set-faces '(default ((t (:height 240 :family "Ubuntu Mono")))))
+;; (custom-set-faces '(default ((t (:height 320 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
