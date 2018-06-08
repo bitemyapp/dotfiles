@@ -14,7 +14,7 @@
       (append '(("melpa" . "https://melpa.org/packages/"))
               package-archives))
 
-;; (package-initialize)
+(package-initialize)
 
 (setq package-list '(abyss-theme
                      ;; cider
