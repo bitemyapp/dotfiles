@@ -30,7 +30,7 @@
                      ; elm-mode
                      ; erlang
                      flycheck
-                     ;; go-mode
+                     go-mode
                      ;; groovy-mode
                      ;; intero
                      ;; haskell-mode

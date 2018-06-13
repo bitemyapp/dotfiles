@@ -163,6 +163,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Add PostgreSQL stuff to path
 export PATH="/usr/lib/postgresql/9.5/bin:$PATH"
 
+# golang stuff
+export PATH="/usr/lib/go-1.10/bin:$PATH"
+
 # Python stuff?
 # export PATH="/home/callen/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
