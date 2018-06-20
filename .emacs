@@ -14,7 +14,7 @@
       (append '(("melpa" . "https://melpa.org/packages/"))
               package-archives))
 
-;; (package-initialize)
+(package-initialize)
 
 (setq package-list '(abyss-theme
                      ;; cider
@@ -30,7 +30,7 @@
                      ; elm-mode
                      ; erlang
                      flycheck
-                     ;; go-mode
+                     go-mode
                      ;; groovy-mode
                      ;; intero
                      ;; haskell-mode
@@ -258,7 +258,7 @@
 
 (with-system 'gnu/linux
   (custom-set-faces
-    '(default ((t (:height 120 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 140 :family "Ubuntu Mono"))))))
 
 (when (> (display-pixel-height) 1200)
   ;; retina
