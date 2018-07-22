@@ -42,14 +42,7 @@ curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g parcel-bundler bower pulp
 
-mkdir ~/work
-cd ~/work
-git clone git@github.com:google/xsecurelock.git
-cd xsecurelock
-sh autogen.sh
-./configure --with-pam-service-name=common-auth
-make
-sudo make install
+./.install-xsecurelock.sh
 
 cd ~
 

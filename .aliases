@@ -138,3 +138,5 @@ alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 alias apple2="/usr/lib/xscreensaver/apple2 -program bash -text -fast"
 alias phosphor="/usr/lib/xscreensaver/phosphor -program bash -scale 2 -delay 500"
+
+# alias latest_screenshot=cp -p "`ls -dtr1 ~/Screenshots/* | tail -1`"

@@ -30,7 +30,7 @@
                      ; elm-mode
                      ; erlang
                      flycheck
-                     ;; go-mode
+                     go-mode
                      ;; groovy-mode
                      ;; intero
                      ;; haskell-mode
@@ -253,7 +253,7 @@
 
 (with-system 'gnu/linux
   (custom-set-faces
-    '(default ((t (:height 120 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 140 :family "Ubuntu Mono"))))))
 
 (when (> (display-pixel-height) 1200)
   ;; retina
@@ -264,6 +264,8 @@
 ;; (custom-set-faces '(default ((t (:height 160 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 180 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 220 :family "Ubuntu Mono")))))
+;; (custom-set-faces '(default ((t (:height 240 :family "Ubuntu Mono")))))
+;; (custom-set-faces '(default ((t (:height 320 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
 (put 'downcase-region 'disabled nil)
