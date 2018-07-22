@@ -643,3 +643,9 @@ Zotero/
 .pyenv/
 .var/
 .webex/
+.Xresources
+.floorc.json
+.helm/
+.pencil/
+.texlive2017/
+.togglrc

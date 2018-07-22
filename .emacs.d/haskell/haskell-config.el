@@ -22,7 +22,13 @@
 ;; (require 'haskell-indentation)
 ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 ;; (require 'haskell-simple-indent)
+;; (require 'company)
+;; (require 'company-ghci)
+;; (setq company-idle-delay 0)
 ;; (require 'intero)
+;; (add-hook 'haskell-mode-hook 'intero-mode)
+
+
 ;; (add-hook 'haskell-mode-hook 'intero-mode)
 
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))

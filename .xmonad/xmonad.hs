@@ -26,6 +26,7 @@ myKeys x = [ ((modMask x,               xK_Right), nextWS)
            , ((modMask x,               xK_t),     toggleWS)
            -- , ((modMask x,               xK_s),     shellPrompt defaultXPConfig)
            , ((modMask x,               xK_s),     spawn "dmenu_run -b -fn 'Droid Sans Mono-14'")
+           , ((mod1Mask .|. shiftMask, xK_4),      spawn "/usr/bin/scra")
            , ((mod1Mask .|. controlMask, xK_l),    spawn "xtrlock -b")
            , ((0                , 0x1008ff11),     spawn "amixer -c 1 sset Master 4-")
            , ((0                , 0x1008ff13),     spawn "amixer -c 1 sset Master 4+")
@@ -68,10 +69,13 @@ myStartupHook = do
   spawn "/usr/bin/synclient MinSpeed=0.75"
   spawn "/usr/bin/synclient MaxSpeed=1.5"
   spawn "/usr/bin/synclient AccelFactor=0.015"
+  spawn "~/.screenlayout/4k-screen.sh"
+  spawn "xcompmgr"
   spawn "xmodmap ~/.Xmodmap"
+  spawn "gnome-session --session gnome-flashback-xmonad"
   spawn "stalonetray --dockapp-mode simple"
   -- spawnOnce "unity-settings-daemon"
-  spawn "gnome-settings-daemon"
+  -- spawn "gnome-settings-daemon"
   spawn "nm-applet"
   spawn "pasystray"
   spawn "fdpowermon"
