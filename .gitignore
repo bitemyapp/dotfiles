@@ -645,3 +645,9 @@ Podcast/
 .var/
 .webex/
 .zoomus/
+.Xresources
+.floorc.json
+.helm/
+.pencil/
+.texlive2017/
+.togglrc
