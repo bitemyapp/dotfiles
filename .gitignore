@@ -644,6 +644,7 @@ Podcast/
 .pyenv/
 .var/
 .webex/
+.zoomus/
 .Xresources
 .floorc.json
 .helm/
