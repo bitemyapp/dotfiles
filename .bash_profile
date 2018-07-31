@@ -40,3 +40,4 @@ if [ -d "$GHC_DOT_APP" ]; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+if [ -e /home/callen/.nix-profile/etc/profile.d/nix.sh ]; then . /home/callen/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
