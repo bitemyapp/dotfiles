@@ -101,6 +101,10 @@
 ;; (setq proof-splash-enable nil)
 ;; (load-library "pg-init.el")
 
+(use-package dhall-mode
+  :ensure t
+  :mode "\\.dhall\\'")
+
 ;; Dockerfile
 (add-to-list 'load-path "~/.emacs.d/dockerfile-mode/")
 (require 'dockerfile-mode)
