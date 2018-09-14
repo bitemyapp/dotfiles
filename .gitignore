@@ -651,3 +651,9 @@ Podcast/
 .pencil/
 .texlive2017/
 .togglrc
+.augur/
+.git-stats
+.kotlinc_history
+.pulse_secure/
+.rbenv/
+.upload.sh
