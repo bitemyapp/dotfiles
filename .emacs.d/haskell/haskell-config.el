@@ -33,7 +33,7 @@
 
 (setq auto-mode-alist (cons '("\.hs$" . haskell-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lhs$" . tex-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
+;; (setq auto-mode-alist (cons '("\.purs$" . haskell-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Shakefile" . haskell-mode) auto-mode-alist))
 
 ;; (require 'haskell)
