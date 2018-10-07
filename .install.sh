@@ -19,7 +19,7 @@ sudo apt-get install -y emacs-snapshot emacs-snapshot-el
 sudo apt-get install -y xmonad xmobar suckless-tools stalonetray fdpowermon pasystray
 
 # TeX
-sudo apt-get install -y texlive-full texlive-xetex biber python-pygments
+sudo apt-get install -y texlive-full texlive-xetex biber python-pygments texlive-fonts-extra
 
 # Fonts
 sudo apt install -y fonts-roboto
