@@ -165,8 +165,12 @@ export PATH="/usr/lib/postgresql/9.5/bin:$PATH"
 
 # golang stuff
 export PATH="/usr/lib/go-1.10/bin:$PATH"
+export PATH="$HOME/.local/goworkspace/bin:$PATH"
 
 # Python stuff?
 # export PATH="/home/callen/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"

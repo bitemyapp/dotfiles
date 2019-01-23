@@ -657,3 +657,7 @@ Podcast/
 .pulse_secure/
 .rbenv/
 .upload.sh
+.bazel/
+.texlive2018/
+Podcasts/
+bin/
