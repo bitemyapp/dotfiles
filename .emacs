@@ -1,7 +1,7 @@
 (defvar *emacs-load-start* (current-time))
 
 (setq dotfiles-dir (file-name-directory
-		    (or load-file-name (buffer-file-name))))
+            (or load-file-name (buffer-file-name))))
 
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
@@ -19,8 +19,8 @@
 (setq package-list '(abyss-theme
                      ;; cider
                      ;; clojure-mode
-                     company
-                     company-ghci
+                     ;; company
+                     ;; company-ghci
                      ; csv-mode
                      dark-krystal-theme
                      dash
@@ -29,7 +29,7 @@
                      ; elixir-mode
                      ; elm-mode
                      ; erlang
-                     flycheck
+                     ;; flycheck
                      go-mode
                      ;; groovy-mode
                      ;; intero
@@ -53,12 +53,12 @@
                      racer
                      rainbow-delimiters
                      rainbow-mode
-                     rust-mode
+                     ;; rust-mode
                      scss-mode
                      shakespeare-mode
                      tabbar
                      typescript-mode
-                     toml-mode
+                     ;; toml-mode
                      ; twittering-mode
                      ;; ubuntu-theme
                      undo-tree
@@ -67,7 +67,7 @@
                      ; w3m
                      warm-night-theme
                      ; writeroom-mode
-                     yaml-mode
+                     ;; yaml-mode
                      yasnippet))
 
 ;; rm -rf ~/.emacs.d/elpa to reload
@@ -158,10 +158,13 @@
 (require 'magit)
 
 ;; Markdown
-(add-to-list 'load-path "~/.emacs.d/markdown-mode/")
-(require 'markdown-mode)
-(add-to-list 'auto-mode-alist
-         '("\\.md$" . markdown-mode))
+;; (add-to-list 'load-path "~/.emacs.d/markdown-mode/")
+;; (require 'markdown-mode)
+;; (add-to-list 'auto-mode-alist
+;;          '("\\.md$" . markdown-mode))
+(use-package markdown-mode
+  :ensure t
+  :mode ("\\.md\\'" . markdown-mode))
 
 ;; Mustache
 ;; (require 'mustache-mode)
@@ -198,9 +201,70 @@
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
 
-;; Rust mode
-(require 'rust-mode)
+;; Rust mode and accoutrements
+;; (use-package company
+;;   ;; :init (add-hook 'prog-mode-hook 'company-mode)
+;;   :hook (prog-mode . company-mode)
+;;   :config (setq company-tooltip-align-annotations t)
+;;           (setq company-minimum-prefix-length 1))
+
+;; (use-package flycheck
+;;   ;; :init (add-hook 'prog-mode-hook 'flycheck-mode)
+;;   :hook (prog-mode . flycheck-mode)
+;;   )
+
+;; (use-package lsp-mode)
+(use-package lsp-mode
+  :ensure t
+  :disabled t)
+
+(use-package lsp-ui
+  ;; :init (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  :hook (lsp-mode . lsp-ui-mode)
+  )
+
+;; (use-package company-lsp
+;;   :ensure t
+;;   :after company lsp-mode
+;;   :init
+;;   (push 'company-lsp company-backends))
+
+;; (require 'rust-mode)
 ;; (add-hook 'rust-mode-hook #'company-mode)
+(use-package rust-mode)
+
+(use-package racer
+  :ensure t
+  :after rust-mode
+  :diminish racer-mode
+  :init
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook (lambda () (setq eldoc-documentation-function nil))))
+
+;; (use-package company-racer)
+;; (use-package flycheck-rust)
+;; (with-eval-after-load 'rust-mode
+;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;; (use-package flycheck-rust
+;;   :init (with-eval-after-load
+;;             'rust-mode (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+;;   )
+
+;; (use-package lsp-rust
+;;   :config (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+;;   :init (add-hook 'rust-mode-hook 'lsp-rust-enable))
+
+(use-package lsp-rust
+  :ensure t
+  :disabled t
+  :after lsp-mode
+  :init
+  (add-hook 'rust-mode-hook #'lsp-rust-enable))
+
+(use-package toml-mode
+  :ensure t
+  :mode ("\\.toml\\'" . toml-mode))
 
 ;; SCSS
 (autoload 'scss-mode "scss-mode")
@@ -230,8 +294,12 @@
 ;; (require 'vlf)
 
 ;; yaml-mode
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+;; (require 'yaml-mode)
+;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(use-package yaml-mode
+  :ensure t
+  :mode (("\\.\\(yml\\|yaml\\)\\'" . yaml-mode)
+         ("Procfile\\'" . yaml-mode)))
 
 ;; yasnippet
 ;; (add-to-list 'load-path "~/.emacs.d/yasnippet")
@@ -259,10 +327,10 @@
   (custom-set-faces
     '(default ((t (:height 140 :family "Ubuntu Mono"))))))
 
-(when (> (display-pixel-height) 1200)
-  ;; retina
-  (custom-set-faces
-    '(default ((t (:height 180 :family "Ubuntu Mono"))))))
+;; (when (> (display-pixel-height) 1200)
+;;   ;; retina
+;;   (custom-set-faces
+;;     '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
 ;; (custom-set-faces '(default ((t (:height 140 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 160 :family "Ubuntu Mono")))))
@@ -274,3 +342,22 @@
 (setq mac-option-modifier 'meta)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select (quote always) t)
+ '(package-selected-packages
+   (quote
+    (company-lsp yasnippet yaml-mode warm-night-theme use-package undo-tree typescript-mode toml-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme material-theme markdown-mode magit json-mode js2-mode hcl-mode go-mode flycheck editorconfig dracula-theme dhall-mode dark-krystal-theme abyss-theme)))
+ '(shift-select-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 140 :family "Ubuntu Mono")))))
