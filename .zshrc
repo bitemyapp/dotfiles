@@ -58,7 +58,7 @@ export PATH=~/.screenlayout:$PATH
 export FPATH=$HOME/.zsh_completion:$FPATH
 
 # OPAM configuration
-. ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+# . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 export PRE_NIX_PATH=$PATH
 
@@ -145,11 +145,9 @@ parse_git_dirty() {
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}O %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}X %{$reset_color%}"
 
-export NVM_DIR="/home/callen/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="/home/callen/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# added by travis gem
-[ -f /home/callen/.travis/travis.sh ] && source /home/callen/.travis/travis.sh
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
@@ -171,6 +169,6 @@ export PATH="$HOME/.local/goworkspace/bin:$PATH"
 # export PATH="/home/callen/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# eval "$(pyenv init -)"
