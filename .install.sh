@@ -4,37 +4,49 @@ set -e
 
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo add-apt-repository -y ppa:ubuntu-elisp/ppa
-sudo add-apt-repository -y ppa:hvr/ghc
 
 sudo apt-get update
 
-sudo apt-get install -y xmonad xmobar texlive-full texlive-xetex biber git suckless-tools zsh emacs-snapshot emacs-snapshot-el xtrlock xbacklight stalonetray fdpowermon pasystray python-pygments mosh tmux screen htop silversearcher-ag mumble darcs libtinfo-dev inotify-tools colordiff fonts-roboto postgresql-10 postgresql-server-dev-10 libpq-dev libmysqlclient-dev libpcre3-dev cmake gimp audacity normalize-audio libavcodec-extra curl libcurl4-openssl-dev libavcodec-dev libavdevice-dev libvulkan1 libgraphite2-dev libharfbuzz-dev libharfbuzz-gobject0 libpam0g-dev libreadline-dev libxmu-dev
+# Dev tools
+sudo apt install -y git zsh xbacklight mosh tmux screen htop silversearcher-ag darcs colordiff cmake curl gnome-screenshot
+
+# xtrlock isn't secure, so I don't use it anymore. See `xsecurelock` below.
+
+# Emacs
+sudo apt-get install -y emacs-snapshot emacs-snapshot-el
+
+# Window management
+sudo apt-get install -y xmonad xmobar suckless-tools stalonetray fdpowermon pasystray
+
+# TeX
+sudo apt-get install -y texlive-full texlive-xetex biber python-pygments texlive-fonts-extra
+
+# Fonts
+sudo apt install -y fonts-roboto
+
+# Databases
+sudo apt install -y postgresql-10 postgresql-server-dev-10 libpq-dev libmysqlclient-dev
 
 # SDL deps
 sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
 
+# Misc. dev dependencies
+sudo apt install -y libcurl4-openssl-dev libavcodec-dev libavdevice-dev libvulkan1 libgraphite2-dev libharfbuzz-dev libharfbuzz-gobject0 libpam0g-dev libreadline-dev libxmu-dev libtinfo-dev inotify-tools libpcre3-dev
+
+# A/V
+sudo apt install -y gimp audacity normalize-audio libavcodec-extra
+
+# Communication
+sudo apt install -y mumble
+
 # Stack
-# curl -sSL https://get.haskellstack.org/ | sh
+curl -sSL https://get.haskellstack.org/ | sh
 
 stack upgrade
 stack setup
 stack install hlint stylish-haskell
-# stack install purescript
-
-# sudo apt-get update
-# sudo apt-get install -y ghc-7.10.3
-# sudo apt-get install -y cabal-install-1.22
-
-# sudo ln -sf /opt/ghc/7.10.3/bin/ghc /usr/bin/ghc
-# sudo ln -sf /opt/ghc/7.10.3/bin/ghci /usr/bin/ghci
-# sudo ln -sf /opt/ghc/7.10.3/bin/ghc-pkg /usr/bin/ghc-pkg
-# sudo ln -sf /opt/ghc/7.10.3/bin/runhaskell /usr/bin/runhaskell
-
-# sudo ln -sf /opt/cabal/1.22/bin/cabal /usr/bin/cabal
 
 sudo apt-get install -y libghc-x11-xft-dev libasound2-dev libiw-dev libghc-libxml-sax-dev c2hs
-# cabal update
-# cabal install xmonad xmonad-contrib xmonad-extras
 
 curl https://sh.rustup.rs -sSf | sh
 

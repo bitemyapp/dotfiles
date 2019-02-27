@@ -653,3 +653,14 @@ Podcast/
 .togglrc
 .RData
 package-lock.json
+.augur/
+.git-stats
+.kotlinc_history
+.pulse_secure/
+.rbenv/
+.upload.sh
+.bazel/
+.texlive2018/
+Podcasts/
+bin/
+.xscreensaver
