@@ -348,12 +348,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(css-electric-keys nil)
- '(ido-mode (quote both) nil (ido))
+ '(ido-mode 'both nil (ido))
  '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always) t)
+ '(org-support-shift-select 'always t)
  '(package-selected-packages
-   (quote
-    (company-lsp yasnippet yaml-mode warm-night-theme use-package undo-tree typescript-mode toml-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme material-theme markdown-mode magit json-mode js2-mode hcl-mode go-mode flycheck editorconfig dracula-theme dhall-mode dark-krystal-theme abyss-theme)))
+   '(company-lsp yasnippet yaml-mode warm-night-theme use-package undo-tree typescript-mode toml-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme material-theme markdown-mode magit json-mode js2-mode hcl-mode go-mode flycheck editorconfig dracula-theme dhall-mode dark-krystal-theme abyss-theme))
  '(shift-select-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
