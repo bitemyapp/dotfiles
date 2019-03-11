@@ -19,7 +19,7 @@ sudo apt install -y git zsh xbacklight mosh tmux screen htop silversearcher-ag d
 sudo apt-get install -y emacs-snapshot emacs-snapshot-el
 
 # Window management
-sudo apt-get install -y xmonad xmobar suckless-tools stalonetray fdpowermon pasystray
+sudo apt-get install -y xmonad xmobar suckless-tools stalonetray fdpowermon pasystray xcompmgr pavucontrol
 
 # TeX
 sudo apt-get install -y texlive-full texlive-xetex biber python-pygments texlive-fonts-extra

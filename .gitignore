@@ -651,6 +651,8 @@ Podcast/
 .pencil/
 .texlive2017/
 .togglrc
+.RData
+package-lock.json
 .augur/
 .git-stats
 .kotlinc_history
