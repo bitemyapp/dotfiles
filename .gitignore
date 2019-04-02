@@ -664,3 +664,6 @@ package-lock.json
 Podcasts/
 bin/
 .xscreensaver
+.brightness/
+.grip/
+.timezones/
