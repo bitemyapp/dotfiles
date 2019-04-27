@@ -157,3 +157,4 @@ export PATH="/usr/lib/postgresql/9.5/bin:$PATH"
 # golang stuff
 export PATH="/usr/lib/go-1.10/bin:$PATH"
 export PATH="$HOME/.local/goworkspace/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
