@@ -668,3 +668,6 @@ bin/
 .go/
 .xsessionrc
 .vscode-oss/
+.brightness/
+.grip/
+.timezones/

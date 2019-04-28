@@ -7,6 +7,9 @@ sudo add-apt-repository -y ppa:ubuntu-elisp/ppa
 
 sudo apt-get update
 
+# So Emacs doesn't crash due to the a11y dbus thingy
+sudo apt install at-spi2-core
+
 # Dev tools
 sudo apt install -y git zsh xbacklight mosh tmux screen htop silversearcher-ag darcs colordiff cmake curl gnome-screenshot
 

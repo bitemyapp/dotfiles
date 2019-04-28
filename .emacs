@@ -41,6 +41,7 @@
                      magit
                      ;; markdown-mode
                      material-theme
+                     merlin
                      monokai-theme
                      ; nix-mode
                      phoenix-dark-mono-theme
@@ -53,6 +54,7 @@
                      racer
                      rainbow-delimiters
                      rainbow-mode
+                     reason-mode
                      ;; rust-mode
                      scss-mode
                      shakespeare-mode
@@ -201,6 +203,43 @@
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
 
+;;----------------------------------------------------------------------------
+;; Reason setup
+;;----------------------------------------------------------------------------
+
+(defun shell-cmd (cmd)
+  "Returns the stdout output of a shell command or nil if the command returned
+   an error"
+  (car (ignore-errors (apply 'process-lines (split-string cmd)))))
+
+(defun reason-cmd-where (cmd)
+  (let ((where (shell-cmd cmd)))
+    (if (not (string-equal "unknown flag ----where" where))
+      where)))
+
+(let* ((refmt-bin (or (reason-cmd-where "refmt ----where")
+                      (shell-cmd "which refmt")
+                      (shell-cmd "which bsrefmt")))
+       (merlin-bin (or (reason-cmd-where "ocamlmerlin ----where")
+                       (shell-cmd "which ocamlmerlin")))
+       (merlin-base-dir (when merlin-bin
+                          (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
+  ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
+  (when merlin-bin
+    (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
+    (setq merlin-command merlin-bin))
+
+  (when refmt-bin
+    (setq refmt-command refmt-bin)))
+
+(require 'reason-mode)
+(require 'merlin)
+(add-hook 'reason-mode-hook (lambda ()
+                              (add-hook 'before-save-hook 'refmt-before-save)
+                              (merlin-mode)))
+
+(setq merlin-ac-setup t)
+
 ;; Rust mode and accoutrements
 ;; (use-package company
 ;;   ;; :init (add-hook 'prog-mode-hook 'company-mode)
@@ -321,7 +360,7 @@
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 160 :family "Hack"))))))
+    '(default ((t (:height 180 :family "Hack"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
@@ -342,21 +381,3 @@
 (setq mac-option-modifier 'meta)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(ido-mode 'both nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select 'always t)
- '(package-selected-packages
-   '(company-lsp yasnippet yaml-mode warm-night-theme use-package undo-tree typescript-mode toml-mode tabbar shakespeare-mode scss-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme material-theme markdown-mode magit json-mode js2-mode hcl-mode go-mode flycheck editorconfig dracula-theme dhall-mode dark-krystal-theme abyss-theme))
- '(shift-select-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 140 :family "Ubuntu Mono")))))
