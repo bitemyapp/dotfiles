@@ -17,11 +17,15 @@ cvlc --no-video-deco \
      --no-embedded-video screen:// \
      --no-video-deco \
      --no-embedded-video \
-     --screen-fps=30 \
-     --screen-top=0 \
-     --screen-left=3840 \
-     --screen-width=3840 \
-     --screen-height=2160 \
+     --fps=30 \
+     --width=3840 \
+     --height=2160 \
+     --video-x=3840 \
+     --video-y=0
+     # --screen-top=0 \
+     # --screen-left=3840 \
+     # --screen-width=3840 \
+     # --screen-height=2160 \
 
 # cvlc --no-video-deco --no-embedded-video screen://
 #     --no-video-deco \

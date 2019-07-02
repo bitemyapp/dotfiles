@@ -664,6 +664,10 @@ package-lock.json
 Podcasts/
 bin/
 .xscreensaver
+.voltapp/
+.go/
+.xsessionrc
+.vscode-oss/
 .brightness/
 .grip/
 .timezones/
