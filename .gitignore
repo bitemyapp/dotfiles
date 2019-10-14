@@ -678,3 +678,4 @@ bin/
 .sup/
 .sylpheed-2.0/
 anaconda3/
+.tfenv/
