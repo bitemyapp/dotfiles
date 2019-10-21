@@ -671,3 +671,11 @@ bin/
 .brightness/
 .grip/
 .timezones/
+.conda/
+.emacs.d/transient/
+.kubeadm*
+.signature
+.sup/
+.sylpheed-2.0/
+anaconda3/
+.tfenv/
