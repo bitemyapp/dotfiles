@@ -59,6 +59,9 @@ sudo npm install -g parcel-bundler bower pulp
 
 ./.install-xsecurelock.sh
 
+# utilities
+cargo install tokei hyperfine xsv diffr lsd hors starship mdcat strace-analyzer procs bingrep battop mprober ripgrep sd sniffglue
+
 cd ~
 
 touch .secrets

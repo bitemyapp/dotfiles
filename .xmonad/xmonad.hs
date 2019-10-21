@@ -60,6 +60,7 @@ myManageHook = composeAll (
     , className =? "Steam" --> doFloat
     , className =? "steam" --> doIgnore -- bigpicture-mode
     , className =? "MainThrd" --> doFloat
+    , className =? "telegram-desktop" --> doFloat
     , manageDocks
     ])
 
