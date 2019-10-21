@@ -679,3 +679,13 @@ bin/
 .sylpheed-2.0/
 anaconda3/
 .tfenv/
+.degit/
+.jsbeautifyrc
+.keras/
+.minikube/
+.npm-global/
+.npmrc
+.parsec/
+.swt/
+.tlaplus/
+miniconda3/
