@@ -28,7 +28,8 @@ sudo apt-get install -y texlive-full texlive-xetex biber python-pygments texlive
 sudo apt install -y fonts-roboto
 
 # Databases
-sudo apt install -y postgresql-10 postgresql-server-dev-10 libpq-dev libmysqlclient-dev
+sudo apt install -y libpq-dev libmysqlclient-dev
+# postgresql-11 postgresql-server-dev-11
 
 # SDL deps
 sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
@@ -53,14 +54,14 @@ sudo apt-get install -y libghc-x11-xft-dev libasound2-dev libiw-dev libghc-libxm
 
 curl https://sh.rustup.rs -sSf | sh
 
-curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g parcel-bundler bower pulp
 
-./.install-xsecurelock.sh
+# ./.install-xsecurelock.sh
 
 # utilities
-cargo install tokei hyperfine xsv diffr lsd hors starship mdcat strace-analyzer procs bingrep battop mprober ripgrep sd sniffglue
+cargo install tokei hyperfine xsv diffr lsd hors starship mdcat strace-analyzer procs bingrep battop mprober ripgrep sd wasm-pack cargo-watch microserver
 
 cd ~
 
