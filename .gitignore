@@ -524,6 +524,7 @@ Wallpapers/
 .electron/
 .v8flags*
 Secrets/
+Secrets
 .xsel.log
 .elm/
 .spamassassin/

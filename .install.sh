@@ -28,7 +28,7 @@ sudo apt-get install -y texlive-full texlive-xetex biber python-pygments texlive
 sudo apt install -y fonts-roboto
 
 # Databases
-sudo apt install -y postgresql postgresql-server-dev-11 libpq-dev libmysqlclient-dev
+sudo apt install -y libpq-dev libmysqlclient-dev
 
 # SDL deps
 sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
@@ -57,10 +57,10 @@ curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g parcel-bundler bower pulp
 
-./.install-xsecurelock.sh
+# ./.install-xsecurelock.sh
 
 # utilities
-cargo install tokei hyperfine xsv diffr lsd hors starship mdcat strace-analyzer procs bingrep battop mprober ripgrep sd # sniffglue
+cargo install tokei hyperfine xsv diffr lsd hors starship mdcat strace-analyzer procs bingrep battop mprober ripgrep sd wasm-pack cargo-watch microserver
 
 cd ~
 
