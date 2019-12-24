@@ -649,7 +649,6 @@ Podcast/
 .floorc.json
 .helm/
 .pencil/
-.texlive2017/
 .togglrc
 .RData
 package-lock.json
@@ -660,7 +659,9 @@ package-lock.json
 .rbenv/
 .upload.sh
 .bazel/
+.texlive2017/
 .texlive2018/
+.texlive2019/
 Podcasts/
 bin/
 .xscreensaver
@@ -689,3 +690,4 @@ anaconda3/
 .swt/
 .tlaplus/
 miniconda3/
+.git-credentials

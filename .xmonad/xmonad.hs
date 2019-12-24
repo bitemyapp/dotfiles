@@ -32,15 +32,15 @@ myKeys x = [ ((modMask x,               xK_Right), nextWS)
            , ((0                , 0x1008ff13),     spawn "amixer -c 1 sset Master 4+")
            , ((0                , 0x1008ff03),     spawn "xbacklight -inc -10%")
            , ((0                , 0x1008ff02),     spawn "xbacklight -inc +10%")
-           , ((modMask x,               xK_i     ), withFocused (keysResizeWindow (-10,-10) (1,1)))
-           , ((modMask x,               xK_o     ), withFocused (keysResizeWindow (10,10) (1,1)))
+           -- , ((modMask x,               xK_i     ), withFocused (keysResizeWindow (-10,-10) (1,1)))
+           -- , ((modMask x,               xK_o     ), withFocused (keysResizeWindow (10,10) (1,1)))
            -- , ((modMask .|. shiftMask x, xK_d     ), withFocused (keysAbsResizeWindow (-10,-10) (1024,752)))
            -- , ((modMask .|. shiftMask x, xK_s     ), withFocused (keysAbsResizeWindow (10,10) (1024,752)))
            -- , ((modMask,               xK_a     ), withFocused (keysMoveWindowTo (512,384) (1 % 2, 1 % 2)))
            -- , ((0                , 0x1008ff12),     spawn "amixer sset Master toggle")
            ]
 
-newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
+newKeys x  = M.union (keys def x) (M.fromList (myKeys x))
 
 myManageHook = composeAll (
     [ manageHook gnomeConfig
@@ -66,14 +66,14 @@ myManageHook = composeAll (
 
 myStartupHook = do
   setWMName "LG3D"
-  spawn "/usr/bin/synclient TouchpadOff=1"
-  spawn "/usr/bin/synclient MinSpeed=0.75"
-  spawn "/usr/bin/synclient MaxSpeed=1.5"
-  spawn "/usr/bin/synclient AccelFactor=0.015"
-  spawn "~/.screenlayout/4k-screen.sh"
-  spawn "xcompmgr"
-  spawn "xmodmap ~/.Xmodmap"
-  spawn "gnome-session --session gnome-flashback-xmonad"
+  -- spawn "/usr/bin/synclient TouchpadOff=1"
+  -- spawn "/usr/bin/synclient MinSpeed=0.75"
+  -- spawn "/usr/bin/synclient MaxSpeed=1.5"
+  -- spawn "/usr/bin/synclient AccelFactor=0.015"
+  -- spawn "~/.screenlayout/4k-screen.sh"
+  -- spawn "xcompmgr"
+  -- spawn "xmodmap ~/.Xmodmap"
+  -- spawn "gnome-session --session gnome-flashback-xmonad"
   spawn "stalonetray --dockapp-mode simple"
   -- spawnOnce "unity-settings-daemon"
   -- spawn "gnome-settings-daemon"
@@ -87,7 +87,7 @@ main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/callen/.xmobarrc"
     xmonad $ gnomeConfig {
          manageHook = myManageHook
-       , layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
+       , layoutHook = avoidStruts $ smartBorders $ layoutHook def
        , logHook = dynamicLogWithPP xmobarPP
                    { ppOutput = hPutStrLn xmproc
                    , ppTitle = xmobarColor "green" "" . shorten 50
@@ -95,10 +95,10 @@ main = do
        , startupHook = myStartupHook
        , modMask = mod4Mask
        , keys = newKeys
-       , terminal = "gnome-terminal"
-       -- , terminal = "alacritty"
+       -- , terminal = "gnome-terminal"
+       , terminal = "alacritty"
        , handleEventHook =
          mconcat [ docksEventHook
-                 , handleEventHook defaultConfig ]
-       -- , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+                 , handleEventHook def ]
+       -- , handleEventHook = handleEventHook def <+> fullscreenEventHook
        }
