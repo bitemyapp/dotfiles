@@ -371,6 +371,8 @@
 ;;   (custom-set-faces
 ;;     '(default ((t (:height 180 :family "Ubuntu Mono"))))))
 
+;; (custom-set-faces '(default ((t (:height 100 :family "Ubuntu Mono")))))
+;; (custom-set-faces '(default ((t (:height 120 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 140 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 160 :family "Ubuntu Mono")))))
 ;; (custom-set-faces '(default ((t (:height 180 :family "Ubuntu Mono")))))
