@@ -43,11 +43,11 @@ sudo apt install -y gimp audacity normalize-audio libavcodec-extra
 sudo apt install -y mumble
 
 # Stack
-curl -sSL https://get.haskellstack.org/ | sh
+curl -sSL https://get.haskellstack.org/ | sh || true
 
 stack upgrade
 stack setup
-stack install hlint stylish-haskell
+stack install hlint
 
 sudo apt-get install -y libghc-x11-xft-dev libasound2-dev libiw-dev libghc-libxml-sax-dev c2hs
 
@@ -60,8 +60,7 @@ sudo npm install -g parcel-bundler bower pulp
 # ./.install-xsecurelock.sh
 
 # utilities
-cargo install tokei hyperfine xsv diffr lsd hors starship mdcat strace-analyzer procs bingrep battop mprober ripgrep sd wasm-pack cargo-watch microserver
+cargo install tokei hyperfine xsv diffr lsd starship mdcat strace-analyzer procs bingrep battop ripgrep sd wasm-pack cargo-watch microserver
 
 cd ~
 
-touch .secrets
