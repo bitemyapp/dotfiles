@@ -43,3 +43,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if [ -e /home/callen/.nix-profile/etc/profile.d/nix.sh ]; then . /home/callen/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/callen/.sdkman"
+[[ -s "/Users/callen/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/callen/.sdkman/bin/sdkman-init.sh"
