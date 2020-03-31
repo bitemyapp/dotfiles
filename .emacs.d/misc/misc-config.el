@@ -5,6 +5,20 @@
 
 (global-set-key (kbd "M-*") 'pop-tag-mark)
 
+(defun expand-yasnippet-acute ()
+  "Expand the yasnippet named `foobar'."
+  (interactive)
+  (yas-expand-snippet (yas-lookup-snippet "acute")))
+
+(global-set-key (kbd "C-'") 'expand-yasnippet-acute)
+
+(defun expand-yasnippet-ae ()
+  "Expand the yasnippet named `foobar'."
+  (interactive)
+  (yas-expand-snippet (yas-lookup-snippet "ae")))
+
+(global-set-key (kbd "C-c c a e") 'expand-yasnippet-ae)
+
 ;; There's something similar in vc-git.el: vc-git-grep.  Naturally,
 ;; though, I prefer this :)
 
