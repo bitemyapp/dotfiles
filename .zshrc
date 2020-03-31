@@ -173,3 +173,8 @@ fi
 
 # eval "$(starship init zsh)"
 export PATH="$HOME/.tfenv/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/callen/.sdkman"
+[[ -s "/home/callen/.sdkman/bin/sdkman-init.sh" ]] && source "/home/callen/.sdkman/bin/sdkman-init.sh"
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64

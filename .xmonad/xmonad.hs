@@ -71,7 +71,7 @@ myStartupHook = do
   -- spawn "/usr/bin/synclient MaxSpeed=1.5"
   -- spawn "/usr/bin/synclient AccelFactor=0.015"
   -- spawn "~/.screenlayout/4k-screen.sh"
-  -- spawn "xcompmgr"
+  spawn "xcompmgr"
   -- spawn "xmodmap ~/.Xmodmap"
   -- spawn "gnome-session --session gnome-flashback-xmonad"
   spawn "stalonetray --dockapp-mode simple"
