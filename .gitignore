@@ -291,7 +291,6 @@ quicklisp/
 stencylworks/
 StencylWorks.prefs
 pgadmin.log
-lib/
 .jrebel/
 .netrc
 .pgpass
@@ -692,3 +691,7 @@ anaconda3/
 .tlaplus/
 miniconda3/
 .git-credentials
+.caliper/
+Archival/
+personal/
+Design/
