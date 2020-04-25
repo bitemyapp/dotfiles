@@ -42,20 +42,10 @@ sudo apt install -y gimp audacity normalize-audio libavcodec-extra
 # Communication
 sudo apt install -y mumble
 
-# Stack
-curl -sSL https://get.haskellstack.org/ | sh || true
-
-stack upgrade
-stack setup
-stack install hlint
-
-sudo apt-get install -y libghc-x11-xft-dev libasound2-dev libiw-dev libghc-libxml-sax-dev c2hs
-
 curl https://sh.rustup.rs -sSf | sh
 
 curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 sudo apt-get install -y nodejs
-sudo npm install -g parcel-bundler bower pulp yarn
 
 # ./.install-xsecurelock.sh
 
