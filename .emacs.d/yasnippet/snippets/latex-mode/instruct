@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: instruct
+# key: instruct
+# --
+\begin{instruction}
+$0
+\end{instruction}
