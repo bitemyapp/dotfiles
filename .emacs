@@ -59,6 +59,7 @@
                      scss-mode
                      shakespeare-mode
                      tabbar
+                     tide
                      typescript-mode
                      ;; toml-mode
                      ; twittering-mode
@@ -68,6 +69,8 @@
                      ; virtualenv
                      ; w3m
                      warm-night-theme
+                     web-beautify
+                     web-mode
                      ; writeroom-mode
                      ;; yaml-mode
                      yasnippet))
@@ -328,6 +331,54 @@
 
 (require 'typescript-mode)
 
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(require 'web-beautify) ;; Not necessary if using ELPA package
+(eval-after-load 'js2-mode
+  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+;; Or if you're using 'js-mode' (a.k.a 'javascript-mode')
+(eval-after-load 'js
+  '(define-key js-mode-map (kbd "C-c b") 'web-beautify-js))
+
+(eval-after-load 'json-mode
+  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+
+(eval-after-load 'sgml-mode
+  '(define-key html-mode-map (kbd "C-c b") 'web-beautify-html))
+
+(eval-after-load 'web-mode
+  '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
+
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+;; enable typescript-tslint checker
+;; (flycheck-add-mode 'typescript-tslint 'web-mode)
+
 ;; very large files
 ;; (add-to-list 'load-path "~/.emacs.d/vlfi")
 ;; (require 'vlf)
@@ -383,3 +434,21 @@
 (setq mac-option-modifier 'meta)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-electric-keys nil)
+ '(ido-mode 'both nil (ido))
+ '(inhibit-startup-screen t)
+ '(org-support-shift-select 'always t)
+ '(package-selected-packages
+   '(web-beautify yaml-mode toml-mode markdown-mode dhall-mode yasnippet warm-night-theme use-package undo-tree typescript-mode tabbar shakespeare-mode scss-mode reason-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme merlin material-theme magit json-mode js2-mode hcl-mode go-mode editorconfig dracula-theme dash dark-krystal-theme abyss-theme))
+ '(shift-select-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:height 140 :family "Ubuntu Mono")))))
