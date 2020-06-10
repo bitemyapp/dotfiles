@@ -471,3 +471,8 @@ the mode, `toggle' toggles the state."
   )
 ;; (require 'cc-mode)
 ;; (require 'graphviz-dot-mode)
+(defun acute-letter (&optional arg)
+  (interactive "p")
+  (kmacro-lambda-form [?\C-\' right S-right ?\C-w left ?\C-y right XF86WakeUp] 0 "%d"))
+
+(global-set-key (kbd "C-c e l") 'acute-letter)
