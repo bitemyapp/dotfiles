@@ -19,7 +19,7 @@
 (setq package-list '(abyss-theme
                      ;; cider
                      ;; clojure-mode
-                     ;; company
+                     company
                      ;; company-ghci
                      ; csv-mode
                      dark-krystal-theme
@@ -29,7 +29,8 @@
                      ; elixir-mode
                      ; elm-mode
                      ; erlang
-                     ;; flycheck
+                     flycheck
+                     flycheck-rust
                      go-mode
                      ;; groovy-mode
                      ;; intero
@@ -41,7 +42,7 @@
                      magit
                      ;; markdown-mode
                      material-theme
-                     merlin
+                     ;; merlin
                      monokai-theme
                      ; nix-mode
                      phoenix-dark-mono-theme
@@ -51,14 +52,15 @@
                      ; protobuf-mode
                      ; puppet-mode
                      ; python-mode
-                     racer
+                     ;; racer
                      rainbow-delimiters
                      rainbow-mode
-                     reason-mode
-                     ;; rust-mode
+                     ;; reason-mode
+                     rust-mode
                      scss-mode
                      shakespeare-mode
                      tabbar
+                     tide
                      typescript-mode
                      ;; toml-mode
                      ; twittering-mode
@@ -68,6 +70,7 @@
                      ; virtualenv
                      ; w3m
                      warm-night-theme
+                     web-mode
                      ; writeroom-mode
                      ;; yaml-mode
                      yasnippet))
@@ -93,6 +96,12 @@
 ;; Clojure
 ;; (add-to-list 'load-path "~/.emacs.d/clojure/")
 ;; (load-library "clojure-config.el")
+
+(use-package company
+  ;; :init (add-hook 'prog-mode-hook 'company-mode)
+  :hook (prog-mode . company-mode)
+  :config (setq company-tooltip-align-annotations t)
+          (setq company-minimum-prefix-length 1))
 
 ;; Coq
 ;; (setq coq-prog-args "-emacs-U")
@@ -123,8 +132,8 @@
 ;; (require 'erlang)
 
 ;; flycheck
-;; (require 'flycheck)
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 ;; (autoload 'flycheck-haskell-setup "flycheck-haskell")
 
 ;; calls runhaskell which doesn't work
@@ -203,96 +212,13 @@
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
 
-;;----------------------------------------------------------------------------
-;; Reason setup
-;;----------------------------------------------------------------------------
-
-(defun shell-cmd (cmd)
-  "Returns the stdout output of a shell command or nil if the command returned
-   an error"
-  (car (ignore-errors (apply 'process-lines (split-string cmd)))))
-
-(defun reason-cmd-where (cmd)
-  (let ((where (shell-cmd cmd)))
-    (if (not (string-equal "unknown flag ----where" where))
-      where)))
-
-(let* ((refmt-bin (or (reason-cmd-where "refmt ----where")
-                      (shell-cmd "which refmt")
-                      (shell-cmd "which bsrefmt")))
-       (merlin-bin (or (reason-cmd-where "ocamlmerlin ----where")
-                       (shell-cmd "which ocamlmerlin")))
-       (merlin-base-dir (when merlin-bin
-                          (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
-  ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
-  (when merlin-bin
-    (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
-    (setq merlin-command merlin-bin))
-
-  (when refmt-bin
-    (setq refmt-command refmt-bin)))
-
-(require 'reason-mode)
-(require 'merlin)
-(add-hook 'reason-mode-hook (lambda ()
-                              (add-hook 'before-save-hook 'refmt-before-save)
-                              (merlin-mode)))
-
-(setq merlin-ac-setup t)
-
 ;; Rust mode and accoutrements
-;; (use-package company
-;;   ;; :init (add-hook 'prog-mode-hook 'company-mode)
-;;   :hook (prog-mode . company-mode)
-;;   :config (setq company-tooltip-align-annotations t)
-;;           (setq company-minimum-prefix-length 1))
-
-;; (use-package flycheck
-;;   ;; :init (add-hook 'prog-mode-hook 'flycheck-mode)
-;;   :hook (prog-mode . flycheck-mode)
-;;   )
-
-;; (use-package lsp-mode)
-(use-package lsp-mode
-  :ensure t
-  :disabled t)
-
-(use-package lsp-ui
-  ;; :init (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  :hook (lsp-mode . lsp-ui-mode)
-  )
-
-;; (use-package company-lsp
-;;   :ensure t
-;;   :after company lsp-mode
-;;   :init
-;;   (push 'company-lsp company-backends))
 
 ;; (require 'rust-mode)
 ;; (add-hook 'rust-mode-hook #'company-mode)
 (use-package rust-mode)
-
-(use-package racer
-  :ensure t
-  :after rust-mode
-  :diminish racer-mode
-  :init
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook (lambda () (setq eldoc-documentation-function nil))))
-
-;; (use-package company-racer)
-;; (use-package flycheck-rust)
-;; (with-eval-after-load 'rust-mode
-;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-
-;; (use-package flycheck-rust
-;;   :init (with-eval-after-load
-;;             'rust-mode (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
-;;   )
-
-;; (use-package lsp-rust
-;;   :config (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-;;   :init (add-hook 'rust-mode-hook 'lsp-rust-enable))
+;; (use-package cargo
+;;   :hook (rust-mode . cargo-minor-mode))
 
 (use-package lsp-rust
   :ensure t
@@ -300,6 +226,13 @@
   :after lsp-mode
   :init
   (add-hook 'rust-mode-hook #'lsp-rust-enable))
+
+(with-eval-after-load 'lsp-mode
+  (setq lsp-rust-rls-command '("rustup" "run" "stable" "rls"))
+  (require 'lsp-rust))
+
+;; (add-hook 'rust-mode-hook #'lsp-rust-enable)
+;; (add-hook 'rust-mode-hook #'flycheck-mode)
 
 (use-package toml-mode
   :ensure t
@@ -327,6 +260,34 @@
 (global-undo-tree-mode)
 
 (require 'typescript-mode)
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+;; enable typescript-tslint checker
+(flycheck-add-mode 'typescript-tslint 'web-mode)
 
 ;; very large files
 ;; (add-to-list 'load-path "~/.emacs.d/vlfi")
