@@ -281,8 +281,6 @@
 (add-hook 'before-save-hook 'tide-format-before-save)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
-<<<<<<< HEAD
-=======
 
 (require 'web-beautify) ;; Not necessary if using ELPA package
 (eval-after-load 'js2-mode
@@ -373,15 +371,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(css-electric-keys nil)
- '(ido-mode 'both nil (ido))
+ '(ido-mode (quote both) nil (ido))
  '(inhibit-startup-screen t)
- '(org-support-shift-select 'always t)
+ '(org-support-shift-select (quote always) t)
  '(package-selected-packages
-   '(web-beautify yaml-mode toml-mode markdown-mode dhall-mode yasnippet warm-night-theme use-package undo-tree typescript-mode tabbar shakespeare-mode scss-mode reason-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme merlin material-theme magit json-mode js2-mode hcl-mode go-mode editorconfig dracula-theme dash dark-krystal-theme abyss-theme))
+   (quote
+    (web-beautify yaml-mode toml-mode markdown-mode dhall-mode yasnippet warm-night-theme use-package undo-tree typescript-mode tabbar shakespeare-mode scss-mode reason-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme merlin material-theme magit json-mode js2-mode hcl-mode go-mode editorconfig dracula-theme dash dark-krystal-theme abyss-theme)))
  '(shift-select-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 140 :family "Ubuntu Mono")))))
+ '(default ((t (:height 180 :family "Hack")))))

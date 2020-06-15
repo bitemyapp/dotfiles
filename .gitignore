@@ -695,3 +695,6 @@ miniconda3/
 Archival/
 personal/
 Design/
+.pgadmin/
+.pgAdmin4.startup.log
+.standard-cache/
