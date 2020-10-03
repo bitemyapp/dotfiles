@@ -698,3 +698,4 @@ Design/
 .pgadmin/
 .pgAdmin4.startup.log
 .standard-cache/
+.nuuid.ini

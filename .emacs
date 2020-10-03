@@ -342,7 +342,7 @@
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 180 :family "Hack"))))))
+    '(default ((t (:height 140 :family "Hack"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
@@ -363,24 +363,3 @@
 ;; (custom-set-faces '(default ((t (:height 320 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always) t)
- '(package-selected-packages
-   (quote
-    (web-beautify yaml-mode toml-mode markdown-mode dhall-mode yasnippet warm-night-theme use-package undo-tree typescript-mode tabbar shakespeare-mode scss-mode reason-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme merlin material-theme magit json-mode js2-mode hcl-mode go-mode editorconfig dracula-theme dash dark-krystal-theme abyss-theme)))
- '(shift-select-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 180 :family "Hack")))))
