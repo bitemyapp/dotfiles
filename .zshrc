@@ -184,11 +184,6 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 # TeXLive manual install
 export PATH="/usr/local/texlive/2019/bin/x86_64-linux:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/callen/.sdkman"
-[[ -s "/home/callen/.sdkman/bin/sdkman-init.sh" ]] && source "/home/callen/.sdkman/bin/sdkman-init.sh"
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-
 # source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
