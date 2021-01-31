@@ -44,13 +44,13 @@ sudo apt install -y mumble
 
 curl https://sh.rustup.rs -sSf | sh
 
-curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # ./.install-xsecurelock.sh
 
 # utilities
-cargo install tokei hyperfine xsv diffr lsd starship mdcat strace-analyzer procs bingrep battop ripgrep sd wasm-pack cargo-watch microserver cargo-crev cargo-edit
+cargo install tokei hyperfine xsv diffr lsd starship mdcat strace-analyzer procs bingrep battop ripgrep sd wasm-pack cargo-watch cargo-crev cargo-edit
 
 cd ~
 

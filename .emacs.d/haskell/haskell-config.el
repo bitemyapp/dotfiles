@@ -14,10 +14,10 @@
 (require 'haskell-mode-autoloads)
 (require 'haskell-mode)
 
-(add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
-(require 'hindent)
-(add-hook 'haskell-mode-hook #'hindent-mode)
-(define-key haskell-mode-map (kbd "C-c f b") 'hindent-reformat-buffer)
+;; (add-to-list 'load-path "~/.emacs.d/haskell/hindent/elisp/")
+;; (require 'hindent)
+;; (add-hook 'haskell-mode-hook #'hindent-mode)
+;; (define-key haskell-mode-map (kbd "C-c f b") 'hindent-reformat-buffer)
 
 ;; (require 'haskell-indentation)
 ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
