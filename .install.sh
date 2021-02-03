@@ -50,7 +50,7 @@ sudo apt-get install -y nodejs
 # ./.install-xsecurelock.sh
 
 # utilities
-cargo install tokei hyperfine xsv diffr lsd starship mdcat strace-analyzer procs bingrep battop ripgrep sd wasm-pack cargo-watch cargo-crev cargo-edit
+cargo install tokei hyperfine xsv diffr lsd starship mdcat strace-analyzer procs bingrep battop ripgrep sd wasm-pack cargo-watch cargo-edit
 
 cd ~
 
