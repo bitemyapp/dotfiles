@@ -7,6 +7,9 @@
 	autocrlf = input
 	safecrlf = false
 
+[merge]
+    ff = only
+
 [diff]  
     renamelimit = 0
 
