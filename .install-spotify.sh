@@ -2,7 +2,7 @@
 
 set -ex
 
-curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add - 
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 
 #  &&
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2C19886 &&
