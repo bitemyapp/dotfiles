@@ -135,3 +135,4 @@ export SDKMAN_DIR="/home/callen/.sdkman"
 
 # added by Anaconda3 installer
 export PATH="/home/callen/work/anaconda3/bin:$PATH"
+source "$HOME/.cargo/env"
