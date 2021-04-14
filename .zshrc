@@ -92,6 +92,7 @@ export PATH="/home/callen/anaconda2/bin:$PATH"
 export NODE_PATH="/usr/local/lib/node_modules"
 export GOPATH="$HOME/.local/goworkspace"
 export PATH="$PATH:node_modules/.bin"
+export PATH="$PATH:/opt/homebrew/bin"
 
 # For cargo
 # export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
@@ -185,6 +186,7 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 export PATH="/usr/local/texlive/2019/bin/x86_64-linux:$PATH"
 
 # source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

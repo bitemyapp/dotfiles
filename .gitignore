@@ -701,3 +701,5 @@ Design/
 .nuuid.ini
 .wolf4sdl/
 .r
+powerlevel10k/
+.zsh_sessions/
