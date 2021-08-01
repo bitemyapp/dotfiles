@@ -22,7 +22,7 @@ sudo apt-get install -y emacs-snapshot emacs-snapshot-el
 sudo apt-get install -y xmonad xmobar suckless-tools stalonetray fdpowermon pasystray xcompmgr pavucontrol
 
 # TeX
-sudo apt-get install -y texlive-full texlive-xetex biber python-pygments texlive-fonts-extra
+sudo apt-get install -y texlive-full texlive-xetex biber python3-pygments texlive-fonts-extra
 
 # Fonts
 sudo apt install -y fonts-roboto
@@ -42,15 +42,21 @@ sudo apt install -y gimp audacity normalize-audio libavcodec-extra
 # Communication
 sudo apt install -y mumble
 
-curl https://sh.rustup.rs -sSf | sh
-
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # ./.install-xsecurelock.sh
 
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+source $HOME/.cargo/env
+
 # utilities
-cargo install tokei hyperfine xsv diffr lsd starship mdcat strace-analyzer procs bingrep battop ripgrep sd wasm-pack cargo-watch cargo-edit
+cargo install tokei xsv diffr lsd starship mdcat strace-analyzer procs bingrep ripgrep sd cargo-watch cargo-edit
+
+mkdir ~/Screenshots
+
+gsettings set org.gnome.gnome-screenshot auto-save-directory "file:///home/$USER/Screenshots/"
 
 cd ~
 

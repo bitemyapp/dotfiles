@@ -397,21 +397,3 @@
 (setq mac-option-modifier 'meta)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(ido-mode 'both nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select 'always t)
- '(package-selected-packages
-   '(yaml-mode toml-mode yasnippet web-mode web-beautify warm-night-theme use-package undo-tree tide tabbar shakespeare-mode scss-mode reason-mode rainbow-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme merlin material-theme markdown-mode magit json-mode js2-mode hcl-mode go-mode editorconfig dracula-theme dhall-mode dark-krystal-theme abyss-theme))
- '(shift-select-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 140 :family "Hack")))))
