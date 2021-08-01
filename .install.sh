@@ -58,5 +58,12 @@ mkdir ~/Screenshots
 
 gsettings set org.gnome.gnome-screenshot auto-save-directory "file:///home/$USER/Screenshots/"
 
-cd ~
+touch ~/.secrets
 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+
+sudo cp -r ~/.fonts/*.ttf /usr/local/share/fonts/
+
+fc-cache -f -v
+
+cd ~

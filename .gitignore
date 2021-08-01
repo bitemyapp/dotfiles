@@ -253,7 +253,6 @@ News/
 .racket/
 .viminfo*
 .wily*
-.fonts/
 build/
 *.rdb
 node_modules/
