@@ -707,3 +707,5 @@ powerlevel10k/
 .hidpi-disable
 .pnpm-*/
 Google\ Drive
+.emacs.d/.lsp*
+.emacs.d/straight/
