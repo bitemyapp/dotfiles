@@ -14,6 +14,10 @@
       (append '(("melpa" . "https://melpa.org/packages/"))
               package-archives))
 
+(setq package-archives
+      (append '(("gnu" . "https://elpa.gnu.org/packages/"))
+              package-archives))
+
 (package-initialize)
 
 (setq package-list '(abyss-theme
@@ -205,6 +209,8 @@
 
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
+
+(setq rustic-analyzer-command '("~/.local/bin/rust-analyzer"))
 
 ;; Rust mode and accoutrements
 ;; (use-package company
