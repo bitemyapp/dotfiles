@@ -1,3 +1,21 @@
+;; bitemyapp's .emacs
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+
 (defvar *emacs-load-start* (current-time))
 
 (setq dotfiles-dir (file-name-directory
@@ -210,7 +228,10 @@
 ;; rainbow-mode for CSS
 (require 'rainbow-mode)
 
+(setq exec-path (append exec-path '("~/.local/bin")))
 (setq rustic-analyzer-command '("~/.local/bin/rust-analyzer"))
+
+(use-package rustic)
 
 ;; Rust mode and accoutrements
 ;; (use-package company
@@ -225,14 +246,14 @@
 ;;   )
 
 ;; (use-package lsp-mode)
-(use-package lsp-mode
-  :ensure t
-  :disabled t)
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :disabled t)
 
-(use-package lsp-ui
-  ;; :init (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  :hook (lsp-mode . lsp-ui-mode)
-  )
+;; (use-package lsp-ui
+;;   ;; :init (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;   :hook (lsp-mode . lsp-ui-mode)
+;;   )
 
 ;; (use-package company-lsp
 ;;   :ensure t
@@ -242,15 +263,15 @@
 
 ;; (require 'rust-mode)
 ;; (add-hook 'rust-mode-hook #'company-mode)
-(use-package rust-mode)
+;; (use-package rust-mode)
 
-(use-package racer
-  :ensure t
-  :after rust-mode
-  :diminish racer-mode
-  :init
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook (lambda () (setq eldoc-documentation-function nil))))
+;; (use-package racer
+;;   :ensure t
+;;   :after rust-mode
+;;   :diminish racer-mode
+;;   :init
+;;   (add-hook 'rust-mode-hook #'racer-mode)
+;;   (add-hook 'racer-mode-hook (lambda () (setq eldoc-documentation-function nil))))
 
 ;; (use-package company-racer)
 ;; (use-package flycheck-rust)
@@ -266,12 +287,12 @@
 ;;   :config (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
 ;;   :init (add-hook 'rust-mode-hook 'lsp-rust-enable))
 
-(use-package lsp-rust
-  :ensure t
-  :disabled t
-  :after lsp-mode
-  :init
-  (add-hook 'rust-mode-hook #'lsp-rust-enable))
+;; (use-package lsp-rust
+;;   :ensure t
+;;   :disabled t
+;;   :after lsp-mode
+;;   :init
+;;   (add-hook 'rust-mode-hook #'lsp-rust-enable))
 
 (use-package toml-mode
   :ensure t
@@ -401,24 +422,6 @@
 ;; (custom-set-faces '(default ((t (:height 320 :family "Ubuntu Mono")))))
 
 (setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'super)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(css-electric-keys nil)
- '(ido-mode (quote both) nil (ido))
- '(inhibit-startup-screen t)
- '(org-support-shift-select (quote always) t)
- '(package-selected-packages
-   (quote
-    (yaml-mode toml-mode markdown-mode yasnippet web-mode web-beautify warm-night-theme use-package tide tabbar shakespeare-mode scss-mode reason-mode rainbow-delimiters racer php-mode phoenix-dark-pink-theme phoenix-dark-mono-theme monokai-theme material-theme magit json-mode js2-mode hcl-mode go-mode dracula-theme dhall-mode dark-krystal-theme abyss-theme)))
- '(shift-select-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:height 120 :family "Ubuntu Mono")))))
