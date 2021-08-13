@@ -703,3 +703,7 @@ Design/
 powerlevel10k/
 .zsh_sessions/
 .gitconfig
+.fnm/
+.hidpi-disable
+.pnpm-*/
+Google\ Drive
