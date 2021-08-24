@@ -1,9 +1,9 @@
 #!/bin/bash
 
-set -e
+set -ex
 
-sudo add-apt-repository -y ppa:git-core/ppa
-sudo add-apt-repository -y ppa:ubuntu-elisp/ppa
+# sudo add-apt-repository -y ppa:git-core/ppa
+# sudo add-apt-repository -y ppa:ubuntu-elisp/ppa
 
 sudo apt-get update
 
@@ -16,7 +16,8 @@ sudo apt install -y git zsh xbacklight mosh tmux screen htop silversearcher-ag d
 # xtrlock isn't secure, so I don't use it anymore. See `xsecurelock` below.
 
 # Emacs
-sudo apt-get install -y emacs-snapshot emacs-snapshot-el
+# sudo apt-get install -y emacs-snapshot emacs-snapshot-el
+sudo apt install emacs
 
 # Window management
 sudo apt-get install -y xmonad xmobar suckless-tools stalonetray fdpowermon pasystray xcompmgr pavucontrol

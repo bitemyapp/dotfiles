@@ -8,6 +8,8 @@
 source ~/.profile
 source ~/.aliases
 
+fpath+=$HOME/.zsh/pure
+
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 autoload -U colors && colors
@@ -123,34 +125,34 @@ source ~/.secrets
 
 # git diff --quiet --ignore-submodules HEAD
 
-function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
+# function git_prompt_info() {
+#   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+#   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+# }
 
-setopt prompt_subst
-PROMPT='%{%F{white}%}[ %{%F{blue}%}%n@%m %{%F{red}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
-%{%F{reset}%}$ '
+# setopt prompt_subst
+# PROMPT='%{%F{white}%}[ %{%F{blue}%}%n@%m %{%F{red}%}%~%{%F{white}%} $(git_prompt_info) $(parse_git_dirty)]
+# %{%F{reset}%}$ '
 
-parse_git_branch() {
-  (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
-}
+# parse_git_branch() {
+#   (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
+# }
 
-parse_git_dirty() {
-  # if git diff --quiet --ignore-submodules HEAD; then
-  #     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-  # else
-  #     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-  # fi
-  if command git diff-index --quiet HEAD 2> /dev/null; then
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-  else
-    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-  fi
-}
+# parse_git_dirty() {
+#   # if git diff --quiet --ignore-submodules HEAD; then
+#   #     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+#   # else
+#   #     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+#   # fi
+#   if command git diff-index --quiet HEAD 2> /dev/null; then
+#     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+#   else
+#     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+#   fi
+# }
 
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}O %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}X %{$reset_color%}"
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}O %{$reset_color%}"
+# ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}X %{$reset_color%}"
 
 export NVM_DIR="/home/callen/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -186,7 +188,8 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 export PATH="/usr/local/texlive/2019/bin/x86_64-linux:$PATH"
 
 # source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+prompt pure

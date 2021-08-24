@@ -709,3 +709,4 @@ powerlevel10k/
 Google\ Drive
 .emacs.d/.lsp*
 .emacs.d/straight/
+.zsh/
