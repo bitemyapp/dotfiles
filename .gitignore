@@ -710,3 +710,4 @@ Google\ Drive
 .emacs.d/.lsp*
 .emacs.d/straight/
 .zsh/
+.flow-typed/
