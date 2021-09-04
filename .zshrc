@@ -192,4 +192,7 @@ export PATH="/usr/local/texlive/2019/bin/x86_64-linux:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+## To install:
+# mkdir -p "$HOME/.zsh"
+# git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 prompt pure

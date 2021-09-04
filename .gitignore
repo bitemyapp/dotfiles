@@ -661,6 +661,7 @@ package-lock.json
 .texlive2017/
 .texlive2018/
 .texlive2019/
+.texlive2020/
 Podcasts/
 bin/
 .xscreensaver

@@ -77,7 +77,7 @@
                      ;; rainbow-delimiters
                      ;; rainbow-mode
                      reason-mode
-                     ;; rust-mode
+                     rust-mode
                      scss-mode
                      shakespeare-mode
                      tabbar
