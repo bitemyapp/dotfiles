@@ -2,7 +2,7 @@
 
 set -ex
 
-if test -f $HOME/.cargo; then
+if test -d $HOME/.cargo; then
     exit 0
 fi
 

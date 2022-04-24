@@ -9,11 +9,11 @@ script_dir=$(dirname "$0")
 $script_dir/google-chrome.sh
 $script_dir/apt-packages.sh
 $script_dir/vscodium.sh
-$script_dir/node.sh
+# $script_dir/node.sh # doesn't work on jammy presently.
 $script_dir/rust.sh
 $script_dir/zsh-pure.sh
 $script_dir/docker.sh
-$script_dir/spotify.sh
+# $script_dir/spotify.sh # doesn't work in jammy either.
 
 source $HOME/.cargo/env
 

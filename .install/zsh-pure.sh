@@ -2,7 +2,7 @@
 
 mkdir -p "$HOME/.zsh"
 
-if test -f $HOME/.zsh/pure; then
+if test -d $HOME/.zsh/pure; then
     exit 0
 fi
 
