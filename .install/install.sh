@@ -33,5 +33,7 @@ sudo cp -r ~/.fonts/*.ttf /usr/local/share/fonts/
 
 fc-cache -f -v
 
+chsh -s /bin/zsh
+
 cd ~
 
