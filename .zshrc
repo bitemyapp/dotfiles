@@ -1,6 +1,3 @@
-source ~/.profile
-source ~/.aliases
-
 # Getting pure in the path
 fpath+=$HOME/.zsh/pure
 
