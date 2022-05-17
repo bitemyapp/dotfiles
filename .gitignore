@@ -714,4 +714,5 @@ Google\ Drive
 .flow-typed/
 .factorio/
 spotify-client/
-
+.discord-rpc/
+.uplink/
