@@ -35,6 +35,8 @@ export CARGO_TARGET_DIR="$HOME/.cargo/cache"
 export GOPATH="$HOME/.local/goworkspace"
 export PATH="$PATH:node_modules/.bin"
 export PATH="$PATH:/opt/homebrew/bin"
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 if [[ `uname` == 'Linux' ]]
 then

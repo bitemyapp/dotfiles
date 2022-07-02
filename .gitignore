@@ -716,3 +716,7 @@ Google\ Drive
 spotify-client/
 .discord-rpc/
 .uplink/
+Android/
+AndroidStudioProjects/
+.texlive2021/
+.proton/
