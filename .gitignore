@@ -720,3 +720,4 @@ Android/
 AndroidStudioProjects/
 .texlive2021/
 .proton/
+/.env
