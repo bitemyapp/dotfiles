@@ -721,3 +721,4 @@ AndroidStudioProjects/
 .texlive2021/
 .proton/
 /.env
+.brewfile.lock.json

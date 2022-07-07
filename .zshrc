@@ -1,5 +1,5 @@
 # Getting pure in the path
-fpath+=$HOME/.zsh/pure
+# fpath+=$HOME/.zsh/pure
 
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
@@ -66,4 +66,5 @@ fi
 
 # Load pure
 autoload -U promptinit; promptinit
-prompt pure
+# prompt pure
+eval "$(starship init zsh)"

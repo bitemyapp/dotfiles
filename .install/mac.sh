@@ -3,6 +3,7 @@
 # osascript .disable-natural-scrolling.scpt
 touch .profile
 touch .secrets
+touch .env
 
 mkdir ~/Screenshots
 
@@ -10,28 +11,10 @@ defaults write com.apple.screencapture ~/Screenshots
 
 killall SystemUIServer
 
-~/.install-xcode.sh
-
-sudo xcodebuild -license accept
-
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-brew doctor
-
-brew update
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew bundle --file=.brewfile
 
-chsh -s /bin/zsh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-curl -sSL https://get.haskellstack.org/ | sh
-
-stack setup
-
-stack build yesod lens servant persistent esqueleto
-
-curl https://sh.rustup.rs -sSf | sh -s -- -y
-
-rustup default nightly
-
-cargo install ripgrep loc
+cargo install cargo-trim
