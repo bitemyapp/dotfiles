@@ -1,5 +1,6 @@
 # Getting pure in the path
 # fpath+=$HOME/.zsh/pure
+source $HOME/.aliases
 
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
@@ -54,9 +55,13 @@ else
 fi
 if [[ "$OSX" == "1" ]]
 then
+    export BREW_PREFIX=`brew --prefix`
     export OPENSSL_INCLUDE_DIR=`brew --prefix openssl`/include
     export OPENSSL_LIB_DIR=`brew --prefix openssl`/lib
     export DEP_OPENSSL_INCLUDE=`brew --prefix openssl`/include
+    # export LDFLAGS="-L$BREW_PREFIX/lib"
+    # export CPPFLAGS="-I$BREW_PREFIX/include"
+    export PQ_LIB_DIR="$BREW_PREFIX/lib"
     export PATH="/usr/local/opt/llvm/bin:$PATH"
 fi
 
