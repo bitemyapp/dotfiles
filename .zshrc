@@ -7,6 +7,7 @@
 
 source ~/.profile
 source ~/.aliases
+git config --global alias.co checkout
 
 fpath+=$HOME/.zsh/pure
 
@@ -187,9 +188,21 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 # TeXLive manual install
 export PATH="/usr/local/texlive/2019/bin/x86_64-linux:$PATH"
 
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
+# Zig path
+export PATH="/home/callen/.local/lib/python3.9/site-packages/ziglang:$PATH"
+
 # source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 # source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 prompt pure
+
+[[ -v PROMPT_LABEL ]] && export PROMPT="$PROMPT($PROMPT_LABEL): "

@@ -711,3 +711,4 @@ Google\ Drive
 .emacs.d/straight/
 .zsh/
 .flow-typed/
+.clickhouse-client-history

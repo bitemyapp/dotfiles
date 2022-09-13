@@ -52,6 +52,7 @@ fi
 if [ -e /home/callen/.nix-profile/etc/profile.d/nix.sh ]; then . /home/callen/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PYTHONPATH=$PYTHONPATH:~/work/smb-measurements/smb-measurements-aws
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/callen/.sdkman"
@@ -76,3 +77,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 . "$HOME/.cargo/env"
+
+
+# Added by Toolbox App
+export PATH="$PATH:/home/callen/.local/share/JetBrains/Toolbox/scripts"
