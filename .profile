@@ -80,4 +80,4 @@ fi
 
 
 # Added by Toolbox App
-export PATH="$PATH:/home/callen/.local/share/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"

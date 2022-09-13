@@ -661,6 +661,7 @@ package-lock.json
 .texlive2017/
 .texlive2018/
 .texlive2019/
+.texlive2020/
 Podcasts/
 bin/
 .xscreensaver
@@ -720,3 +721,13 @@ Google\ Drive
 backups/
 .duc.db
 .jira.d/
+.factorio/
+spotify-client/
+.discord-rpc/
+.uplink/
+Android/
+AndroidStudioProjects/
+.texlive2021/
+.proton/
+/.env
+.brewfile.lock.json

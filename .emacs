@@ -77,7 +77,7 @@
                      ;; rainbow-delimiters
                      ;; rainbow-mode
                      reason-mode
-                     ;; rust-mode
+                     rust-mode
                      scss-mode
                      shakespeare-mode
                      tabbar
@@ -401,7 +401,7 @@
 
 (with-system 'darwin
   (custom-set-faces
-    '(default ((t (:height 140 :family "MesloLGS NF"))))))
+    '(default ((t (:height 140 :family "FiraCode Nerd Font Mono"))))))
 
 (with-system 'gnu/linux
   (custom-set-faces
