@@ -722,3 +722,6 @@ AndroidStudioProjects/
 .proton/
 /.env
 .brewfile.lock.json
+.dream_history
+.running_with_rifles/
+DigdogStudio/
