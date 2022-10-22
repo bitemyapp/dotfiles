@@ -712,6 +712,15 @@ Google\ Drive
 .emacs.d/straight/
 .zsh/
 .flow-typed/
+.clickhouse-client-history
+.redhat/
+.krew/
+.jdks/
+.ddd/
+.GlobalProtect/
+backups/
+.duc.db
+.jira.d/
 .factorio/
 spotify-client/
 .discord-rpc/
