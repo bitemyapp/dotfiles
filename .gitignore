@@ -731,3 +731,5 @@ AndroidStudioProjects/
 .proton/
 /.env
 .brewfile.lock.json
+.dotnet/
+GP_HTML/

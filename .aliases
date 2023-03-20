@@ -9,7 +9,6 @@ alias -- -="cd -"
 # Augmentation
 alias ls="exa" # lsd
 alias cut="choose"
-alias cat="bat"
 alias du="dust"
 alias find="fd"
 alias ps="procs"
