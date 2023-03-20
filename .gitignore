@@ -733,3 +733,6 @@ AndroidStudioProjects/
 .brewfile.lock.json
 .dotnet/
 GP_HTML/
+.dream_history
+.running_with_rifles/
+DigdogStudio/

@@ -13,7 +13,7 @@ alias du="dust"
 alias find="fd"
 alias ps="procs"
 alias nmap="rustscan"
-alias sed="sd"
+# alias sed="sd"
 # bingrep
 # hyperfine
 # just
