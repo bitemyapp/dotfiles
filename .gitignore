@@ -736,3 +736,7 @@ GP_HTML/
 .dream_history
 .running_with_rifles/
 DigdogStudio/
+.battlescribe/
+BattleScribe/
+Models/
+/*.log

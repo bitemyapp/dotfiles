@@ -13,6 +13,8 @@ alias du="dust"
 alias find="fd"
 alias ps="procs"
 alias nmap="rustscan"
+alias cargod "cargo watch --exec 'lclippy --all-targets' --clear --quiet"
+
 # alias sed="sd"
 # bingrep
 # hyperfine
