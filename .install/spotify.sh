@@ -6,11 +6,6 @@ if dpkg -s spotify-client; then
     exit 0;
 fi
 
-# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-
-# curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
-curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - 
-
-sudo apt-add-repository -y "deb http://repository.spotify.com stable non-free"
-
-sudo apt install spotify-client
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install -y spotify-client

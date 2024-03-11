@@ -6,13 +6,10 @@ set -ex
 sudo apt install -y at-spi2-core
 
 # Dev tools
-sudo apt install -y git zsh xbacklight mosh tmux screen htop silversearcher-ag darcs colordiff cmake curl gnome-screenshot apt-transport-https ca-certificates software-properties-common gnupg-agent
+sudo apt install -y git zsh xbacklight mosh tmux screen htop colordiff cmake curl gnome-screenshot apt-transport-https ca-certificates software-properties-common gnupg-agent
 
 # Emacs
-sudo apt install -y emacs
-
-# Window management
-# sudo apt-get install -y xmonad xmobar suckless-tools stalonetray fdpowermon pasystray xcompmgr pavucontrol
+sudo apt install -y emacs-gtk
 
 # TeX
 sudo apt-get install -y texlive-full texlive-xetex biber python3-pygments texlive-fonts-extra
@@ -31,6 +28,3 @@ sudo apt install -y libcurl4-openssl-dev libavcodec-dev libavdevice-dev libvulka
 
 # A/V
 sudo apt install -y gimp audacity normalize-audio libavcodec-extra
-
-# Communication
-sudo apt install -y mumble
