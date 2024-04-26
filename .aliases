@@ -7,12 +7,6 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Augmentation
-alias ls="exa" # lsd
-alias cut="choose"
-alias du="dust"
-alias find="fd"
-alias ps="procs"
-alias nmap="rustscan"
 alias cargod "cargo watch --exec 'lclippy --all-targets' --clear --quiet"
 
 # alias sed="sd"
