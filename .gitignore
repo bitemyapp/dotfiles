@@ -56,6 +56,7 @@ j701-user/
 .quicksynergy
 .synergy*
 .emacs.d/session*
+.emacs.d/eln-cache/
 .subversion
 .purple
 .remmina
@@ -741,4 +742,3 @@ BattleScribe/
 Models/
 /*.log
 monaspace/
-
