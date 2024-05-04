@@ -8,6 +8,7 @@ alias -- -="cd -"
 
 # Augmentation
 alias cargod "cargo watch --exec 'lclippy --all-targets' --clear --quiet"
+alias ls="ls --color=auto"
 
 # alias sed="sd"
 # bingrep
