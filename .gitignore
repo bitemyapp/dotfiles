@@ -742,3 +742,8 @@ BattleScribe/
 Models/
 /*.log
 monaspace/
+nerd-fonts/
+.polars/
+.p4merge/
+.p4admin/
+.nsightsystems/
