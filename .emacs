@@ -60,6 +60,7 @@
                      ; idris-mode
                      js2-mode
                      json-mode
+                     just-mode
                      magit
                      ;; markdown-mode
                      material-theme
@@ -175,6 +176,12 @@
 ;; JSON
 (require 'json-mode)
 (add-to-list 'auto-mode-alist '("\\.json\\'\\|\\.jshintrc\\'" . json-mode))
+
+;; Just
+(use-package justl
+  :ensure t
+  :custom
+  (justl-executable "$HOME/.cargo/bin/just"))
 
 ;; LaTeX
 ;; (add-to-list 'auto-mode-alist '("\\.tex$" . tex-mode))
