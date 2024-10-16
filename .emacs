@@ -252,21 +252,30 @@
 ;;   :hook (prog-mode . flycheck-mode)
 ;;   )
 
-;; (use-package lsp-mode)
+(use-package lsp-mode)
 ;; (use-package lsp-mode
 ;;   :ensure t
 ;;   :disabled t)
 
-;; (use-package lsp-ui
-;;   ;; :init (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-;;   :hook (lsp-mode . lsp-ui-mode)
-;;   )
+(use-package lsp-ui
+  ;; :init (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  :hook (lsp-mode . lsp-ui-mode)
+  )
 
 ;; (use-package company-lsp
 ;;   :ensure t
 ;;   :after company lsp-mode
 ;;   :init
 ;;   (push 'company-lsp company-backends))
+
+(lsp-inlay-hints-mode)
+(setq lsp-inlay-hint-enable t)
+(setq lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+(setq lsp-rust-analyzer-display-chaining-hints t)
+(setq lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names t)
+(setq lsp-rust-analyzer-display-closure-return-type-hints t)
+(setq lsp-rust-analyzer-display-parameter-hints t)
+;; (setq lsp-rust-analyzer-display-reborrow-hints t)
 
 ;; (require 'rust-mode)
 ;; (add-hook 'rust-mode-hook #'company-mode)
@@ -301,6 +310,15 @@
 ;;   :init
 ;;   (add-hook 'rust-mode-hook #'lsp-rust-enable))
 
+;; TODOs
+(use-package hl-todo
+       :ensure t
+       :custom-face
+       (hl-todo ((t (:inherit hl-todo :italic t))))
+       :hook ((prog-mode . hl-todo-mode)
+              (yaml-mode . hl-todo-mode)))
+
+;; TOML
 (use-package toml-mode
   :ensure t
   :mode ("\\.toml\\'" . toml-mode))
