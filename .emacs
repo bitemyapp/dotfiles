@@ -47,6 +47,7 @@
                      dark-krystal-theme
                      dash
                      dracula-theme
+                     ef-themes
                      ;; editorconfig
                      ; elixir-mode
                      ; elm-mode
@@ -416,7 +417,21 @@
 ;; Visuals
 (add-to-list 'load-path "~/.emacs.d/color-themes")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes")
-(load-theme 'abyss t)
+;; (load-theme 'abyss t)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+;; (load-theme 'ef-bio t)
+;; (load-theme 'ef-dark t)
+;; (load-theme 'ef-night t)
+;; (load-theme 'dracula t)
+(use-package nordic-night-theme
+  :ensure t
+  :config
+  ;; Use this for the darker version
+  ;; (load-theme 'nordic-midnight t)
+
+  (load-theme 'nordic-night t))
 
 (add-to-list 'load-path "~/.emacs.d/emacs-which-key")
 (require 'which-key)
@@ -428,9 +443,13 @@
   (custom-set-faces
     '(default ((t (:height 140 :family "FiraCode Nerd Font Mono"))))))
 
+;; (with-system 'gnu/linux
+;;   (custom-set-faces
+;;     '(default ((t (:height 120 :family "Ubuntu Mono"))))))
+
 (with-system 'gnu/linux
   (custom-set-faces
-    '(default ((t (:height 120 :family "Ubuntu Mono"))))))
+    '(default ((t (:height 90 :family "FiraCode Nerd Font Mono"))))))
 
 ;; (when (> (display-pixel-height) 1200)
 ;;   ;; retina
