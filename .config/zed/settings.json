@@ -7,8 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "ui_font_size": 12,
+  "buffer_font_size": 12,
   "theme": {
     "mode": "system",
     "light": "One Light",
@@ -26,5 +26,21 @@
     "show_background": false,
     "edit_debounce_ms": 700,
     "scroll_debounce_ms": 50
+  },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        // get more cargo-less diagnostics from rust-analyzer,
+        // which might include false-positives (those can be turned off by their names)
+        "diagnostics": {
+          "experimental": {
+            "enable": true
+          }
+        },
+        "rust": {
+          "analyzerTargetDir": true
+        }
+      }
+    }
   }
 }
