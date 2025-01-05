@@ -16,7 +16,13 @@ sudo apt-get update
 
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-sudo groupadd docker
+if [ $(getent group docker) ]; then
+  echo "docker group already exists."
+else
+  echo "group does not exist, creating it"
+  sudo groupadd docker
+fi
+
 sudo usermod -aG docker $USER
 newgrp docker
 docker run hello-world

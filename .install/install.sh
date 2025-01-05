@@ -4,6 +4,8 @@ set -ex
 
 sudo apt-get update
 
+sudo apt install gnome-screenshot xclip
+
 script_dir=$(dirname "$0")
 
 $script_dir/google-chrome.sh
@@ -22,7 +24,7 @@ git config --global user.email "cma@bitemyapp.com"
 git config --global user.name "Chris Allen"
 
 # Utilities written in Rust
-cargo install --locked tokei ripgrep just rink zola
+cargo install --locked tokei ripgrep just rink
 
 mkdir ~/Screenshots
 
@@ -37,4 +39,3 @@ fc-cache -f -v
 chsh -s /bin/zsh
 
 cd ~
-
