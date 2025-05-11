@@ -750,3 +750,4 @@ nerd-fonts/
 signal-desktop-keyring.gpg
 .fonts/
 .continue
+.elan/
