@@ -7,16 +7,27 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "ui_font_size": 12,
-  "buffer_font_size": 12,
+  "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet-thinking-latest"
+    },
+    "model_parameters": [],
+    "default_profile": "ask",
+    "version": "2"
+  },
+  "ui_font_family": "FiraCode Nerd Font Mono",
+  "ui_font_size": 14,
+  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "buffer_font_size": 14,
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Ayu Dark"
+    "dark": "Catppuccin Mocha"
   },
   "show_completions_on_input": true,
   "features": {
-    "inline_completion_provider": "copilot"
+    "edit_prediction_provider": "copilot"
   },
   "inlay_hints": {
     "enabled": true,

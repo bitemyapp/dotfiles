@@ -8,7 +8,7 @@ sudo apt install gnome-screenshot xclip
 
 script_dir=$(dirname "$0")
 
-$script_dir/google-chrome.sh
+# $script_dir/google-chrome.sh
 $script_dir/apt-packages.sh
 $script_dir/rust.sh
 $script_dir/fonts.sh
@@ -24,7 +24,7 @@ git config --global user.email "cma@bitemyapp.com"
 git config --global user.name "Chris Allen"
 
 # Utilities written in Rust
-cargo install --locked tokei ripgrep just rink starship
+cargo install --locked tokei ripgrep just rink fd-find starship
 
 mkdir ~/Screenshots
 
