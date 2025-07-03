@@ -32,7 +32,6 @@ export PATH=$HOME/.bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$HOME/work/rustc/src"
 export CARGO_HOME="$HOME/.cargo"
-export CARGO_TARGET_DIR="$HOME/.cargo/cache"
 export GOPATH="$HOME/.local/goworkspace"
 export PATH="$PATH:node_modules/.bin"
 export PATH="$PATH:/opt/homebrew/bin"
@@ -96,3 +95,8 @@ if [ -f '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/p
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/completion.zsh.inc'; fi
+
+if [[ "$ARGV0" == "/opt/cursor/cursor.AppImage" ]]; then
+unset ARGV0
+fi
+
