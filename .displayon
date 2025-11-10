@@ -1,3 +1,0 @@
-#!/bin/bash
-
-xrandr --output $1 --auto --right-of LVDS1

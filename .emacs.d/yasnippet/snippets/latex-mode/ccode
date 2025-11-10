@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: ccode
-# key: ccode
-# --
-\begin{ccode}[$0]
-$1
-\end{ccode}

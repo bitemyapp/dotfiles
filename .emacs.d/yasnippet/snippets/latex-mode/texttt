@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: tt
-# key: tt
-# --
-\texttt{$1} $0

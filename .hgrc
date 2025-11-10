@@ -1,7 +1,0 @@
-[ui]
-username = Chris Allen <chris.allen@invitae.com>
-
-[extensions]
-mq = 
-transplant = 
-hgext.fetch =

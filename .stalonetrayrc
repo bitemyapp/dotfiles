@@ -1,8 +1,0 @@
-icon_gravity E
-geometry 6x1-0+0
-max_geometry 8x1-0+0
-background "#000000"
-skip_taskbar
-icon_size 24
-kludges force_icons_size
-window_strut none

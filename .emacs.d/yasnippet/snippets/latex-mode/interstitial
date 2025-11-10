@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: inter
-# key: inter
-# --
-\begin{interstitial}
-$0
-\end{interstitial}
