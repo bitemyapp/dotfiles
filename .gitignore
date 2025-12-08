@@ -17,6 +17,7 @@ Dropbox
 .bashrc
 .cache/
 .config/
+.cursor/
 .dbus/
 .dmrc
 .dropbox-dist/
