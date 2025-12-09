@@ -1,7 +1,0 @@
-currentProjectIncluded: true
-hackagePath: /home/callen/.cabal/packages/hackage.haskell.org/
-tagsFileHeader: false
-tagsFileName: TAGS
-tagsFileSorted: false
-tagsCmd: hasktags --ctags --follow-symlinks --output="$TAGS" "$SOURCES"
-stackOpts: ''
