@@ -33,6 +33,7 @@ Dropbox
 .local/
 .macromedia/
 .mozilla/
+.nockapp/
 .pki/
 .profile
 .pulse-cookie
