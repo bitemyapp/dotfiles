@@ -24,6 +24,7 @@ Dropbox
 .dropbox/
 .esd_auth
 .fontconfig/
+.foundry/
 .gconf/
 .gconfd/
 .gksu.lock

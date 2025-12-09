@@ -23,6 +23,7 @@ cask "claude-code"
 cask "codex"
 cask "docker"
 cask "emacs"
+cask "ghostty"
 cask "google-chrome"
 cask "spotify"
 
