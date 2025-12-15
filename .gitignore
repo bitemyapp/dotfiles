@@ -754,3 +754,8 @@ signal-desktop-keyring.gpg
 .fonts/
 .continue
 .elan/
+.zcompdump-*
+.claude/
+.claude.json
+.claude.json.backup
+.gitconfig-*

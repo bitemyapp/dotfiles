@@ -8,8 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export EDITOR="emacs -q -nw"
-
 alias grep='grep --colour=auto'
 alias less='less -R'
 alias mg='mg -n'
@@ -87,4 +85,3 @@ export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/lib/nsight-systems/host-linux-x64:$PATH
-

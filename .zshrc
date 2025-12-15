@@ -99,4 +99,3 @@ if [ -f '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/c
 if [[ "$ARGV0" == "/opt/cursor/cursor.AppImage" ]]; then
 unset ARGV0
 fi
-
