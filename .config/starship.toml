@@ -1,1 +1,10 @@
-format = "$all"
+# format = "$all"
+format = """
+$nix_shell\
+$all"""
+
+[nix_shell]
+format = '''
+[░▒▓ ❄️ nix-shell: $state ▓▒░]($style)
+'''
+style = 'bold cyan'
