@@ -6,6 +6,9 @@ bindkey '^U' backward-kill-line
 bindkey '^Y' yank
 
 # Completion
+autoload -Uz compinit
+compinit
+
 zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-slashes 'yes'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+l:|=*'
