@@ -12,7 +12,7 @@ script_dir=$(dirname "$0")
 $script_dir/apt-packages.sh
 $script_dir/rust.sh
 $script_dir/fonts.sh
-$script_dir/vscode.sh
+# $script_dir/vscode.sh
 $script_dir/docker.sh
 $script_dir/spotify.sh
 $script_dir/telegram.sh
