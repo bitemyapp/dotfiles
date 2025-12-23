@@ -20,6 +20,7 @@ $script_dir/signal.sh
 $script_dir/cursor.sh
 $script_dir/claude.sh
 $script_dir/codex.sh
+$script_dir/ghostty.sh
 
 source $HOME/.cargo/env
 
