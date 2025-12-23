@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 set -e
 
 # Install Claude Code via native binary (idempotent, no Node/npm required)

@@ -17,6 +17,9 @@ $script_dir/docker.sh
 $script_dir/spotify.sh
 $script_dir/telegram.sh
 $script_dir/signal.sh
+$script_dir/cursor.sh
+$script_dir/claude.sh
+$script_dir/codex.sh
 
 source $HOME/.cargo/env
 
