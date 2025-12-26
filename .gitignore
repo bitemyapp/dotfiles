@@ -759,3 +759,4 @@ signal-desktop-keyring.gpg
 .claude.json
 .claude.json.backup
 .gitconfig-*
+.gitlab

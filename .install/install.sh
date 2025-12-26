@@ -28,7 +28,7 @@ git config --global user.email "cma@bitemyapp.com"
 git config --global user.name "Chris Allen"
 
 # Utilities written in Rust
-cargo install --locked tokei ripgrep just rink fd-find starship
+cargo install --locked tokei ripgrep just rink fd-find starship difftastic mergiraf
 
 mkdir ~/Screenshots
 
