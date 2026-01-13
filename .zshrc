@@ -93,12 +93,12 @@ unset __conda_setup
 # <<< conda initialize <<<
 export PATH=~/.npm-global/bin:$PATH
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/path.zsh.inc' ]; then . '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/callen/Downloads/google-cloud-cli-linux-x86_64/google-cloud-sdk/completion.zsh.inc'; fi
-
 if [[ "$ARGV0" == "/opt/cursor/cursor.AppImage" ]]; then
 unset ARGV0
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/callen/work/zorp/blaise/google-cloud-sdk/path.zsh.inc' ]; then . '/home/callen/work/zorp/blaise/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/callen/work/zorp/blaise/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/callen/work/zorp/blaise/google-cloud-sdk/completion.zsh.inc'; fi

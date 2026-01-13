@@ -419,6 +419,7 @@ R/
 .ihaskell/
 .vagrant.d/
 .codex
+!.codex/AGENTS.md
 .zpretzo/
 .mongorc.js
 work/
@@ -760,3 +761,7 @@ signal-desktop-keyring.gpg
 .claude.json.backup
 .gitconfig-*
 .gitlab
+.ansible/
+.zshrc.backup
+.SteamCloud/
+.zed_server/
