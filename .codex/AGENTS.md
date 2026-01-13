@@ -81,10 +81,6 @@
 - **Python repos standard**. We use `uv` and `pyproject.toml` in all Python repos. Prefer `uv sync` for env and dependency resolution. Do not introduce `pip` venvs, Poetry, or `requirements.txt` unless asked. If you add a Nix shell, include `uv`.
 - Use strong types, prefer type hints everywhere, keep models explicit instead of loose dicts or strings.
 
-### MCP
-
-- Assume you have access to a rust-analyzer MCP for the project you're working on via Zed editor, if you do not have access then tell the user. This can save you time doing a separate cargo build sometimes but you should still do at least one build + test cycle with cargo or bazel before deciding your work is done.
-
 ## Final Handoff
 
 Before finishing a task:
