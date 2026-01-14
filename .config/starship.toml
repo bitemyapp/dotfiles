@@ -8,3 +8,6 @@ format = '''
 [░▒▓ ❄️ nix-shell: $state ▓▒░]($style)
 '''
 style = 'bold cyan'
+
+[status]
+disabled = false
