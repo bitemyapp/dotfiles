@@ -37,13 +37,8 @@
 ## Tooling & Workflow
 
 - **Task runner preference**. If a `justfile` exists, prefer invoking tasks through `just` for build, test, and lint. Do not add a `justfile` unless asked. If no `justfile` exists and there is a `Makefile` you can use that.
-- Default lint/test commands:
-  - Rust: use `just` or `Makefile` targets if present; otherwise run `cargo fmt`, `cargo clippy --all --benches --tests --examples --all-features`, then the targeted `cargo test` commands.
-  - TypeScript: use `just` targets; if none exist, confirm with the user before running `npm` or `pnpm` scripts.
-  - Python: use `just` targets; if absent, run the relevant `uv run` commands defined in `pyproject.toml`.
 - **AST-first where it helps**. Prefer `ast-grep` for tree-safe edits when it is better than regex.
-- Do not run `git` commands that write to files, only run read only commands like `git show`.
-- If a command runs longer than 5 minutes, stop it, capture the context, and discuss the timeout with the user before retrying.
+- If a command runs longer than 10 minutes, stop it, capture the context, and discuss the timeout with the user before retrying.
 - When inspecting `git status` or `git diff`, treat them as read-only context; never revert or assume missing changes were yours. Other agents or the user may have already committed updates.
 - If you are ever curious how to run tests or what we test, read through `.gitlab-ci.yml`; CI runs everything there and it should behave the same locally.
 
@@ -63,24 +58,6 @@
 - Avoid `pub use` on imports unless you are re-exposing a dependency so downstream consumers do not have to depend on it directly.
 - Skip global state via `lazy_static!`, `Once`, or similar; prefer passing explicit context structs for any shared state.
 - Prefer strong types over strings, use enums and newtypes when the domain is closed or needs validation.
-
-#### Rust Workflow Checklist
-
-1. Run `cargo fmt`.
-1. Run `cargo clippy --all --benches --tests --examples --all-features` and address warnings.
-1. Execute the relevant `cargo test` or `just` targets to cover unit and end-to-end paths.
-1. When using `cargo test`, `cargo nextest`, `cargo run`, or similar cargo sub-commands always use `--release` unless you are instructed to do otherwise. Many of our tests have a heavy runtime component and the build time saved w/ the default debug builds isn't worth it.
-
-### TypeScript
-
-- NEVER, EVER use `any` we are better than that.
-- Using `as` is bad, use the types given everywhere and model the real shapes.
-- If the app is for a browser, assume we use all modern browsers unless otherwise specified, we don't need most polyfills.
-
-### Python
-
-- **Python repos standard**. We use `uv` and `pyproject.toml` in all Python repos. Prefer `uv sync` for env and dependency resolution. Do not introduce `pip` venvs, Poetry, or `requirements.txt` unless asked. If you add a Nix shell, include `uv`.
-- Use strong types, prefer type hints everywhere, keep models explicit instead of loose dicts or strings.
 
 ## Final Handoff
 
@@ -108,3 +85,8 @@ Before finishing a task:
 - When a `flake.nix` is present at the top-level directory of the git repository of the project, run build/test commands inside `nix develop`.
 - When a Bazel build is available in a project make sure that works in addition to Cargo before declaring your work is done. Make sure you update any corresponding `BUILD.bazel` files when making changes to the crates such as when adding new dependencies, tests, benchmarks, or binaries.
 - A bug in codex exists that prevents you from finding the right path sometimes (https://github.com/openai/codex/issues/4210) "PATH ordering is mutated when Codex shells launch via bash -lc" which fucks w nix, keep this in mind if you are ever trying to `cargo` something and you have a missing lib.
+
+## GitHub
+
+- use the `gh` command to get information (read-only please) from GitHub. It's already installed system-wide and authenticated.
+- For example, if you wanted information about the PR for the current branch, use: `gh pr view --comments` and that will include the original PR and the comments.
