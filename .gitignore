@@ -765,3 +765,4 @@ signal-desktop-keyring.gpg
 .zshrc.backup
 .SteamCloud/
 .zed_server/
+.bun/

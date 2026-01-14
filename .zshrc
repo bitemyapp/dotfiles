@@ -102,3 +102,6 @@ if [ -f '/home/callen/work/zorp/blaise/google-cloud-sdk/path.zsh.inc' ]; then . 
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/callen/work/zorp/blaise/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/callen/work/zorp/blaise/google-cloud-sdk/completion.zsh.inc'; fi
+
+# opencode
+export PATH=/home/callen/.opencode/bin:$PATH

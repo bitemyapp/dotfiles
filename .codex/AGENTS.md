@@ -69,6 +69,7 @@
 1. Run `cargo fmt`.
 1. Run `cargo clippy --all --benches --tests --examples --all-features` and address warnings.
 1. Execute the relevant `cargo test` or `just` targets to cover unit and end-to-end paths.
+1. When using `cargo test`, `cargo nextest`, `cargo run`, or similar cargo sub-commands always use `--release` unless you are instructed to do otherwise. Many of our tests have a heavy runtime component and the build time saved w/ the default debug builds isn't worth it.
 
 ### TypeScript
 
