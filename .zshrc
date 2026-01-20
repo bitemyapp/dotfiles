@@ -1,9 +1,12 @@
 # Getting pure in the path
 # fpath+=$HOME/.zsh/pure
-source $HOME/.aliases
+# source $HOME/.aliases
 
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
+
+autoload -U compinit
+compinit
 
 # Completion
 autoload -Uz compinit
@@ -40,7 +43,8 @@ export PATH="$PATH:node_modules/.bin"
 export PATH="$PATH:/opt/homebrew/bin"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+# export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export PATH=/opt/cuda/bin:/usr/local/cuda/bin${PATH:+:${PATH}}
 
 if [[ `uname` == 'Linux' ]]
 then
