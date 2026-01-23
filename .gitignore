@@ -766,3 +766,5 @@ signal-desktop-keyring.gpg
 .SteamCloud/
 .zed_server/
 .bun/
+.maxxdesktop/
+.mwmrc
