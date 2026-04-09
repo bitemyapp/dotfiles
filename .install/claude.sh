@@ -6,7 +6,7 @@ set -e
 # Check if already installed and get version
 if command -v claude &> /dev/null; then
     CURRENT_VERSION=$(claude --version 2>/dev/null || echo "unknown")
-    echo "Claude Code already installed: $CURRENT_VERSION"
+    echo "Claude Code currently installed: $CURRENT_VERSION"
     echo "Checking for updates..."
 fi
 

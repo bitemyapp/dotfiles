@@ -7,14 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "show_edit_predictions": false,
   "agent": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-thinking-latest"
+      "model": "claude-3-7-sonnet-thinking-latest",
     },
     "model_parameters": [],
     "default_profile": "ask",
-    "version": "2"
   },
   "ui_font_family": "FiraCode Nerd Font Mono",
   "ui_font_size": 14,
@@ -23,11 +26,11 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "show_completions_on_input": true,
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "zed",
   },
   "inlay_hints": {
     "enabled": true,
@@ -36,22 +39,27 @@
     "show_other_hints": true,
     "show_background": false,
     "edit_debounce_ms": 700,
-    "scroll_debounce_ms": 50
+    "scroll_debounce_ms": 50,
   },
   "lsp": {
+    "clangd": {
+      "binary": {
+        "ignore_system_version": true,
+      },
+    },
     "rust-analyzer": {
       "initialization_options": {
         // get more cargo-less diagnostics from rust-analyzer,
         // which might include false-positives (those can be turned off by their names)
         "diagnostics": {
           "experimental": {
-            "enable": true
-          }
+            "enable": true,
+          },
         },
         "rust": {
-          "analyzerTargetDir": true
-        }
-      }
-    }
-  }
+          "analyzerTargetDir": true,
+        },
+      },
+    },
+  },
 }
