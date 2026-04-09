@@ -6,12 +6,10 @@ set -e
 INSTALL_DIR="$HOME/.local/bin"
 mkdir -p "$INSTALL_DIR"
 
-# Get latest stable version (rust-vX.Y.Z, not alpha)
-LATEST=$(curl -fsSL "https://github.com/openai/codex/releases" 2>/dev/null \
-    | grep -o 'href="/openai/codex/releases/tag/rust-v[0-9]*\.[0-9]*\.[0-9]*"' \
-    | grep -v alpha \
-    | head -1 \
-    | sed 's|.*/tag/||; s|"||g')
+# Get the latest stable release tag via GitHub's canonical redirect.
+# This avoids scraping page 1 of the releases UI, which may be all prereleases.
+LATEST=$(basename "$(curl -fsSLI -o /dev/null -w '%{url_effective}' \
+    "https://github.com/openai/codex/releases/latest" 2>/dev/null)")
 
 if [[ -z "$LATEST" ]]; then
     echo "Failed to determine latest version"
