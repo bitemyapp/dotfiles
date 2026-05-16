@@ -6,12 +6,16 @@ set -e
 INSTALL_DIR="$HOME/.local/bin"
 mkdir -p "$INSTALL_DIR"
 
-# Get the latest stable release tag via GitHub's canonical redirect.
-# This avoids scraping page 1 of the releases UI, which may be all prereleases.
-LATEST=$(basename "$(curl -fsSLI -o /dev/null -w '%{url_effective}' \
-    "https://github.com/openai/codex/releases/latest" 2>/dev/null)")
+# Get latest stable version (rust-vX.Y.Z, not alpha)
+# Use the GitHub API instead of scraping the HTML releases page; GitHub may
+# fill the first page with prereleases, which makes the old scraper fail.
+LATEST=$(curl -fsSL \
+    -H "Accept: application/vnd.github+json" \
+    "https://api.github.com/repos/openai/codex/releases/latest" 2>/dev/null \
+    | sed -n 's/.*"tag_name": "\(rust-v[0-9][^"]*\)".*/\1/p' \
+    | head -1)
 
-if [[ -z "$LATEST" ]]; then
+if [[ -z "$LATEST" || "$LATEST" == *alpha* ]]; then
     echo "Failed to determine latest version"
     exit 1
 fi
