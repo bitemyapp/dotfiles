@@ -43,8 +43,11 @@ rm "/tmp/${ARCHIVE}"
 
 # Ensure ~/.local/bin is in PATH
 if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc 2>/dev/null || true
+    for rc_file in "$HOME/.bashrc" "$HOME/.zshrc"; do
+        if ! grep -qxF 'export PATH="$HOME/.local/bin:$PATH"' "$rc_file" 2>/dev/null; then
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$rc_file"
+        fi
+    done
     export PATH="$INSTALL_DIR:$PATH"
 fi
 

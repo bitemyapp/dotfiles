@@ -1,3 +1,12 @@
 #!/usr/bin/env bash
 
-font_url='https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip'; font_name=${font_url##*/}; wget ${font_url} -O ${font_name} && unzip ${font_name} -d ~/.fonts && fc-cache -fv && cd ~
+set -euo pipefail
+
+tmp_dir=$(mktemp -d)
+trap 'rm -rf "$tmp_dir"' EXIT
+
+font_url='https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip'
+curl -fsSL "$font_url" -o "$tmp_dir/FiraCode.zip"
+mkdir -p "$HOME/.fonts"
+unzip -o "$tmp_dir/FiraCode.zip" -d "$HOME/.fonts"
+fc-cache -fv

@@ -11,7 +11,7 @@ fi
 
 sudo apt-get update
 
-sudo apt install gnome-screenshot xclip
+sudo apt install -y gnome-screenshot xclip
 
 # $script_dir/google-chrome.sh
 $script_dir/apt-packages.sh
@@ -35,7 +35,7 @@ git config --global user.name "Chris Allen"
 # Utilities written in Rust
 cargo install --locked tokei ripgrep just rink fd-find starship difftastic mergiraf
 
-mkdir ~/Screenshots
+mkdir -p "$HOME/Screenshots"
 
 gsettings set org.gnome.gnome-screenshot auto-save-directory "file:///home/$USER/Screenshots/"
 
@@ -45,6 +45,8 @@ sudo cp -r ~/.fonts/*.ttf /usr/local/share/fonts/
 
 fc-cache -f -v
 
-chsh -s /bin/zsh
+if [[ $(getent passwd "$USER" | cut -d: -f7) != /bin/zsh ]]; then
+  chsh -s /bin/zsh
+fi
 
 cd ~

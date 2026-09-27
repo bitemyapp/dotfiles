@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-if dpkg -s telegram-desktop; then
-    exit 0;
-fi
+set -euo pipefail
 
-sudo add-apt-repository ppa:atareao/telegram
+for package in telegram telegram-desktop; do
+    if [[ $(dpkg-query -W -f='${Status}' "$package" 2>/dev/null) == 'install ok installed' ]]; then
+        exit 0
+    fi
+done
+
+sudo add-apt-repository -y ppa:atareao/telegram
 
 sudo apt update && sudo apt install -y telegram
