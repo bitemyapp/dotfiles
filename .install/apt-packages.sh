@@ -17,3 +17,5 @@ sudo apt install -y fonts-roboto fonts-anonymous-pro
 # build-essential, compiler, etc.
 sudo apt install -y build-essential clang
 
+# Native dependencies for Cargo utilities, including rink's openssl-sys dependency.
+sudo apt install -y pkg-config libssl-dev
