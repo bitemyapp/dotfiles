@@ -1,45 +1,36 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
 # Install OpenAI Codex CLI via GitHub releases (idempotent, no Node/npm required)
 
 INSTALL_DIR="$HOME/.local/bin"
 mkdir -p "$INSTALL_DIR"
 
-# Get latest stable version (rust-vX.Y.Z, not alpha)
-# Use the GitHub API instead of scraping the HTML releases page; GitHub may
-# fill the first page with prereleases, which makes the old scraper fail.
-LATEST=$(curl -fsSL \
-    -H "Accept: application/vnd.github+json" \
-    "https://api.github.com/repos/openai/codex/releases/latest" 2>/dev/null \
-    | sed -n 's/.*"tag_name": "\(rust-v[0-9][^"]*\)".*/\1/p' \
-    | head -1)
-
-if [[ -z "$LATEST" || "$LATEST" == *alpha* ]]; then
-    echo "Failed to determine latest version"
-    exit 1
-fi
-
-echo "Latest Codex version: $LATEST"
-
 # Check current version if installed
-if command -v codex &> /dev/null; then
-    CURRENT=$(codex --version 2>/dev/null | head -1 || echo "unknown")
+if [[ -x "$INSTALL_DIR/codex" ]]; then
+    CURRENT=$("$INSTALL_DIR/codex" --version 2>/dev/null || echo "unknown")
     echo "Currently installed: $CURRENT"
 fi
 
-# Download and install
-ARCHIVE="codex-x86_64-unknown-linux-musl.tar.gz"
-URL="https://github.com/openai/codex/releases/download/${LATEST}/${ARCHIVE}"
+# GitHub resolves the latest stable release directly; no API lookup or JSON
+# scraping is needed, and curl errors remain visible if the download fails.
+BINARY="codex-x86_64-unknown-linux-musl"
+ARCHIVE="${BINARY}.tar.gz"
+URL="https://github.com/openai/codex/releases/latest/download/${ARCHIVE}"
+
+# Stage on the same filesystem so replacement is atomic, including when the
+# installed executable is running. Failed downloads leave that copy intact.
+TMP_DIR=$(mktemp -d "$INSTALL_DIR/.codex-install.XXXXXX")
+trap 'rm -rf "$TMP_DIR"' EXIT
 
 echo "Downloading $URL..."
-curl -fsSL "$URL" -o "/tmp/${ARCHIVE}"
+curl -fsSL --retry 3 --connect-timeout 30 "$URL" -o "$TMP_DIR/$ARCHIVE"
 
 # Extract (binary name inside has platform suffix)
-tar -xzf "/tmp/${ARCHIVE}" -C /tmp
-mv /tmp/codex-x86_64-unknown-linux-musl "$INSTALL_DIR/codex"
-chmod +x "$INSTALL_DIR/codex"
-rm "/tmp/${ARCHIVE}"
+tar -xzf "$TMP_DIR/$ARCHIVE" -C "$TMP_DIR" "$BINARY"
+chmod +x "$TMP_DIR/$BINARY"
+VERSION=$("$TMP_DIR/$BINARY" --version)
+mv -f "$TMP_DIR/$BINARY" "$INSTALL_DIR/codex"
 
 # Ensure ~/.local/bin is in PATH
 if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
@@ -51,4 +42,4 @@ if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
     export PATH="$INSTALL_DIR:$PATH"
 fi
 
-echo "Codex installed: $($INSTALL_DIR/codex --version 2>/dev/null || echo 'restart shell and run: codex --version')"
+echo "Codex installed: $VERSION"
