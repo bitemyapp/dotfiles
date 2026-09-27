@@ -2,11 +2,16 @@
 
 set -ex
 
+script_dir=$(cd -- "$(dirname -- "$0")" && pwd)
+
+# Repair an existing Spotify source before it can block the initial APT update.
+if [[ -f /etc/apt/sources.list.d/spotify.list || -f /etc/apt/sources.list.d/spotify.sources ]]; then
+  "$script_dir/spotify.sh" --configure-only
+fi
+
 sudo apt-get update
 
 sudo apt install gnome-screenshot xclip
-
-script_dir=$(dirname "$0")
 
 # $script_dir/google-chrome.sh
 $script_dir/apt-packages.sh
