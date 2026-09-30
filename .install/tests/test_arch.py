@@ -17,6 +17,7 @@ CORE_PACKAGES = SHELL_PACKAGES + [
     "rink", "difftastic", "mergiraf", "rust", "fontconfig", "ttf-roboto",
     "ttf-anonymous-pro", "ttf-firacode-nerd",
 ]
+DEFAULT_APPS = ["zed", "chatgpt-desktop", "claude-desktop"]
 
 MOCK = r'''#!/usr/bin/python3
 import json, os, pathlib, subprocess, sys
@@ -73,7 +74,8 @@ class ArchInstallerTest(unittest.TestCase):
         self.log_path = self.root / "calls.jsonl"
         self.release = self.root / "os-release"
         self.release.write_text('ID=cachyos\nID_LIKE="arch linux"\n')
-        self.state = {"installed": CORE_PACKAGES.copy(), "available": CORE_PACKAGES.copy(),
+        self.state = {"installed": CORE_PACKAGES.copy() + DEFAULT_APPS,
+                      "available": CORE_PACKAGES.copy() + ["zed"],
                       "shell": shutil.which("fish") or "/bin/fish"}
         self.save_state()
         for command in ["pacman", "sudo", "yay", "chsh", "getent", "apt", "apt-get", "curl", "wget", "cargo"]:
@@ -133,6 +135,7 @@ class ArchInstallerTest(unittest.TestCase):
         zsh = self.write_home(".zshrc", "# distro zsh\n")
         protected = [self.write_home(name, "user-config\n") for name in [
             ".config/ghostty/config", ".config/niri/config.kdl", ".config/starship.toml",
+            ".config/zed/settings.json", ".config/chatgpt/preferences.json", ".config/Claude/preferences.json",
             ".local/share/applications/google-chrome.desktop", ".secrets", ".gitconfig"]]
         self.run_install()
         first_fish, first_zsh = fish.read_text(), zsh.read_text()
@@ -154,6 +157,28 @@ class ArchInstallerTest(unittest.TestCase):
         self.run_install("--component", "shells")
         transactions = [call for call in self.calls() if call[:2] == ["pacman", "-S"]]
         self.assertEqual(transactions, [["pacman", "-S", "--needed", "--", "starship"]])
+
+    def test_default_install_adds_missing_desktop_apps_once(self):
+        for package in DEFAULT_APPS:
+            self.state["installed"].remove(package)
+        self.save_state()
+        self.run_install("--aur")
+        self.run_install("--aur")
+        transactions = [call for call in self.calls() if call[:2] == ["pacman", "-S"]]
+        self.assertEqual(transactions, [["pacman", "-S", "--needed", "--", "zed"]])
+        self.assertEqual([call for call in self.calls() if call[0] == "yay"],
+                         [["yay", "-S", "--needed", "--", "chatgpt-desktop", "claude-desktop"]])
+
+    def test_zed_executable_from_official_installer_is_preserved(self):
+        self.state["installed"].remove("zed")
+        self.save_state()
+        zed = self.home / ".local/bin/zed"
+        zed.parent.mkdir(parents=True)
+        zed.write_text("#!/bin/sh\nexit 0\n")
+        zed.chmod(0o755)
+        result = self.run_install(script="zed.sh")
+        self.assertIn("Keeping existing executable: zed", result.stdout)
+        self.assertEqual(self.mutations(), [])
 
     def test_provider_satisfies_rust_without_replacing_rustup(self):
         self.state["installed"].remove("rust")
@@ -239,7 +264,7 @@ class ArchInstallerTest(unittest.TestCase):
         for script in ["apt-packages", "rust", "fonts", "docker", "ghostty", "google-chrome",
                        "spotify", "telegram", "signal", "cursor", "claude", "codex", "github",
                        "node", "opencode", "install-niri", "vscode", "vscodium", "slack", "cuda",
-                       "xsecurelock"]:
+                       "xsecurelock", "zed", "chatgpt-desktop", "claude-desktop"]:
             with self.subTest(script=script):
                 self.run_install(script=f"{script}.sh")
         self.run_install("--configure-only", script="spotify.sh")

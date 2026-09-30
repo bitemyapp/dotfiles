@@ -10,13 +10,15 @@ usage() {
 Usage: .install/install.sh [--dry-run] [--shell keep|fish|zsh] [--aur]
                            [--component NAME ...]
 
-With no components, install core tools, Rust, fonts, and shell configuration.
+With no components, install core tools, Rust, fonts, shell configuration,
+Zed, ChatGPT Desktop, and Claude Desktop.
 Both fish and zsh are supported; keep the current login shell by default.
 Existing packages, executables, and desktop app configuration are preserved.
 
 Components: core, rust, fonts, shells, docker, ghostty, google-chrome,
             spotify, telegram, signal, cursor, claude, codex, github,
-            node, opencode, niri, vscode, vscodium, slack, cuda, xsecurelock
+            node, opencode, niri, vscode, vscodium, slack, cuda, xsecurelock,
+            zed, chatgpt-desktop, claude-desktop
 --aur permits yay/paru to install missing packages absent from the repositories.
 --dry-run prints changes without installing packages, editing files, or chsh.
 EOF
@@ -41,7 +43,9 @@ while (( $# )); do
   esac
 done
 case $target_shell in keep|fish|zsh) ;; *) echo "Invalid shell: $target_shell" >&2; exit 2 ;; esac
-if (( ${#components[@]} == 0 )); then components=(core rust fonts shells); fi
+if (( ${#components[@]} == 0 )); then
+  components=(core rust fonts shells zed chatgpt-desktop claude-desktop)
+fi
 if $configure_only; then
   if [[ ${components[*]} != spotify || $target_shell != keep ]]; then
     echo "--configure-only is supported only by the Spotify entry point." >&2
@@ -81,6 +85,9 @@ for component in "${components[@]}"; do
     signal) specs+=(signal-desktop:signal-desktop) ;;
     cursor) specs+=(cursor-bin:cursor) ;;
     claude) specs+=(claude-code:claude) ;;
+    claude-desktop) specs+=(claude-desktop:claude-desktop) ;;
+    chatgpt-desktop) specs+=(chatgpt-desktop:chatgpt) ;;
+    zed) specs+=(zed:zeditor,zed) ;;
     codex) specs+=(openai-codex-bin:codex) ;;
     github) specs+=(github-cli:gh) ;;
     node) specs+=(nodejs:node npm:npm) ;;
@@ -103,6 +110,18 @@ if [[ $target_shell != keep ]]; then
 fi
 
 log() { printf '%s\n' "$*"; }
+existing_command() {
+  local candidate
+  local -a candidates
+  IFS=, read -r -a candidates <<< "$1"
+  for candidate in "${candidates[@]}"; do
+    if command -v "$candidate" >/dev/null 2>&1; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
 run() {
   printf '+'
   printf ' %q' "$@"
@@ -124,8 +143,8 @@ for spec in "${specs[@]}"; do
   seen[$package]=1
   if pacman -T "$package" >/dev/null 2>&1; then
     log "Keeping installed package/provider: $package"
-  elif [[ -n $executable ]] && command -v "$executable" >/dev/null 2>&1; then
-    log "Keeping existing executable: $executable"
+  elif [[ -n $executable ]] && installed_command=$(existing_command "$executable"); then
+    log "Keeping existing executable: $installed_command"
   elif pacman -Si "$package" >/dev/null 2>&1; then
     repo_packages+=("$package")
   else

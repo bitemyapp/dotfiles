@@ -7,18 +7,20 @@ Clone using SSH and preview the installer:
 ```sh
 git clone git@github.com:bitemyapp/dotfiles.git ~/work/dotfiles
 cd ~/work/dotfiles
-bash .install/install.sh --dry-run
+bash .install/install.sh --dry-run --aur
 ```
 
 Run the installer as your normal user. It uses sudo only for native package
 installation. With no options it installs missing development tools, Rust,
-fonts, fish, zsh, and Starship, then adds shell configuration hooks. It keeps
-your current login shell. To select fish or zsh explicitly:
+fonts, fish, zsh, Starship, Zed, ChatGPT Desktop, and Claude Desktop, then adds
+shell configuration hooks. It keeps your current login shell. If a missing
+desktop app is outside your enabled repositories, use `--aur` to install it
+through yay or paru. To select fish or zsh explicitly:
 
 ```sh
-bash .install/install.sh --shell fish
+bash .install/install.sh --shell fish --aur
 # Or:
-bash .install/install.sh --shell zsh
+bash .install/install.sh --shell zsh --aur
 ```
 
 Packages already installed, including AUR packages and installed providers,
@@ -34,11 +36,11 @@ your usual full `sudo pacman -Syu` separately. Package dependencies are still
 resolved by pacman; review its transaction before accepting it. See the
 [pacman manual](https://man.archlinux.org/man/pacman.8.en).
 
-Desktop applications are opt-in. The default install does not manage Ghostty,
-Chrome, ChatGPT Desktop, Claude Desktop, or any application configuration,
-desktop entries, Docker services/groups, or compositor settings. ChatGPT
-Desktop and Claude Desktop have no installer in this repository. The
-`claude` component refers to **Claude Code**, the CLI.
+Zed, ChatGPT Desktop, and Claude Desktop are included by default; existing
+installations are kept. Other desktop applications such as Ghostty and Chrome
+are opt-in. Application configuration, desktop entries, Docker services/groups,
+and compositor settings are preserved. The `claude` component refers to
+**Claude Code**, the CLI; `claude-desktop` refers to the desktop application.
 
 Install an individual component using the main entry point or its existing
 script. Missing packages in enabled repositories use pacman; missing packages
@@ -51,6 +53,9 @@ bash .install/install.sh --component docker --component github
 bash .install/ghostty.sh --dry-run
 bash .install/google-chrome.sh --aur
 bash .install/install.sh --component spotify --aur
+bash .install/zed.sh --dry-run
+bash .install/chatgpt-desktop.sh --aur
+bash .install/claude-desktop.sh --aur
 ```
 
 Use `bash .install/install.sh --help` for all components and options. Linux
