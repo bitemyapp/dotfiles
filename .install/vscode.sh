@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Use native packages and preserve existing installs on Arch derivatives.
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/platform.sh"
+dotfiles_dispatch_arch --component vscode "$@"
+
 sudo apt-get install wget gpg
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg

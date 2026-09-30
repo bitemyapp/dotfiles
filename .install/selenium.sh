@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# Use native packages and preserve existing installs on Arch derivatives.
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/platform.sh"
+dotfiles_dispatch_arch --component selenium "$@"
 # https://developers.supportbee.com/blog/setting-up-cucumber-to-run-with-Chrome-on-Linux/
 # https://gist.github.com/curtismcmullan/7be1a8c1c841a9d8db2c
 # http://stackoverflow.com/questions/10792403/how-do-i-get-chrome-working-with-selenium-using-php-webdriver

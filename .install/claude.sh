@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# Use native packages and preserve existing installs on Arch derivatives.
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/platform.sh"
+dotfiles_dispatch_arch --component claude "$@"
 set -e
 
 # Install Claude Code via native binary (idempotent, no Node/npm required)

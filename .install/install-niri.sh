@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Use native packages and preserve existing installs on Arch derivatives.
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/platform.sh"
+dotfiles_dispatch_arch --component niri "$@"
+
 sudo apt install -y gcc clang libudev-dev libgbm-dev libxkbcommon-dev libegl1-mesa-dev libwayland-dev libinput-dev libdbus-1-dev libsystemd-dev libseat-dev libpipewire-0.3-dev libpango1.0-dev libdisplay-info-dev
 sudo apt install -y fuzzel alacritty ptyxis swaylock
 

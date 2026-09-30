@@ -9,8 +9,6 @@ autoload -U compinit
 compinit
 
 # Completion
-autoload -Uz compinit
-compinit
 
 zstyle ':completion:*' expand 'yes'
 zstyle ':completion:*' squeeze-slashes 'yes'
@@ -24,8 +22,7 @@ bindkey ';5D' emacs-backward-word
 bindkey ';5C' emacs-forward-word
 bindkey -e
 
-export TERM=xterm-256color
-
+typeset -U path PATH
 export PATH=~/.cask/bin:$PATH
 
 export FPATH=$HOME/.zsh_completion:$FPATH
@@ -76,11 +73,6 @@ if test -f $HOME/.secrets; then
     source ~/.secrets
 fi
 
-# Load pure
-autoload -U promptinit; promptinit
-# prompt pure
-eval "$(starship init zsh)"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/callen/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -108,4 +100,11 @@ if [ -f '/home/callen/work/zorp/blaise/google-cloud-sdk/path.zsh.inc' ]; then . 
 if [ -f '/home/callen/work/zorp/blaise/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/callen/work/zorp/blaise/google-cloud-sdk/completion.zsh.inc'; fi
 
 # opencode
-export PATH=/home/callen/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Share Starship setup with fish when installed through the Arch installer.
+if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/shell.zsh" ]]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/shell.zsh"
+elif (( $+commands[starship] )); then
+    eval "$(starship init zsh)"
+fi

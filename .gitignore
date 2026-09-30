@@ -16,7 +16,7 @@ Dropbox
 .bash_logout
 .bashrc
 .cache/
-.config/
+.config/*
 .cursor/
 .dbus/
 .dmrc
@@ -769,3 +769,9 @@ signal-desktop-keyring.gpg
 .maxxdesktop/
 .mwmrc
 .omp/
+
+# Shared shell configuration tracked with the installer.
+!.config/dotfiles/
+.config/dotfiles/*
+!.config/dotfiles/shell.fish
+!.config/dotfiles/shell.zsh

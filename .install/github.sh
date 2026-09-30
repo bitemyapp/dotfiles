@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Use native packages and preserve existing installs on Arch derivatives.
+source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/platform.sh"
+dotfiles_dispatch_arch --component github "$@"
+
 (type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) \
 	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
 	&& out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \

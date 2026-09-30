@@ -1,6 +1,6 @@
+typeset -U path PATH
 path=(~/bin ~/play $path)
 export PYENV_ROOT="$HOME/.pyenv"
-source "$HOME/.cargo/env"
-. "$HOME/.cargo/env"
+[[ ! -r "$HOME/.cargo/env" ]] || source "$HOME/.cargo/env"
 
-export PATH="$PATH:/Users/callen/.foundry/bin"
+[[ ! -d "$HOME/.foundry/bin" ]] || path+=("$HOME/.foundry/bin")
