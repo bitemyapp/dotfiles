@@ -1,11 +1,16 @@
 # Dotfiles
 
+For the complete Arch/CachyOS rebuild path, including Plasma panel and clipboard
+settings, GitLab SSH alias, verified Omarchy wallpapers and the Spectacle fork,
+see [the recovery instructions](.install/RECOVERY.md). The recovery work is
+published on the **arch-idempotent-shells** branch; clone that branch explicitly.
+
 ## Arch Linux and derivatives (including CachyOS)
 
 Clone using SSH and preview the installer:
 
 ```sh
-git clone git@github.com:bitemyapp/dotfiles.git ~/work/dotfiles
+git clone --branch arch-idempotent-shells git@github.com:bitemyapp/dotfiles.git ~/work/dotfiles
 cd ~/work/dotfiles
 bash .install/install.sh --dry-run --aur
 ```

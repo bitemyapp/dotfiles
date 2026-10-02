@@ -1,0 +1,743 @@
+{
+  "repository": "omacom/omarchy",
+  "tag": "v4.0.4",
+  "source_tree": "c668141e9c42b13c80c9ca4ea108e11708c5e8a5",
+  "files": [
+    {
+      "path": "themes/catppuccin-latte/backgrounds/1-color-fade.png",
+      "blob": "ee0cd94ab09e904d3c7866774965fd60f45f74c4",
+      "size": 667231,
+      "sha256": "7f0ea4054c817e6535cfd1a01133bc9e414cc11459bb9ced2ce37aa03b0dcab7",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "path": "themes/catppuccin-latte/backgrounds/omarchy.png",
+      "blob": "8dd666ab36a9eeb0f16c4c1db1b7f9bba6008ca3",
+      "size": 4491,
+      "sha256": "3ed1059999659dafd67fce62163564e950fcb42e92588eeab7dce45b5265562d",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/catppuccin/backgrounds/1-totoro.png",
+      "blob": "5fbcebc7e9d3b6e97c36bb01f145f9aa62120113",
+      "size": 361654,
+      "sha256": "3bcfab14e8e7b041307cb77d700c6959160fe7f6d5de631b15bd02de0cf8d9ff",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/catppuccin/backgrounds/2-waves.png",
+      "blob": "a0b5325c1c4d74ff1f40e411454a727624774634",
+      "size": 1391152,
+      "sha256": "563190df9589beb2d5117d40db02c649232ab6bc3c3f2eb6d97a9fb3585a0cfd",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/catppuccin/backgrounds/3-blue-eye.png",
+      "blob": "30b5963fac68451e01ec9950eec786c74e039a00",
+      "size": 259847,
+      "sha256": "a95044dde4dee46b50816f130387530dcf23b3bd425eaa929dd321ce63f5f07c",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/catppuccin/backgrounds/omarchy.png",
+      "blob": "a4e90d763c6c4dc1c241f537c359ffda912cfed1",
+      "size": 4491,
+      "sha256": "24bda779062666ec962937d3e256103839a14c7e1d66f12af04f68bec4a6bdaf",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/ethereal/backgrounds/1-cosmic.jpg",
+      "blob": "e5c1463fcc1a53ef59a806b9c13b99f0db08432f",
+      "size": 1433563,
+      "sha256": "0db02097c8ddd3a8c029d18b18e4594ad28928b2fa64ebde7934997ad77f9bd0",
+      "width": 5120,
+      "height": 2880
+    },
+    {
+      "path": "themes/ethereal/backgrounds/2-meadow.jpg",
+      "blob": "95fdafb684fa7909523f3be5eba51e701e6f174e",
+      "size": 4028969,
+      "sha256": "16a74c7d60dc878c629f5565efc9b890b859c3c1e23966d915a678c7a5287a73",
+      "width": 6000,
+      "height": 3375
+    },
+    {
+      "path": "themes/ethereal/backgrounds/omarchy.png",
+      "blob": "4354650ff8f70df47b0e4fc57a3e1384a7237f67",
+      "size": 4491,
+      "sha256": "545a9633256fbd49bff4cad1ccf82288bdb0ae825bbe066bf2fdc2f0ddec04bc",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/everforest/backgrounds/1-tree-tops.jpg",
+      "blob": "6d75259dbb82e6bd1ed4ab97ae3f5e0ea0f1b346",
+      "size": 322827,
+      "sha256": "0f00a5e2d0f78d5e75c7a2f48101f6dee69179c6d94e9f4ebc6fb7c0f39462bf",
+      "width": 4288,
+      "height": 2848
+    },
+    {
+      "path": "themes/everforest/backgrounds/omarchy.png",
+      "blob": "d759dde4885a04c8a476d88cb5b85daf93027e3b",
+      "size": 4491,
+      "sha256": "35e5d8076efc1435defd256d4c39fb1192e9ff3862c6b2456b0c6d2b8a1aeb83",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/flexoki-light/backgrounds/1-orb.png",
+      "blob": "a564a176ec0984b9d3997f358582c2d067f55a0b",
+      "size": 293452,
+      "sha256": "5fec32ec9b7270c4afe5f36ac2885a8f37bff1a5a8ae4edb3b01b7d262628456",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/flexoki-light/backgrounds/2-omarchy.png",
+      "blob": "cc755b1f908727068761830d4c9d3d7eb1cbe54d",
+      "size": 41659,
+      "sha256": "647ebe0d07288455a856fcdb9fa8abb6cf20048941725aa25cb480dea6c7bad8",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/gruvbox/backgrounds/1-the-backwater.jpg",
+      "blob": "c9ff53168abfb50ca01239a118f24637ff43407d",
+      "size": 4127598,
+      "sha256": "13cfc6ae370af984c08a820ff81b56a0febb0fbfe9712a6db128b94d14ecaac6",
+      "width": 4096,
+      "height": 2428
+    },
+    {
+      "path": "themes/gruvbox/backgrounds/2-flower-basket.jpg",
+      "blob": "42af8d1a52ce43abcb84f5bffe571f678d2816f2",
+      "size": 1262922,
+      "sha256": "e6188fc509b3336f1f22e097328c29bde604e76c965092de69a5861fa3587598",
+      "width": 3160,
+      "height": 1944
+    },
+    {
+      "path": "themes/gruvbox/backgrounds/3-village-square.jpg",
+      "blob": "0ff0160bc44d4144217d2db7ddb8a6789070252e",
+      "size": 1924485,
+      "sha256": "9ac4d52dbef06876a838e9cf9f97813dd86e99d2b977d9d11c5f389be6451cdc",
+      "width": 3160,
+      "height": 2360
+    },
+    {
+      "path": "themes/gruvbox/backgrounds/4-idyllic-procession.jpg",
+      "blob": "3742024aa03cc047a5771cb98f392c67c1259af5",
+      "size": 1908429,
+      "sha256": "be0ae73263a5eb69416fb13547826a60806859aa31bb031053afc73de60a55c5",
+      "width": 3160,
+      "height": 1996
+    },
+    {
+      "path": "themes/gruvbox/backgrounds/5-leaves.jpg",
+      "blob": "fd318699368b48c20792732d30e39234bf43052e",
+      "size": 443959,
+      "sha256": "cdbd3cd7b34a2c8e7e74818af5101a8531786878b0a3afcb8f6985b27394f66d",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/gruvbox/backgrounds/omarchy.png",
+      "blob": "a6feebe6073376c0a6e43e075a435332442b8d09",
+      "size": 4491,
+      "sha256": "2ec97f25e7c53d07749f51a55d142a69a4ec770fb9570d7b7ade38c4a7db3cf0",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/hackerman/backgrounds/1-synth-scape.jpg",
+      "blob": "7a36f6aabed18a4d6ad9f01fdaabd498ba868701",
+      "size": 2330372,
+      "sha256": "c7d2594935f204e0df1b43dfe7a12389ea1c1d3fd8e57a92a9f08497f27a377e",
+      "width": 5000,
+      "height": 3542
+    },
+    {
+      "path": "themes/hackerman/backgrounds/2-geometric.jpg",
+      "blob": "a18aff80a236dd44ea1f409dda186c3d6b21f64d",
+      "size": 1936468,
+      "sha256": "8f2c2aaf95cb2fa83620f54b854642e14369e24981ff540357e46b31bc978de0",
+      "width": 5000,
+      "height": 3542
+    },
+    {
+      "path": "themes/hackerman/backgrounds/omarchy.png",
+      "blob": "eb91c8b0b18964fc48da34ecd9de2f3faaceb863",
+      "size": 4491,
+      "sha256": "554b8b63bb4b16aa8983f460cd69609beb1f9ebb1f1a4faee2948c3cbe4060c0",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/kanagawa/backgrounds/1-kanagawa.jpg",
+      "blob": "197c48d59dd26420009bf6e29b94789fc2144b1b",
+      "size": 1624027,
+      "sha256": "9b817d717688539f0db87603b661992839c3cbb5d4918a02a4efc05c9f88b27d",
+      "width": 4335,
+      "height": 2990
+    },
+    {
+      "path": "themes/kanagawa/backgrounds/omarchy.png",
+      "blob": "c4560ce38a336a6dc27db34f44542674164b6bc8",
+      "size": 4491,
+      "sha256": "f5548146da341d49e29ce5fe958930883e31c0716c5a30a928faad0cc48f3c8b",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/last-horizon/backgrounds/1-eyes-wide.jpg",
+      "blob": "0a9dcdd0d5cb178411ae111dd03af4d572bd0f34",
+      "size": 486426,
+      "sha256": "f0d11e6c6a8f2f2749ac9f67d9bc51e6c7f5885587b0d38a241dc5da807eedcf",
+      "width": 3160,
+      "height": 1778
+    },
+    {
+      "path": "themes/last-horizon/backgrounds/2-blink.jpg",
+      "blob": "1a474773444e320cd9d5d6fa732f69cf90552b21",
+      "size": 704033,
+      "sha256": "9225adfa3205d857d314cbf932c33e51c2dc358d41cf92630efc06cf79bdf5b5",
+      "width": 3160,
+      "height": 1778
+    },
+    {
+      "path": "themes/last-horizon/backgrounds/3-bokeh.jpg",
+      "blob": "c929e51f5eaff1b8a0470e2faf8d05bf189467fb",
+      "size": 213078,
+      "sha256": "4b392e8b56bea0b96cfa5439f36dbaf8ac15ee63f8817c55c0bbbf35b4b77782",
+      "width": 3160,
+      "height": 1776
+    },
+    {
+      "path": "themes/last-horizon/backgrounds/4-new-horizons.jpg",
+      "blob": "f3dca1eb3c2849ceec1138540479272a11620a3d",
+      "size": 1293016,
+      "sha256": "6b13ec842e3617d7c9c113612664f56b8ffec5fb76d0613bb1c84914f12feb5f",
+      "width": 3160,
+      "height": 1778
+    },
+    {
+      "path": "themes/lumon/backgrounds/01-united-in-severance.jpg",
+      "blob": "d07b6363ec3cf60047ac06f40862ca87b95262d2",
+      "size": 98419,
+      "sha256": "c172bb5c438baabd6836139bb85e9b011b64c4f0fecc8bc2c3dfc5b864141c55",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/lumon/backgrounds/02-opinions-equally.jpg",
+      "blob": "4f2a0bf2d2dc138d378dc5101090b194eff4b0f3",
+      "size": 2125671,
+      "sha256": "5e1f7f82aba47dfe0a7cb1082af57da467887021e018f47b23c7a60f4d3be302",
+      "width": 5181,
+      "height": 3456
+    },
+    {
+      "path": "themes/lumon/backgrounds/omarchy.png",
+      "blob": "8c194e6efc74d835ecb54bff322a284538af8f1d",
+      "size": 4491,
+      "sha256": "9b3dc66ae626ba702254533dfce0023a33c66d205ab4e8473e3c410321616d5c",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/lupine/backgrounds/01-cherry-blossom-bokeh.jpg",
+      "blob": "3ba661f16347ae04ca7d6cb87a006798d2c1f5af",
+      "size": 2418875,
+      "sha256": "f9a6966daa88c821d31bf8630b2a1d98804f929aa6bb5facb3f44f0e0b356071",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "path": "themes/lupine/backgrounds/02-cherry-blossom-white.jpg",
+      "blob": "8127b8076bf47f2a668f54e5c4cd866f44e7527c",
+      "size": 5360348,
+      "sha256": "f4553841b1d78d3d6655deb68f162694d11a18fbf975689e5c94ff928ab1fb7d",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "path": "themes/lupine/backgrounds/03-pastel-clouds.jpg",
+      "blob": "b3b7b3873e690fd2092f97eb1e333b87975041bb",
+      "size": 3110883,
+      "sha256": "d125cc3c25e6f4bd655956ec2220a2ca993571090e2ef350bbb32a91acbd0089",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "path": "themes/lupine/backgrounds/04-elegant-blue-wave.jpg",
+      "blob": "b55adbbd6d01a945a2e9d031f5e6253aeafb07c3",
+      "size": 626432,
+      "sha256": "aa592cf40a1be6de7e8b19a56f6dcc6dce7a843f0042d196e2a0bc195f959ae1",
+      "width": 6000,
+      "height": 3000
+    },
+    {
+      "path": "themes/lupine/backgrounds/05-abstract-wave.jpg",
+      "blob": "f45ced86d44ea0fd318d3ff039cbaebf0e3df46f",
+      "size": 431716,
+      "sha256": "ea91d0dc8682b90d6875755ee06730c2ac82f8cff255ec5a1e5952b65a77669b",
+      "width": 5000,
+      "height": 4000
+    },
+    {
+      "path": "themes/lupine/backgrounds/06-omarchy.png",
+      "blob": "4a5e982d80e848b59eaf6418dc5b2ce6e0c1551b",
+      "size": 2090,
+      "sha256": "ea42dccef5636a9f63da6e1c664073ad111a8a3b0caffb9d994d289928ffbef2",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/matte-black/backgrounds/0-ship-at-sea.jpg",
+      "blob": "4375ee2bdd039723d74994503700053114641b86",
+      "size": 1681677,
+      "sha256": "55fa691adfd3fb8a9102b826a28d8de679938f04879799da499b8ace2fe039ac",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/matte-black/backgrounds/1-dark-waters.jpg",
+      "blob": "2afb1bcb16a5561ad883fdb47130c23cca70a940",
+      "size": 1033920,
+      "sha256": "98f0c2b65a2587d114949e8125c22f891c993e0305ca36537bd9b7a9869e8a93",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/matte-black/backgrounds/2-dot-hands.jpg",
+      "blob": "b76792cb81eb35d68d9b442a8abbc286e9025d77",
+      "size": 482067,
+      "sha256": "e8d73aa65be29bf9d0bec62f64add450485ca52367701ff683e0f2bd66f0791a",
+      "width": 3456,
+      "height": 2234
+    },
+    {
+      "path": "themes/matte-black/backgrounds/omarchy.png",
+      "blob": "b34300c1a912dbc0c15ab268ce91142a7d536574",
+      "size": 4491,
+      "sha256": "63d002b2320cef0184d79bb44fbf4062780d2c083428acf16191344084b75a8f",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/miasma/backgrounds/01-nature-of-fear.jpg",
+      "blob": "16cf45b719c3f992d190902825ea54a3d477852c",
+      "size": 668987,
+      "sha256": "f89242eded77e3e3994680d73dd273945056b50c758cc1e828981f58d20dbce1",
+      "width": 3841,
+      "height": 2160
+    },
+    {
+      "path": "themes/miasma/backgrounds/02-crowned.jpg",
+      "blob": "3a83fb3ac404b8c74629c220191ef4509174d81a",
+      "size": 1006235,
+      "sha256": "39847a832c747bbd5b6b2cf561cf808a6dcee0fb4b468f1f0095ca9900c4b50f",
+      "width": 3841,
+      "height": 2160
+    },
+    {
+      "path": "themes/miasma/backgrounds/omarchy.png",
+      "blob": "08d8b9a54db5680eb73060fce1d863065a5f7923",
+      "size": 4491,
+      "sha256": "60ba7ba694820174d25c631c90dda9f00ade78ae3c5426709bd6c152a7d44744",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/nord/backgrounds/0-black-moon.jpg",
+      "blob": "55df377484f1c5aaa0a376026f21720c015d560e",
+      "size": 3255290,
+      "sha256": "6873fbf7d4cbb9a39604094dd8d804eb6d231e63ecf56e5c297aae90358eff81",
+      "width": 4096,
+      "height": 2730
+    },
+    {
+      "path": "themes/nord/backgrounds/1-city-view.png",
+      "blob": "56dbc1df69e0cd91233e661f7e304ce42b8436d4",
+      "size": 393681,
+      "sha256": "b1186fa7ee4e9d90087b86934c4de31a867daa4a23c401885181b07ba12fff75",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/nord/backgrounds/2-night-hawks.png",
+      "blob": "412eb52c202243b23abfc881a50ff1ecbe85a399",
+      "size": 1825628,
+      "sha256": "61a4bc49c13711121de87f5f7f2407ff8235051cd17f9cded7e20e15b19d5692",
+      "width": 6000,
+      "height": 3274
+    },
+    {
+      "path": "themes/nord/backgrounds/omarchy.png",
+      "blob": "f8b19601d29f946b493bd694925b010a96647431",
+      "size": 4491,
+      "sha256": "9a3cfe958dbe694293ccbe0e5d594ab23522e413f1f45fd7c09235cbdb3554bc",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/osaka-jade/backgrounds/1-glowing-city.jpg",
+      "blob": "be7d85722bc219e9d007430db10e2233e4cd6ec0",
+      "size": 1382419,
+      "sha256": "1a4ed77cdcd943833027e2caf805819773bbadcabe868b58ea2ee67c6016d8a8",
+      "width": 2976,
+      "height": 1632
+    },
+    {
+      "path": "themes/osaka-jade/backgrounds/2-shaded-entrance.jpg",
+      "blob": "9b979561054502652702c7f10f5ef6e5541e7947",
+      "size": 1060221,
+      "sha256": "5b1053819b9f62c6b54e81443a40245f426e256cd4831b795ae41fc595c26c52",
+      "width": 3072,
+      "height": 1536
+    },
+    {
+      "path": "themes/osaka-jade/backgrounds/3-mountain-moon.jpg",
+      "blob": "729ccae481d72fc130405bc2dcfad50f5b57ca64",
+      "size": 2243941,
+      "sha256": "145adf0ba2ebd42dabaf89f12709a7321674f627668e4e2c33fc8f8a192914c7",
+      "width": 7680,
+      "height": 4320
+    },
+    {
+      "path": "themes/osaka-jade/backgrounds/omarchy.png",
+      "blob": "8f691c614f04068c94fd11d0c55ba165591bbaed",
+      "size": 4491,
+      "sha256": "34f2616ab72dc1630dac6d72c74f4284808f23ba651e00dde3a52a1be0b46c34",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/retro-82/backgrounds/1-in-the-groove.jpg",
+      "blob": "c9537a47150d8a6108bd9d858c8f4a1d396dff97",
+      "size": 1773117,
+      "sha256": "170dfcacaf888bf7154f471925dbccb3500c23ee7db6545fd62acf52f7016381",
+      "width": 5184,
+      "height": 3456
+    },
+    {
+      "path": "themes/retro-82/backgrounds/2-dusk-guardian.jpg",
+      "blob": "4f30b56d3e5798530824dd8063fcf8b3c15ee341",
+      "size": 1054746,
+      "sha256": "d1fa5d4ef5284cc37237c1656a1ff362e29ba38c94f2ab6a0dbf8a3ef3bb753f",
+      "width": 5616,
+      "height": 3744
+    },
+    {
+      "path": "themes/retro-82/backgrounds/3-glassy-lines.jpg",
+      "blob": "c1106dcd1a55d61ce99b58ca2df3def7c2e77874",
+      "size": 3601602,
+      "sha256": "c484f7be35fd1891b428ce64b1082545d16fe46c84b5f8f01a7a541c5e27ab8f",
+      "width": 6144,
+      "height": 3456
+    },
+    {
+      "path": "themes/retro-82/backgrounds/4-gateway.jpg",
+      "blob": "067baa4cf73c0d27affa9324611448cfd0357755",
+      "size": 1756218,
+      "sha256": "f12eea4dd417abac7387a4d080eea9f9f227b1a6894d63afbdcf780f43a55997",
+      "width": 6144,
+      "height": 3456
+    },
+    {
+      "path": "themes/retro-82/backgrounds/5-zen-boat.jpg",
+      "blob": "4a4821e1a8672a056dc36dbc2966f99c2ebf9f53",
+      "size": 2583385,
+      "sha256": "29e9207f0035264ebe3c42fb03f8a80e7f21319874913ff5d28e5a6d73c95fbc",
+      "width": 10456,
+      "height": 3455
+    },
+    {
+      "path": "themes/retro-82/backgrounds/6-abstract-pyramids.jpg",
+      "blob": "6dd9d0a357efd03c638025b6bd45277bfa47d79c",
+      "size": 3556677,
+      "sha256": "5e06e3e417761ff3aa45d5464cc6ce12d3167d86a671292f35424217568175f7",
+      "width": 6908,
+      "height": 3456
+    },
+    {
+      "path": "themes/retro-82/backgrounds/7-the-journey.jpg",
+      "blob": "03fc55c74505d5bbf9daa76ec34de430f91101ac",
+      "size": 1459723,
+      "sha256": "9cbbaa1f5b868bcb9bcb4b511664c93f938bebc78bae7965c8f366da037db6ab",
+      "width": 6144,
+      "height": 3456
+    },
+    {
+      "path": "themes/retro-82/backgrounds/8-glitter-glass.jpg",
+      "blob": "dfa5322513dc3a01ac561f1c28624010dd0506a3",
+      "size": 910201,
+      "sha256": "4a6f3453b1fdf14b05085b813da43c05cfca066ed1561d0382fe13be3275155f",
+      "width": 3600,
+      "height": 2400
+    },
+    {
+      "path": "themes/retro-82/backgrounds/omarchy.png",
+      "blob": "477cad102489cece71221fcef66912c26845ff02",
+      "size": 4491,
+      "sha256": "7a40b0224f1a7276aa815633bde71dba51ccc80212e98aa5ca9f96c7b13f0821",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/ristretto/backgrounds/0-launch.png",
+      "blob": "3c191940f0d8d378c6fc42d2914f330576262777",
+      "size": 251892,
+      "sha256": "674dbf0e13583e43fcfcc0029b012fb04636af58c6464c18a13dbeff073254bf",
+      "width": 5120,
+      "height": 3414
+    },
+    {
+      "path": "themes/ristretto/backgrounds/1-color-curves.jpg",
+      "blob": "7618e1b531c2f03eb05fc212435676f7d7ea9551",
+      "size": 210019,
+      "sha256": "9cbb0937c4413dbffb418742972dd952286205fdc08656578537d0d48e22879d",
+      "width": 2912,
+      "height": 1632
+    },
+    {
+      "path": "themes/ristretto/backgrounds/2-coffee-beans.jpg",
+      "blob": "faf63eabe3ef792c409899bf8add10b4ef99b5bc",
+      "size": 1538954,
+      "sha256": "1f691430c72083f547871019c8c3f3632af1962f882ce54a45fcf07eaf2a330a",
+      "width": 2912,
+      "height": 1632
+    },
+    {
+      "path": "themes/ristretto/backgrounds/3-industrial-moon.jpg",
+      "blob": "385b01d927968019d7e870d11f10a379a96fd599",
+      "size": 816682,
+      "sha256": "7c769ace17a62fff2f4a8efdac121b21c8c78a8a2b0fb528a766c4e8ff641bdc",
+      "width": 2912,
+      "height": 1632
+    },
+    {
+      "path": "themes/ristretto/backgrounds/omarchy.png",
+      "blob": "f1182f69f6c394f819a667f194715a79b2678f75",
+      "size": 4491,
+      "sha256": "201d59896dc8ed4e33b6a32ad7c78bd52851f9f750d8611ede6e0c4f7350303a",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/rose-pine/backgrounds/1-funky-shapes.jpg",
+      "blob": "adfe24286b17ce87b5fa183d71af4aec7d4dd8f9",
+      "size": 254046,
+      "sha256": "6f5a9ea3dc223fbe910467cc73967ba6dd9f7e80a7d806bc15e985563d15fe03",
+      "width": 5000,
+      "height": 3000
+    },
+    {
+      "path": "themes/rose-pine/backgrounds/2-dot-map.png",
+      "blob": "53e136c533535cfff6b3ba15dec790259bae1d3f",
+      "size": 1231653,
+      "sha256": "5677cd61e3472270bbdac862df5574e47e8109a0e47e4d78c0dcb386165bd7f6",
+      "width": 5120,
+      "height": 2880
+    },
+    {
+      "path": "themes/rose-pine/backgrounds/3-omarchy-plants.png",
+      "blob": "f19c3ff64f4844811e39730a0933a525ea8d16c7",
+      "size": 1182471,
+      "sha256": "3d19aff7875609d8c28811b150ac59afa5863b5dee83b4bac8530ffe59c949cb",
+      "width": 5120,
+      "height": 3202
+    },
+    {
+      "path": "themes/rose-pine/backgrounds/omarchy.png",
+      "blob": "14f6e8a3bcf0ae0dbe517bb44a2c200a0c89187a",
+      "size": 4491,
+      "sha256": "4f9af5a1bf31decddb36f3c16eac66b281a922133f13e35e0cb591e652473874",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/solitude/backgrounds/1-on-pole.jpg",
+      "blob": "5830446fe175a8fac5530b8588bc22b4912d56b7",
+      "size": 1796693,
+      "sha256": "988aa9e2e1d1ec5af1e9fcf69f8571fe1c53c31cd1f8053cafa1def6700505ad",
+      "width": 3160,
+      "height": 2281
+    },
+    {
+      "path": "themes/solitude/backgrounds/2-wreakage.jpg",
+      "blob": "5c7174a4cb6ffc9ef65e266881e94d1bd6c15e22",
+      "size": 1340633,
+      "sha256": "b10814d6233f5ec9266d4a7cc9345f7844e62bece8d9508b773d1abcb7aedcf3",
+      "width": 3160,
+      "height": 1778
+    },
+    {
+      "path": "themes/solitude/backgrounds/3-climb.jpg",
+      "blob": "678e4e690f353156a91d0c37a310c4c574b59d67",
+      "size": 2510503,
+      "sha256": "aa7a31ba7f87b6b0a88ff3c9e57241672a71f862251e9ba5659ffa004cda66b7",
+      "width": 3160,
+      "height": 2286
+    },
+    {
+      "path": "themes/solitude/backgrounds/4-ether.jpg",
+      "blob": "766c6cc72284022ca7be09a39f1c582b7a2f893b",
+      "size": 978945,
+      "sha256": "bc267be456b844fa63f2348757238a665f1c362356392ef3c591ed3c2cf5ec3e",
+      "width": 3160,
+      "height": 1778
+    },
+    {
+      "path": "themes/solitude/backgrounds/5-eyed.jpg",
+      "blob": "b8bd7be066cf6ecdff0a3b833bc6fccae7b8beab",
+      "size": 2178852,
+      "sha256": "eb88ed0233f58f4427ea96879469393751126ac115ed06f2bc1aaa1f9b6f22c6",
+      "width": 3160,
+      "height": 1778
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/0-winding-road.jpg",
+      "blob": "f1a1287ba12a088e84a3b9a1c487ae81ade8020d",
+      "size": 4445106,
+      "sha256": "37746404ae9a4357442e520c34ea105780232ac3d08a9f289f00156e49f37c4e",
+      "width": 6016,
+      "height": 3384
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/1-quattro.jpg",
+      "blob": "150ebab5bf8272fc04ba7d031fe6c337f654e66d",
+      "size": 3830535,
+      "sha256": "ffd65594b6d5e7094fc706d9b7b91e5a94713345d264a7d62302b64589be3c8f",
+      "width": 5120,
+      "height": 2880
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/2-swirl-buck.jpg",
+      "blob": "504f3db2d092a71caefc008eee7ba62730ebede7",
+      "size": 2941090,
+      "sha256": "4a4ce5ba6c228771c89439710bfa81005791d3c4f76a62481e4d00939b702e3c",
+      "width": 6336,
+      "height": 2688
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/3-sunset-lake.png",
+      "blob": "d80672889f55b8d0a5aae1298c13894d3f46fa0e",
+      "size": 2804358,
+      "sha256": "06dfb9fce029ec35adb40ea3939296777c2b140d1232b5a1697b15052d575362",
+      "width": 7680,
+      "height": 3215
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/4-omakub.jpg",
+      "blob": "825bb4b14c31e8213db7414e3fcc4459ffa4849b",
+      "size": 2319559,
+      "sha256": "c04a61df9928f1c1b078050078648bd9d717326e5cc19fc9de6228989af01f24",
+      "width": 6930,
+      "height": 3960
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/5-oma-cityscape.jpg",
+      "blob": "f57916bb2e70cd910255fd23e02b6614bc7ddace",
+      "size": 1408419,
+      "sha256": "22e1d639722b33fa6f0d3ac2733450b4bae961b481f5665cb16397bc5f714e5c",
+      "width": 3160,
+      "height": 1778
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/6-oma.jpg",
+      "blob": "3b85cd0dc334f544232b2e2d9b629b9d81b066c5",
+      "size": 457574,
+      "sha256": "41b8b6a175bb493e16e11c0829f9366491129520922c5c05e112e0295132bc14",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/tokyo-night/backgrounds/omarchy.png",
+      "blob": "0f520903991ec3f7974c659c2b65b0b76c8e05f4",
+      "size": 4491,
+      "sha256": "0da53b82f9700a57e759ab9b689f294a3ef7342ffc56a7d3abfe55d4e6c80f96",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/vantablack/backgrounds/0-dot-hands.jpg",
+      "blob": "b76792cb81eb35d68d9b442a8abbc286e9025d77",
+      "size": 482067,
+      "sha256": "e8d73aa65be29bf9d0bec62f64add450485ca52367701ff683e0f2bd66f0791a",
+      "width": 3456,
+      "height": 2234
+    },
+    {
+      "path": "themes/vantablack/backgrounds/1-twisted-stairs.jpg",
+      "blob": "ad81cf17e2cdb97e4bbd76673548cc2271e83419",
+      "size": 1116164,
+      "sha256": "03eaacfb2c4970ec47514c7d25960840a0b765bea79f0a3900f5045dd550a108",
+      "width": 7680,
+      "height": 4320
+    },
+    {
+      "path": "themes/vantablack/backgrounds/2-layers-deep.jpg",
+      "blob": "e0f04b62fafe7673e338d3921fec18bcaa288b02",
+      "size": 978322,
+      "sha256": "dca7a284b93e7221216bcb01452114bfd80591a606a00cf885ab7cc3c86f6fa6",
+      "width": 7680,
+      "height": 4320
+    },
+    {
+      "path": "themes/vantablack/backgrounds/3-layers-stacked.jpg",
+      "blob": "4a81b94597fc7bf90a736334422882e52b600d06",
+      "size": 455189,
+      "sha256": "7e30d584ba2a2dd810b94fce78a5115c36727f8c2015d8e11504ab1d355deea0",
+      "width": 6000,
+      "height": 3000
+    },
+    {
+      "path": "themes/vantablack/backgrounds/omarchy.png",
+      "blob": "4bf3789dbbeb081ad5663d2ef26d37ed5d6e5122",
+      "size": 9566,
+      "sha256": "9b02e086255d22b9e4eb9ab50ad7c17cbf887d39feb3bfabbef34909e3a20878",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "path": "themes/white/backgrounds/1-white.jpg",
+      "blob": "0e6121f712eef6d127d7bdb1058b71d8aca3810f",
+      "size": 1135994,
+      "sha256": "2d854b0138b63373b37925f5ded8494bc819f123965b18825fb87b2153ffb23a",
+      "width": 6000,
+      "height": 3375
+    },
+    {
+      "path": "themes/white/backgrounds/2-white.jpg",
+      "blob": "b8c5a7dcb4346f96dcd09e352ddd3f46101ae878",
+      "size": 412741,
+      "sha256": "a261b0adb32e200534b581a3db4264ea8241365a786dce3946e2006dceed4eff",
+      "width": 6001,
+      "height": 4001
+    },
+    {
+      "path": "themes/white/backgrounds/3-white.jpg",
+      "blob": "4ec45534b665499c8af6088b2269af932992539a",
+      "size": 2122220,
+      "sha256": "6c4825e415ffa5c8eea96d186a9478bd2105b647679e9c75c2ae7953b0db9d89",
+      "width": 6240,
+      "height": 4160
+    },
+    {
+      "path": "themes/white/backgrounds/omarchy.png",
+      "blob": "9b5cd0c00fbc0f82d8d35fc4e3d3e9746badd69b",
+      "size": 13413,
+      "sha256": "5b7979f194b82215a50cd7fa724cb4a4c05c296b91ed32557cdca46ea5f1dbd3",
+      "width": 3840,
+      "height": 2160
+    }
+  ]
+}

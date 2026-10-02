@@ -775,3 +775,11 @@ signal-desktop-keyring.gpg
 .config/dotfiles/*
 !.config/dotfiles/shell.fish
 !.config/dotfiles/shell.zsh
+
+# Credentials and restore-time data stay outside the public recovery profile.
+.secrets
+.secrets.fish
+.env
+.env.*
+*.key
+*.pem

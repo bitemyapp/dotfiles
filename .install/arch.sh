@@ -18,7 +18,7 @@ Existing packages, executables, and desktop app configuration are preserved.
 Components: core, rust, fonts, shells, docker, ghostty, google-chrome,
             spotify, telegram, signal, cursor, claude, codex, github,
             node, opencode, niri, vscode, vscodium, slack, cuda, xsecurelock,
-            zed, chatgpt-desktop, claude-desktop
+            zed, chatgpt-desktop, claude-desktop, plasma
 --aur permits yay/paru to install missing packages absent from the repositories.
 --dry-run prints changes without installing packages, editing files, or chsh.
 EOF
@@ -88,6 +88,7 @@ for component in "${components[@]}"; do
     claude-desktop) specs+=(claude-desktop:claude-desktop) ;;
     chatgpt-desktop) specs+=(chatgpt-desktop:chatgpt) ;;
     zed) specs+=(zed:zeditor,zed) ;;
+    plasma) specs+=(plasma-desktop plasma-workspace bluedevil powerdevil qt6-tools:qdbus6 python:python3) ;;
     codex) specs+=(openai-codex-bin:codex) ;;
     github) specs+=(github-cli:gh) ;;
     node) specs+=(nodejs:node npm:npm) ;;
